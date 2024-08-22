@@ -1,9 +1,8 @@
+import { Cohort, Header } from "./components";
 
 const App = () => {
   return (
-    <div >
-      This is a Rsbuild React Project.
-    </div>
+    <Cohort />
   );
 };
 
