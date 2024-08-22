@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "https://static.pw.live/fonts/reddit/font.css";
+@import 'https://static.pw.live/fonts/reddit/font.css';
 
 @layer base {
   html {

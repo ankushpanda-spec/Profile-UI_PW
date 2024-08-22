@@ -1,7 +1,5 @@
 function DownloadApp() {
-    return (
-        <div>DownloadApp</div>
-    )
+  return <div>DownloadApp</div>;
 }
 
-export default DownloadApp
+export default DownloadApp;

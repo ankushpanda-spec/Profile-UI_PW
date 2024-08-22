@@ -1,1 +1,1 @@
-export { default } from "./Cohort";
+export {default} from './Cohort';

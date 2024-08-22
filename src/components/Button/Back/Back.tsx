@@ -1,7 +1,5 @@
 function Back() {
-    return (
-        <div>Back</div>
-    )
+  return <div>Back</div>;
 }
 
-export default Back
+export default Back;

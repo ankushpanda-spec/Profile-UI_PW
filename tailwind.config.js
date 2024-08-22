@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        reddit: "var(--font-family-reddit)",
+        reddit: 'var(--font-family-reddit)',
       },
     },
   },

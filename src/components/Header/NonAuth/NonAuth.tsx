@@ -1,8 +1,5 @@
-
 function NonAuth() {
-    return (
-        <div>NonAuth</div>
-    )
+  return <div>NonAuth</div>;
 }
 
-export default NonAuth
+export default NonAuth;
