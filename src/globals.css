@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "https://static.pw.live/fonts/reddit/font.css";
+
+@layer base {
+  html {
+    @apply font-reddit;
+  }
+}
