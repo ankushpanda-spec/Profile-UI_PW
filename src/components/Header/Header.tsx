@@ -1,6 +1,6 @@
-import Auth from './Auth';
-import NonAuth from './NonAuth';
-import { HeaderProps } from './Types';
+import Auth from "./Auth";
+import NonAuth from "./NonAuth";
+import { HeaderProps } from "./Types";
 
 function Header(props: HeaderProps) {
     const { isUserLoggedIn = false } = props;
