@@ -1,4 +1,4 @@
-{
+module.exports = {
   "semi": true,
   "trailingComma": "es5",
   "tabWidth": 2,
@@ -7,6 +7,7 @@
   "bracketSpacing": false,
   "arrowParens": "avoid",
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-tailwindcss"]
+   plugins: [require('prettier-plugin-tailwindcss')],
+  tailwindConfig: './tailwind.config.js',
 }
 

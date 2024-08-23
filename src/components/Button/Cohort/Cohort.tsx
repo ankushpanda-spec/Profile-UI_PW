@@ -1,4 +1,5 @@
-import {ChevronRight} from '@/icons';
+import { ChevronRight } from '@/icons';
+
 function Icon() {
   return (
     <svg
@@ -34,12 +35,12 @@ function Icon() {
 
 function Cohort() {
   return (
-    <button className="p-3 flex items-center gap-4 rounded border border-[#F1EFFF]">
-      <div>
+    <button className="bg-white shadow-sm p-3 flex flex-row gap-x-4 items-center gap-4 rounded border border-primary-50">
+      <div className='flex flex-row gap-x-2 items-center'>
         {Icon()}
         <span>11th IIT JEE</span>
-        <ChevronRight className="size-4" />
       </div>
+        <ChevronRight className="size-4" />
     </button>
   );
 }

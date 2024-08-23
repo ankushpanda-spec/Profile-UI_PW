@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@pw-tech/omni-ui": {
+      "signature": "1f942c7d520b35a8a3c36c1232c58ba7",
+      "file": true
+    }
+  }
+}

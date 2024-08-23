@@ -1,5 +1,4 @@
-import {Cohort, Header} from './components';
-
+import { Cohort } from './components';
 const App = () => {
   return <Cohort />;
 };
