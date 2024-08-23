@@ -1,20 +1,49 @@
-import {AuthHeaderProps as AuthProps} from '../Types';
+import {useScreen} from '@/context';
+import {Typography} from '@pw-tech/omni-ui';
+import AvatarDropdown from '../../AvatarDropdown';
+import {MobileAppStoreBadge} from '../../Badge';
+import {BackButton, CohortButton, MenuButton} from '../../Button';
+import {AuthHeaderProps} from '../Types';
+import Auth from './Layout';
 
-function Auth(props: AuthProps) {
-  const {leftAction, menuAction, rightAction} = props;
+function Layout(props: AuthHeaderProps) {
+  const {isMobile} = useScreen();
+  const {
+    onMenuClick,
+    onCohortClick,
+    onBackClick,
+    onProfileClick,
+    onAppDownloadClick,
+    toggleCohortVisibility = true,
+  } = props;
   return (
-    <header className="flex h-[64px] w-[360px] items-center justify-between border-b bg-white px-24 sm:w-[480px] md:h-[72px] md:w-[768px] lg:h-[80px] lg:w-[1024px] xl:w-[1200px] xl:px-82">
-      <div className="flex items-center gap-12">
-        {/* Menu Action */}
-        {menuAction}
-        {/* Left Action */}
-        {leftAction}
-      </div>
-
-      {/* Right Action */}
-      <div>{rightAction}</div>
-    </header>
+    <Auth
+      menuAction={isMobile && <MenuButton onClick={onMenuClick} />}
+      leftAction={
+        toggleCohortVisibility ? (
+          <CohortButton onClick={onCohortClick} />
+        ) : (
+          <BackButton onClick={onBackClick} />
+        )
+      }
+      rightAction={
+        <div className="flex items-center justify-end gap-24">
+          <div className="hidden h-48 items-center gap-8 md:flex">
+            <Typography
+              variant="tiny"
+              weight="medium"
+              className="cursor-pointer"
+              onClick={onAppDownloadClick}
+            >
+              Download App
+            </Typography>
+            <MobileAppStoreBadge onClick={onAppDownloadClick} />
+          </div>
+          <AvatarDropdown onClick={onProfileClick} />
+        </div>
+      }
+    />
   );
 }
 
-export default Auth;
+export default Layout;
