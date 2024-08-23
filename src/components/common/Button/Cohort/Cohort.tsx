@@ -1,4 +1,5 @@
-import {ChevronRight} from '@/icons';
+import {ChevronRight} from '@/assets/icons';
+import {Typography} from '@pw-tech/omni-ui';
 
 function Icon() {
   return (
@@ -33,14 +34,19 @@ function Icon() {
   );
 }
 
-function Cohort() {
+function Cohort(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className="flex flex-row items-center gap-4 gap-x-4 rounded border border-primary-50 bg-white p-3 shadow-sm">
-      <div className="flex flex-row items-center gap-x-2">
+    <button
+      className="flex flex-row items-center gap-x-16 rounded border border-primary-50 bg-white p-12 shadow-sm"
+      {...props}
+    >
+      <div className="flex flex-row items-center gap-x-8">
         {Icon()}
-        <span>11th IIT JEE</span>
+        <Typography color="static-black" variant="small" weight="semi-bold">
+          11th IIT JEE
+        </Typography>
       </div>
-      <ChevronRight className="size-4" />
+      <ChevronRight className="size-24" />
     </button>
   );
 }
