@@ -1,4 +1,4 @@
-import { Cohort } from './components';
+import {Cohort} from './components';
 const App = () => {
   return <Cohort />;
 };

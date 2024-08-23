@@ -3,7 +3,7 @@ module.exports = {
   content: ['./src/**/*.{html,js,ts,jsx,tsx}'],
   theme: {
     extend: {
-   fontFamily: {
+      fontFamily: {
         reddit: 'var(--font-family-reddit)',
       },
       boxShadow: {
@@ -244,4 +244,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

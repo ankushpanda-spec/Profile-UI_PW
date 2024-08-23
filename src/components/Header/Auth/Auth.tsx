@@ -2,7 +2,7 @@ import {Back, Cohort} from '@/components/Button';
 
 function Auth() {
   return (
-    <header className="px-82 w-[1200px] h-[80px] flex justify-between items-center">
+    <header className="px-82 flex h-[80px] w-[1200px] items-center justify-between">
       {/* Left Action */}
       <div>
         {/* Menu Action */}

@@ -1,4 +1,4 @@
-import { ChevronRight } from '@/icons';
+import {ChevronRight} from '@/icons';
 
 function Icon() {
   return (
@@ -35,12 +35,12 @@ function Icon() {
 
 function Cohort() {
   return (
-    <button className="bg-white shadow-sm p-3 flex flex-row gap-x-4 items-center gap-4 rounded border border-primary-50">
-      <div className='flex flex-row gap-x-2 items-center'>
+    <button className="flex flex-row items-center gap-4 gap-x-4 rounded border border-primary-50 bg-white p-3 shadow-sm">
+      <div className="flex flex-row items-center gap-x-2">
         {Icon()}
         <span>11th IIT JEE</span>
       </div>
-        <ChevronRight className="size-4" />
+      <ChevronRight className="size-4" />
     </button>
   );
 }
