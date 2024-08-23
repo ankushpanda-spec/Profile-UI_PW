@@ -1,4 +1,47 @@
 {
+  "name": "mf-boilerplate-react",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rsbuild build && node scripts/compress-gzip.js",
+    "dev": "rsbuild dev --open",
+    "preview": "rsbuild preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "prebuild": "npm run lint",
+    "postbuild": "npm run format"
+  },
+  "dependencies": {
+    "@module-federation/enhanced": "^0.5.1",
+    "@module-federation/runtime": "^0.5.1",
+    "@pw-tech/omni-ui": "^0.0.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@eslint/compat": "^1.1.1",
+    "@eslint/js": "^9.9.0",
+    "@rsbuild/core": "1.0.1-beta.15",
+    "@rsbuild/plugin-react": "1.0.1-beta.15",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.9.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "globals": "^15.9.0",
+    "husky": "^9.1.5",
+    "postcss": "^8.4.41",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.5.2",
+    "typescript-eslint": "^8.1.0"
+  }
+}
+
+{
   "name": "rsbuild-react-ts",
   "private": true,
   "version": "1.0.0",
