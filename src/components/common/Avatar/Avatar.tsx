@@ -34,7 +34,7 @@ function Avatar(props: React.HTMLAttributes<HTMLDivElement>) {
           d="M39 20C39 30.4934 30.4934 39 20 39C9.50659 39 1 30.4934 1 20C1 9.50659 9.50659 1 20 1C30.4934 1 39 9.50659 39 20Z"
           fill="url(#pattern0_13563_4026)"
           stroke="white"
-          stroke-width="2"
+          strokeWidth="2"
         />
         <defs>
           <pattern

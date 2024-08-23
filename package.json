@@ -6,7 +6,8 @@
     "build": "rsbuild build && node scripts/compress-gzip.js",
     "dev": "rsbuild dev --open",
     "preview": "rsbuild preview",
-    "lint": "eslint . --ext .ts,.tsx",
+    "lint": "eslint .",
+    "fix": "eslint --fix",
     "format": "prettier --write .",
     "prebuild": "npm run lint",
     "postbuild": "npm run format"

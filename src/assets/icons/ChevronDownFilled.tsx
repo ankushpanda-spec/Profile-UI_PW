@@ -6,6 +6,7 @@ function ChevronDownFilled(props: React.SVGProps<SVGSVGElement>) {
       height="16"
       viewBox="0 0 16 16"
       fill="none"
+      {...props}
     >
       <path d="M4 6L8 10L12 6H4Z" fill="#1B2124" />
     </svg>
