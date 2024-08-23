@@ -1,4 +1,4 @@
-import {Back, Cohort} from '@/components/Button';
+import { Cohort } from '@/components/common/Button';
 
 function Auth() {
   return (
