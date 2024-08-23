@@ -4,12 +4,19 @@ import Avatar from '../Avatar/Avatar';
 
 function AvatarDropdown(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className="flex h-48 items-center gap-12" {...props}>
-      <Typography variant="small" weight="semi-bold">
+    <button
+      className="flex h-40 items-center md:gap-8 lg:h-48 lg:gap-12"
+      {...props}
+    >
+      <Typography
+        variant="small"
+        weight="semi-bold"
+        className="hidden md:block"
+      >
         Hi, Ravi
       </Typography>
-      <div className="flex items-center gap-4">
-        <Avatar />
+      <div className="flex items-center gap-2 lg:gap-4">
+        <Avatar className="size-32 md:size-40" />
         <ChevronDownFilled className="size-16" />
       </div>
     </button>

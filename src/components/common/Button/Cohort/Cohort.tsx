@@ -1,7 +1,7 @@
 import {ChevronRight} from '@/assets/icons';
 import {Typography} from '@pw-tech/omni-ui';
 
-function Icon() {
+function Icon(props: React.SVGAttributes<SVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -9,6 +9,7 @@ function Icon() {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
+      {...props}
     >
       <path
         d="M2.90791 14.2963C2.05564 12.6206 -0.16969 3.51333 11.626 4.04554C23.4216 4.57774 21.7984 16.5505 16.2334 19.2633C13.2066 20.7388 10.7565 19.6271 7.67781 18.2675C5.55816 17.3313 3.76019 15.9721 2.90791 14.2963Z"
@@ -37,16 +38,16 @@ function Icon() {
 function Cohort(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className="flex flex-row items-center gap-x-16 rounded border border-primary-50 bg-white p-12 shadow-sm"
+      className="transition-color flex flex-row items-center gap-6 rounded border border-primary-50 bg-white p-6 shadow-sm duration-300 ease-in-out hover:border-primary-200 md:gap-12 md:p-8 lg:gap-16 lg:p-12"
       {...props}
     >
-      <div className="flex flex-row items-center gap-x-8">
-        {Icon()}
+      <div className="flex flex-row items-center gap-8">
+        <Icon className="size-20 sm:size-24" />
         <Typography color="static-black" variant="small" weight="semi-bold">
           11th IIT JEE
         </Typography>
       </div>
-      <ChevronRight className="size-24" />
+      <ChevronRight className="size-16 xl:size-24" />
     </button>
   );
 }

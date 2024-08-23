@@ -4,7 +4,7 @@ import {Typography} from '@pw-tech/omni-ui';
 function Back(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className="flex h-80 w-80 shrink-0 items-center justify-center gap-4"
+      className="flex h-80 w-80 shrink-0 items-center justify-center gap-4 transition-all duration-300 ease-in-out hover:gap-8"
       {...props}
     >
       <ChevronLeft className="size-16 shrink-0" />

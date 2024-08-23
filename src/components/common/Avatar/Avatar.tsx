@@ -1,10 +1,12 @@
 import {cn} from '@/utils';
 import s from './index.module.css';
-function Avatar() {
+
+function Avatar(props: React.HTMLAttributes<HTMLDivElement>) {
+  const {className} = props;
   return (
-    <div className={cn(s.parent, 'relative size-40 shrink-0')}>
+    <div className={cn(s.parent, 'relative shrink-0', className)}>
       <svg
-        className="absolute top-0 size-40 shrink-0 fill-white"
+        className="absolute top-0 size-full shrink-0 fill-white"
         xmlns="http://www.w3.org/2000/svg"
         width="40"
         height="40"

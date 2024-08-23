@@ -1,4 +1,4 @@
-import {GetItOnText, GooglePlayText} from '@/assets/icons';
+import {GetItOnText, GooglePlayText, PlayStore} from '@/assets/icons';
 import {cn} from '@/utils';
 import s from './index.module.css';
 
@@ -8,7 +8,7 @@ function MobileAppStore(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
       className="flex h-[25px] w-[84px] flex-row items-center justify-around rounded-[5px] border border-[#A6A6A6] bg-black"
       {...props}
     >
-      <GooglePlayText
+      <PlayStore
         className={cn(
           'h-[16.075px] w-[14.367px] flex-shrink-0',
           s['google-play-logo']

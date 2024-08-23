@@ -2,6 +2,7 @@ import {ThemeProvider} from '@pw-tech/omni-ui';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import {ScreenProvider} from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
@@ -12,7 +13,9 @@ if (rootEl) {
     <React.StrictMode>
       <ErrorBoundary>
         <ThemeProvider>
-          <App />
+          <ScreenProvider>
+            <App />
+          </ScreenProvider>
         </ThemeProvider>
       </ErrorBoundary>
     </React.StrictMode>
