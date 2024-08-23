@@ -14,4 +14,4 @@ if (rootEl) {
   );
 }
 
-import('./Bootstrap')
+import('./Bootstrap');

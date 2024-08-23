@@ -10,8 +10,8 @@ const compressGzip = (srcPath, destPath) => {
   fileContents.pipe(zip).pipe(writeStream);
 };
 
-const compressDirectory = (dir) => {
-  fs.readdirSync(dir).forEach((file) => {
+const compressDirectory = dir => {
+  fs.readdirSync(dir).forEach(file => {
     const filePath = path.join(dir, file);
     const gzPath = `${filePath}.gz`;
 

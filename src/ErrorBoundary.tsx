@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, {Component, ErrorInfo, ReactNode} from 'react';
 
 interface Props {
   children: ReactNode;
@@ -21,13 +21,13 @@ class ErrorBoundary extends Component<Props, State> {
 
   static getDerivedStateFromError(error: Error): State {
     // Update state to render fallback UI on next render
-    return { hasError: true, error, errorInfo: null };
+    return {hasError: true, error, errorInfo: null};
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.log('we got error', error, errorInfo)
+    console.log('we got error', error, errorInfo);
     // Update errorInfo in the state
-    this.setState({ errorInfo });
+    this.setState({errorInfo});
 
     // Call the provided onError function if it exists
     if (this.props.onError) {
@@ -46,12 +46,12 @@ class ErrorBoundary extends Component<Props, State> {
 
   handleRetry = () => {
     // Reset the error state to allow a retry
-    this.setState({ hasError: false, error: null, errorInfo: null });
+    this.setState({hasError: false, error: null, errorInfo: null});
   };
 
   handleReset = () => {
     // Reset the entire error boundary state and potentially other app state
-    this.setState({ hasError: false, error: null, errorInfo: null });
+    this.setState({hasError: false, error: null, errorInfo: null});
     // Optionally, trigger additional logic to reset application state or context
   };
 
@@ -59,18 +59,18 @@ class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       // Render the fallback UI if an error is caught
       return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-red-100 p-6">
-          <div className="bg-white p-8 rounded-lg shadow-md text-center">
+        <div className="flex min-h-screen flex-col items-center justify-center bg-red-100 p-6">
+          <div className="rounded-lg bg-white p-8 text-center shadow-md">
             {this.props.fallback ? (
               this.props.fallback
             ) : (
               <div>
-                <h1 className="text-2xl font-bold text-red-600 mb-4">
+                <h1 className="mb-4 text-2xl font-bold text-red-600">
                   Something went wrong.
                 </h1>
                 {this.state.error && (
-                  <details className="whitespace-pre-wrap text-left mb-4 text-gray-700">
-                    <summary className="cursor-pointer text-gray-900 font-medium">
+                  <details className="mb-4 whitespace-pre-wrap text-left text-gray-700">
+                    <summary className="cursor-pointer font-medium text-gray-900">
                       Error details
                     </summary>
                     {this.state.error.toString()}
@@ -81,13 +81,13 @@ class ErrorBoundary extends Component<Props, State> {
                 <div className="mt-6 flex justify-center">
                   <button
                     onClick={this.handleRetry}
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-4"
+                    className="mr-4 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
                   >
                     Retry
                   </button>
                   <button
                     onClick={this.handleReset}
-                    className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75"
+                    className="rounded-lg bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75"
                   >
                     Reset
                   </button>

@@ -1,5 +1,5 @@
-import { dependencies } from './package.json';
-import type { Rspack } from '@rsbuild/core';
+import {dependencies} from './package.json';
+import type {Rspack} from '@rsbuild/core';
 
 export const mfConfig: Rspack.ModuleFederationPluginOptions = {
   name: 'remote',

@@ -1,8 +1,8 @@
-import { Cohort } from '@/components/common/Button';
+import {Cohort} from '@/components/common/Button';
 
 function Auth() {
   return (
-    <header className="px-82 flex h-[80px] w-[1200px] items-center justify-between">
+    <header className="flex h-[80px] w-[1200px] items-center justify-between px-82">
       {/* Left Action */}
       <div>
         {/* Menu Action */}
