@@ -1,0 +1,47 @@
+.sideBar {
+    @apply w-[240px] h-screen flex flex-col items-start p-5;
+}
+
+.logoContainer {
+    @apply bg-white h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
+}
+
+.logoContainer>div {
+    @apply flex justify-center items-start
+}
+
+.contentWrapper {
+    @apply flex flex-col items-start w-full overflow-y-auto
+}
+
+.categoryTitle {
+    @apply px-20 pt-24 pb-8 text-grey-2 w-full
+}
+
+.menuOption {
+    @apply flex flex-col items-start w-full hover:bg-primary-50
+}
+
+.optionWrapper {
+    @apply flex w-full h-[56px] px-20 py-16 items-center gap-8 flex-row
+}
+
+.leftOptions {
+    @apply h-5 w-5 flex shrink-0 justify-center items-center
+}
+
+.optionTitle {
+    @apply flex-grow flex-shrink-0 basis-0
+}
+
+.rightOptions {
+    @apply flex items-center gap-8
+}
+
+.badges {
+    @apply flex h-16 px-6 flex-col justify-center items-center rounded-[160px] bg-error
+}
+
+.badgeAtom {
+    @apply flex items-center text-white text-16 gap-6 h-full
+}
