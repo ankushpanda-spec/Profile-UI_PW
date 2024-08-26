@@ -12,7 +12,7 @@ export const sideNavbarOptions = [
         isActive: false,
         isNew: true,
         badge: "1",
-
+        
       },
       {
         title: "Quick Learning",
@@ -28,7 +28,7 @@ export const sideNavbarOptions = [
         icon: <Saarthi/>,
         url: "/study",
         isActive: false,
-        isNew: true,
+        isNew: false,
         isSubmenuOpen : false,
         subMenuOption: [
           {
@@ -37,15 +37,13 @@ export const sideNavbarOptions = [
           isActive: false,
           isNew: false,
           badge: "",
-          
-          
           },
           {
           title: "Khazana",
           url: "/study",
           isActive: false,
           isNew: false, 
-          badge: "",
+         
          
           },
           {
@@ -79,9 +77,8 @@ export const sideNavbarOptions = [
       title: "Batches",
       icon: <Batches/>,
       url: "/study",
-      isActive: true,
+      isActive: false,
       isNew: false,
-      badge: "1",
         
       },
       {
@@ -99,7 +96,6 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: false,
-        badge: "1",
         
       },
     ],

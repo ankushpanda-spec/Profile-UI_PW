@@ -3,6 +3,10 @@ export interface SideNavbarProps {
     logo?: React.ReactNode;
     logoText?: string;
     section?: MenuSection[];
+    url?: string;
+    className?: string;
+    bottomStroke?: boolean;
+  
 }
 
 
@@ -28,6 +32,7 @@ interface MenuOption extends MenuItem {
 }
 
 interface MenuSection {
-    customHeader: string;
-    menuOptions: MenuOption[];
+  customHeader: string;
+  menuOptions: MenuOption[];
+  
 }

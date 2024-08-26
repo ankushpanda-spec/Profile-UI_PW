@@ -20,10 +20,6 @@ const {
     const menuOptionClassName = cn(s.menuOption, {
         [s.active] : isActive
     })
-    const optionTitleClassName = cn(s.optionTitle, {
-        [s.active] : isActive
-    })
-  
   const toggleIconClassName = cn(s.toggleIcon, {
     [s.isSubmenuOpen]:  isSubmenuOpen
   })
@@ -31,10 +27,10 @@ const {
     return (
         <div className={menuOptionClassName} onClick={onClick}>
                       <div className={s.optionWrapper}>
-                        <div className={s.leftOptions}>
+          <div className={s.leftOptions}>
                           {icon}
                 </div>
-                <div className={optionTitleClassName} >
+          <div className={s.optionTitle} >
                   <Typography component='div' variant='small'> {title }</Typography>
                 </div>
               
