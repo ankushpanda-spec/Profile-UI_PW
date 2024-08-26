@@ -6,8 +6,11 @@
     @apply bg-white h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
 }
 
-.logoContainer>div {
+.logo {
     @apply flex justify-center items-start
+}
+.logoText{
+    @apply leading-20 sm:leading-24 text-14 sm:text-16 text-nowrap
 }
 
 .contentWrapper {
@@ -21,27 +24,38 @@
 .menuOption {
     @apply flex flex-col items-start w-full hover:bg-primary-50
 }
+.menuOption.active{
+    @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100
+
+    }
+
 
 .optionWrapper {
     @apply flex w-full h-[56px] px-20 py-16 items-center gap-8 flex-row
 }
 
 .leftOptions {
-    @apply h-5 w-5 flex shrink-0 justify-center items-center
+    @apply h-20 w-20 flex shrink-0 justify-center items-center
 }
 
 .optionTitle {
-    @apply flex-grow flex-shrink-0 basis-0
+    @apply flex-grow flex-shrink-0 basis-0 text-body-1
+}
+.optionTitle.active{
+    @apply text-primary hover:text-primary-600
 }
 
 .rightOptions {
     @apply flex items-center gap-8
 }
 
-.badges {
-    @apply flex h-16 px-6 flex-col justify-center items-center rounded-[160px] bg-error
+.toggleIcon{
+   @apply transition-all duration-200 ease-in-out
 }
 
-.badgeAtom {
-    @apply flex items-center text-white text-16 gap-6 h-full
+.toggleIcon.isSubmenuOpen{
+     @apply -rotate-180;
+}
+.subMenu{
+    @apply w-full
 }

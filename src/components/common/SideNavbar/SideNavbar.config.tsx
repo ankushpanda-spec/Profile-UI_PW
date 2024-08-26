@@ -1,25 +1,4 @@
-import { Batches } from "@/assets/icons"
-import { QuickLearning } from "@/assets/icons"
-import { ContactUs } from "@/assets/icons"
-import { PrivacyPolicy } from "@/assets/icons"
-import { Feeds } from "@/assets/icons"
-import { Library } from "@/assets/icons"
-import { Wallet } from "@/assets/icons"
-import { Upskilling } from "@/assets/icons"
-import { Vidyapeeth } from "@/assets/icons"
-import { ReferEarn } from "@/assets/icons"
-import { TermsConditions } from "@/assets/icons"
-import { Result } from "@/assets/icons"
-import { Saarthi } from "@/assets/icons"
-import { Store } from "@/assets/icons"
-import { Study } from "@/assets/icons"
-import { Scholarship } from "@/assets/icons"
-import { TestSeries } from "@/assets/icons"
-
-
-
-
-
+import { Batches, QuickLearning , ContactUs ,  PrivacyPolicy , Feeds , Library , Wallet , Upskilling , Vidyapeeth , ReferEarn , TermsConditions , Result , Saarthi , Store , Study , Scholarship , TestSeries} from "@/assets/icons"
 
 export const sideNavbarOptions = [
 
@@ -32,7 +11,8 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: true,
-        badgeNo: 1,
+        badge: "1",
+
       },
       {
         title: "Quick Learning",
@@ -40,7 +20,8 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: true,
-         badgeNo: null,
+        badge: "",
+      
         },
       {
         title: "Saarthi",
@@ -48,7 +29,38 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: true,
-         badgeNo: null,
+        isSubmenuOpen : false,
+        subMenuOption: [
+          {
+          title: "Today's Classes",
+          url: "/study",
+          isActive: false,
+          isNew: false,
+          badge: "",
+          
+          
+          },
+          {
+          title: "Khazana",
+          url: "/study",
+          isActive: false,
+          isNew: false, 
+          badge: "",
+         
+          },
+          {
+          title: "Library",
+          url: "/study",
+          isActive: false,
+          isNew: false,    
+          },
+          {
+          title: "Announcements",
+          url: "/study",
+          isActive: false,
+          isNew: false,      
+          },
+        ]
         },
       {
         title: "Library",
@@ -56,7 +68,7 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: true,
-         badgeNo: null,
+        
       },
     ],
   },
@@ -64,12 +76,13 @@ export const sideNavbarOptions = [
     customHeader: "Study Packs",
     menuOptions: [
       {
-       title: "Batches",
-        icon: <Batches/>,
-        url: "/study",
-        isActive: false,
-        isNew: false,
-         badgeNo: null,
+      title: "Batches",
+      icon: <Batches/>,
+      url: "/study",
+      isActive: true,
+      isNew: false,
+      badge: "1",
+        
       },
       {
         title: "Test Series",
@@ -77,7 +90,8 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: false,
-         badgeNo: null,
+        badge: "1",
+        
         },
       {
         title: "Scholarship",
@@ -85,7 +99,8 @@ export const sideNavbarOptions = [
         url: "/study",
         isActive: false,
         isNew: false,
-         badgeNo: null,
+        badge: "1",
+        
       },
     ],
     },
@@ -93,12 +108,11 @@ export const sideNavbarOptions = [
     customHeader: "Offline",
     menuOptions: [
       {
-       title: "Vidyapeeth",
-        icon: <Vidyapeeth/>,
-        url: "/study",
-        isActive: false,
-        isNew: false,
-         badgeNo: null,
+      title: "Vidyapeeth",
+      icon: <Vidyapeeth/>,
+      url: "/study",
+      isActive: false,
+      isNew: false, 
       },
     ],
     },
@@ -106,81 +120,78 @@ export const sideNavbarOptions = [
     customHeader: "Explore PW",
     menuOptions: [
       {
-       title: "Upskilling",
-        icon: <Upskilling/>,
-        url: "/study",
-        isActive: false,
-        isNew: false,
-         badgeNo: null,
+      title: "Upskilling",
+      icon: <Upskilling/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+        
         },
         {
-       title: "Store",
-        icon: <Store/>,
-        url: "/study",
-        isActive: false,
-          isNew: false,
-         badgeNo: null,
-        },
-         {
-       title: "Results",
-        icon: <Result/>,
-        url: "/study",
-        isActive: false,
-           isNew: false,
-         badgeNo: null,
-        },
-          {
-       title: "Feeds",
-        icon: <Feeds/>,
-        url: "/study",
-        isActive: false,
-            isNew: false,
-         badgeNo: null,
+      title: "Store",
+      icon: <Store/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,  
+      },
+      {
+      title: "Results",
+      icon: <Result/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,  
+      },
+      {
+      title: "Feeds",
+      icon: <Feeds/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,      
       },
     ],
     },
-   {
+  {
     customHeader: "More",
     menuOptions: [
       {
-       title: "Refer & Earn",
-        icon: <ReferEarn/>,
-        url: "/study",
-        isActive: false,
-        isNew: false,
-         badgeNo: null,
+      title: "Refer & Earn",
+      icon: <ReferEarn/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+
         },
         {
-       title: "Wallet",
-        icon: <Wallet/>,
-        url: "/study",
-        isActive: false,
-          isNew: false,
-         badgeNo: null,
-        },
-         {
-       title: "Contact Us",
-        icon: <ContactUs/>,
-        url: "/study",
-        isActive: false,
-           isNew: false,
-         badgeNo: null,
+      title: "Wallet",
+      icon: <Wallet/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+        
+      },
+      {
+      title: "Contact Us",
+      icon: <ContactUs/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+        
+      },
+      {
+      title: "Terms & Conditions",
+      icon: <TermsConditions/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+        
         },
           {
-       title: "Terms & Conditions",
-        icon: <TermsConditions/>,
-        url: "/study",
-        isActive: false,
-            isNew: false,
-         badgeNo: null,
-        },
-          {
-       title: "Privacy Policy",
-        icon: <PrivacyPolicy/>,
-        url: "/study",
-        isActive: false,
-        isNew: false,
-         badgeNo: null,
+      title: "Privacy Policy",
+      icon: <PrivacyPolicy/>,
+      url: "/study",
+      isActive: false,
+      isNew: false,
+        
       },
     ],
   },

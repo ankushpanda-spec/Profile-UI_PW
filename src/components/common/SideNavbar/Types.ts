@@ -5,23 +5,26 @@ export interface SideNavbarProps {
     section?: MenuSection[];
 }
 
-interface SubItem {
-   title: string;
-   icon: React.ReactNode;
-   url: string;
-   isActive: boolean;
-  isNew: boolean;
-  badgeNo: number;
+
+interface MenuItem {
+  title?: string;
+  icon?: React.ReactNode;
+  url?: string;
+  isActive?: boolean;
+  isNew?: boolean;
+  badge?: string;
 }
 
-interface MenuOption {
-  title: string;
-  icon:React.ReactNode;
-  url: string;
-  isActive: boolean;
-  isNew: boolean;
-  badgeNo: number;
-  subMenuOption: SubItem[];
+
+
+export interface MenuItemProps extends MenuItem {
+  subMenuOption?: MenuItem[]
+  isSubmenuOpen?: boolean;
+  onClick?: () => void;
+}
+
+interface MenuOption extends MenuItem {
+  subMenuOption: MenuItem[];
 }
 
 interface MenuSection {
