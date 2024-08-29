@@ -1,9 +1,9 @@
-import React from 'react';
-import {AuthHeader} from './components';
+import {AuthHeader, SideNavbar} from './components';
 
 const App = () => {
   return (
     <div className="flex justify-end">
+      <SideNavbar />
       <AuthHeader
         onAppDownloadClick={() => alert('Downloading App')}
         onBackClick={() => alert('Going Back')}
