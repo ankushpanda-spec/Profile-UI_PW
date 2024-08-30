@@ -2,7 +2,7 @@ import {ThemeProvider} from '@pw-tech/omni-ui';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import {ScreenProvider} from './context';
+import {ScreenProvider, UserProvider} from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
@@ -14,7 +14,9 @@ if (rootEl) {
       <ErrorBoundary>
         <ThemeProvider>
           <ScreenProvider>
-            <App />
+            <UserProvider>
+              <App />
+            </UserProvider>
           </ScreenProvider>
         </ThemeProvider>
       </ErrorBoundary>

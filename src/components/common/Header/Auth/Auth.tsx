@@ -15,7 +15,9 @@ function Layout(props: AuthHeaderProps) {
     onProfileClick,
     onAppDownloadClick,
     toggleCohortVisibility = true,
+    user,
   } = props;
+
   return (
     <Auth
       menuAction={isMobile && <MenuButton onClick={onMenuClick} />}
@@ -39,7 +41,10 @@ function Layout(props: AuthHeaderProps) {
             </Typography>
             <MobileAppStoreBadge onClick={onAppDownloadClick} />
           </div>
-          <AvatarDropdown onClick={onProfileClick} />
+          <AvatarDropdown
+            onClick={onProfileClick}
+            userFirstName={user?.firstName}
+          />
         </div>
       }
     />
