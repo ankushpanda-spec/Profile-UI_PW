@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.5.2
     version: 0.5.2
   '@pw-tech/omni-ui':
-    specifier: ^0.0.11
-    version: 0.0.11(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(tailwindcss@3.4.10)(typescript@5.5.4)
+    specifier: file:.yalc/@pw-tech/omni-ui
+    version: file:.yalc/@pw-tech/omni-ui(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(tailwindcss@3.4.10)(typescript@5.5.4)
   '@pw-tech/web-sdk':
     specifier: 0.0.6-23
     version: 0.0.6-23
@@ -85,6 +85,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.6.6
     version: 0.6.6(prettier@3.3.3)
+  tailwind-scrollbar:
+    specifier: ^3.1.0
+    version: 3.1.0(tailwindcss@3.4.10)
   tailwindcss:
     specifier: ^3.4.10
     version: 3.4.10
@@ -2566,62 +2569,6 @@ packages:
       webpack-dev-server: 4.15.2(webpack@5.94.0)
     dev: false
 
-  /@pw-tech/omni-ui@0.0.11(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(tailwindcss@3.4.10)(typescript@5.5.4):
-    resolution: {integrity: sha512-4L5IYd+wO+7zAdDMB2ZUiZt/orrno/tM15ENptdEGhJna2U+lj2U+KXxtsbrxAhakVj9ycCe0b1hrJ1VxyDZCQ==}
-    engines: {node: 18.x, npm: please-use-pnpm, pnpm: 8.x}
-    requiresBuild: true
-    dependencies:
-      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.10)
-      '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.10)
-      class-variance-authority: 0.7.0
-      clsx: 2.0.0
-      date-fns: 3.6.0
-      lottie-colorify: 0.8.0
-      react: 18.2.0
-      react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.2.0)
-      react-dom: 18.2.0(react@18.2.0)
-      react-lottie-player: 2.1.0(react@18.2.0)
-      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(react@18.2.0)(sass@1.77.8)(typescript@5.5.4)
-      sass: 1.77.8
-      tailwind-merge: 2.5.2
-      tailwindcss-animate: 1.0.7(tailwindcss@3.4.10)
-    transitivePeerDependencies:
-      - '@babel/plugin-syntax-flow'
-      - '@babel/plugin-transform-react-jsx'
-      - '@parcel/css'
-      - '@rspack/core'
-      - '@swc/core'
-      - '@types/babel__core'
-      - '@types/webpack'
-      - bufferutil
-      - canvas
-      - clean-css
-      - csso
-      - debug
-      - esbuild
-      - eslint
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - fibers
-      - node-notifier
-      - node-sass
-      - rework
-      - rework-visit
-      - sass-embedded
-      - sockjs-client
-      - supports-color
-      - tailwindcss
-      - ts-node
-      - type-fest
-      - typescript
-      - uglify-js
-      - utf-8-validate
-      - vue-template-compiler
-      - webpack-cli
-      - webpack-hot-middleware
-      - webpack-plugin-serve
-    dev: false
-
   /@pw-tech/web-sdk@0.0.6-23:
     resolution: {integrity: sha512-syaOS6rS4biDCIH8LKlD36G2S0L/gTLIHtTFji0CAtodGC+3QFXMc5iKSKvWgMFvmmy1AvJJO079IiJSCSgsCA==}
     dev: false
@@ -4586,7 +4533,7 @@ packages:
     resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
     engines: {node: '>= 0.6'}
     dependencies:
-      mime-db: 1.53.0
+      mime-db: 1.52.0
     dev: false
 
   /compression@1.7.4:
@@ -5074,7 +5021,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.3
+      ms: 2.1.2
     dev: false
 
   /debug@4.3.6:
@@ -8251,11 +8198,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /mime-db@1.53.0:
-    resolution: {integrity: sha512-oHlN/w+3MQ3rba9rqFr6V/ypF10LSkdwUysQL7GkXoTgIWeV+tcXGA852TBxH+gsh8UWoyhR1hKcoMJTuWflpg==}
-    engines: {node: '>= 0.6'}
-    dev: false
-
   /mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
@@ -9780,14 +9722,14 @@ packages:
       whatwg-fetch: 3.6.20
     dev: false
 
-  /react-day-picker@8.10.1(date-fns@3.6.0)(react@18.2.0):
+  /react-day-picker@8.10.1(date-fns@3.6.0)(react@18.3.1):
     resolution: {integrity: sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==}
     peerDependencies:
       date-fns: ^2.28.0 || ^3.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       date-fns: 3.6.0
-      react: 18.2.0
+      react: 18.3.1
     dev: false
 
   /react-dev-utils@12.0.1(eslint@9.9.1)(typescript@5.5.4)(webpack@5.94.0):
@@ -9832,16 +9774,6 @@ packages:
       - vue-template-compiler
     dev: false
 
-  /react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.2
-    dev: false
-
   /react-dom@18.3.1(react@18.3.1):
     resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
@@ -9867,7 +9799,7 @@ packages:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
     dev: false
 
-  /react-lottie-player@2.1.0(react@18.2.0):
+  /react-lottie-player@2.1.0(react@18.3.1):
     resolution: {integrity: sha512-rxSNIVVLWYnwzsIow377vZsh7GDbReu70V7IDD9TbbcdcJWons4pSh3nyuEa4QWIZw0ZBIieoZRTsiqnb6MZ3g==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -9875,7 +9807,7 @@ packages:
     dependencies:
       fast-deep-equal: 3.1.3
       lottie-web: 5.12.2
-      react: 18.2.0
+      react: 18.3.1
       rfdc: 1.4.1
     dev: false
 
@@ -9889,7 +9821,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(react@18.2.0)(sass@1.77.8)(typescript@5.5.4):
+  /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4):
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -9933,7 +9865,7 @@ packages:
       postcss-normalize: 10.0.1(browserslist@4.23.3)(postcss@8.4.41)
       postcss-preset-env: 7.8.3(postcss@8.4.41)
       prompts: 2.4.2
-      react: 18.2.0
+      react: 18.3.1
       react-app-polyfill: 3.0.0
       react-dev-utils: 12.0.1(eslint@9.9.1)(typescript@5.5.4)(webpack@5.94.0)
       react-refresh: 0.11.0
@@ -9985,13 +9917,6 @@ packages:
       - webpack-cli
       - webpack-hot-middleware
       - webpack-plugin-serve
-    dev: false
-
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
     dev: false
 
   /react@18.3.1:
@@ -10930,6 +10855,15 @@ packages:
     resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
     dev: false
 
+  /tailwind-scrollbar@3.1.0(tailwindcss@3.4.10):
+    resolution: {integrity: sha512-pmrtDIZeHyu2idTejfV59SbaJyvp1VRjYxAjZBH0jnyrPRo6HL1kD5Glz8VPagasqr6oAx6M05+Tuw429Z8jxg==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.4.10
+    dev: true
+
   /tailwindcss-animate@1.0.7(tailwindcss@3.4.10):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
@@ -11522,7 +11456,7 @@ packages:
       spdy: 4.0.2
       webpack: 5.94.0
       webpack-dev-middleware: 5.3.4(webpack@5.94.0)
-      ws: 8.18.0
+      ws: 8.17.1
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -11787,7 +11721,6 @@ packages:
 
   /workbox-google-analytics@6.6.0:
     resolution: {integrity: sha512-p4DJa6OldXWd6M9zRl0H6vB9lkrmqYFkRQ2xEiNdBFp9U0LhsGO7hsBscVEyH9H2/3eZZt8c97NB2FD9U2NJ+Q==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 6.6.0
       workbox-core: 6.6.0
@@ -11928,19 +11861,6 @@ packages:
         optional: true
     dev: false
 
-  /ws@8.18.0:
-    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-    dev: false
-
   /xml-name-validator@3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}
     dev: false
@@ -12016,3 +11936,61 @@ packages:
     resolution: {integrity: sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==}
     engines: {node: '>=12.20'}
     dev: true
+
+  file:.yalc/@pw-tech/omni-ui(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(tailwindcss@3.4.10)(typescript@5.5.4):
+    resolution: {directory: .yalc/@pw-tech/omni-ui, type: directory}
+    id: file:.yalc/@pw-tech/omni-ui
+    name: '@pw-tech/omni-ui'
+    engines: {node: 18.x, npm: please-use-pnpm, pnpm: 8.x}
+    requiresBuild: true
+    dependencies:
+      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.10)
+      '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.10)
+      class-variance-authority: 0.7.0
+      clsx: 2.0.0
+      date-fns: 3.6.0
+      lottie-colorify: 0.8.0
+      react: 18.3.1
+      react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      react-lottie-player: 2.1.0(react@18.3.1)
+      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4)
+      sass: 1.77.8
+      tailwind-merge: 2.5.2
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.10)
+    transitivePeerDependencies:
+      - '@babel/plugin-syntax-flow'
+      - '@babel/plugin-transform-react-jsx'
+      - '@parcel/css'
+      - '@rspack/core'
+      - '@swc/core'
+      - '@types/babel__core'
+      - '@types/webpack'
+      - bufferutil
+      - canvas
+      - clean-css
+      - csso
+      - debug
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - fibers
+      - node-notifier
+      - node-sass
+      - rework
+      - rework-visit
+      - sass-embedded
+      - sockjs-client
+      - supports-color
+      - tailwindcss
+      - ts-node
+      - type-fest
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - vue-template-compiler
+      - webpack-cli
+      - webpack-hot-middleware
+      - webpack-plugin-serve
+    dev: false

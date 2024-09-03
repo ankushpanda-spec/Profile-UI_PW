@@ -2,7 +2,7 @@ import {ThemeProvider} from '@pw-tech/omni-ui';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import {ScreenProvider, UserProvider} from './context';
+import {GlobalProvider} from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
@@ -12,13 +12,11 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <ErrorBoundary>
-        <ThemeProvider>
-          <ScreenProvider>
-            <UserProvider>
-              <App />
-            </UserProvider>
-          </ScreenProvider>
-        </ThemeProvider>
+        <GlobalProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </GlobalProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );

@@ -12,6 +12,6 @@ export const webSDK = AuthService.getInstance({
   localStorageFallback: true,
   clientId: 'system-admin',
   contextIdentifier: 'TOKEN_CONTEXT',
-  loginPageUrl: '/',
+  loginPageUrl: '/login',
   debugMode: false,
 });

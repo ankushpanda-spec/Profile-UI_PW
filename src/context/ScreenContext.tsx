@@ -26,7 +26,7 @@ export const ScreenProvider = ({children}: ScreenProviderProps) => {
     const updateScreenSize = () => {
       const width = window.innerWidth;
       setScreenSize({
-        isMobile: width >= 320 && width < 480,
+        isMobile: width < 480,
         isTablet: width >= 480 && width < 1024,
         isLaptop: width >= 1024,
       });
