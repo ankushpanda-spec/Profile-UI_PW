@@ -45,11 +45,16 @@ const Base = ({children}: {children: ReactNode}) => {
             cohortData: fetchCohortConfig(),
           }}
           backActionConfig={{
-            enable: true,
+            enable: false,
             callback: () => alert('Cohort button Clicked'),
           }}
           userConfig={user as User}
-          onAppDownloadClick={() => alert('Downloading App!!')}
+          onAppDownloadClick={() =>
+            window.open(
+              process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK,
+              '_blank'
+            )
+          }
           onProfileClick={() => alert('Clicking profile')}
         />
 
