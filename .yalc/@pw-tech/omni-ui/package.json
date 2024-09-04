@@ -1,6 +1,6 @@
 {
   "name": "@pw-tech/omni-ui",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "Component UI Library For PW",
   "author": "Central Team",
   "license": "ISC",
@@ -69,5 +69,5 @@
     "npm": "please-use-pnpm",
     "pnpm": "8.x"
   },
-  "yalcSig": "6a52b3ce6a92e77fe13d80932f492035"
+  "yalcSig": "113e41fa942b4641f9b2a1f433995e7a"
 }

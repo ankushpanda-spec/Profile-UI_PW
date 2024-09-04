@@ -51,6 +51,7 @@ module.exports = {
         md: '640px',
         lg: '1024px',
         xl: '1200px',
+        '2xl': '1400px',
       },
       spacing: {
         0: 'var(--spacing-0)',

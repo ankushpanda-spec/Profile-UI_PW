@@ -4,7 +4,8 @@ import {createContext, ReactNode, useContext, useEffect, useState} from 'react';
 interface ScreenSize {
   isMobile: boolean;
   isTablet: boolean;
-  isLaptop: boolean;
+  isDesktop: boolean;
+  isUltraScreen: boolean;
 }
 
 // Define the type for the provider's props
@@ -19,7 +20,8 @@ export const ScreenProvider = ({children}: ScreenProviderProps) => {
   const [screenSize, setScreenSize] = useState<ScreenSize>({
     isMobile: false,
     isTablet: false,
-    isLaptop: false,
+    isDesktop: false,
+    isUltraScreen: false,
   });
 
   useEffect(() => {
@@ -28,7 +30,8 @@ export const ScreenProvider = ({children}: ScreenProviderProps) => {
       setScreenSize({
         isMobile: width < 480,
         isTablet: width >= 480 && width < 1024,
-        isLaptop: width >= 1024,
+        isDesktop: width >= 1024 && width < 1440,
+        isUltraScreen: width >= 1440,
       });
     };
 

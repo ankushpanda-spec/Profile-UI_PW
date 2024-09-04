@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@pw-tech/omni-ui": {
-      "signature": "6a52b3ce6a92e77fe13d80932f492035",
+      "signature": "113e41fa942b4641f9b2a1f433995e7a",
       "file": true
     }
   }

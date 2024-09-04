@@ -1,5 +1,5 @@
 import {fetchCohortConfig} from '@/api';
-import {AuthHeader, SideNavbar} from '@/components';
+import {AuthHeader, Container, SideNavbar} from '@/components';
 import {useScreen, useUser} from '@/context';
 import {cohortSDK} from '@/integration';
 import {Modal} from '@pw-tech/omni-ui';
@@ -26,9 +26,8 @@ const Base = ({children}: {children: ReactNode}) => {
         closeOnOutsideClick={false}
         fullWidth
       >
-        <div id="pw_auth_flow"></div>
+        <div id="pw_auth-flow"></div>
       </Modal>
-
       {/* Side Navbar */}
       {!isMobile && <SideNavbar />}
 
@@ -58,8 +57,10 @@ const Base = ({children}: {children: ReactNode}) => {
           onProfileClick={() => alert('Clicking profile')}
         />
 
-        {/* Main Content Area */}
-        <div className="flex-grow overflow-auto p-4">{children}</div>
+        {/* REMOTE CONTAINER */}
+        <Container className="flex flex-col items-start self-stretch overflow-y-auto p-16 sm:px-32 sm:py-20 lg:items-center">
+          {children}
+        </Container>
       </div>
     </div>
   );
