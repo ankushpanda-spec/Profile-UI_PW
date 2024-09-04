@@ -15,7 +15,7 @@
   "dependencies": {
     "@module-federation/enhanced": "^0.5.2",
     "@module-federation/runtime": "^0.5.2",
-    "@pw-tech/omni-ui": "file:.yalc/@pw-tech/omni-ui",
+    "@pw-tech/omni-ui": "0.0.12-alpha-1.0",
     "@pw-tech/web-sdk": "0.0.6-23",
     "clsx": "^2.1.1",
     "react": "^18.3.1",
