@@ -1,8 +1,5 @@
-import {BaseLayout} from './components/layout';
-
 const App = () => {
-  return <BaseLayout />;
-  // return <></>;
+  return <h1>REMOTE APP</h1>;
 };
 
 export default App;

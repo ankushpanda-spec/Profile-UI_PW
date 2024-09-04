@@ -1,45 +1,25 @@
+import {fetchCohortConfig} from '@/api';
 import {AuthHeader, SideNavbar} from '@/components';
 import {useScreen, useUser} from '@/context';
+import {cohortSDK} from '@/integration';
 import {Modal} from '@pw-tech/omni-ui';
-import {useEffect, useState} from 'react';
+import {User} from '@pw-tech/web-sdk';
+import {ReactNode, useEffect, useState} from 'react';
 
-const Base = () => {
+const Base = ({children}: {children: ReactNode}) => {
   const {user} = useUser();
   const [modal, setModal] = useState(false);
   const {isMobile} = useScreen();
-  const checkInitApp = () => {
-    if (window?.initPWAuthWebSDK) {
-      const propConfig = {
-        flow: 'cohort',
-        webSDK: window?.PWWebSDK,
-        renderType: 'page',
-        handleRelativeRedirection: async () => {
-          await setModal(false);
-        },
-        goBack: () => {
-          setModal(false);
-        },
-      };
-      window?.initPWAuthWebSDK(propConfig);
-    }
-  };
 
   useEffect(() => {
-    checkInitApp();
+    cohortSDK({
+      goBack: () => setModal(false),
+      handleRedirection: () => setModal(false),
+    });
   }, [modal]);
 
   return (
-    <div className="flex justify-end">
-      {!isMobile && <SideNavbar />}
-      <AuthHeader
-        onAppDownloadClick={() => alert('Downloading app')}
-        onBackClick={() => alert('Going Back')}
-        onCohortClick={() => setModal(true)}
-        onMenuClick={() => alert('Clicking Menu')}
-        onProfileClick={() => alert('Clicking Profile')}
-        toggleCohortVisibility={true}
-        user={user || {}}
-      />
+    <div className="flex h-screen">
       <Modal
         isOpen={modal}
         showCloseIcon={false}
@@ -48,6 +28,34 @@ const Base = () => {
       >
         <div id="pw_auth_flow"></div>
       </Modal>
+
+      {/* Side Navbar */}
+      {!isMobile && <SideNavbar />}
+
+      <div className="flex flex-grow flex-col">
+        {/* Header */}
+        <AuthHeader
+          menuActionConfig={{
+            enable: true,
+            callback: () => alert('Menu button Clicked'),
+          }}
+          cohortActionConfig={{
+            enable: true,
+            callback: () => setModal(true),
+            cohortData: fetchCohortConfig(),
+          }}
+          backActionConfig={{
+            enable: true,
+            callback: () => alert('Cohort button Clicked'),
+          }}
+          userConfig={user as User}
+          onAppDownloadClick={() => alert('Downloading App!!')}
+          onProfileClick={() => alert('Clicking profile')}
+        />
+
+        {/* Main Content Area */}
+        <div className="flex-grow overflow-auto p-4">{children}</div>
+      </div>
     </div>
   );
 };

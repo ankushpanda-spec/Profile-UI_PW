@@ -9,24 +9,36 @@ import Auth from './Layout';
 function Layout(props: AuthHeaderProps) {
   const {isMobile} = useScreen();
   const {
-    onMenuClick,
-    onCohortClick,
-    onBackClick,
-    onProfileClick,
+    menuActionConfig,
+    cohortActionConfig,
+    backActionConfig,
     onAppDownloadClick,
-    toggleCohortVisibility = true,
-    user,
+    userConfig,
+    onProfileClick,
   } = props;
+
+  const {enable: menuEnable = true, callback: onMenuClick} = menuActionConfig;
+  const {
+    enable: cohortEnable,
+    callback: onCohortClick,
+    cohortData,
+  } = cohortActionConfig;
+  const {enable: backEnable, callback: onBackClick} = backActionConfig;
 
   return (
     <Auth
-      menuAction={isMobile && <MenuButton onClick={onMenuClick} />}
+      menuAction={
+        isMobile && menuEnable && <MenuButton onClick={onMenuClick} />
+      }
       leftAction={
-        toggleCohortVisibility ? (
-          <CohortButton onClick={onCohortClick} />
-        ) : (
-          <BackButton onClick={onBackClick} />
-        )
+        <>
+          {backEnable && <BackButton onClick={onBackClick} />}
+          {cohortEnable && (
+            <CohortButton onClick={onCohortClick} iconSrc={cohortData?.webIcon}>
+              {cohortData?.name || 'Select'}
+            </CohortButton>
+          )}
+        </>
       }
       rightAction={
         <div className="flex items-center justify-end gap-24">
@@ -43,7 +55,7 @@ function Layout(props: AuthHeaderProps) {
           </div>
           <AvatarDropdown
             onClick={onProfileClick}
-            userFirstName={user?.firstName}
+            userFirstName={userConfig?.firstName}
           />
         </div>
       }

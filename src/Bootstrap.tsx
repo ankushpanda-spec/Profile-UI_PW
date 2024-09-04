@@ -2,6 +2,7 @@ import {ThemeProvider} from '@pw-tech/omni-ui';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import {BaseLayout} from './components';
 import {GlobalProvider} from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
@@ -14,7 +15,9 @@ if (rootEl) {
       <ErrorBoundary>
         <GlobalProvider>
           <ThemeProvider>
-            <App />
+            <BaseLayout>
+              <App />
+            </BaseLayout>
           </ThemeProvider>
         </GlobalProvider>
       </ErrorBoundary>

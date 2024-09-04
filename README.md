@@ -1,29 +1,51 @@
-# Rsbuild Project
+# Module Federation Boilerplate
 
-## Setup
+This boilerplate is set up for Module Federation and is integrated with PW OMNI UI, WebSDK, and AuthSDK.
 
-Install the dependencies:
+## Getting Started
 
-```bash
-pnpm install
-```
+### Initialize the Project
 
-## Get Started
+1. **Install Dependencies:**
 
-Start the dev server:
+   \`pnpm install\`
 
-```bash
-pnpm dev
-```
+2. **Run the Development Server:**
 
-Build the app for production:
+   \`pnpm dev\`
 
-```bash
-pnpm build
-```
+### Environment Variables
 
-Preview the production build locally:
+- **Common Environment Variables:**
 
-```bash
-pnpm preview
-```
+  - `.env`
+
+- **Development Environment Variables:**
+
+  - `.env.dev`
+
+- **Staging Environment Variables:**
+
+  - `.env.staging`
+
+- **Production Environment Variables:**
+  - `.env.production`
+
+## Key Features
+
+### Integration
+
+- **AuthSDK:** Authentication & Cohort management.
+- **WebSDK:** Core web functionalities.
+- **OMNI UI:** Integrated UI components and theming.
+
+### Application Structure
+
+- **`src/Bootstrap.tsx`:** The main entry point where the App component is wrapped with:
+
+  - **Global Providers:** Providing access to all contexts.
+  - **Theme Provider:** Exposes the application to OMNI theming.
+
+- **Base Layout:**
+  - Contains the side navigation bar and header.
+  - Renders remote applications using Module Federation.

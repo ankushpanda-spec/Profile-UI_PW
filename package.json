@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rsbuild build && node scripts/compress-gzip.js",
-    "dev": "rsbuild dev --open --env-mode production",
+    "dev": "rsbuild dev --open",
     "preview": "rsbuild preview",
     "lint": "eslint .",
     "fix": "eslint --fix",
