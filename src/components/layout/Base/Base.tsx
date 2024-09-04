@@ -2,13 +2,14 @@ import {fetchCohortConfig} from '@/api';
 import {AuthHeader, Container, SideNavbar} from '@/components';
 import {useScreen, useUser} from '@/context';
 import {cohortSDK} from '@/integration';
-import {Modal} from '@pw-tech/omni-ui';
+import {Drawer, Modal} from '@pw-tech/omni-ui';
 import {User} from '@pw-tech/web-sdk';
 import {ReactNode, useEffect, useState} from 'react';
 
 const Base = ({children}: {children: ReactNode}) => {
   const {user} = useUser();
   const [modal, setModal] = useState(false);
+  const [sidebar, setSidebar] = useState(false);
   const {isMobile} = useScreen();
 
   useEffect(() => {
@@ -29,14 +30,24 @@ const Base = ({children}: {children: ReactNode}) => {
         <div id="pw_auth-flow"></div>
       </Modal>
       {/* Side Navbar */}
-      {!isMobile && <SideNavbar />}
+      {isMobile ? (
+        <Drawer
+          open={sidebar}
+          onClose={() => setSidebar(false)}
+          className="w-auto"
+        >
+          <SideNavbar />
+        </Drawer>
+      ) : (
+        <SideNavbar />
+      )}
 
       <div className="flex flex-grow flex-col">
         {/* Header */}
         <AuthHeader
           menuActionConfig={{
             enable: true,
-            callback: () => alert('Menu button Clicked'),
+            callback: () => setSidebar(true),
           }}
           cohortActionConfig={{
             enable: true,
