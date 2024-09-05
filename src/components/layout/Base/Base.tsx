@@ -8,21 +8,21 @@ import {ReactNode, useEffect, useState} from 'react';
 
 const Base = ({children}: {children: ReactNode}) => {
   const {user} = useUser();
-  const [modal, setModal] = useState(false);
-  const [sidebar, setSidebar] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const {isMobile} = useScreen();
 
   useEffect(() => {
     cohortSDK({
-      goBack: () => setModal(false),
-      handleRedirection: () => setModal(false),
+      goBack: () => setShowModal(false),
+      handleRedirection: () => setShowModal(false),
     });
-  }, [modal]);
+  }, [showModal]);
 
   return (
     <div className="flex h-screen">
       <Modal
-        isOpen={modal}
+        isOpen={showModal}
         showCloseIcon={false}
         closeOnOutsideClick={false}
         fullWidth
@@ -32,8 +32,8 @@ const Base = ({children}: {children: ReactNode}) => {
       {/* Side Navbar */}
       {isMobile ? (
         <Drawer
-          open={sidebar}
-          onClose={() => setSidebar(false)}
+          open={showSidebar}
+          onClose={() => setShowSidebar(false)}
           className="w-auto"
         >
           <SideNavbar />
@@ -47,11 +47,11 @@ const Base = ({children}: {children: ReactNode}) => {
         <AuthHeader
           menuActionConfig={{
             enable: true,
-            callback: () => setSidebar(true),
+            callback: () => setShowSidebar(true),
           }}
           cohortActionConfig={{
             enable: true,
-            callback: () => setModal(true),
+            callback: () => setShowModal(true),
             cohortData: fetchCohortConfig(),
           }}
           backActionConfig={{
@@ -65,7 +65,7 @@ const Base = ({children}: {children: ReactNode}) => {
               '_blank'
             )
           }
-          onProfileClick={() => alert('Clicking profile')}
+          // onProfileClick={() => alert('Clicking profile')}
         />
 
         {/* REMOTE CONTAINER */}

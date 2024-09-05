@@ -17,6 +17,7 @@
     "@module-federation/runtime": "^0.5.2",
     "@pw-tech/omni-ui": "0.0.12-alpha-1.0",
     "@pw-tech/web-sdk": "0.0.6-23",
+    "@radix-ui/react-popover": "^1.1.1",
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
