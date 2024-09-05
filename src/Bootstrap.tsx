@@ -13,7 +13,7 @@ if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
   root.render(
     <React.StrictMode>
-      <BrowserRouter  basename="/study-v2">
+      <BrowserRouter>
       <ErrorBoundary>
         <GlobalProvider>
           <ThemeProvider>
