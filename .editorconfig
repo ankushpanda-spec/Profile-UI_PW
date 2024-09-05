@@ -1,0 +1,41 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# Top-most EditorConfig file
+root = true
+
+# General settings for all files
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Settings for JavaScript and TypeScript files
+[*.{js,jsx,ts,tsx}]
+indent_size = 2
+
+# Settings for JSON files
+[*.json]
+indent_size = 2
+
+# Settings for Markdown files
+[*.md]
+trim_trailing_whitespace = false  # Keep trailing whitespace in markdown
+
+# Settings for YAML files
+[*.{yml,yaml}]
+indent_size = 2
+
+# Settings for CSS, SCSS, and LESS files
+[*.{css,scss,less}]
+indent_size = 2
+
+# Settings for HTML files
+[*.html]
+indent_size = 2
+
+# Settings for text files
+[*.txt]
+indent_size = 2

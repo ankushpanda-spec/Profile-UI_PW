@@ -1,0 +1,7 @@
+.parent {
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.16));
+}
+.avatar {
+  /* fill: url('') lightgray 50% / cover no-repeat; */
+  fill: lightgray 50% / cover no-repeat;
+}
