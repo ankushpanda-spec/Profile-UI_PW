@@ -26,7 +26,7 @@ export const ScreenProvider = ({children}: ScreenProviderProps) => {
 
   useEffect(() => {
     const updateScreenSize = () => {
-      const width = window.innerWidth;
+      const width = window.outerWidth;
       setScreenSize({
         isMobile: width < 480,
         isTablet: width >= 480 && width < 1024,

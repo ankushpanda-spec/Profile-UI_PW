@@ -18,7 +18,6 @@ const Base = ({children}: {children: ReactNode}) => {
       handleRedirection: () => setShowModal(false),
     });
   }, [showModal]);
-
   return (
     <div className="flex h-screen">
       <Modal

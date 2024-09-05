@@ -46,12 +46,12 @@ function AvatarPopover({
       <Popover.Trigger asChild>{children}</Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className="PopoverContent"
-          sideOffset={0}
+          className="PopoverContent shadow-2xl"
+          sideOffset={-3}
           data-side="top"
           data-align="center"
         >
-          {renderOptions()}
+          <div className="py-8">{renderOptions()}</div>
         </Popover.Content>
       </Popover.Portal>
     </Popover.Root>

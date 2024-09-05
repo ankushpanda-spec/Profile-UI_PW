@@ -6,8 +6,7 @@ input {
 }
 
 .PopoverContent {
-  border-radius: 4px;
-  padding: 8px auto;
+  border-radius: 2px;
   background-color: white;
   box-shadow:
     hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
