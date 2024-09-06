@@ -18,6 +18,8 @@ class ErrorBoundary extends Component<Props, State> {
     error: null,
     errorInfo: null,
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props: any;
 
   static getDerivedStateFromError(error: Error): State {
     // Update state to render fallback UI on next render
@@ -30,12 +32,16 @@ class ErrorBoundary extends Component<Props, State> {
     this.setState({errorInfo});
 
     // Call the provided onError function if it exists
+    // eslint-disable-next-line react/prop-types
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
     } else {
       // Default error logging behavior
       this.logErrorToService(error, errorInfo);
     }
+  }
+  setState(_arg0: {errorInfo: ErrorInfo}) {
+    throw new Error('Method not implemented.');
   }
 
   logErrorToService(error: Error, errorInfo: ErrorInfo) {

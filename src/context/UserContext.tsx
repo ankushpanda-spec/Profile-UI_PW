@@ -3,6 +3,7 @@ import {fetchUser} from '@/api';
 import React, {createContext, useContext, useEffect, useState} from 'react';
 
 // Define the shape of the user object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type User = Record<string, any>;
 
 // Define the context value type

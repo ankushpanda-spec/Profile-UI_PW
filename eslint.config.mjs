@@ -7,7 +7,7 @@ import globals from 'globals';
 import ts from 'typescript-eslint';
 
 export default [
-  {languageOptions: {globals: globals.browser}},
+  {languageOptions: {globals: {...globals.browser, ...globals.node}}},
   js.configs.recommended,
   ...ts.configs.recommended,
   ...fixupConfigRules([
@@ -25,6 +25,10 @@ export default [
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {varsIgnorePattern: '^_', argsIgnorePattern: '^_'},
+      ],
     },
   },
   {ignores: ['dist/']},

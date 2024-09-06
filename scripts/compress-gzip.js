@@ -1,21 +1,27 @@
-const zlib = require('zlib');
-const fs = require('fs');
-const path = require('path');
+/* eslint-disable @typescript-eslint/no-require-imports */
+const {createGzip} = require('zlib');
+const {
+  createReadStream,
+  createWriteStream,
+  readdirSync,
+  statSync,
+} = require('fs');
+const {join, resolve} = require('path');
 
 const compressGzip = (srcPath, destPath) => {
-  const fileContents = fs.createReadStream(srcPath);
-  const writeStream = fs.createWriteStream(destPath);
-  const zip = zlib.createGzip();
+  const fileContents = createReadStream(srcPath);
+  const writeStream = createWriteStream(destPath);
+  const zip = createGzip();
 
   fileContents.pipe(zip).pipe(writeStream);
 };
 
 const compressDirectory = dir => {
-  fs.readdirSync(dir).forEach(file => {
-    const filePath = path.join(dir, file);
+  readdirSync(dir).forEach(file => {
+    const filePath = join(dir, file);
     const gzPath = `${filePath}.gz`;
 
-    if (fs.statSync(filePath).isDirectory()) {
+    if (statSync(filePath).isDirectory()) {
       compressDirectory(filePath);
     } else {
       compressGzip(filePath, gzPath);
@@ -23,7 +29,7 @@ const compressDirectory = dir => {
   });
 };
 
-const buildDir = path.resolve(__dirname, '../dist');
+const buildDir = resolve(__dirname, '../dist');
 compressDirectory(buildDir);
 
 console.log('Gzip compression completed.');

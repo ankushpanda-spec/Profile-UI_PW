@@ -5,7 +5,7 @@ import App from './App';
 import {BaseLayout} from './components';
 import {GlobalProvider} from './context';
 import ErrorBoundary from './ErrorBoundary';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import './index.css';
 
 const rootEl = document.getElementById('root');
@@ -14,15 +14,15 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <ErrorBoundary>
-        <GlobalProvider>
-          <ThemeProvider>
-            <BaseLayout>
-              <App />
-            </BaseLayout>
-          </ThemeProvider>
-        </GlobalProvider>
-      </ErrorBoundary>
+        <ErrorBoundary>
+          <GlobalProvider>
+            <ThemeProvider>
+              <BaseLayout>
+                <App />
+              </BaseLayout>
+            </ThemeProvider>
+          </GlobalProvider>
+        </ErrorBoundary>
       </BrowserRouter>
     </React.StrictMode>
   );

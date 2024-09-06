@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
 
 export interface ActionProps {
   enable?: boolean;
@@ -6,15 +6,17 @@ export interface ActionProps {
 }
 
 export interface CohortActionProps extends ActionProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cohortData?: Record<string, any>;
 }
 export interface AuthHeaderProps {
   menuActionConfig: ActionProps;
   cohortActionConfig: CohortActionProps;
   backActionConfig: ActionProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   userConfig: Record<string, any>;
   onAppDownloadClick?: () => void;
-  onProfileClick?:()=>void
+  onProfileClick?: () => void;
 }
 export interface AuthHeaderLayoutProps {
   menuAction: ReactNode;
