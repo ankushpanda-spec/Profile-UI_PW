@@ -8,11 +8,11 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
 
 1. **Install Dependencies:**
 
-   \`pnpm install\`
+   `pnpm install`
 
 2. **Run the Development Server:**
 
-   \`pnpm dev\`
+   `pnpm dev`
 
 ### Environment Variables
 
@@ -49,3 +49,38 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
 - **Base Layout:**
   - Contains the side navigation bar and header.
   - Renders remote applications using Module Federation.
+
+---
+
+# Flow of the App
+
+The `App.tsx` file renders Remote Apps. The App renders under the base layout which has 3 main sections:
+
+1. **Header**
+2. **Side Navbar**
+3. **Children rendering the App component**
+
+### Header
+
+The header consists of two parts:
+
+- **Left Action**
+- **Right Action**
+
+#### Left Action
+
+- Menu button that appears on mobile screens to open the side navbar.
+- Two sections toggled between:
+  1. **Cohort button** for cohort selection.
+  2. **Back button**. These buttons will be shown once, based on some pathname condition.
+
+#### Right Action
+
+- **Download App** button.
+- **Profile Avatar** with a Name Dropdown.
+
+---
+
+## Data Fetching
+
+The `selectedCohort` and the `userFirstName` are fetched using PW WebSDK calls which can be found in the `src/api/` directory.
