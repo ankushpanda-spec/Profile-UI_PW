@@ -42,7 +42,7 @@ function AvatarPopover({
   };
 
   return (
-    <Popover.Root>
+    <Popover.Root defaultOpen={false}>
       <Popover.Trigger asChild>{children}</Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
