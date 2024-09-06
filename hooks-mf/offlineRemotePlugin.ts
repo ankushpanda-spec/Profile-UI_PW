@@ -19,7 +19,7 @@ export default function (): FederationRuntimePlugin {
 
   return {
     name: 'offline-remote-plugin',
-    errorLoadRemote({id, error, from, origin}) {
+    errorLoadRemote({id, error, from, _origin}) {
       console.error(id, 'offline');
       const pg = function () {
         console.error(id, 'offline', error);
