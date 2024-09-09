@@ -1,16 +1,16 @@
-import {fetchCohortConfig} from '@/api';
-import {AuthHeader, Container, SideNavbar} from '@/components';
-import {useScreen, useUser} from '@/context';
-import {cohortSDK} from '@/integration';
-import {Drawer, Modal} from '@pw-tech/omni-ui';
-import {User} from '@pw-tech/web-sdk';
-import {ReactNode, useEffect, useState} from 'react';
+import { fetchCohortConfig } from '@/api';
+import { AuthHeader, Container, SideNavbar } from '@/components';
+import { useScreen, useUser } from '@/context';
+import { cohortSDK } from '@/integration';
+import { Drawer, Modal } from '@pw-tech/omni-ui';
+import { User } from '@pw-tech/web-sdk';
+import { ReactNode, useEffect, useState } from 'react';
 
 const Base = ({children}: {children: ReactNode}) => {
   const {user} = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const {isMobile} = useScreen();
+  const {isMobile, width} = useScreen();
 
   useEffect(() => {
     cohortSDK({
@@ -18,6 +18,7 @@ const Base = ({children}: {children: ReactNode}) => {
       handleRedirection: () => setShowModal(false),
     });
   }, [showModal]);
+
   return (
     <div className="flex h-screen">
       <Modal

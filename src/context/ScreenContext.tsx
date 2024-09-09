@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useContext, useEffect, useState} from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 // Define the types for the context state
 interface ScreenSize {
@@ -6,6 +6,8 @@ interface ScreenSize {
   isTablet: boolean;
   isDesktop: boolean;
   isUltraScreen: boolean;
+  width:number,
+  height:number
 }
 
 // Define the type for the provider's props
@@ -22,16 +24,23 @@ export const ScreenProvider = ({children}: ScreenProviderProps) => {
     isTablet: false,
     isDesktop: false,
     isUltraScreen: false,
+    width:0,
+    height:0,
   });
 
   useEffect(() => {
     const updateScreenSize = () => {
-      const width = window.outerWidth;
+      const tag = document.getElementById("pw-container")
+      const width = tag?.offsetWidth || 0;
+      const height = tag?.offsetHeight || 0;
+      console.log(width)
       setScreenSize({
         isMobile: width < 480,
         isTablet: width >= 480 && width < 1024,
         isDesktop: width >= 1024 && width < 1440,
         isUltraScreen: width >= 1440,
+        width:width,
+        height:height,
       });
     };
 

@@ -1,5 +1,5 @@
-import {cn} from '@/utils';
-import {ReactNode} from 'react';
+import { cn } from '@/utils';
+import { ReactNode } from 'react';
 
 function Container({
   children,
@@ -10,6 +10,7 @@ function Container({
 }) {
   return (
     <section
+      id="pw-container"
       className={cn(
         'flex flex-col items-start self-stretch overflow-y-auto p-16 sm:px-32 sm:py-20 lg:items-center',
         className
