@@ -7,7 +7,7 @@ import MenuCategory from './MenuCategory'
 import { sideNavbarOptions } from './SideNavbar.config'
 import s from "./SideNavbar.module.css"
 import { SideNavbarProps } from './Types'
-
+import { useNavigate } from "react-router-dom";
 
 function SideNavbar(props: SideNavbarProps) {
   const {
@@ -20,21 +20,20 @@ function SideNavbar(props: SideNavbarProps) {
     url = '/',
   } = props;
 
-  const { isMobile } = useScreen();
 
   // State to manage the currently active menu item
+  const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState<string | undefined>("/study");
 
   const handleItemClick = (url: string) => {
 
     setActiveItem(url);
-    alert(`Item is clicked , url: ${url}`)
+    navigate(url);
 
   };
 
-  const sideBarClassName = cn(s.sideBar, className, {
-    [s.isMobile]: isMobile,
-  });
+  const sideBarClassName = cn(s.sideBar, className, 
+  );
 
   return (
     <div className={sideBarClassName}>

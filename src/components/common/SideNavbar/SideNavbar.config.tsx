@@ -35,7 +35,6 @@ export const sideNavbarOptions = [
         isEnabled: true,
         configName: 'isSarthiEnabled',
         badge:'',
-        isSubmenuOpen : false,
         subMenuOption: [
           {
           title: "Today's Classes",

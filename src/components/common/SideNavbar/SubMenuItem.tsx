@@ -20,7 +20,6 @@ function SubMenuItem(props: SubMenuItemProps) {
         [s["isSubmenuOpen"]]: isSubmenuOpen,
             
         })
- console.log("active item in submenuitem is: " , activeItem)
 return (
     <div className={subMenuClassName} style={{maxHeight}}  ref = {subMenucontentRef} >
     {subMenuOption?.map((subOption, subOptionIndex) => (
