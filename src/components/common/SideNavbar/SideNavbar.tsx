@@ -1,24 +1,23 @@
-import React from 'react'
-import { useState} from 'react'
-import s from "./SideNavbar.module.css"
-import { SideNavbarProps} from './Types'
-import { sideNavbarOptions } from './SideNavbar.config'
 import LogoIcon from "@/assets/icons/LogoIcon"
+import { useScreen } from '@/context'
 import cn from 'clsx'
-import {useScreen} from '@/context';
+import { useState } from 'react'
 import LogoSection from './LogoSection'
 import MenuCategory from './MenuCategory'
+import { sideNavbarOptions } from './SideNavbar.config'
+import s from "./SideNavbar.module.css"
+import { SideNavbarProps } from './Types'
 
 
 function SideNavbar(props: SideNavbarProps) {
   const {
     // isSideNavOpen = true,
-    logo = <LogoIcon className={s.logo } />,
+    logo = <LogoIcon className={s.logo} />,
     logoText = "Physics Wallah",
     section = sideNavbarOptions,
     className,
     bottomStroke = false,
-    url ='/',
+    url = '/',
   } = props;
 
   const { isMobile } = useScreen();
@@ -30,33 +29,34 @@ function SideNavbar(props: SideNavbarProps) {
 
     setActiveItem(url);
     alert(`Item is clicked , url: ${url}`)
-    
+
   };
-  
- const sideBarClassName = cn(s.sideBar, className, {
+
+  const sideBarClassName = cn(s.sideBar, className, {
     [s.isMobile]: isMobile,
-});
+  });
 
-return (
-  <div className={sideBarClassName}>
+  return (
+    <div className={sideBarClassName}>
 
-    {/* logo section */}
-    
-    <LogoSection logo={logo} logoText={ logoText} url = {url} />
-        
-    {/* content section */}
-     <div className={s.contentWrapper}>
+      {/* logo section */}
+
+      <LogoSection logo={logo} logoText={logoText} url={url} />
+
+      {/* content section */}
+      <div className={s.contentWrapper}>
         {section.map((category, categoryIndex) => (
           <MenuCategory
-          key={categoryIndex}
-          category={category}
-          bottomStroke={bottomStroke}
-          activeItem={activeItem}
-          onItemClick={handleItemClick} 
+            key={categoryIndex}
+            category={category}
+            bottomStroke={bottomStroke}
+            activeItem={activeItem}
+            onItemClick={handleItemClick}
           />
         ))}
-     </div>
+      </div>
     </div>
-)}
+  )
+}
 
 export default SideNavbar;

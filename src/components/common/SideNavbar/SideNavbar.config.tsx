@@ -13,7 +13,7 @@ export const sideNavbarOptions = [
         isNew: true,
         badge: "1",
         isEnabled: true,
-        configName: 'isStudyPageEnabled', 
+        configName: 'isStudyPageEnabled',
       },
       {
         title: "Quick Learning",
@@ -25,7 +25,7 @@ export const sideNavbarOptions = [
         isEnabled: true,
         configName: 'isMicroLearningEnabled',
         badge: "",
-      
+
         },
       {
         title: "Saarthi",
@@ -49,23 +49,23 @@ export const sideNavbarOptions = [
           title: "Khazana",
           url: "/khazana",
           isActive: false,
-          isNew: false, 
+          isNew: false,
           isEnabled :true,
-         
-         
+
+
           },
           {
           title: "Library",
           url: "/library2",
           isActive: false,
-          isNew: false, 
+          isNew: false,
           isEnabled :true,
           },
           {
           title: "Announcements",
           url: "/announcements",
           isActive: false,
-          isNew: false, 
+          isNew: false,
           isEnabled :true,
           },
         ]
@@ -79,7 +79,7 @@ export const sideNavbarOptions = [
         configName: 'isLibraryEnabled',
         isNew: true,
         badge:'',
-        
+
       },
     ],
   },
@@ -93,7 +93,7 @@ export const sideNavbarOptions = [
       isActive: true,
       isEnabled: true,
       configName: 'isBatchPageEnabled',
-        
+
       },
       {
         title: "Test Series",
@@ -103,7 +103,7 @@ export const sideNavbarOptions = [
         isEnabled: true,
         configName: 'isTestSeriesEnabled',
         badge: "1",
-        
+
         },
       {
         title: "Scholarship",
@@ -113,7 +113,7 @@ export const sideNavbarOptions = [
         external: false,
         isNew: false,
         isEnabled: true,
-        configName: 'isScholarshipEnabled',  
+        configName: 'isScholarshipEnabled',
       },
     ],
     },
@@ -142,7 +142,7 @@ export const sideNavbarOptions = [
       isNew: false,
       isEnabled: true,
       configName: '',
-        
+
         },
         {
       title: "Store",
@@ -168,7 +168,7 @@ export const sideNavbarOptions = [
       url: '/feeds',
       isActive: false,
       isEnabled: true,
-      configName: 'isFeedsEnabled',    
+      configName: 'isFeedsEnabled',
       },
     ],
     },
@@ -191,7 +191,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isWalletEnabled',
-        
+
       },
       {
       title: "Contact Us",
@@ -199,7 +199,7 @@ export const sideNavbarOptions = [
       url: '/contact-us',
       isActive: false,
       isEnabled: true,
-      configName: 'isContactUsEnabled',  
+      configName: 'isContactUsEnabled',
       },
       {
       title: "Terms & Conditions",
@@ -208,7 +208,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: false,
       configName: 'isTandCEnabled',
-        
+
         },
       {
       title: "Privacy Policy",
@@ -217,7 +217,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isNew: false,
       isEnabled: true,
-        
+
       },
     ],
   },

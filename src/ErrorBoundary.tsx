@@ -1,4 +1,4 @@
-import React, {Component, ErrorInfo, ReactNode} from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -18,24 +18,30 @@ class ErrorBoundary extends Component<Props, State> {
     error: null,
     errorInfo: null,
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props: any;
 
   static getDerivedStateFromError(error: Error): State {
     // Update state to render fallback UI on next render
-    return {hasError: true, error, errorInfo: null};
+    return { hasError: true, error, errorInfo: null };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.log('we got error', error, errorInfo);
     // Update errorInfo in the state
-    this.setState({errorInfo});
+    this.setState({ errorInfo });
 
     // Call the provided onError function if it exists
+    // eslint-disable-next-line react/prop-types
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
     } else {
       // Default error logging behavior
       this.logErrorToService(error, errorInfo);
     }
+  }
+  setState(_arg0: { errorInfo: ErrorInfo }) {
+    throw new Error('Method not implemented.');
   }
 
   logErrorToService(error: Error, errorInfo: ErrorInfo) {
@@ -46,12 +52,12 @@ class ErrorBoundary extends Component<Props, State> {
 
   handleRetry = () => {
     // Reset the error state to allow a retry
-    this.setState({hasError: false, error: null, errorInfo: null});
+    this.setState({ hasError: false, error: null, errorInfo: null });
   };
 
   handleReset = () => {
     // Reset the entire error boundary state and potentially other app state
-    this.setState({hasError: false, error: null, errorInfo: null});
+    this.setState({ hasError: false, error: null, errorInfo: null });
     // Optionally, trigger additional logic to reset application state or context
   };
 

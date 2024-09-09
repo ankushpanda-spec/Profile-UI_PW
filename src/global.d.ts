@@ -3,6 +3,7 @@
 declare global {
   interface Window {
     PWWebSDK: AuthService; // Make sure AuthService is the correct type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     initPWAuthWebSDK: (props: any) => void;
   }
 }

@@ -1,9 +1,12 @@
-import {ModuleFederationPlugin} from '@module-federation/enhanced/rspack';
-import {defineConfig} from '@rsbuild/core';
-import {pluginReact} from '@rsbuild/plugin-react';
+import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
 import path from 'path';
-import {dependencies} from './package.json';
+import { dependencies } from './package.json';
 export default defineConfig({
+  output: {
+    assetPrefix: '/study-v2/',
+  },
   server: {
     port: 3000,
   },

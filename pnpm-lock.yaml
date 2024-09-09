@@ -29,6 +29,9 @@ dependencies:
   react-dom:
     specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
+  react-router-dom:
+    specifier: 6.26.1
+    version: 6.26.1(react-dom@18.3.1)(react@18.3.1)
   tailwind-merge:
     specifier: ^2.5.2
     version: 2.5.2
@@ -3006,6 +3009,11 @@ packages:
 
   /@radix-ui/rect@1.1.0:
     resolution: {integrity: sha512-A9+lCBZoaMJlVKcRBz2YByCG+Cp2t6nAnMnNba+XiWxnj6r4JUFqfsgwocMBZU9LPtdxC6wB56ySYpc7LQIoJg==}
+    dev: false
+
+  /@remix-run/router@1.19.1:
+    resolution: {integrity: sha512-S45oynt/WH19bHbIXjtli6QmwNYvaz+vtnubvNpNDvUOoA/OWh6j1OikIP3G+v5GHdxyC6EXoChG3HgYGEUfcg==}
+    engines: {node: '>=14.0.0'}
     dev: false
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.25.2)(rollup@2.79.1):
@@ -10307,6 +10315,29 @@ packages:
       tslib: 2.7.0
       use-callback-ref: 1.3.2(@types/react@18.3.5)(react@18.3.1)
       use-sidecar: 1.1.2(@types/react@18.3.5)(react@18.3.1)
+    dev: false
+
+  /react-router-dom@6.26.1(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-veut7m41S1fLql4pLhxeSW3jlqs+4MtjRLj0xvuCEXsxusJCbs6I8yn9BxzzDX2XDgafrccY6hwjmd/bL54tFw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.19.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-router: 6.26.1(react@18.3.1)
+    dev: false
+
+  /react-router@6.26.1(react@18.3.1):
+    resolution: {integrity: sha512-kIwJveZNwp7teQRI5QmwWo39A5bXRyqpH0COKKmPnyD2vBvDwgFXSqDUYtt1h+FEyfnE8eXr7oe0MxRzVwCcvQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.19.1
+      react: 18.3.1
     dev: false
 
   /react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@9.9.1)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4):

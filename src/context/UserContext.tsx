@@ -1,8 +1,9 @@
 // UserContext.tsx
-import {fetchUser} from '@/api';
-import React, {createContext, useContext, useEffect, useState} from 'react';
+import { fetchUser } from '@/api';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 // Define the shape of the user object
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type User = Record<string, any>;
 
 // Define the context value type
@@ -15,7 +16,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 // Create a provider component
-export const UserProvider: React.FC<{children: React.ReactNode}> = ({
+export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -39,7 +40,7 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({
   };
 
   return (
-    <UserContext.Provider value={{user, getUser}}>
+    <UserContext.Provider value={{ user, getUser }}>
       {children}
     </UserContext.Provider>
   );

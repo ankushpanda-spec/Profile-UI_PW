@@ -1,5 +1,5 @@
 export interface SideNavbarProps extends LogoSectionProps {
-    isSideNavOpen?: boolean; 
+    isSideNavOpen?: boolean;
     section?: MenuSection[];
     className?: string;
     bottomStroke?: boolean;
@@ -14,7 +14,7 @@ interface MenuItem {
   isEnabled?: boolean;
   configName?: string;
   isNew?: boolean;
-  badge?: string; 
+  badge?: string;
 }
 export interface MenuItemProps extends MenuItem {
   subMenuOption?: MenuItem[]
