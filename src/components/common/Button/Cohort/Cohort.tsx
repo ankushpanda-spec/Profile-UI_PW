@@ -1,14 +1,15 @@
-import {ChevronRight} from '@/assets/icons';
-import {Skeleton, Typography} from '@pw-tech/omni-ui';
+import { ChevronRight } from '@/assets/icons';
+import { cn } from '@/utils';
+import { Skeleton, Typography } from '@pw-tech/omni-ui';
 
 type CohortProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   iconSrc?: string;
 };
 
-function Cohort({iconSrc, ...props}: CohortProps) {
+function Cohort({iconSrc, className, ...props}: CohortProps) {
   return (
     <button
-      className="flex flex-row items-center gap-6 rounded border border-primary-50 bg-white p-6 shadow-md transition-all duration-300 ease-in-out hover:border-primary-200 hover:shadow-none md:gap-12 md:p-8 lg:gap-16 lg:p-12"
+      className={cn("flex flex-row items-center gap-6 rounded border border-primary-50 bg-white p-6 shadow-md transition-all duration-300 ease-in-out hover:border-primary-200 md:gap-12 md:p-8 lg:gap-16 lg:p-12", className)}
       {...props}
     >
       <div className="flex flex-row items-center gap-8">

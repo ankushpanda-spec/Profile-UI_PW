@@ -1,9 +1,9 @@
-import {useScreen} from '@/context';
-import {Typography} from '@pw-tech/omni-ui';
+import { useScreen } from '@/context';
+import { Typography } from '@pw-tech/omni-ui';
 import AvatarDropdown from '../../AvatarDropdown';
-import {MobileAppStoreBadge} from '../../Badge';
-import {BackButton, CohortButton, MenuButton} from '../../Button';
-import {AuthHeaderProps} from '../Types';
+import { MobileAppStoreBadge } from '../../Badge';
+import { BackButton, CohortButton, MenuButton } from '../../Button';
+import { AuthHeaderProps } from '../Types';
 import Auth from './Layout';
 
 function Layout(props: AuthHeaderProps) {
@@ -34,7 +34,7 @@ function Layout(props: AuthHeaderProps) {
         <>
           {backEnable && <BackButton onClick={onBackClick} />}
           {cohortEnable && (
-            <CohortButton onClick={onCohortClick} iconSrc={cohortData?.webIcon}>
+            <CohortButton className='scale-100 hover:scale-105' onClick={onCohortClick} iconSrc={cohortData?.webIcon}>
               {cohortData?.name || 'Select'}
             </CohortButton>
           )}

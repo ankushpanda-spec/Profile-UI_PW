@@ -1,7 +1,7 @@
 .sideBar {
     @apply w-[240px] h-screen flex flex-col items-start bg-white;
 }
- 
+
 .logoContainer {
     @apply bg-white h-[64px] md:h-[72px] lg:h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
 }
