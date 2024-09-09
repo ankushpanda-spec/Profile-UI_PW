@@ -5,7 +5,7 @@ import { AvatarDropdownProps } from '../Header/Types';
 import './index.css';
 import AvatarPopover from './Popover';
 
-function AvatarDropdown({userFirstName, ...props}: AvatarDropdownProps) {
+function AvatarDropdown({ userFirstName, ...props }: AvatarDropdownProps) {
   const options = [
     {
       label: 'My Profile',
@@ -48,5 +48,3 @@ function AvatarDropdown({userFirstName, ...props}: AvatarDropdownProps) {
     </AvatarPopover>
   );
 }
-
-export default AvatarDropdown;
