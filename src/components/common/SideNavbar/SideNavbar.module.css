@@ -1,9 +1,12 @@
 .sideBar {
-    @apply w-[240px] h-screen flex flex-col items-start bg-white;
+    @apply w-[240px] h-screen flex flex-col items-start bg-white transition-all duration-300 ease-in-out; 
 }
+ .sideBar.isMobile{
+     
+    }
 
 .logoContainer {
-    @apply bg-white h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
+    @apply bg-white h-[64px] md:h-[72px] lg:h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0 
 }
 
 .logoContainer>div {
@@ -17,15 +20,29 @@
 }
 
 .contentWrapper {
-    @apply flex flex-col items-start w-full overflow-y-auto
+    @apply flex flex-col items-start w-full overflow-y-auto pr-2
+}
+
+.contentWrapper::-webkit-scrollbar {
+  width:2px
+}
+.contentWrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.contentWrapper::-webkit-scrollbar-thumb {
+  background: #594bdac7;
+  border-radius: 5px;
+}
+.contentWrapper::-webkit-scrollbar-thumb:hover {
+  background: #5a4bda;
 }
 
 .categoryTitle {
-    @apply px-20 pt-24 pb-8 text-grey-2 w-full
+    @apply px-20 pt-24 pb-8 text-grey-2 w-full cursor-default
 }
 
 .menuOption {
-    @apply flex flex-col items-start w-full hover:bg-primary-50 text-body-1
+    @apply flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer
 }
 .menuOption.active{
     @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600
@@ -58,10 +75,10 @@
 .subMenu{
     @apply  w-full opacity-0 transition-all duration-300 ease-out overflow-hidden;
 
-    &.isSubmenuOpen{
+ &.isSubmenuOpen{
         @apply opacity-100 overflow-visible;
     }
-}
+} 
 
 .bottomStroke{
     @apply h-1 w-full border-light;
