@@ -1,67 +1,82 @@
 .sideBar {
-  @apply flex h-screen w-[240px] flex-col items-start bg-white;
+    @apply w-[240px] h-screen flex flex-col items-start bg-white;
 }
-
+ 
 .logoContainer {
-  @apply flex h-[80px] w-full shrink-0 flex-row items-center gap-8 border-b border-tertiary-100 bg-white px-20;
+    @apply bg-white h-[64px] md:h-[72px] lg:h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
 }
 
-.logoContainer > div {
-  @apply flex items-start justify-center;
+.logoContainer>div {
+    @apply flex justify-center items-start
 }
-.logo {
-  @apply h-32 w-32 md:h-40 md:w-40 lg:h-48 lg:w-48;
+.logo{
+    @apply h-32 w-32 md:h-40 md:w-40 lg:w-48 lg:h-48
 }
-.logoText {
-  @apply text-nowrap text-14 leading-20 sm:text-16 sm:leading-24;
+.logoText{
+    @apply leading-20 sm:leading-24 text-14 sm:text-16 text-nowrap
 }
 
 .contentWrapper {
-  @apply flex w-full flex-col items-start overflow-y-auto;
+    @apply flex flex-col items-start w-full overflow-y-auto pr-2
+}
+
+.contentWrapper::-webkit-scrollbar {
+  width:2px
+}
+.contentWrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.contentWrapper::-webkit-scrollbar-thumb {
+  background: #594bdac7;
+  border-radius: 5px;
+}
+.contentWrapper::-webkit-scrollbar-thumb:hover {
+  background: #5a4bda;
 }
 
 .categoryTitle {
-  @apply w-full px-20 pb-8 pt-24 text-grey-2;
+    @apply px-20 pt-24 pb-8 text-grey-2 w-full cursor-default
 }
 
 .menuOption {
-  @apply flex w-full flex-col items-start text-body-1 hover:bg-primary-50;
+    @apply flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer
 }
-.menuOption.active {
-  @apply border-l-4 border-l-primary bg-primary-50 text-primary hover:bg-primary-100 hover:text-primary-600;
-}
+.menuOption.active{
+    @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600
+
+    }
 
 .optionWrapper {
-  @apply flex h-[40px] w-full flex-row items-center gap-8 px-20 py-16 md:h-[42px] lg:h-[56px];
+    @apply flex w-full h-[40px] md:h-[42px] lg:h-[56px] px-20 py-16 items-center gap-8 flex-row
 }
 
 .leftOptions {
-  @apply flex h-16 w-16 shrink-0 items-center justify-center sm:h-20 sm:w-20;
+    @apply h-16 w-16 sm:h-20 sm:w-20 flex shrink-0 justify-center items-center
 }
 
 .optionTitle {
-  @apply flex-shrink-0 flex-grow basis-0;
+    @apply flex-grow flex-shrink-0 basis-0
 }
 .rightOptions {
-  @apply flex items-center gap-8;
+    @apply flex items-center gap-8
 }
 
-.toggleIcon {
-  @apply transition-all duration-200 ease-in-out;
+.toggleIcon{
+   @apply transition-all duration-200 ease-in-out
 }
 
-.toggleIcon.isSubmenuOpen {
-  @apply -rotate-180;
+.toggleIcon.isSubmenuOpen{
+     @apply -rotate-180;
 }
 
-.subMenu {
-  @apply w-full overflow-hidden opacity-0 transition-all duration-300 ease-out;
+.subMenu{
+    @apply  w-full opacity-0 transition-all duration-300 ease-out overflow-hidden;
 
-  &.isSubmenuOpen {
-    @apply overflow-visible opacity-100;
-  }
+ &.isSubmenuOpen{
+        @apply opacity-100 overflow-visible;
+    }
 }
 
-.bottomStroke {
-  @apply h-1 w-full border-light;
+.bottomStroke{
+    @apply h-1 w-full border-light;
 }

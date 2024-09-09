@@ -1,11 +1,11 @@
-import {ChevronDownFilled, User} from '@/assets/icons';
-import {Skeleton, Typography} from '@pw-tech/omni-ui';
+import { ArrowRightStartOnRect, BriefCase, ChevronDownFilled, User } from '@/assets/icons';
+import { Skeleton, Typography } from '@pw-tech/omni-ui';
 import Avatar from '../Avatar/Avatar';
-import {AvatarDropdownProps} from '../Header/Types';
+import { AvatarDropdownProps } from '../Header/Types';
 import './index.css';
 import AvatarPopover from './Popover';
 
-function AvatarDropdown({userFirstName, ...props}: AvatarDropdownProps) {
+function AvatarDropdown({ userFirstName, ...props }: AvatarDropdownProps) {
   const options = [
     {
       label: 'My Profile',
@@ -13,11 +13,11 @@ function AvatarDropdown({userFirstName, ...props}: AvatarDropdownProps) {
     },
     {
       label: 'My Purchases',
-      icon: <User className="size-24" />,
+      icon: <BriefCase className="size-24" />,
     },
     {
       label: 'Logout',
-      icon: <User className="size-24" />,
+      icon: <ArrowRightStartOnRect className="size-24" />,
       style: {
         borderTop: '1px #dcdcdc solid',
       },
@@ -49,4 +49,4 @@ function AvatarDropdown({userFirstName, ...props}: AvatarDropdownProps) {
   );
 }
 
-export default AvatarDropdown;
+export default AvatarDropdown

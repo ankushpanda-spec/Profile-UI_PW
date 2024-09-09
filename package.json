@@ -3,14 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "rsbuild build && node scripts/compress-gzip.js",
+    "build": "rsbuild build",
     "dev": "rsbuild dev --open",
-    "preview": "rsbuild preview",
-    "lint": "eslint .",
-    "fix": "eslint --fix",
-    "format": "prettier --write .",
-    "prebuild": "npm run lint",
-    "postbuild": "npm run format"
+    "preview": "rsbuild preview"
   },
   "dependencies": {
     "@module-federation/enhanced": "^0.5.2",
@@ -21,8 +16,9 @@
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "6.26.1",
-    "tailwind-merge": "^2.5.2"
+    "react-router-dom": "^6.26.1",
+    "tailwind-merge": "^2.5.2",
+    "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
@@ -34,23 +30,6 @@
     "@types/node": "^22.5.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.9.1",
-    "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.9.0",
-    "husky": "^9.1.5",
-    "postcss": "^8.4.41",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.6",
-    "tailwind-scrollbar": "^3.1.0",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.3.0"
-  },
-  "engines": {
-    "node": ">=18.x",
-    "npm": "please-use-pnpm",
-    "pnpm": ">=8.x"
+    "typescript": "^5.5.2"
   }
 }

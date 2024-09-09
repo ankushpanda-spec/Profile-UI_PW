@@ -1,11 +1,8 @@
-export interface SideNavbarProps {
-  isSideNavOpen?: boolean;
-  logo?: React.ReactNode;
-  logoText?: string;
-  section?: MenuSection[];
-  url?: string;
-  className?: string;
-  bottomStroke?: boolean;
+export interface SideNavbarProps extends LogoSectionProps {
+    isSideNavOpen?: boolean;
+    section?: MenuSection[];
+    className?: string;
+    bottomStroke?: boolean;
 }
 
 interface MenuItem {
@@ -13,14 +10,17 @@ interface MenuItem {
   icon?: React.ReactNode;
   url?: string;
   isActive?: boolean;
+  external?: boolean;
+  isEnabled?: boolean;
+  configName?: string;
   isNew?: boolean;
   badge?: string;
 }
-
 export interface MenuItemProps extends MenuItem {
-  subMenuOption?: MenuItem[];
-  isSubmenuOpen?: boolean;
-  onClick?: () => void;
+  subMenuOption?: MenuItem[]
+  activeItem?:string
+  onMenuItemClick?: () => void
+  onSubMenuClick?: () => void
 }
 
 interface MenuOption extends MenuItem {
@@ -30,4 +30,24 @@ interface MenuOption extends MenuItem {
 interface MenuSection {
   customHeader: string;
   menuOptions: MenuOption[];
+}
+
+export interface LogoSectionProps {
+  logo?: React.ReactNode;
+  logoText?: string;
+  url?: string;
+}
+
+export interface MenuCategoryProps{
+  category: MenuSection;
+  bottomStroke?: boolean;
+  activeItem?: string;
+  onItemClick?:() => void;
+}
+
+export interface SubMenuItemProps{
+  subMenuOption?: MenuItem[]
+  isSubmenuOpen?: boolean;
+  activeItem?: string;
+  onSubMenuItemClick?:() => void;
 }

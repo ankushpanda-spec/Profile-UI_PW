@@ -1,4 +1,4 @@
-import {fixupConfigRules, fixupPluginRules} from '@eslint/compat';
+import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import js from '@eslint/js';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactJsx from 'eslint-plugin-react/configs/jsx-runtime.js';

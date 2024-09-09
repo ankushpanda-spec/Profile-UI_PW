@@ -1,11 +1,11 @@
-import {ThemeProvider} from '@pw-tech/omni-ui';
+import { ThemeProvider } from '@pw-tech/omni-ui';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import {BaseLayout} from './components';
-import {GlobalProvider} from './context';
-import ErrorBoundary from './ErrorBoundary';
 import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import { BaseLayout } from './components';
+import { GlobalProvider } from './context';
+import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
 const rootEl = document.getElementById('root');
@@ -14,15 +14,15 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <ErrorBoundary>
-        <GlobalProvider>
-          <ThemeProvider>
-            <BaseLayout>
-              <App />
-            </BaseLayout>
-          </ThemeProvider>
-        </GlobalProvider>
-      </ErrorBoundary>
+        <ErrorBoundary>
+          <GlobalProvider>
+            <ThemeProvider>
+              <BaseLayout>
+                <App />
+              </BaseLayout>
+            </ThemeProvider>
+          </GlobalProvider>
+        </ErrorBoundary>
       </BrowserRouter>
     </React.StrictMode>
   );

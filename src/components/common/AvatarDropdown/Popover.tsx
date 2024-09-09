@@ -42,11 +42,11 @@ function AvatarPopover({
   };
 
   return (
-    <Popover.Root>
+    <Popover.Root defaultOpen={false}>
       <Popover.Trigger asChild>{children}</Popover.Trigger>
       <Popover.Portal>
         <Popover.Content
-          className="PopoverContent shadow-2xl"
+          className="PopoverContent"
           sideOffset={-3}
           data-side="top"
           data-align="center"
