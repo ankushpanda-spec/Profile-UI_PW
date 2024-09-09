@@ -1,13 +1,16 @@
+import { useScreen } from "@/context";
+
 const Study = () => {
+  const {width } = useScreen();
     return (
       <div className="bg-premium-100">
         <div className="p-20">
-        
+          <h1>{ width}</h1>
         <div>
 
             Hello From Study
         </div>
-       
+
           impedit ab temporibus quo cum voluptatum corporis nihil. Perspiciatis
           maiores quasi officia fugiat tempore amet aliquid minus! Lorem ipsum,
           dolor sit amet consectetur adipisicing elit. Ipsa non velit ut sed
@@ -82,6 +85,5 @@ const Study = () => {
       </div>
     );
   };
-  
+
   export default Study;
-  
