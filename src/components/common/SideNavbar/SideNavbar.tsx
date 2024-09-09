@@ -35,7 +35,7 @@ function SideNavbar(props: SideNavbarProps) {
   }>({});
 
   // Function to toggle submenu visibility using nested structure
-  const handleMenuItemClick = (categoryIndex: number, optionIndex: number) => {
+  const handleMenuItemClick = (categoryIndex: number, optionIndex: number, url:string) => {
     setOpenSubmenus(prev => ({
       ...prev,
       [categoryIndex]: {
@@ -129,7 +129,7 @@ function SideNavbar(props: SideNavbarProps) {
                       option?.subMenuOption == null
                     }
                     onClick={() =>
-                      handleMenuItemClick(categoryIndex, optionIndex)
+                      handleMenuItemClick(categoryIndex, optionIndex, url)
                     } // Toggle using category and option index
                   />
                   {/* Submenu Items (if any)  */}
