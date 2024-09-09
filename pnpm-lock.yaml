@@ -13,7 +13,7 @@ dependencies:
     version: 0.5.2
   '@pw-tech/omni-ui':
     specifier: 0.0.12-alpha-1.0
-    version: 0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(typescript@5.5.4)
+    version: 0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
   '@pw-tech/web-sdk':
     specifier: 0.0.6-23
     version: 0.0.6-23
@@ -32,6 +32,9 @@ dependencies:
   tailwind-merge:
     specifier: ^2.5.2
     version: 2.5.2
+  tailwind-scrollbar:
+    specifier: ^3.1.0
+    version: 3.1.0(tailwindcss@3.4.10)
 
 devDependencies:
   '@commitlint/cli':
@@ -2584,13 +2587,13 @@ packages:
       webpack-dev-server: 4.15.2(webpack@5.94.0)
     dev: false
 
-  /@pw-tech/omni-ui@0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(typescript@5.5.4):
+  /@pw-tech/omni-ui@0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4):
     resolution: {integrity: sha512-90DUq+0kWN7yj3M7kVbnTn4odJ3z1WTXORpc83wI9C3mmDuKH/F9q9rk+VdiHE5EwxuE+7SpnPvG5y2fxeGj2Q==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
     requiresBuild: true
     dependencies:
-      '@tailwindcss/forms': 0.5.7
-      '@tailwindcss/line-clamp': 0.4.4
+      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.10)
+      '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.10)
       class-variance-authority: 0.7.0
       clsx: 2.0.0
       date-fns: 3.6.0
@@ -2602,7 +2605,7 @@ packages:
       react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4)
       sass: 1.77.8
       tailwind-merge: 2.5.2
-      tailwindcss-animate: 1.0.7
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.10)
     transitivePeerDependencies:
       - '@babel/plugin-syntax-flow'
       - '@babel/plugin-transform-react-jsx'
@@ -3336,18 +3339,21 @@ packages:
       tslib: 2.7.0
     dev: true
 
-  /@tailwindcss/forms@0.5.7:
+  /@tailwindcss/forms@0.5.7(tailwindcss@3.4.10):
     resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.4.10
     dev: false
 
-  /@tailwindcss/line-clamp@0.4.4:
+  /@tailwindcss/line-clamp@0.4.4(tailwindcss@3.4.10):
     resolution: {integrity: sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.4.10
     dev: false
 
   /@tootallnate/once@1.1.2:
@@ -11355,10 +11361,21 @@ packages:
     resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
     dev: false
 
-  /tailwindcss-animate@1.0.7:
+  /tailwind-scrollbar@3.1.0(tailwindcss@3.4.10):
+    resolution: {integrity: sha512-pmrtDIZeHyu2idTejfV59SbaJyvp1VRjYxAjZBH0jnyrPRo6HL1kD5Glz8VPagasqr6oAx6M05+Tuw429Z8jxg==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.4.10
+    dev: false
+
+  /tailwindcss-animate@1.0.7(tailwindcss@3.4.10):
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.4.10
     dev: false
 
   /tailwindcss@3.4.10:

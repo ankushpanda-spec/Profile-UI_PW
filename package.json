@@ -3,9 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "rsbuild build && node scripts/compress-gzip.js",
-    "dev": "rsbuild dev --open",
     "build": "rsbuild build",
+    "dev": "rsbuild dev --open",
     "preview": "rsbuild preview"
   },
   "dependencies": {
@@ -17,7 +16,8 @@
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.5.2"
+    "tailwind-merge": "^2.5.2",
+    "tailwind-scrollbar": "^3.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
