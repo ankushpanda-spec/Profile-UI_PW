@@ -48,3 +48,5 @@ function AvatarDropdown({ userFirstName, ...props }: AvatarDropdownProps) {
     </AvatarPopover>
   );
 }
+
+export default AvatarDropdown
