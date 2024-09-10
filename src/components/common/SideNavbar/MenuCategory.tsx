@@ -1,4 +1,4 @@
-import React, { useState }  from 'react'
+import React from 'react'
 import { MenuCategoryProps } from './Types'
 import { Typography } from '@pw-tech/omni-ui';
 import s from './SideNavbar.module.css'
@@ -34,7 +34,7 @@ return (
                         isActive={activeItem === option.url}
                         external={option.external}
                         configName={option.configName}
-                        onMenuItemClick={() => onItemClick(option.url)}
+                        onMenuItemClick={() => onItemClick(option.url , option.external)}
                         onSubMenuClick={onItemClick}
                         activeItem={activeItem}
                         />   

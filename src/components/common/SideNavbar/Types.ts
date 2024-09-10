@@ -8,7 +8,7 @@ export interface SideNavbarProps extends LogoSectionProps {
 interface MenuItem {
   title?: string;
   icon?: React.ReactNode;
-  url: string;
+  url?: string;
   isActive?: boolean;
   external?: boolean;
   isEnabled?: boolean;
@@ -19,8 +19,8 @@ interface MenuItem {
 export interface MenuItemProps extends MenuItem {
   subMenuOption?: MenuItem[]
   activeItem?:string
-  onMenuItemClick?: (url: string) => void; 
-  onSubMenuClick?: (url: string) => void; 
+  onMenuItemClick: (url: string | undefined , external :boolean | undefined) => void; 
+  onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void; 
 }
 
 interface MenuOption extends MenuItem {
@@ -42,12 +42,12 @@ export interface MenuCategoryProps{
   category: MenuSection;
   bottomStroke?: boolean;
   activeItem?: string;
-  onItemClick?:(url: string) => void;
+  onItemClick:(url: string | undefined , external: boolean | undefined) => void;
 }
 
 export interface SubMenuItemProps{
   subMenuOption?: MenuItem[]
   isSubmenuOpen?: boolean;
   activeItem?: string;
-  onSubMenuItemClick?:(url: string) => void;
+  onSubMenuItemClick:(url: string | undefined , external:boolean | undefined) => void;
 }

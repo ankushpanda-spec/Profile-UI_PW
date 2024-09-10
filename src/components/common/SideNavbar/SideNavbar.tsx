@@ -1,19 +1,20 @@
 import LogoIcon from "@/assets/icons/LogoIcon"
+import {fetchCohortConfig} from '@/api';
 import cn from 'clsx'
-import { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { useState , useEffect } from 'react'
 import LogoSection from './LogoSection'
 import MenuCategory from './MenuCategory'
-import { sideNavbarOptions } from './SideNavbar.config'
+import { sideNavbarOptions as initialSideNavbarOptions } from './SideNavbar.config'
 import s from "./SideNavbar.module.css"
 import { SideNavbarProps } from './Types'
+import { useNavigate , useLocation } from "react-router-dom";
 
 function SideNavbar(props: SideNavbarProps) {
   const {
     // isSideNavOpen = true,
     logo = <LogoIcon className={s.logo} />,
     logoText = "Physics Wallah",
-    section = sideNavbarOptions,
+    section = initialSideNavbarOptions,
     className,
     bottomStroke = false,
     url = '/',
@@ -22,14 +23,57 @@ function SideNavbar(props: SideNavbarProps) {
 
   // State to manage the currently active menu item
   const navigate = useNavigate();
-  const [activeItem, setActiveItem] = useState<string | undefined>("/study");
+  const location = useLocation();
+  const currentUrl = location.pathname;
+  
+  const [activeItem, setActiveItem] = useState<string | undefined>(undefined);
+  const [sideNavbarOptions, setSideNavbarOptions] = useState(section);
+  const [webConfig , setWebConfig] = useState<Record<string , boolean> | null>(null);
+    
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const cohortData = await fetchCohortConfig();
+        setWebConfig(cohortData.webConfig);
+      } catch (error) {
+        console.error("Error fetching cohort data:", error);
+      }
+    };
 
-  const handleItemClick = (url: string) => {
+    fetchData();
+  }, []);
 
-    setActiveItem(url);
-    navigate(url);
-
-  };
+  useEffect(() => {
+  const isActive = sideNavbarOptions.some(category =>
+    category.menuOptions.some(option => 
+      option.url === currentUrl || 
+      (option.subMenuOption && option.subMenuOption.some(subOption => subOption.url === currentUrl))
+    )
+  );
+  
+  if (isActive) {
+    setActiveItem(location.pathname);
+  }
+}, [location, sideNavbarOptions]);
+  
+  const handleItemClick = (url: string | undefined , external:boolean | undefined) => {
+  
+    if (url) {
+      if (external) {
+        window.open(url, '_blank');
+        navigate('/')
+      }
+      else {
+        navigate(url);
+        setActiveItem(url)
+        
+      }
+      
+    }
+  
+};
+  console.log(sideNavbarOptions);
 
   const sideBarClassName = cn(s.sideBar, className,
   );
@@ -43,7 +87,7 @@ function SideNavbar(props: SideNavbarProps) {
 
       {/* content section */}
       <div className={s.contentWrapper}>
-        {section.map((category, categoryIndex) => (
+        {sideNavbarOptions.map((category, categoryIndex) => (
           <MenuCategory
             key={categoryIndex}
             category={category}
