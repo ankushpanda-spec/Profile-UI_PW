@@ -16,7 +16,7 @@ function Container({
         className
       )}
     >
-      <div className="max-w-[1180px]">{children}</div>
+      <div className="max-w-[1180px] w-[-webkit-fill-available]">{children}</div>
     </section>
   );
 }

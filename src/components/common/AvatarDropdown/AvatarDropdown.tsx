@@ -10,12 +10,12 @@ function AvatarDropdown({ userFirstName, ...props }: AvatarDropdownProps) {
     {
       label: 'My Profile',
       icon: <User className="size-24" />,
-      href:"/profile",
+      href: "/profile",
     },
     {
       label: 'My Purchases',
       icon: <BriefCase className="size-24" />,
-      href:"/my-purchase",
+      href: "/my-purchase",
     },
     {
       label: 'Logout',
@@ -23,7 +23,7 @@ function AvatarDropdown({ userFirstName, ...props }: AvatarDropdownProps) {
       style: {
         borderTop: '1px #dcdcdc solid',
       },
-      href:"/logout",
+      href: "/logout",
     },
   ];
   return (

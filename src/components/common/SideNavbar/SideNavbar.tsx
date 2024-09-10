@@ -1,13 +1,12 @@
 import LogoIcon from "@/assets/icons/LogoIcon"
-import { useScreen } from '@/context'
 import cn from 'clsx'
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom"
 import LogoSection from './LogoSection'
 import MenuCategory from './MenuCategory'
 import { sideNavbarOptions } from './SideNavbar.config'
 import s from "./SideNavbar.module.css"
 import { SideNavbarProps } from './Types'
-import { useNavigate } from "react-router-dom";
 
 function SideNavbar(props: SideNavbarProps) {
   const {
@@ -32,7 +31,7 @@ function SideNavbar(props: SideNavbarProps) {
 
   };
 
-  const sideBarClassName = cn(s.sideBar, className, 
+  const sideBarClassName = cn(s.sideBar, className,
   );
 
   return (

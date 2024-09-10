@@ -1,5 +1,5 @@
 .sideBar {
-    @apply w-[240px] h-screen flex flex-col items-start bg-white;
+    @apply w-[240px] h-screen flex flex-col items-start bg-white shadow-xl;
 }
 
 .logoContainer {
