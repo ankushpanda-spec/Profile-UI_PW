@@ -31,7 +31,7 @@ return (
         url={subOption.url}
         badge={subOption.badge}
         isEnabled={subOption.isEnabled}
-        onMenuItemClick={() => onSubMenuItemClick(subOption.url)} 
+        onMenuItemClick={() => onSubMenuItemClick(subOption.url , subOption.external)} 
         />
     ))}
     </div>

@@ -19,12 +19,12 @@ interface MenuItem {
 export interface MenuItemProps extends MenuItem {
   subMenuOption?: MenuItem[]
   activeItem?:string
-  onMenuItemClick?: () => void
-  onSubMenuClick?: () => void
+  onMenuItemClick: (url: string | undefined , external :boolean | undefined) => void; 
+  onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void; 
 }
 
 interface MenuOption extends MenuItem {
-  subMenuOption: MenuItem[];
+  subMenuOption?: MenuItem[];
 }
 
 interface MenuSection {
@@ -42,12 +42,12 @@ export interface MenuCategoryProps{
   category: MenuSection;
   bottomStroke?: boolean;
   activeItem?: string;
-  onItemClick?:() => void;
+  onItemClick:(url: string | undefined , external: boolean | undefined) => void;
 }
 
 export interface SubMenuItemProps{
   subMenuOption?: MenuItem[]
   isSubmenuOpen?: boolean;
   activeItem?: string;
-  onSubMenuItemClick?:() => void;
+  onSubMenuItemClick:(url: string | undefined , external:boolean | undefined) => void;
 }
