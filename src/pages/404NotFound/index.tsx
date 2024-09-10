@@ -12,7 +12,7 @@ const PageNotFound = () => {
           primary: {
             children: "Back to Homepage",
             size: "tiny",
-            onClick: () => navigate("/study")
+            onClick: () => navigate(process.env.PUBLIC_HOME_PAGE_URL)
           },
           secondary: {
             children: "Reload Page",
