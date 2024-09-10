@@ -1,5 +1,5 @@
 .sideBar {
-    @apply w-[240px] h-screen flex flex-col items-start bg-white shadow-xl;
+    @apply min-w-[240px] h-screen flex flex-col items-start bg-white shadow-lg;
 }
 
 .logoContainer {
@@ -39,10 +39,10 @@
 }
 
 .menuOption {
-    @apply flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4
+    @apply transition-all duration-200 flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4
 }
 .menuOption.active{
-    @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0 
+    @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0
 
     }
 
@@ -70,10 +70,10 @@
 }
 
 .subMenu{
-    @apply  w-full opacity-0 transition-all duration-300 ease-out overflow-hidden;
+    @apply w-full opacity-0 transition-all duration-300 ease-out;
 
  &.isSubmenuOpen{
-        @apply opacity-100 overflow-visible;
+      @apply opacity-100 overflow-visible h-[(auto)];
     }
 }
 
