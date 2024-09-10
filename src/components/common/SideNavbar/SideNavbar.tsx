@@ -26,7 +26,7 @@ function SideNavbar(props: SideNavbarProps) {
   const location = useLocation();
   const currentUrl = location.pathname;
   
-  const [activeItem, setActiveItem] = useState<string | undefined>(undefined);
+  const [activeItem, setActiveItem] = useState("");
   const [sideNavbarOptions, setSideNavbarOptions] = useState(section);
   const [webConfig , setWebConfig] = useState<Record<string , boolean> | null>(null);
     
@@ -44,18 +44,22 @@ function SideNavbar(props: SideNavbarProps) {
     fetchData();
   }, []);
 
+
   useEffect(() => {
-  const isActive = sideNavbarOptions.some(category =>
+    const isActive = sideNavbarOptions.some(category =>
     category.menuOptions.some(option => 
       option.url === currentUrl || 
-      (option.subMenuOption && option.subMenuOption.some(subOption => subOption.url === currentUrl))
+      (option.subMenuOption?.some(subOption => subOption.url === currentUrl))
     )
   );
   
   if (isActive) {
-    setActiveItem(location.pathname);
+    setActiveItem(currentUrl);
   }
-}, [location, sideNavbarOptions]);
+  else {
+    setActiveItem("");
+  }
+}, [location]);
   
   const handleItemClick = (url: string | undefined , external:boolean | undefined) => {
   
@@ -67,7 +71,6 @@ function SideNavbar(props: SideNavbarProps) {
       else {
         navigate(url);
         setActiveItem(url)
-        
       }
       
     }
