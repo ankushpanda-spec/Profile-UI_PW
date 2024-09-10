@@ -19,7 +19,7 @@ interface MenuItem {
 export interface MenuItemProps extends MenuItem {
   subMenuOption?: MenuItem[]
   activeItem?:string
-  onMenuItemClick: (url: string | undefined , external :boolean | undefined) => void; 
+  onMenuItemClick?: (url: string | undefined , external :boolean | undefined) => void; 
   onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void; 
 }
 
@@ -49,5 +49,5 @@ export interface SubMenuItemProps{
   subMenuOption?: MenuItem[]
   isSubmenuOpen?: boolean;
   activeItem?: string;
-  onSubMenuItemClick:(url: string | undefined , external:boolean | undefined) => void;
+  onSubMenuItemClick?:(url: string | undefined , external:boolean | undefined) => void;
 }
