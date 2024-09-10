@@ -1,7 +1,7 @@
 import { ArrowRightStartOnRect, BriefCase, ChevronDownFilled, User } from '@/assets/icons';
 import { Skeleton, Typography } from '@pw-tech/omni-ui';
-import Avatar from '../Avatar/Avatar';
-import { AvatarDropdownProps } from '../Header/Types';
+import { AvatarDropdownProps } from '../../Header/Types';
+import Avatar from "../Avatar";
 import './index.css';
 import AvatarPopover from './Popover';
 

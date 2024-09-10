@@ -1,6 +1,6 @@
 import { useScreen } from '@/context';
 import { Typography } from '@pw-tech/omni-ui';
-import AvatarDropdown from '../../AvatarDropdown';
+import AvatarDropdown from '../../Avatar/AvatarDropdown';
 import { MobileAppStoreBadge } from '../../Badge';
 import { BackButton, CohortButton, MenuButton } from '../../Button';
 import { AuthHeaderProps } from '../Types';
