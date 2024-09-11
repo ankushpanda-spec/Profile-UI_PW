@@ -27,7 +27,7 @@ interface MenuOption extends MenuItem {
   subMenuOption?: MenuItem[];
 }
 
-interface MenuSection {
+export interface MenuSection {
   customHeader: string;
   menuOptions: MenuOption[];
 }

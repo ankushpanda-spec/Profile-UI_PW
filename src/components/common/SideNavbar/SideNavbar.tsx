@@ -7,7 +7,8 @@ import MenuCategory from './MenuCategory'
 import { sideNavbarOptions as initialSideNavbarOptions } from './SideNavbar.config'
 import s from "./SideNavbar.module.css"
 import { SideNavbarProps } from './Types'
-import { useNavigate , useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { MenuSection } from "./Types";
 
 function SideNavbar(props: SideNavbarProps) {
   const {
@@ -27,7 +28,8 @@ function SideNavbar(props: SideNavbarProps) {
   const currentUrl = location.pathname;
   
   const [activeItem, setActiveItem] = useState("");
-  const [sideNavbarOptions, setSideNavbarOptions] = useState(section);
+  const [sideNavbarOptions, setSideNavbarOptions] = useState<MenuSection[]>(initialSideNavbarOptions);
+
   const [webConfig , setWebConfig] = useState<Record<string , boolean> | null>(null);
     
   
@@ -44,7 +46,36 @@ function SideNavbar(props: SideNavbarProps) {
     fetchData();
   }, []);
 
+  const updateMenuOptions = ():MenuSection[] => {
+  return initialSideNavbarOptions.map(category => ({
+    ...category,
+    menuOptions: category.menuOptions.map(option => {
+      const isOptionEnabled = option.configName
+        ? webConfig?.[option.configName] ?? option.isEnabled
+        : option.isEnabled;
 
+      const updatedSubMenuOptions = option.subMenuOption?.map(subOption => {
+        const isSubOptionEnabled = subOption.configName
+          ? webConfig?.[subOption.configName] ?? subOption.isEnabled
+          : subOption.isEnabled;
+
+        return { ...subOption, isEnabled: isSubOptionEnabled };
+      });
+
+      return {
+        ...option,
+        isEnabled: isOptionEnabled,
+        subMenuOption: updatedSubMenuOptions,
+      };
+    }),
+  }));
+  };
+
+   useEffect(() => {
+    setSideNavbarOptions(updateMenuOptions());
+  }, [webConfig]);
+
+  console.log("sideNavbarOptions: ", sideNavbarOptions);
   useEffect(() => {
     const isActive = sideNavbarOptions.some(category =>
     category.menuOptions.some(option => 
@@ -76,7 +107,6 @@ function SideNavbar(props: SideNavbarProps) {
     }
   
 };
-  console.log(sideNavbarOptions);
 
   const sideBarClassName = cn(s.sideBar, className,
   );

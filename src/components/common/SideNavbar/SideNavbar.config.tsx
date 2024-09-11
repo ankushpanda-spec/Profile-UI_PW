@@ -44,15 +44,16 @@ export const sideNavbarOptions = [
           isActive: false,
           isNew: false,
           badge: "",
-          isEnabled :true,
+          isEnabled: true,
+          configName: '',
           },
           {
           title: "Khazana",
           url: "/khazana",
           isActive: false,
           isNew: false,
-          isEnabled :true,
-
+          isEnabled: true,
+          configName: '',
 
           },
           {
@@ -60,14 +61,16 @@ export const sideNavbarOptions = [
           url: "/library2",
           isActive: false,
           isNew: false,
-          isEnabled :true,
+          isEnabled: true,
+          configName:'',
           },
           {
           title: "Announcements",
           url: "/announcements",
           isActive: false,
           isNew: false,
-          isEnabled :true,
+          isEnabled: true,
+          configName: '',
           },
         ]
         },
@@ -76,7 +79,7 @@ export const sideNavbarOptions = [
         icon: <Library/>,
         url: '/library',
         isActive: false,
-        isEnabled: false,
+        isEnabled: true,
         configName: 'isLibraryEnabled',
         isNew: true,
         badge:'',
@@ -93,7 +96,7 @@ export const sideNavbarOptions = [
       url: '/batches',
       isActive: true,
       isEnabled: true,
-        configName: 'isBatchPageEnabled',
+      configName: 'isBatchPageEnabled',
       subMenuOption: [],
 
       },
@@ -130,7 +133,7 @@ export const sideNavbarOptions = [
       url: "/vidyapeeth",
       isActive: false,
       isNew: false,
-        isEnabled: true,
+      isEnabled: true,
       subMenuOption: [],
       },
     ],
@@ -157,7 +160,7 @@ export const sideNavbarOptions = [
       isEnabled: true,
       configName: '',
       external: true,
-          isNew: false,
+      isNew: false,
       subMenuOption: [],
       },
       {
@@ -166,7 +169,7 @@ export const sideNavbarOptions = [
       url: '/results',
       isActive: false,
       isEnabled: true,
-        configName: 'isOurResultsEnabled',
+      configName: 'isOurResultsEnabled',
       subMenuOption: [],
       },
       {
@@ -175,7 +178,7 @@ export const sideNavbarOptions = [
       url: '/feeds',
       isActive: false,
       isEnabled: true,
-        configName: 'isFeedsEnabled',
+      configName: 'isFeedsEnabled',
       subMenuOption: [],
       },
     ],
@@ -189,7 +192,7 @@ export const sideNavbarOptions = [
       url: '/referral-new',
       isActive: false,
       isEnabled: true,
-        configName: 'isReferAndEarnEnabled',
+      configName: 'isReferAndEarnEnabled',
       subMenuOption: [],
 
         },
@@ -199,7 +202,7 @@ export const sideNavbarOptions = [
       url: '/wallet',
       isActive: false,
       isEnabled: true,
-          configName: 'isWalletEnabled',
+      configName: 'isWalletEnabled',
       subMenuOption: [],
 
       },
@@ -209,7 +212,7 @@ export const sideNavbarOptions = [
       url: '/contact-us',
       isActive: false,
       isEnabled: true,
-        configName: 'isContactUsEnabled',
+      configName: 'isContactUsEnabled',
       subMenuOption: [],
       },
       {
@@ -218,7 +221,7 @@ export const sideNavbarOptions = [
       url: '/termsandconditions',
       isActive: false,
       isEnabled: false,
-        configName: 'isTandCEnabled',
+      configName: 'isTandCEnabled',
       subMenuOption: [],
 
         },
@@ -228,7 +231,7 @@ export const sideNavbarOptions = [
       url: "/privacypolicy",
       isActive: false,
       isNew: false,
-        isEnabled: true,
+      isEnabled: true,
       subMenuOption: [],
 
       },
