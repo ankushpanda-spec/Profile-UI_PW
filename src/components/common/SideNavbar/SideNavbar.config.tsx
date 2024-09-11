@@ -1,10 +1,22 @@
-import { Batches, QuickLearning, ContactUs, PrivacyPolicy, Feeds, Library, Wallet, Upskilling, Vidyapeeth, ReferEarn, TermsConditions, Result, Saarthi, Store, Study, Scholarship, TestSeries } from "@/assets/icons"
+import { Batches, QuickLearning, ContactUs, PrivacyPolicy, Feeds, Library, Wallet, Upskilling, ReferEarn, TermsConditions, Result, Saarthi, Store, Study, Scholarship, TestSeries, Home, Yogya, PwCenters  , VpLive, AboutUs, ChampionsLeague} from "@/assets/icons"
+import GovernmentJobs from "@/assets/icons/GovernmentJobs"
 
 export const sideNavbarOptions = [
 
     {
     customHeader: "Learn Online",
     menuOptions: [
+      {
+        title: "Home",
+        icon: <Home/>,
+        url: '/dashboard',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isHomePageEnabled',
+        subMenuOption: [],
+      },
       {
         title: "Study",
         icon: <Study/>,
@@ -14,6 +26,7 @@ export const sideNavbarOptions = [
         badge: "1",
         isEnabled: true,
         configName: 'isStudyPageEnabled',
+        subMenuOption: [],
       },
       {
         title: "Quick Learning",
@@ -25,6 +38,7 @@ export const sideNavbarOptions = [
         isEnabled: true,
         configName: 'isMicroLearningEnabled',
         badge: "",
+        subMenuOption: [],
 
         },
       {
@@ -42,15 +56,16 @@ export const sideNavbarOptions = [
           isActive: false,
           isNew: false,
           badge: "",
-          isEnabled :true,
+          isEnabled: true,
+          configName: '',
           },
           {
           title: "Khazana",
           url: "/khazana",
           isActive: false,
           isNew: false,
-          isEnabled :true,
-
+          isEnabled: true,
+          configName: '',
 
           },
           {
@@ -58,14 +73,16 @@ export const sideNavbarOptions = [
           url: "/library2",
           isActive: false,
           isNew: false,
-          isEnabled :true,
+          isEnabled: true,
+          configName:'',
           },
           {
           title: "Announcements",
           url: "/announcements",
           isActive: false,
           isNew: false,
-          isEnabled :true,
+          isEnabled: true,
+          configName: '',
           },
         ]
         },
@@ -74,7 +91,7 @@ export const sideNavbarOptions = [
         icon: <Library/>,
         url: '/library',
         isActive: false,
-        isEnabled: false,
+        isEnabled: true,
         configName: 'isLibraryEnabled',
         isNew: true,
         badge:'',
@@ -92,6 +109,7 @@ export const sideNavbarOptions = [
       isActive: true,
       isEnabled: true,
       configName: 'isBatchPageEnabled',
+      subMenuOption: [],
 
       },
       {
@@ -102,6 +120,7 @@ export const sideNavbarOptions = [
         isEnabled: true,
         configName: 'isTestSeriesEnabled',
         badge: "1",
+        subMenuOption: [],
 
         },
       {
@@ -113,20 +132,69 @@ export const sideNavbarOptions = [
         isNew: false,
         isEnabled: true,
         configName: 'isScholarshipEnabled',
+        subMenuOption: [],
       },
+      {
+        title: 'Apply for Grant',
+        icon: <Yogya/>,
+        url: '/yogya',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isYogyaEnabled',
+        subMenuOption: [],
+      },
+      {
+        title: 'Government jobs',
+        icon: <GovernmentJobs/>,
+        url: '/job-alert',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isGovtJobEnabled',
+        subMenuOption: [],
+      },
+
     ],
     },
   {
     customHeader: "Offline",
     menuOptions: [
       {
-      title: "Vidyapeeth",
-      icon: <Vidyapeeth/>,
-      url: "/vidyapeeth",
+      title:'PW Centres',
+      icon: <PwCenters/>,
+      url: '/pw-centres',
       isActive: false,
       isNew: false,
-       isEnabled: true,
+      isEnabled: true,
+      configName: 'isPWCentersEnabled',
+      subMenuOption: [],
       },
+      {
+        title: 'VP Live',
+        icon: <VpLive/>,
+        url: '/vp-live',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isVpLiveEnabled',
+        subMenuOption: [],
+      },
+       {
+        title: 'PW Champions League',
+        icon: <ChampionsLeague/>,
+        url: '/school-contact-program',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isPwChampionshipEnabled',
+        subMenuOption: [],
+      },
+      
     ],
     },
   {
@@ -137,11 +205,11 @@ export const sideNavbarOptions = [
       icon: <Upskilling/>,
       url: "/upskilling",
       isActive: false,
-      external: true,
+      external: false,
       isNew: false,
       isEnabled: true,
       configName: '',
-
+      subMenuOption: [],
         },
         {
       title: "Store",
@@ -152,6 +220,7 @@ export const sideNavbarOptions = [
       configName: '',
       external: true,
       isNew: false,
+      subMenuOption: [],
       },
       {
       title: "Results",
@@ -160,6 +229,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isOurResultsEnabled',
+      subMenuOption: [],
       },
       {
       title: "Feeds",
@@ -168,6 +238,18 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isFeedsEnabled',
+      subMenuOption: [],
+      },
+       {
+        title: 'About us',
+        icon: <AboutUs/>,
+        url: '/about-us',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isAboutUsEnabled',
+        subMenuOption: [],
       },
     ],
     },
@@ -181,6 +263,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isReferAndEarnEnabled',
+      subMenuOption: [],
 
         },
         {
@@ -190,6 +273,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isWalletEnabled',
+      subMenuOption: [],
 
       },
       {
@@ -199,6 +283,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: true,
       configName: 'isContactUsEnabled',
+      subMenuOption: [],
       },
       {
       title: "Terms & Conditions",
@@ -207,6 +292,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isEnabled: false,
       configName: 'isTandCEnabled',
+      subMenuOption: [],
 
         },
       {
@@ -216,6 +302,7 @@ export const sideNavbarOptions = [
       isActive: false,
       isNew: false,
       isEnabled: true,
+      subMenuOption: [],
 
       },
     ],

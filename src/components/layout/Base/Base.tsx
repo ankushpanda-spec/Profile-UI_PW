@@ -1,23 +1,25 @@
-import {fetchCohortConfig} from '@/api';
-import {AuthHeader, Container, SideNavbar} from '@/components';
-import {useScreen, useUser} from '@/context';
-import {cohortSDK} from '@/integration';
-import {Drawer, Modal} from '@pw-tech/omni-ui';
-import {User} from '@pw-tech/web-sdk';
-import {ReactNode, useEffect, useState} from 'react';
+import { fetchCohortConfig } from '@/api';
+import { AuthHeader, Container, SideNavbar } from '@/components';
+import { useScreen, useUser } from '@/context';
+import { cohortSDK } from '@/integration';
+import { Drawer, Modal } from '@pw-tech/omni-ui';
+import { User } from '@pw-tech/web-sdk';
+import { ReactNode, useEffect, useState } from 'react';
 
-const Base = ({children}: {children: ReactNode}) => {
-  const {user} = useUser();
+const Base = ({ children }: { children: ReactNode }) => {
+  const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const {isMobile} = useScreen();
+  const { isMobile, width } = useScreen();
 
   useEffect(() => {
     cohortSDK({
       goBack: () => setShowModal(false),
       handleRedirection: () => setShowModal(false),
     });
+
   }, [showModal]);
+  const SideNavComponent = <SideNavbar onItemClick={() => setShowSidebar(false)} />;
   return (
     <div className="flex h-screen">
       <Modal
@@ -35,10 +37,10 @@ const Base = ({children}: {children: ReactNode}) => {
           onClose={() => setShowSidebar(false)}
           className="w-auto"
         >
-          <SideNavbar />
+          {SideNavComponent}
         </Drawer>
       ) : (
-        <SideNavbar />
+        SideNavComponent
       )}
 
       <div className="flex flex-grow flex-col">
@@ -64,7 +66,7 @@ const Base = ({children}: {children: ReactNode}) => {
               '_blank'
             )
           }
-          // onProfileClick={() => alert('Clicking profile')}
+        // onProfileClick={() => alert('Clicking profile')}
         />
 
         {/* REMOTE CONTAINER */}

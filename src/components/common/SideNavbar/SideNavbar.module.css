@@ -1,7 +1,7 @@
 .sideBar {
-    @apply w-[240px] h-screen flex flex-col items-start bg-white;
+    @apply min-w-[240px] h-screen flex flex-col items-start bg-white shadow-lg;
 }
- 
+
 .logoContainer {
     @apply bg-white h-[64px] md:h-[72px] lg:h-[80px] w-full border-b border-tertiary-100 flex items-center px-20 flex-row gap-8 shrink-0
 }
@@ -17,7 +17,7 @@
 }
 
 .contentWrapper {
-    @apply flex flex-col items-start w-full overflow-y-auto pr-2
+    @apply flex flex-col items-start w-full overflow-y-scroll scroll-smooth pr-4 overflow-x-hidden;
 }
 
 .contentWrapper::-webkit-scrollbar {
@@ -39,15 +39,15 @@
 }
 
 .menuOption {
-    @apply flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer
+    @apply transition-all duration-[250ms] flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4 ml-4;
 }
 .menuOption.active{
-    @apply bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600
+    @apply scale-105 bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0
 
     }
 
 .optionWrapper {
-    @apply flex w-full h-[40px] md:h-[42px] lg:h-[56px] px-20 py-16 items-center gap-8 flex-row
+    @apply flex w-full h-[35px] md:h-[37px] lg:h-[51px] px-20 py-16 items-center gap-8 flex-row
 }
 
 .leftOptions {
@@ -55,25 +55,25 @@
 }
 
 .optionTitle {
-    @apply flex-grow flex-shrink-0 basis-0
+    @apply flex-grow flex-shrink-0 basis-0 select-none;
 }
 .rightOptions {
     @apply flex items-center gap-8
 }
 
 .toggleIcon{
-   @apply transition-all duration-200 ease-in-out
+   @apply -rotate-180 transition-all duration-[250ms] ease-in-out
 }
 
 .toggleIcon.isSubmenuOpen{
-     @apply -rotate-180;
+     @apply rotate-0;
 }
 
 .subMenu{
-    @apply  w-full opacity-0 transition-all duration-300 ease-out overflow-hidden;
+    @apply w-full transition-all duration-[250ms] ease-out max-h-0 opacity-0 -z-10;
 
  &.isSubmenuOpen{
-        @apply opacity-100 overflow-visible;
+      @apply min-h-[calc(auto)] opacity-100 z-0;
     }
 }
 

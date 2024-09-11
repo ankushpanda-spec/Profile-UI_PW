@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.5.2
     version: 0.5.2
   '@pw-tech/omni-ui':
-    specifier: 0.0.12-alpha-1.0
-    version: 0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
+    specifier: 0.0.12-alpha-1.1
+    version: 0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
   '@pw-tech/web-sdk':
     specifier: 0.0.6-23
     version: 0.0.6-23
@@ -2590,8 +2590,8 @@ packages:
       webpack-dev-server: 4.15.2(webpack@5.94.0)
     dev: false
 
-  /@pw-tech/omni-ui@0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4):
-    resolution: {integrity: sha512-90DUq+0kWN7yj3M7kVbnTn4odJ3z1WTXORpc83wI9C3mmDuKH/F9q9rk+VdiHE5EwxuE+7SpnPvG5y2fxeGj2Q==}
+  /@pw-tech/omni-ui@0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4):
+    resolution: {integrity: sha512-cOX5nXA0JaUzpUMWHybXM6qk8ms3uGEmbT+1QqT5uYRSR2F2vOPr7Z4HSP6PkrcJ2G6ArG51yE13thuH+gAnGA==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
     requiresBuild: true
     dependencies:
@@ -12287,7 +12287,6 @@ packages:
 
   /workbox-google-analytics@6.6.0:
     resolution: {integrity: sha512-p4DJa6OldXWd6M9zRl0H6vB9lkrmqYFkRQ2xEiNdBFp9U0LhsGO7hsBscVEyH9H2/3eZZt8c97NB2FD9U2NJ+Q==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 6.6.0
       workbox-core: 6.6.0

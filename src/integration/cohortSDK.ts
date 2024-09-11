@@ -1,4 +1,4 @@
-import {webSDK} from './webSDK';
+import { webSDK } from './webSDK';
 
 export const cohortSDK = ({
   handleRedirection,

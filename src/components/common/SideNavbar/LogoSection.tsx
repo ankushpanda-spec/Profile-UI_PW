@@ -1,7 +1,8 @@
 import React from 'react'
 import { Typography } from '@pw-tech/omni-ui'
 import s from './SideNavbar.module.css'
-import {LogoSectionProps} from './Types'
+import { LogoSectionProps } from './Types'
+import { useNavigate } from "react-router-dom";
 
 function LogoSection(props: LogoSectionProps) {
   const {
@@ -10,8 +11,11 @@ function LogoSection(props: LogoSectionProps) {
     url,
   } = props;
 
+  const navigate = useNavigate();
   const redirectToHome = (url: string | undefined) => {
-    alert("Redirecting to HomePage")
+    if (url) {
+      navigate(url);
+    }
 }
   return (
     <div className={s.logoContainer} onClick = {() => redirectToHome(url)}>  
