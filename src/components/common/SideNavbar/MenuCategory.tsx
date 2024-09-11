@@ -15,11 +15,12 @@ function MenuCategory(props: MenuCategoryProps) {
 
 return (
     <React.Fragment>
-        <div className={s.categoryTitle}>
+        {category.customHeader && (<div className={s.categoryTitle}>
             <Typography variant='tiny' component='div'>
-                {category.customHeader.toUpperCase()}
+                {category.customHeader?.toUpperCase()}
             </Typography> 
-        </div>
+        </div>)}
+        
         {category?.menuOptions.map((option, optionIndex) => {
                 return (
                 <React.Fragment key={optionIndex}>

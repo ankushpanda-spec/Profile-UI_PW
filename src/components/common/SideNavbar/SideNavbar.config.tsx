@@ -1,10 +1,22 @@
-import { Batches, QuickLearning, ContactUs, PrivacyPolicy, Feeds, Library, Wallet, Upskilling, Vidyapeeth, ReferEarn, TermsConditions, Result, Saarthi, Store, Study, Scholarship, TestSeries } from "@/assets/icons"
+import { Batches, QuickLearning, ContactUs, PrivacyPolicy, Feeds, Library, Wallet, Upskilling, ReferEarn, TermsConditions, Result, Saarthi, Store, Study, Scholarship, TestSeries, Home, Yogya, PwCenters  , VpLive, AboutUs, ChampionsLeague} from "@/assets/icons"
+import GovernmentJobs from "@/assets/icons/GovernmentJobs"
 
 export const sideNavbarOptions = [
 
     {
     customHeader: "Learn Online",
     menuOptions: [
+      {
+        title: "Home",
+        icon: <Home/>,
+        url: '/dashboard',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isHomePageEnabled',
+        subMenuOption: [],
+      },
       {
         title: "Study",
         icon: <Study/>,
@@ -122,20 +134,67 @@ export const sideNavbarOptions = [
         configName: 'isScholarshipEnabled',
         subMenuOption: [],
       },
+      {
+        title: 'Apply for Grant',
+        icon: <Yogya/>,
+        url: '/yogya',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isYogyaEnabled',
+        subMenuOption: [],
+      },
+      {
+        title: 'Government jobs',
+        icon: <GovernmentJobs/>,
+        url: '/job-alert',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isGovtJobEnabled',
+        subMenuOption: [],
+      },
+
     ],
     },
   {
     customHeader: "Offline",
     menuOptions: [
       {
-      title: "Vidyapeeth",
-      icon: <Vidyapeeth/>,
-      url: "/vidyapeeth",
+      title:'PW Centres',
+      icon: <PwCenters/>,
+      url: '/pw-centres',
       isActive: false,
       isNew: false,
       isEnabled: true,
+      configName: 'isPWCentersEnabled',
       subMenuOption: [],
       },
+      {
+        title: 'VP Live',
+        icon: <VpLive/>,
+        url: '/vp-live',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isVpLiveEnabled',
+        subMenuOption: [],
+      },
+       {
+        title: 'PW Champions League',
+        icon: <ChampionsLeague/>,
+        url: '/school-contact-program',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isPwChampionshipEnabled',
+        subMenuOption: [],
+      },
+      
     ],
     },
   {
@@ -180,6 +239,17 @@ export const sideNavbarOptions = [
       isEnabled: true,
       configName: 'isFeedsEnabled',
       subMenuOption: [],
+      },
+       {
+        title: 'About us',
+        icon: <AboutUs/>,
+        url: '/about-us',
+        isActive: true,
+        isNew: false,
+        badge: "",
+        isEnabled: true,
+        configName: 'isAboutUsEnabled',
+        subMenuOption: [],
       },
     ],
     },
