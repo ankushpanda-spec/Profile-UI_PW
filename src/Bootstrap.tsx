@@ -6,14 +6,17 @@ import App from './App';
 import { BaseLayout } from './components';
 import { GlobalProvider } from './context';
 import ErrorBoundary from './ErrorBoundary';
+import {AuthProvider} from '@pw-tech/web-circuit';
 import './index.css';
+
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
   root.render(
     <React.StrictMode>
-      <BrowserRouter>
+      <AuthProvider>
+      <BrowserRouter basename={process.env.PUBLIC_BASE_PATH}>
         <ErrorBoundary>
           <GlobalProvider>
             <ThemeProvider>
@@ -24,6 +27,7 @@ if (rootEl) {
           </GlobalProvider>
         </ErrorBoundary>
       </BrowserRouter>
+      </AuthProvider>
     </React.StrictMode>
   );
 }
