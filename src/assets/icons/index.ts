@@ -27,6 +27,12 @@ export { default as TermsConditions } from './TermsConditions';
 export { default as TestSeries } from './TestSeries';
 export { default as Upskilling } from './Upskilling';
 export { default as User } from './User';
-export { default as Vidyapeeth } from './Vidyapeeth';
+export { default as PwCenters } from './PwCenters';
 export { default as Wallet } from './Wallet';
+export { default as AboutUs } from './AboutUs'
+export { default as Home } from './Home'
+export { default as VpLive } from './VpLive'
+export { default as Yogya } from './Yogya'
+export { default as GovernmnetJobs } from './GovernmentJobs'
+export {default as ChampionsLeague} from './ChampionsLeague'
 
