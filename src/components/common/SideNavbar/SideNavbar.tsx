@@ -33,6 +33,7 @@ function SideNavbar(props: SideNavbarProps) {
   const [webConfig, setWebConfig] = useState<Record<string, boolean> | null>(null);
 
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {

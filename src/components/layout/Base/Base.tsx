@@ -1,6 +1,6 @@
 import { fetchCohortConfig } from '@/api';
 import { AuthHeader, Container, SideNavbar } from '@/components';
-import { showCohortButton } from '@/config';
+import { shouldDisplayBackButton, shouldDisplayCohortButton } from '@/config';
 import { useScreen, useUser } from '@/context';
 import { cohortSDK } from '@/integration';
 import { Drawer, Modal } from '@pw-tech/omni-ui';
@@ -52,12 +52,12 @@ const Base = ({ children }: { children: ReactNode }) => {
             callback: () => setShowSidebar(true),
           }}
           cohortActionConfig={{
-            enable: showCohortButton(),
+            enable: shouldDisplayCohortButton(),
             callback: () => setShowModal(true),
             cohortData: fetchCohortConfig(),
           }}
           backActionConfig={{
-            enable: false,
+            enable: shouldDisplayBackButton(),
             callback: () => alert('Cohort button Clicked'),
           }}
           userConfig={user as User}
