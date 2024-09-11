@@ -1,11 +1,11 @@
 import { fetchCohortConfig } from '@/api';
 import LogoIcon from "@/assets/icons/LogoIcon";
+import { sideNavbarOptions as initialSideNavbarOptions } from '@/config';
 import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import LogoSection from './LogoSection';
 import MenuCategory from './MenuCategory';
-import { sideNavbarOptions as initialSideNavbarOptions } from './SideNavbar.config';
 import s from "./SideNavbar.module.css";
 import { MenuSection, SideNavbarProps } from './Types';
 
@@ -96,7 +96,7 @@ function SideNavbar(props: SideNavbarProps) {
     if (url) {
       if (external) {
         window.open(url, '_blank');
-        
+
       }
       else {
         navigate(url);
