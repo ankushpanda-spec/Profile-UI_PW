@@ -46,18 +46,18 @@ function SideNavbar(props: SideNavbarProps) {
     fetchData();
   }, []);
 
-  const updateMenuOptions = ():MenuSection[] => {
-  return initialSideNavbarOptions.map(category => ({
-    ...category,
-    menuOptions: category.menuOptions.map(option => {
-      const isOptionEnabled = option?.configName
-        ? webConfig?.[option.configName] ?? option.isEnabled
-        : option?.isEnabled;
+  const updateMenuOptions = (): MenuSection[] => {
+    return initialSideNavbarOptions.map(category => ({
+      ...category,
+      menuOptions: category.menuOptions.map(option => {
+        const isOptionEnabled = option?.configName
+          ? webConfig?.[option.configName] ?? option.isEnabled
+          : option?.isEnabled;
 
-      const updatedSubMenuOptions = option?.subMenuOption?.map(subOption => {
-        const isSubOptionEnabled = subOption.configName
-          ? webConfig?.[subOption.configName] ?? subOption.isEnabled
-          : subOption.isEnabled;
+        const updatedSubMenuOptions = option?.subMenuOption?.map(subOption => {
+          const isSubOptionEnabled = subOption.configName
+            ? webConfig?.[subOption.configName] ?? subOption.isEnabled
+            : subOption.isEnabled;
 
           return { ...subOption, isEnabled: isSubOptionEnabled };
         });
@@ -76,7 +76,6 @@ function SideNavbar(props: SideNavbarProps) {
     setSideNavbarOptions(updateMenuOptions());
   }, [webConfig]);
 
-  console.log(webConfig);
   useEffect(() => {
     const isActive = sideNavbarOptions.some(category =>
       category.menuOptions.some(option =>

@@ -17,8 +17,9 @@ const Base = ({ children }: { children: ReactNode }) => {
       goBack: () => setShowModal(false),
       handleRedirection: () => setShowModal(false),
     });
-  }, [showModal]);
 
+  }, [showModal]);
+  const SideNavComponent = <SideNavbar onItemClick={() => setShowSidebar(false)} />;
   return (
     <div className="flex h-screen">
       <Modal
@@ -36,10 +37,10 @@ const Base = ({ children }: { children: ReactNode }) => {
           onClose={() => setShowSidebar(false)}
           className="w-auto"
         >
-          <SideNavbar />
+          {SideNavComponent}
         </Drawer>
       ) : (
-        <SideNavbar onItemClick={() => console.log("ietdsadas")} />
+        SideNavComponent
       )}
 
       <div className="flex flex-grow flex-col">

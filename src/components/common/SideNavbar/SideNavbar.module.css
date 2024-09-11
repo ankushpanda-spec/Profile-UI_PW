@@ -62,11 +62,11 @@
 }
 
 .toggleIcon{
-   @apply transition-all duration-[250ms] ease-in-out
+   @apply -rotate-180 transition-all duration-[250ms] ease-in-out
 }
 
 .toggleIcon.isSubmenuOpen{
-     @apply -rotate-180;
+     @apply rotate-0;
 }
 
 .subMenu{
