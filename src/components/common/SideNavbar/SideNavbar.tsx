@@ -97,7 +97,7 @@ function SideNavbar(props: SideNavbarProps) {
     if (url) {
       if (external) {
         window.open(url, '_blank');
-        navigate('/')
+        
       }
       else {
         navigate(url);
