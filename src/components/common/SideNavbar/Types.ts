@@ -3,6 +3,7 @@ export interface SideNavbarProps extends LogoSectionProps {
     section?: MenuSection[];
     className?: string;
     bottomStroke?: boolean;
+    onItemClick?:()=>void;
 }
 
 interface MenuItem {
@@ -19,8 +20,8 @@ interface MenuItem {
 export interface MenuItemProps extends MenuItem {
   subMenuOption?: MenuItem[]
   activeItem?:string
-  onMenuItemClick?: (url: string | undefined , external :boolean | undefined) => void; 
-  onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void; 
+  onMenuItemClick?: (url: string | undefined , external :boolean | undefined) => void;
+  onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void;
 }
 
 interface MenuOption extends MenuItem {

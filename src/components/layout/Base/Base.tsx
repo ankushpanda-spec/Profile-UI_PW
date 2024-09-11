@@ -6,11 +6,11 @@ import { Drawer, Modal } from '@pw-tech/omni-ui';
 import { User } from '@pw-tech/web-sdk';
 import { ReactNode, useEffect, useState } from 'react';
 
-const Base = ({children}: {children: ReactNode}) => {
-  const {user} = useUser();
+const Base = ({ children }: { children: ReactNode }) => {
+  const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const {isMobile, width} = useScreen();
+  const { isMobile, width } = useScreen();
 
   useEffect(() => {
     cohortSDK({
@@ -39,7 +39,7 @@ const Base = ({children}: {children: ReactNode}) => {
           <SideNavbar />
         </Drawer>
       ) : (
-        <SideNavbar />
+        <SideNavbar onItemClick={() => console.log("ietdsadas")} />
       )}
 
       <div className="flex flex-grow flex-col">
@@ -65,7 +65,7 @@ const Base = ({children}: {children: ReactNode}) => {
               '_blank'
             )
           }
-          // onProfileClick={() => alert('Clicking profile')}
+        // onProfileClick={() => alert('Clicking profile')}
         />
 
         {/* REMOTE CONTAINER */}

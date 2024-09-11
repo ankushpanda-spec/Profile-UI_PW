@@ -24,7 +24,6 @@ function MenuItem(props: MenuItemProps) {
   } = props;
 
   const isNested = (subMenuOption && subMenuOption.length > 0);
-  console.log("title: ", title, "isNested: ", isNested);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   const showSubmenu = () => {
