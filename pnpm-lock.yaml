@@ -12,8 +12,8 @@ dependencies:
     specifier: ^0.5.2
     version: 0.5.2
   '@pw-tech/omni-ui':
-    specifier: 0.0.12-alpha-1.0
-    version: 0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
+    specifier: file:.yalc/@pw-tech/omni-ui
+    version: file:.yalc/@pw-tech/omni-ui(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
   '@pw-tech/web-sdk':
     specifier: 0.0.6-23
     version: 0.0.6-23
@@ -2588,62 +2588,6 @@ packages:
       source-map: 0.7.4
       webpack: 5.94.0
       webpack-dev-server: 4.15.2(webpack@5.94.0)
-    dev: false
-
-  /@pw-tech/omni-ui@0.0.12-alpha-1.0(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4):
-    resolution: {integrity: sha512-90DUq+0kWN7yj3M7kVbnTn4odJ3z1WTXORpc83wI9C3mmDuKH/F9q9rk+VdiHE5EwxuE+7SpnPvG5y2fxeGj2Q==}
-    engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
-    requiresBuild: true
-    dependencies:
-      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.10)
-      '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.10)
-      class-variance-authority: 0.7.0
-      clsx: 2.0.0
-      date-fns: 3.6.0
-      lottie-colorify: 0.8.0
-      react: 18.3.1
-      react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      react-lottie-player: 2.1.0(react@18.3.1)
-      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4)
-      sass: 1.77.8
-      tailwind-merge: 2.5.2
-      tailwindcss-animate: 1.0.7(tailwindcss@3.4.10)
-    transitivePeerDependencies:
-      - '@babel/plugin-syntax-flow'
-      - '@babel/plugin-transform-react-jsx'
-      - '@parcel/css'
-      - '@rspack/core'
-      - '@swc/core'
-      - '@types/babel__core'
-      - '@types/webpack'
-      - bufferutil
-      - canvas
-      - clean-css
-      - csso
-      - debug
-      - esbuild
-      - eslint
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - fibers
-      - node-notifier
-      - node-sass
-      - rework
-      - rework-visit
-      - sass-embedded
-      - sockjs-client
-      - supports-color
-      - tailwindcss
-      - ts-node
-      - type-fest
-      - typescript
-      - uglify-js
-      - utf-8-validate
-      - vue-template-compiler
-      - webpack-cli
-      - webpack-hot-middleware
-      - webpack-plugin-serve
     dev: false
 
   /@pw-tech/web-sdk@0.0.6-23:
@@ -12287,7 +12231,6 @@ packages:
 
   /workbox-google-analytics@6.6.0:
     resolution: {integrity: sha512-p4DJa6OldXWd6M9zRl0H6vB9lkrmqYFkRQ2xEiNdBFp9U0LhsGO7hsBscVEyH9H2/3eZZt8c97NB2FD9U2NJ+Q==}
-    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 6.6.0
       workbox-core: 6.6.0
@@ -12506,3 +12449,61 @@ packages:
     resolution: {integrity: sha512-b4JR1PFR10y1mKjhHY9LaGo6tmrgjit7hxVIeAmyMw3jegXR4dhYqLaQF5zMXZxY7tLpMyJeLjr1C4rLmkVe8g==}
     engines: {node: '>=12.20'}
     dev: true
+
+  file:.yalc/@pw-tech/omni-ui(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4):
+    resolution: {directory: .yalc/@pw-tech/omni-ui, type: directory}
+    id: file:.yalc/@pw-tech/omni-ui
+    name: '@pw-tech/omni-ui'
+    engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
+    requiresBuild: true
+    dependencies:
+      '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.10)
+      '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.10)
+      class-variance-authority: 0.7.0
+      clsx: 2.0.0
+      date-fns: 3.6.0
+      lottie-colorify: 0.8.0
+      react: 18.3.1
+      react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      react-lottie-player: 2.1.0(react@18.3.1)
+      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(react@18.3.1)(sass@1.77.8)(typescript@5.5.4)
+      sass: 1.77.8
+      tailwind-merge: 2.5.2
+      tailwindcss-animate: 1.0.7(tailwindcss@3.4.10)
+    transitivePeerDependencies:
+      - '@babel/plugin-syntax-flow'
+      - '@babel/plugin-transform-react-jsx'
+      - '@parcel/css'
+      - '@rspack/core'
+      - '@swc/core'
+      - '@types/babel__core'
+      - '@types/webpack'
+      - bufferutil
+      - canvas
+      - clean-css
+      - csso
+      - debug
+      - esbuild
+      - eslint
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - fibers
+      - node-notifier
+      - node-sass
+      - rework
+      - rework-visit
+      - sass-embedded
+      - sockjs-client
+      - supports-color
+      - tailwindcss
+      - ts-node
+      - type-fest
+      - typescript
+      - uglify-js
+      - utf-8-validate
+      - vue-template-compiler
+      - webpack-cli
+      - webpack-hot-middleware
+      - webpack-plugin-serve
+    dev: false

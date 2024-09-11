@@ -42,7 +42,7 @@
     @apply transition-all duration-[250ms] flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4
 }
 .menuOption.active{
-    @apply scale-105 bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0
+    @apply  bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0
 
     }
 
