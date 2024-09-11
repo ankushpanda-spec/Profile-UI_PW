@@ -2,7 +2,7 @@ import ChevronDown from '@/assets/icons/ChevronDown';
 import IsNew from '@/assets/icons/IsNew';
 import { Badge, Typography } from '@pw-tech/omni-ui';
 import cn from "clsx";
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import s from './SideNavbar.module.css';
 import SubMenuItem from './SubMenuItem';
 import { MenuItemProps } from './Types';
@@ -25,7 +25,14 @@ function MenuItem(props: MenuItemProps) {
 
   const isNested = (subMenuOption && subMenuOption.length > 0);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+ 
 
+  useEffect(() => {
+    const isAnySubOptionActive = subMenuOption?.some(subOption => subOption.url === activeItem) || false;
+    setIsSubmenuOpen(isAnySubOptionActive);
+  } , [activeItem])
+
+  
   const showSubmenu = () => {
     setIsSubmenuOpen(!isSubmenuOpen)
   };
