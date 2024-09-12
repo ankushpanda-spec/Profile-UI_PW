@@ -1,26 +1,42 @@
 import { fetchCohortConfig } from '@/api';
 import { AuthHeader, Container, SideNavbar } from '@/components';
-import { shouldDisplayBackButton, shouldDisplayCohortButton } from '@/config';
 import { useScreen, useUser } from '@/context';
 import { cohortSDK } from '@/integration';
 import { Drawer, Modal } from '@pw-tech/omni-ui';
+import { useHeaderContext } from '@pw-tech/web-circuit';
 import { User } from '@pw-tech/web-sdk';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 const Base = ({ children }: { children: ReactNode }) => {
   const { user } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const { isMobile, width } = useScreen();
+  const { isMobile } = useScreen();
+  const { isBackActionEnabled, isCohortActionEnabled, onCohortActionClick, setCohortActionCallback, onBackActionClick } = useHeaderContext();
 
+  // Initialize cohort SDK and callback
   useEffect(() => {
+    const cohortConfig = fetchCohortConfig();
+
+    const handleCohortActionClick = () => {
+      setShowModal(true);
+      onCohortActionClick && onCohortActionClick();
+    };
+
     cohortSDK({
       goBack: () => setShowModal(false),
       handleRedirection: () => setShowModal(false),
     });
 
-  }, [showModal]);
-  const SideNavComponent = <SideNavbar onItemClick={() => setShowSidebar(false)} />;
+    setCohortActionCallback(() => handleCohortActionClick);
+
+    // Clean up callback on unmount
+    return () => setCohortActionCallback(() => { });
+  }, [showModal, isBackActionEnabled, isCohortActionEnabled]);
+
+  // Handler for side navbar toggle
+  const toggleSidebar = useCallback(() => setShowSidebar(prev => !prev), []);
+
   return (
     <div className="flex h-screen">
       <Modal
@@ -31,45 +47,40 @@ const Base = ({ children }: { children: ReactNode }) => {
       >
         <div id="pw_auth-flow"></div>
       </Modal>
-      {/* Side Navbar */}
+
       {isMobile ? (
         <Drawer
           open={showSidebar}
           onClose={() => setShowSidebar(false)}
           className="w-auto"
         >
-          {SideNavComponent}
+          <SideNavbar onItemClick={() => setShowSidebar(false)} />
         </Drawer>
       ) : (
-        SideNavComponent
+        <SideNavbar onItemClick={() => setShowSidebar(false)} />
       )}
 
       <div className="flex flex-grow flex-col">
-        {/* Header */}
         <AuthHeader
           menuActionConfig={{
             enable: true,
-            callback: () => setShowSidebar(true),
+            callback: toggleSidebar,
           }}
           cohortActionConfig={{
-            enable: shouldDisplayCohortButton(),
-            callback: () => setShowModal(true),
+            enable: isCohortActionEnabled,
+            callback: isCohortActionEnabled ? onCohortActionClick : undefined,
             cohortData: fetchCohortConfig(),
           }}
           backActionConfig={{
-            enable: shouldDisplayBackButton(),
-            callback: () => alert('Cohort button Clicked'),
+            enable: isBackActionEnabled,
+            callback: isBackActionEnabled ? onBackActionClick : undefined,
           }}
           userConfig={user as User}
           onAppDownloadClick={() =>
-            window.open(
-              process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK,
-              '_blank'
-            )
+            window.open(process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK, '_blank')
           }
         />
 
-        {/* REMOTE CONTAINER */}
         <Container>{children}</Container>
       </div>
     </div>

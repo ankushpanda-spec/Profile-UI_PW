@@ -78,7 +78,7 @@ function AvatarPopover({
           style={{
             boxShadow: "0px 8px 24px 2px rgba(0,0,0,0.2)"
           }}
-          className={cn('PopoverContent')}
+          className={cn('PopoverContent', 'z-[1]')}
           sideOffset={-3}
           data-side="top"
           data-align="center"
