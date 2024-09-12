@@ -15,8 +15,8 @@ dependencies:
     specifier: 0.0.12-alpha-1.1
     version: 0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7)(@babel/plugin-transform-react-jsx@7.25.2)(eslint@8.57.0)(tailwindcss@3.4.10)(typescript@5.5.4)
   '@pw-tech/web-circuit':
-    specifier: 0.0.0-alpha-0.1
-    version: 0.0.0-alpha-0.1(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1)
+    specifier: 0.0.0-alpha-0.2
+    version: 0.0.0-alpha-0.2(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1)
   '@pw-tech/web-sdk':
     specifier: 0.0.6-23
     version: 0.0.6-23
@@ -2649,8 +2649,8 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /@pw-tech/web-circuit@0.0.0-alpha-0.1(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1):
-    resolution: {integrity: sha512-4tiAM7yfLYbu+LKk1HjZgKyyEuvOKVIyJGTVltifWnZHHwxp5FfpawlDgli6NCPqVYWwxybkgsbCQBIHQPtcfQ==}
+  /@pw-tech/web-circuit@0.0.0-alpha-0.2(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1):
+    resolution: {integrity: sha512-8+pzwlJ1GuE2laWziJiHznuSryCrzu/fsPKgAhqAEMv2FRnBvSpGVIMZHt0COBXPtqvc2pfjozJO+enbmacw0g==}
     peerDependencies:
       react: ^16.13.0
     dependencies:
