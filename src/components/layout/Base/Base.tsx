@@ -67,7 +67,6 @@ const Base = ({ children }: { children: ReactNode }) => {
               '_blank'
             )
           }
-        // onProfileClick={() => alert('Clicking profile')}
         />
 
         {/* REMOTE CONTAINER */}
