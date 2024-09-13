@@ -17,7 +17,7 @@
 }
 
 .contentWrapper {
-    @apply flex flex-col items-start w-full overflow-y-scroll scroll-smooth pr-4 overflow-x-hidden;
+    @apply flex flex-col items-start w-full overflow-y-scroll scroll-smooth overflow-x-hidden;
 }
 
 .contentWrapper::-webkit-scrollbar {
@@ -35,11 +35,11 @@
 }
 
 .categoryTitle {
-    @apply px-20 pt-24 pb-8 text-grey-2 w-full cursor-default
+    @apply pl-28 pr-20 pt-24 pb-8 text-grey-2 w-full cursor-default
 }
 
 .menuOption {
-    @apply transition-all duration-[250ms] flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4 ml-4;
+    @apply transition-all duration-[250ms] flex flex-col items-start w-full hover:bg-primary-50 text-body-1 cursor-pointer pl-4 ml-4 hover:ml-0;
 }
 .menuOption.active{
     @apply scale-105 bg-primary-50 border-l-4 border-l-primary hover:bg-primary-100 text-primary hover:text-primary-600 pl-0
