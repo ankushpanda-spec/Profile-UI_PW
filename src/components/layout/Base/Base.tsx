@@ -1,10 +1,8 @@
 import { fetchCohortConfig } from '@/api';
-import { AuthHeader, Container, SideNavbar } from '@/components';
+import { Container } from '@/components';
 import { useScreen, useUser } from '@/context';
 import { cohortSDK } from '@/integration';
 import { useHeaderContext } from '@pw-tech/omni-context';
-import { Drawer, Modal } from '@pw-tech/omni-ui';
-import { User } from '@pw-tech/web-sdk';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 const Base = ({ children }: { children: ReactNode }) => {
@@ -38,52 +36,8 @@ const Base = ({ children }: { children: ReactNode }) => {
   const toggleSidebar = useCallback(() => setShowSidebar(prev => !prev), []);
 
   return (
-    <div className="flex h-screen">
-      <Modal
-        isOpen={showModal}
-        showCloseIcon={false}
-        closeOnOutsideClick={false}
-        fullWidth
-      >
-        <div id="pw_auth-flow"></div>
-      </Modal>
+    <Container>{children}</Container>
 
-      {isMobile ? (
-        <Drawer
-          open={showSidebar}
-          onClose={() => setShowSidebar(false)}
-          className="w-auto"
-        >
-          <SideNavbar onItemClick={() => setShowSidebar(false)} />
-        </Drawer>
-      ) : (
-        <SideNavbar onItemClick={() => setShowSidebar(false)} />
-      )}
-
-      <div className="flex flex-grow flex-col">
-        <AuthHeader
-          menuActionConfig={{
-            enable: true,
-            callback: toggleSidebar,
-          }}
-          cohortActionConfig={{
-            enable: isCohortActionEnabled,
-            callback: isCohortActionEnabled ? onCohortActionClick : undefined,
-            cohortData: fetchCohortConfig(),
-          }}
-          backActionConfig={{
-            enable: isBackActionEnabled,
-            callback: isBackActionEnabled ? onBackActionClick : undefined,
-          }}
-          userConfig={user as User}
-        // onAppDownloadClick={() =>
-        //   window.open(process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK, '_blank')
-        // }
-        />
-
-        <Container>{children}</Container>
-      </div>
-    </div>
   );
 };
 

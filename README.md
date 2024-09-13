@@ -1,6 +1,6 @@
 # Module Federation Boilerplate
 
-This boilerplate is set up for Module Federation and is integrated with PW OMNI UI, WebSDK, and AuthSDK.
+This boilerplate is set up for Module Federation and is integrated with PW OMNI UI, PW OMNI Context, WebSDK, and AuthSDK.
 
 ## Getting Started
 
@@ -13,6 +13,9 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
 2. **Run the Development Server:**
 
    `pnpm dev`
+
+   - **Default Port:** 3000
+   - **Route to Use:** Switch to route `/study-v2` to run the application
 
 ### Environment Variables
 
@@ -29,6 +32,7 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
   - `.env.staging`
 
 - **Production Environment Variables:**
+
   - `.env.production`
 
 ## Key Features
@@ -38,6 +42,7 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
 - **AuthSDK:** Authentication & Cohort management.
 - **WebSDK:** Core web functionalities.
 - **OMNI UI:** Integrated UI components and theming.
+- **PW OMNI Context:** We are using PW OMNI circuit for shared context.
 
 ### Application Structure
 
@@ -47,40 +52,8 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
   - **Theme Provider:** Exposes the application to OMNI theming.
 
 - **Base Layout:**
-  - Contains the side navigation bar and header.
   - Renders remote applications using Module Federation.
 
----
+## Bundler Configuration
 
-# Flow of the App
-
-The `App.tsx` file renders Remote Apps. The App renders under the base layout which has 3 main sections:
-
-1. **Header**
-2. **Side Navbar**
-3. **Children rendering the App component**
-
-### Header
-
-The header consists of two parts:
-
-- **Left Action**
-- **Right Action**
-
-#### Left Action
-
-- Menu button that appears on mobile screens to open the side navbar.
-- Two sections toggled between:
-  1. **Cohort button** for cohort selection.
-  2. **Back button**. These buttons will be shown once, based on some pathname condition.
-
-#### Right Action
-
-- **Download App** button.
-- **Profile Avatar** with a Name Dropdown.
-
----
-
-## Data Fetching
-
-The `selectedCohort` and the `userFirstName` are fetched using PW WebSDK calls which can be found in the `src/api/` directory.
+We are using rsbuild as bundler and the module federation config can be found in `rsbuild.config.ts`.
