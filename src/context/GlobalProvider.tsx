@@ -1,5 +1,5 @@
+import { WebCircuitProvider } from '@pw-tech/omni-context';
 import { ThemeProvider } from '@pw-tech/omni-ui';
-import { WebCircuitProvider } from '@pw-tech/web-circuit';
 import React from 'react';
 import { ScreenProvider, UserProvider } from './GlobalContext';
 interface GlobalProviderProps {

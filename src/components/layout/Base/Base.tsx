@@ -2,8 +2,8 @@ import { fetchCohortConfig } from '@/api';
 import { AuthHeader, Container, SideNavbar } from '@/components';
 import { useScreen, useUser } from '@/context';
 import { cohortSDK } from '@/integration';
+import { useHeaderContext } from '@pw-tech/omni-context';
 import { Drawer, Modal } from '@pw-tech/omni-ui';
-import { useHeaderContext } from '@pw-tech/web-circuit';
 import { User } from '@pw-tech/web-sdk';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 
