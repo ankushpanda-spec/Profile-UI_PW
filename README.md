@@ -42,7 +42,7 @@ This boilerplate is set up for Module Federation and is integrated with PW OMNI 
 - **AuthSDK:** Authentication & Cohort management.
 - **WebSDK:** Core web functionalities.
 - **OMNI UI:** Integrated UI components and theming.
-- **PW OMNI Context:** We are using PW OMNI circuit for shared context.
+- **PW OMNI Context:** We are using PW OMNI Context for shared context.
 
 ### Application Structure
 

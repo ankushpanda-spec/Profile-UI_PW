@@ -1,21 +1,21 @@
-import {Route, Routes} from 'react-router-dom';
-import Study from '@/pages/Study';
-import My404NotFound from '@/pages/404NotFound';
 import ErrorBoundary from '@/ErrorBoundary';
+import My404NotFound from '@/pages/404NotFound';
+import Study from '@/pages/Study';
+import { Route, Routes } from 'react-router-dom';
 
 
 const Router = () => {
   return (
     <Routes>
       <Route
-        path="/study"
+        path="/"
         element={
           <ErrorBoundary>
-            <Study></Study>
+            <Study />
           </ErrorBoundary>
         }
       />
-      <Route  path='*' element={<My404NotFound/>} />
+      <Route path='*' element={<My404NotFound />} />
     </Routes>
   );
 };
