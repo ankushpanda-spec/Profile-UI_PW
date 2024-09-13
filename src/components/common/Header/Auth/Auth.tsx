@@ -35,7 +35,6 @@ function Layout(props: AuthHeaderProps) {
           {backEnable && <BackButton onClick={onBackClick} />}
           {cohortEnable && (
             <CohortButton
-              className="scale-100 hover:scale-105"
               onClick={onCohortClick}
               iconSrc={cohortData?.webIcon}
             >
