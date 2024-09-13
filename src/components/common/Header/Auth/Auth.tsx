@@ -34,7 +34,11 @@ function Layout(props: AuthHeaderProps) {
         <>
           {backEnable && <BackButton onClick={onBackClick} />}
           {cohortEnable && (
-            <CohortButton className='scale-100 hover:scale-105' onClick={onCohortClick} iconSrc={cohortData?.webIcon}>
+            <CohortButton
+              className="scale-100 hover:scale-105"
+              onClick={onCohortClick}
+              iconSrc={cohortData?.webIcon}
+            >
               {cohortData?.name || 'Select'}
             </CohortButton>
           )}
@@ -42,17 +46,19 @@ function Layout(props: AuthHeaderProps) {
       }
       rightAction={
         <div className="flex items-center justify-end gap-24">
-          <div className="hidden h-48 items-center gap-8 md:flex">
-            <Typography
-              variant="tiny"
-              weight="medium"
-              className="cursor-pointer"
-              onClick={onAppDownloadClick}
-            >
-              Download App
-            </Typography>
-            <MobileAppStoreBadge onClick={onAppDownloadClick} />
-          </div>
+          {onAppDownloadClick && (
+            <div className="hidden h-48 items-center gap-8 md:flex">
+              <Typography
+                variant="tiny"
+                weight="medium"
+                className="cursor-pointer"
+                onClick={onAppDownloadClick}
+              >
+                Download App
+              </Typography>
+              <MobileAppStoreBadge onClick={onAppDownloadClick} />
+            </div>
+          )}
           <AvatarDropdown
             onClick={onProfileClick}
             userFirstName={userConfig?.firstName}

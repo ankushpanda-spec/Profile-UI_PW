@@ -76,9 +76,9 @@ const Base = ({ children }: { children: ReactNode }) => {
             callback: isBackActionEnabled ? onBackActionClick : undefined,
           }}
           userConfig={user as User}
-          onAppDownloadClick={() =>
-            window.open(process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK, '_blank')
-          }
+        // onAppDownloadClick={() =>
+        //   window.open(process.env.PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK, '_blank')
+        // }
         />
 
         <Container>{children}</Container>
