@@ -25,9 +25,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     const fetchAndSetUser = async () => {
       try {
         const response = await fetchUser();
-        setUser(response);
+        if (response !== undefined) {
+          setUser(response);
+        } else {
+          setUser(null);
+        }
       } catch (error) {
         console.error('Failed to fetch user data:', error);
+        setUser(null);
       }
     };
 

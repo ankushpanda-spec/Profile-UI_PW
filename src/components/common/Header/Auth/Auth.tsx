@@ -1,4 +1,4 @@
-import { useScreen } from '@/context';
+import { useScreen } from '@pw-tech/omni-context';
 import { Typography } from '@pw-tech/omni-ui';
 import AvatarDropdown from '../../Avatar/AvatarDropdown';
 import { MobileAppStoreBadge } from '../../Badge';
