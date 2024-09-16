@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "react"],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "^_"}],
+    "react/prop-types": "off",
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "__dirname": true
+  }
+}

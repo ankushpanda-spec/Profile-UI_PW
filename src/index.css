@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'https://static.pw.live/fonts/reddit/font.css';
+
+@layer base {
+  html {
+    @apply scrollbar-thumb-primary scrollbar-track-white bg-white font-reddit;
+  }
+}
