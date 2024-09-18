@@ -1,10 +1,12 @@
 import ErrorBoundary from '@/ErrorBoundary';
 import My404NotFound from '@/pages/404NotFound';
+import Profile from '@/pages/Profile';
 import Study from '@/pages/Study';
 import { Route, Routes } from 'react-router-dom';
 
 
 const Router = () => {
+  console.log('HERE')
   return (
     <Routes>
       <Route
@@ -12,6 +14,14 @@ const Router = () => {
         element={
           <ErrorBoundary>
             <Study />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ErrorBoundary>
+            <Profile />
           </ErrorBoundary>
         }
       />

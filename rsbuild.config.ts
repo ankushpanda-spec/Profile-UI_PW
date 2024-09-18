@@ -5,7 +5,7 @@ import path from 'path';
 import { dependencies } from './package.json';
 export default defineConfig({
   output: {
-    assetPrefix: '/study-v2/',
+    assetPrefix: '/common/',
   },
   server: {
     port: 3000,

@@ -9,7 +9,7 @@ export const sideNavbarOptions = [
       {
         title: "Home",
         icon: <Home />,
-        url: process.env.PUBLIC_HOME_PAGE_URL,
+        url: process.env.PUBLIC_BASE_PATH,
         isActive: true,
         isNew: false,
         badge: "",
