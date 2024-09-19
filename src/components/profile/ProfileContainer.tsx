@@ -1,5 +1,6 @@
 import { lazy } from "react"
 import { CameraIcon } from "@/assets/images"
+import { useUser } from "@/context"
 
 const UserAvatar = lazy(() => import('./UserAvatar'))
 const ProfileDetails = lazy(() => import('./ProfileDetails'))

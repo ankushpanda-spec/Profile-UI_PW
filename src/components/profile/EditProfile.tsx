@@ -20,7 +20,9 @@ const EditProfileModal = ({modalHeader, onCancel, isOpen, onClose}:{modalHeader:
       {/* <ModalSeparator /> */}
       <ModalBody>
         <form>
-          
+          <div>
+            First Name
+          </div>
         </form>
       </ModalBody>
       <ModalFooter>
@@ -31,14 +33,14 @@ const EditProfileModal = ({modalHeader, onCancel, isOpen, onClose}:{modalHeader:
             variant="secondary"
             onClick={onCancel}
           >
-            Cancel
+            Close
           </Button>
           <Button
             className="Modal_buttonClassName__SXfTH"
             size="small"
             variant="primary"
           >
-            Save Changes
+            Update & Save
           </Button>
         </div>
       </ModalFooter>

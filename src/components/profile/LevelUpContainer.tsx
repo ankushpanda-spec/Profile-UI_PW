@@ -16,7 +16,7 @@ const LevelUpContainer = () => {
         </div>
         <div className="grid grid-cols-2 gap-16 mt-8">
         {data.map((el: any)=>{
-            return <div className="flex flex-col border-1 p-4 mt-2.5 rounded-lg bg-white">
+            return <div className="flex flex-col border-1 p-16 mt-10 rounded-lg bg-white">
             <div className="flex justify-between">
                 <div className="text-pw-grey-500" >
                     <Typography weight="semi-bold" variant="small">
@@ -63,7 +63,7 @@ const LevelUpContainer = () => {
                     
                 </div>
             </div>
-            <div className="flex pt-2">
+            <div className="flex pt-8">
                 {el.score} <img src={XPIcon} height={18} width={18} className="ml-1"/>
             </div>
         </div>
