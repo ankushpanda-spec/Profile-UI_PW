@@ -1,11 +1,10 @@
 import {webSDK} from '@/integration/webSDK';
-import { ApiClient } from '@pw-tech/web-sdk';
+import {ApiClient} from '@pw-tech/web-sdk';
 
 const feedbackOverallApi = '/v1/doubts/subject-matter-expert/feedback-overall';
 
 export const fetchUser = async () => {
   try {
-    console.log('WebSDK>>>', webSDK)
     const response = webSDK.user;
     return response;
   } catch (error) {
@@ -15,16 +14,11 @@ export const fetchUser = async () => {
 
 export const learn2earnData = async () => {
   try {
-
-  } catch (error) {
-
-  }
-}
+  } catch (error) {}
+};
 
 export const doubtSolvingFeedbackData = async () => {
   try {
-    return ApiClient.get(feedbackOverallApi, {})
-  } catch (error) {
-
-  }
-}
+    return ApiClient.get(feedbackOverallApi, {});
+  } catch (error) {}
+};

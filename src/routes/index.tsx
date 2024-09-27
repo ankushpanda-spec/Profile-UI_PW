@@ -6,7 +6,6 @@ import { Route, Routes } from 'react-router-dom';
 
 
 const Router = () => {
-  console.log('HERE')
   return (
     <Routes>
       <Route
