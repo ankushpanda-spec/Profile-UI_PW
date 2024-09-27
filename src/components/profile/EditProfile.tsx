@@ -3,7 +3,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Typography } from "
 const EditProfileModal = ({modalHeader, onCancel, isOpen, onClose}:{modalHeader: string, modalBody: string, onCancel: () => void,isOpen: boolean, onClose: (data: any)=> void}) => {
     return <Modal
       closeOnOutsideClick
-      onClose={function noRefCheck(){}}
+      onClose={onCancel}
       showCloseIcon
       size="extra-small"
       isOpen={isOpen}
