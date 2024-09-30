@@ -18,7 +18,7 @@ pipeline {
     }
   }
   environment {
-    serviceName='study-v2'
+    serviceName='pw-common-mf'
     envName=getEnvName()
   }
   stages{
