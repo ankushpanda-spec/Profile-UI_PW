@@ -1,22 +1,22 @@
-import {CameraIcon} from '@/assets/images';
-import {lazy} from 'react';
-
+import { CameraIcon } from '@/assets/images';
+import { lazy } from 'react';
+import s from "./index.module.css";
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
 
 const ProfileContainer = () => {
   return (
-    <div className="grid grid-cols-8 p-5 lg:gap-4 lg:p-10">
-      <div className="col-span-8 lg:col-span-2">
-        <div className="relative flex w-full items-center justify-center object-contain">
-          <UserAvatar className="w-8/12 rounded-full object-contain" />
+    <div className={s.container}>
+      <div className={s.containerChildOne}>
+        <div className={s.wrapper}>
+          <UserAvatar className={s.userAvatarContainer} />
           <img
             src={CameraIcon}
-            className="absolute bottom-0 right-12 cursor-pointer"
+            className={s.cameraIcon}
           />
         </div>
       </div>
-      <div className="col-span-8 lg:col-span-6">
+      <div className={s.profileDetails}>
         <ProfileDetails />
       </div>
     </div>

@@ -1,8 +1,9 @@
-import {XPIcon} from '@/assets/images';
+import { XPIcon } from '@/assets/images';
 import LevelUpOverviewData from '@/services/datalayer.service';
-import {Tooltip, Typography} from '@pw-tech/omni-ui';
-import {useState} from 'react';
-import {InfoIcon} from '../icons';
+import { Tooltip, Typography } from '@pw-tech/omni-ui';
+import { useState } from 'react';
+import { InfoIcon } from '../icons';
+import s from "./index.module.css";
 const LevelUpContainer = () => {
   const data = LevelUpOverviewData;
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
@@ -10,22 +11,20 @@ const LevelUpContainer = () => {
     setShowTooltip(false);
   }
   return (
-    <div className="my-12 mb-40 flex flex-col rounded-lg bg-[#f1f5fe] p-16">
-      <div className="text-xl font-bold text-black">Level Up Overview</div>
-      <div className="mt-8 grid grid-cols-2 gap-16">
+    <div className={s.levelUpContainer}>
+      <div className={s.levelUpContainerChildOne}>Level Up Overview</div>
+      <div className={s.levelUpContainerChildTwo}>
         {data.map((el: any, index: number) => {
           return (
             <div
               key={index}
-              className="border-1 mt-10 flex flex-col rounded-lg bg-white p-16"
+              className={s.levelUpMapContainer}
             >
-              <div className="flex justify-between">
-                <div className="text-pw-grey-500">
-                  <Typography weight="semi-bold" variant="small">
-                    {el.title}
-                  </Typography>
-                </div>
-                <div className="block lg:hidden">
+              <div className={s.levelUpParent}>
+                <Typography weight="semi-bold" variant="small" color='tertiary'>
+                  {el.title}
+                </Typography>
+                <div className={s.levelUpParentTwo}>
                   <Tooltip
                     label={<InfoIcon />}
                     open={showTooltip}
@@ -34,8 +33,8 @@ const LevelUpContainer = () => {
                     position="bottom"
                     variant="dark"
                   >
-                    <div className="p-16">
-                      <div className="text-base font-semibold lg:text-lg">
+                    <div className={s.levelUpWrapper}>
+                      <div>
                         {el.tooltip.title}
                       </div>
                       <div
@@ -46,7 +45,7 @@ const LevelUpContainer = () => {
                     </div>
                   </Tooltip>
                 </div>
-                <div className="hidden lg:block">
+                <div className={s.levelUpParentTwo}>
                   <Tooltip
                     label={<InfoIcon />}
                     open={showTooltip}
@@ -55,8 +54,8 @@ const LevelUpContainer = () => {
                     position="left"
                     variant="dark"
                   >
-                    <div className="p-4">
-                      <div className="text-base font-semibold lg:text-lg">
+                    <div className={s.levelUpParentThree}>
+                      <div>
                         {el.tooltip.title}
                       </div>
                       <div
@@ -68,9 +67,9 @@ const LevelUpContainer = () => {
                   </Tooltip>
                 </div>
               </div>
-              <div className="flex pt-8">
+              <div className={s.levelUpParentFour}>
                 {el.score}{' '}
-                <img src={XPIcon} height={18} width={18} className="ml-1" />
+                <img src={XPIcon} height={18} width={18} />
               </div>
             </div>
           );

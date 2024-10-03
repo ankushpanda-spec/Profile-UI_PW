@@ -1,0 +1,65 @@
+.container {
+  @apply grid grid-cols-8 p-5 lg:gap-4 lg:p-10;
+}
+
+.containerChildOne {
+  @apply col-span-8 lg:col-span-2;
+}
+
+.wrapper {
+  @apply relative flex w-full items-center justify-center object-contain;
+}
+
+.userAvatarContainer {
+  @apply w-8/12 rounded-full object-contain;
+}
+.cameraIcon {
+  @apply absolute bottom-0 right-12 cursor-pointer;
+}
+.profileDetails {
+  @apply col-span-8 flex flex-col lg:col-span-6;
+}
+.levelUpContainer {
+  @apply my-12 mb-40 flex flex-col rounded-lg bg-[#f1f5fe] p-16;
+}
+.levelUpContainerChildOne {
+  @apply text-xl font-bold text-black;
+}
+
+.levelUpContainerChildTwo {
+  @apply mt-8 grid grid-cols-2 gap-16;
+}
+
+.levelUpMapContainer {
+  @apply mt-10 flex flex-col rounded-lg border bg-white p-16;
+}
+
+.levelUpParent {
+  @apply flex justify-between;
+}
+
+.levelUpParentTwo {
+  @apply block lg:hidden;
+}
+.levelUpWrapper {
+  @apply p-16;
+
+  & > div {
+    @apply text-base font-semibold lg:text-lg;
+  }
+}
+
+.levelUpParentThree {
+  @apply p-4;
+  & > div {
+    @apply text-base font-semibold lg:text-lg;
+  }
+}
+
+.levelUpParentFour {
+  @apply flex pt-8;
+
+  & > img {
+    @apply ml-1;
+  }
+}
