@@ -1,9 +1,9 @@
 export interface SideNavbarProps extends LogoSectionProps {
-    isSideNavOpen?: boolean;
-    section?: MenuSection[];
-    className?: string;
-    bottomStroke?: boolean;
-    onItemClick?:()=>void;
+  isSideNavOpen?: boolean;
+  section?: MenuSection[];
+  className?: string;
+  bottomStroke?: boolean;
+  onItemClick?: () => void;
 }
 
 interface MenuItem {
@@ -18,10 +18,16 @@ interface MenuItem {
   badge?: string;
 }
 export interface MenuItemProps extends MenuItem {
-  subMenuOption?: MenuItem[]
-  activeItem?:string
-  onMenuItemClick?: (url: string | undefined , external :boolean | undefined) => void;
-  onSubMenuClick?: (url: string | undefined , external: boolean | undefined) => void;
+  subMenuOption?: MenuItem[];
+  activeItem?: string;
+  onMenuItemClick?: (
+    url: string | undefined,
+    external: boolean | undefined
+  ) => void;
+  onSubMenuClick?: (
+    url: string | undefined,
+    external: boolean | undefined
+  ) => void;
 }
 
 interface MenuOption extends MenuItem {
@@ -39,16 +45,19 @@ export interface LogoSectionProps {
   url?: string;
 }
 
-export interface MenuCategoryProps{
+export interface MenuCategoryProps {
   category: MenuSection;
   bottomStroke?: boolean;
   activeItem?: string;
-  onItemClick:(url: string | undefined , external: boolean | undefined) => void;
+  onItemClick: (url: string | undefined, external: boolean | undefined) => void;
 }
 
-export interface SubMenuItemProps{
-  subMenuOption?: MenuItem[]
+export interface SubMenuItemProps {
+  subMenuOption?: MenuItem[];
   isSubmenuOpen?: boolean;
   activeItem?: string;
-  onSubMenuItemClick?:(url: string | undefined , external:boolean | undefined) => void;
+  onSubMenuItemClick?: (
+    url: string | undefined,
+    external: boolean | undefined
+  ) => void;
 }

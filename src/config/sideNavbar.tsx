@@ -1,35 +1,57 @@
-import { AboutUs, Batches, ChampionsLeague, ContactUs, Feeds, Home, Library, PrivacyPolicy, PwCenters, QuickLearning, ReferEarn, Result, Saarthi, Scholarship, Store, Study, TermsConditions, TestSeries, Upskilling, VpLive, Wallet, Yogya } from "@/assets/icons"
-import GovernmentJobs from "@/assets/icons/GovernmentJobs"
+import {
+  AboutUs,
+  Batches,
+  ChampionsLeague,
+  ContactUs,
+  Feeds,
+  Home,
+  Library,
+  PrivacyPolicy,
+  PwCenters,
+  QuickLearning,
+  ReferEarn,
+  Result,
+  Saarthi,
+  Scholarship,
+  Store,
+  Study,
+  TermsConditions,
+  TestSeries,
+  Upskilling,
+  VpLive,
+  Wallet,
+  Yogya,
+} from '@/assets/icons';
+import GovernmentJobs from '@/assets/icons/GovernmentJobs';
 
 export const sideNavbarOptions = [
-
   {
-    customHeader: "Learn Online",
+    customHeader: 'Learn Online',
     menuOptions: [
       {
-        title: "Home",
+        title: 'Home',
         icon: <Home />,
         url: process.env.PUBLIC_BASE_PATH,
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isHomePageEnabled',
         subMenuOption: [],
       },
       {
-        title: "Study",
+        title: 'Study',
         icon: <Study />,
-        url: "/study",
+        url: '/study',
         isActive: true,
         isNew: true,
-        badge: "1",
+        badge: '1',
         isEnabled: true,
         configName: 'isStudyPageEnabled',
         subMenuOption: [],
       },
       {
-        title: "Quick Learning",
+        title: 'Quick Learning',
         icon: <QuickLearning />,
         url: '/batches/study/micro-learning',
         isActive: false,
@@ -37,12 +59,11 @@ export const sideNavbarOptions = [
         isNew: false,
         isEnabled: true,
         configName: 'isMicroLearningEnabled',
-        badge: "",
+        badge: '',
         subMenuOption: [],
-
       },
       {
-        title: "Saarthi",
+        title: 'Saarthi',
         icon: <Saarthi />,
         url: '/saarthi',
         isActive: false,
@@ -52,42 +73,41 @@ export const sideNavbarOptions = [
         subMenuOption: [
           {
             title: "Today's Classes",
-            url: "/todayclasses",
+            url: '/todayclasses',
             isActive: false,
             isNew: false,
-            badge: "",
+            badge: '',
             isEnabled: true,
             configName: '',
           },
           {
-            title: "Khazana",
-            url: "/khazana",
-            isActive: false,
-            isNew: false,
-            isEnabled: true,
-            configName: '',
-
-          },
-          {
-            title: "Library",
-            url: "/library2",
+            title: 'Khazana',
+            url: '/khazana',
             isActive: false,
             isNew: false,
             isEnabled: true,
             configName: '',
           },
           {
-            title: "Announcements",
-            url: "/announcements",
+            title: 'Library',
+            url: '/library2',
             isActive: false,
             isNew: false,
             isEnabled: true,
             configName: '',
           },
-        ]
+          {
+            title: 'Announcements',
+            url: '/announcements',
+            isActive: false,
+            isNew: false,
+            isEnabled: true,
+            configName: '',
+          },
+        ],
       },
       {
-        title: "Library",
+        title: 'Library',
         icon: <Library />,
         url: '/library',
         isActive: false,
@@ -95,36 +115,33 @@ export const sideNavbarOptions = [
         configName: 'isLibraryEnabled',
         isNew: true,
         badge: '',
-
       },
     ],
   },
   {
-    customHeader: "Study Packs",
+    customHeader: 'Study Packs',
     menuOptions: [
       {
-        title: "Batches",
+        title: 'Batches',
         icon: <Batches />,
         url: '/batches',
         isActive: true,
         isEnabled: true,
         configName: 'isBatchPageEnabled',
         subMenuOption: [],
-
       },
       {
-        title: "Test Series",
+        title: 'Test Series',
         icon: <TestSeries />,
         url: '/test-series',
         isActive: false,
         isEnabled: true,
         configName: 'isTestSeriesEnabled',
-        badge: "1",
+        badge: '1',
         subMenuOption: [],
-
       },
       {
-        title: "Scholarship",
+        title: 'Scholarship',
         icon: <Scholarship />,
         url: '/pw-scholarship',
         isActive: false,
@@ -140,7 +157,7 @@ export const sideNavbarOptions = [
         url: '/yogya',
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isYogyaEnabled',
         subMenuOption: [],
@@ -151,16 +168,15 @@ export const sideNavbarOptions = [
         url: '/job-alert',
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isGovtJobEnabled',
         subMenuOption: [],
       },
-
     ],
   },
   {
-    customHeader: "Offline",
+    customHeader: 'Offline',
     menuOptions: [
       {
         title: 'PW Centres',
@@ -178,7 +194,7 @@ export const sideNavbarOptions = [
         url: '/vp-live',
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isVpLiveEnabled',
         subMenuOption: [],
@@ -189,21 +205,20 @@ export const sideNavbarOptions = [
         url: '/school-contact-program',
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isPwChampionshipEnabled',
         subMenuOption: [],
       },
-
     ],
   },
   {
-    customHeader: "Explore PW",
+    customHeader: 'Explore PW',
     menuOptions: [
       {
-        title: "Upskilling",
+        title: 'Upskilling',
         icon: <Upskilling />,
-        url: "/upskilling",
+        url: '/upskilling',
         isActive: false,
         external: false,
         isNew: false,
@@ -212,7 +227,7 @@ export const sideNavbarOptions = [
         subMenuOption: [],
       },
       {
-        title: "Store",
+        title: 'Store',
         icon: <Store />,
         url: 'https://store.pw.live/authenticate',
         isActive: false,
@@ -223,7 +238,7 @@ export const sideNavbarOptions = [
         subMenuOption: [],
       },
       {
-        title: "Results",
+        title: 'Results',
         icon: <Result />,
         url: '/results',
         isActive: false,
@@ -232,7 +247,7 @@ export const sideNavbarOptions = [
         subMenuOption: [],
       },
       {
-        title: "Feeds",
+        title: 'Feeds',
         icon: <Feeds />,
         url: '/feeds',
         isActive: false,
@@ -246,7 +261,7 @@ export const sideNavbarOptions = [
         url: '/about-us',
         isActive: true,
         isNew: false,
-        badge: "",
+        badge: '',
         isEnabled: true,
         configName: 'isAboutUsEnabled',
         subMenuOption: [],
@@ -254,30 +269,28 @@ export const sideNavbarOptions = [
     ],
   },
   {
-    customHeader: "More",
+    customHeader: 'More',
     menuOptions: [
       {
-        title: "Refer & Earn",
+        title: 'Refer & Earn',
         icon: <ReferEarn />,
         url: '/referral-new',
         isActive: false,
         isEnabled: true,
         configName: 'isReferAndEarnEnabled',
         subMenuOption: [],
-
       },
       {
-        title: "Wallet",
+        title: 'Wallet',
         icon: <Wallet />,
         url: '/wallet',
         isActive: false,
         isEnabled: true,
         configName: 'isWalletEnabled',
         subMenuOption: [],
-
       },
       {
-        title: "Contact Us",
+        title: 'Contact Us',
         icon: <ContactUs />,
         url: '/contact-us',
         isActive: false,
@@ -286,19 +299,18 @@ export const sideNavbarOptions = [
         subMenuOption: [],
       },
       {
-        title: "Terms & Conditions",
+        title: 'Terms & Conditions',
         icon: <TermsConditions />,
         url: '/termsandconditions',
         isActive: false,
         isEnabled: false,
         configName: 'isTandCEnabled',
         subMenuOption: [],
-
       },
       {
-        title: "Privacy Policy",
+        title: 'Privacy Policy',
         icon: <PrivacyPolicy />,
-        url: "/privacypolicy",
+        url: '/privacypolicy',
         isActive: false,
         isNew: false,
         isEnabled: true,
@@ -306,8 +318,4 @@ export const sideNavbarOptions = [
       },
     ],
   },
-
-]
-
-
-
+];

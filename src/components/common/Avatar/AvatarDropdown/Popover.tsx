@@ -1,8 +1,8 @@
-import { cn } from '@/utils';
-import { Typography } from '@pw-tech/omni-ui';
+import {cn} from '@/utils';
+import {Typography} from '@pw-tech/omni-ui';
 import * as Popover from '@radix-ui/react-popover';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import {ReactNode, useEffect, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
 
 export interface Options extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -19,7 +19,6 @@ function AvatarPopover({
   options: Options[];
   children: ReactNode;
 }) {
-
   const [open, setOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -46,7 +45,7 @@ function AvatarPopover({
     return (
       <div className="flex flex-col">
         {options.map((item, index) => {
-          const { label, icon, className, ...rest } = item;
+          const {label, icon, className, ...rest} = item;
           return (
             <Link
               key={index}
@@ -76,7 +75,7 @@ function AvatarPopover({
         <Popover.Content
           ref={popoverRef}
           style={{
-            boxShadow: "0px 8px 24px 2px rgba(0,0,0,0.2)"
+            boxShadow: '0px 8px 24px 2px rgba(0,0,0,0.2)',
           }}
           className={cn('PopoverContent', 'z-[1]')}
           sideOffset={-3}

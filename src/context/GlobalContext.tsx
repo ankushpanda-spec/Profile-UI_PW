@@ -1,3 +1,2 @@
 // GlobalContext.tsx
-export { GlobalProvider } from './GlobalProvider';
-
+export {GlobalProvider} from './GlobalProvider';

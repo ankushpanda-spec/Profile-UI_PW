@@ -1,11 +1,10 @@
-
-import { useState, useEffect } from 'react';
-import { doubtSolvingFeedbackData } from '@/api'; // Assuming you have the function in the api folder
+import {useState, useEffect} from 'react';
+import {doubtSolvingFeedbackData} from '@/api'; // Assuming you have the function in the api folder
 
 interface FeedbackData {
-    "satisfactoryRate": number,
-    "totalSolved": number,
-    "totalRated": number
+  satisfactoryRate: number;
+  totalSolved: number;
+  totalRated: number;
 }
 
 interface UseFeedbackDataResult {
@@ -37,5 +36,5 @@ export const useFeedbackData = (): UseFeedbackDataResult => {
     fetchData();
   }, []);
 
-  return { data, loading, error };
+  return {data, loading, error};
 };

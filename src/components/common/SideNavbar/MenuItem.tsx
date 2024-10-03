@@ -1,11 +1,11 @@
 import ChevronDown from '@/assets/icons/ChevronDown';
 import IsNew from '@/assets/icons/IsNew';
-import { Badge, Typography } from '@pw-tech/omni-ui';
-import cn from "clsx";
-import React, { useState , useEffect} from 'react';
+import {Badge, Typography} from '@pw-tech/omni-ui';
+import cn from 'clsx';
+import React, {useState, useEffect} from 'react';
 import s from './SideNavbar.module.css';
 import SubMenuItem from './SubMenuItem';
-import { MenuItemProps } from './Types';
+import {MenuItemProps} from './Types';
 
 function MenuItem(props: MenuItemProps) {
   const {
@@ -23,37 +23,33 @@ function MenuItem(props: MenuItemProps) {
     onSubMenuClick,
   } = props;
 
-  const isNested = (subMenuOption && subMenuOption.length > 0);
+  const isNested = subMenuOption && subMenuOption.length > 0;
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
- 
 
   useEffect(() => {
-    const isAnySubOptionActive = subMenuOption?.some(subOption => subOption.url === activeItem) || false;
+    const isAnySubOptionActive =
+      subMenuOption?.some(subOption => subOption.url === activeItem) || false;
     setIsSubmenuOpen(isAnySubOptionActive);
-  } , [activeItem])
+  }, [activeItem]);
 
-  
   const showSubmenu = () => {
-    setIsSubmenuOpen(!isSubmenuOpen)
+    setIsSubmenuOpen(!isSubmenuOpen);
   };
 
   const handleClick = () => {
     if (isNested) {
       showSubmenu();
-    }
-    else {
+    } else {
       onMenuItemClick?.(url, external);
     }
-
   };
   const menuOptionClassName = cn(s.menuOption, {
     [s.active]: isActive,
-  })
+  });
 
   const toggleIconClassName = cn(s.toggleIcon, {
-    [s["isSubmenuOpen"]]: isSubmenuOpen
-  })
-
+    [s['isSubmenuOpen']]: isSubmenuOpen,
+  });
 
   return (
     <React.Fragment>
@@ -61,28 +57,42 @@ function MenuItem(props: MenuItemProps) {
         <>
           <div className={menuOptionClassName} onClick={handleClick}>
             <div className={s.optionWrapper}>
-              <div className={s.leftOptions}>
-                {icon}
-              </div>
+              <div className={s.leftOptions}>{icon}</div>
 
-              <Typography component='div' variant='small' className={s.optionTitle}>
+              <Typography
+                component="div"
+                variant="small"
+                className={s.optionTitle}
+              >
                 {title}
               </Typography>
               <div className={s.rightOptions}>
-                {isNew && (<IsNew />)}
+                {isNew && <IsNew />}
 
-                {badge && (<Badge label={badge} size="small" emphasis='high' intent='error' />)}
-                {isNested && (<ChevronDown className={toggleIconClassName} />)}
+                {badge && (
+                  <Badge
+                    label={badge}
+                    size="small"
+                    emphasis="high"
+                    intent="error"
+                  />
+                )}
+                {isNested && <ChevronDown className={toggleIconClassName} />}
               </div>
             </div>
           </div>
           {isNested && (
-            <SubMenuItem subMenuOption={subMenuOption} isSubmenuOpen={isSubmenuOpen} activeItem={activeItem}
-              onSubMenuItemClick={onSubMenuClick} />
+            <SubMenuItem
+              subMenuOption={subMenuOption}
+              isSubmenuOpen={isSubmenuOpen}
+              activeItem={activeItem}
+              onSubMenuItemClick={onSubMenuClick}
+            />
           )}
-        </>)}
+        </>
+      )}
     </React.Fragment>
-  )
+  );
 }
 
-export default MenuItem
+export default MenuItem;

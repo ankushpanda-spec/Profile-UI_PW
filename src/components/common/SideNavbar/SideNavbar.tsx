@@ -1,38 +1,39 @@
-import { fetchCohortConfig } from '@/api';
-import LogoIcon from "@/assets/icons/LogoIcon";
-import { sideNavbarOptions as initialSideNavbarOptions } from '@/config';
+import {fetchCohortConfig} from '@/api';
+import LogoIcon from '@/assets/icons/LogoIcon';
+import {sideNavbarOptions as initialSideNavbarOptions} from '@/config';
 import cn from 'clsx';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import LogoSection from './LogoSection';
 import MenuCategory from './MenuCategory';
-import s from "./SideNavbar.module.css";
-import { MenuSection, SideNavbarProps } from './Types';
+import s from './SideNavbar.module.css';
+import {MenuSection, SideNavbarProps} from './Types';
 
 function SideNavbar(props: SideNavbarProps) {
   const {
     // isSideNavOpen = true,
     logo = <LogoIcon className={s.logo} />,
-    logoText = "Physics Wallah",
+    logoText = 'Physics Wallah',
     section = initialSideNavbarOptions,
     className,
     bottomStroke = false,
     url = '/',
-    onItemClick
+    onItemClick,
   } = props;
-
 
   // State to manage the currently active menu item
   const navigate = useNavigate();
   const location = useLocation();
   const currentUrl = location.pathname;
 
-  const [activeItem, setActiveItem] = useState("");
-  const [sideNavbarOptions, setSideNavbarOptions] = useState<MenuSection[]>(initialSideNavbarOptions);
+  const [activeItem, setActiveItem] = useState('');
+  const [sideNavbarOptions, setSideNavbarOptions] = useState<MenuSection[]>(
+    initialSideNavbarOptions
+  );
 
-  const [webConfig, setWebConfig] = useState<Record<string, boolean> | null>(null);
-
-
+  const [webConfig, setWebConfig] = useState<Record<string, boolean> | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +41,7 @@ function SideNavbar(props: SideNavbarProps) {
         const cohortData = await fetchCohortConfig();
         setWebConfig(cohortData.webConfig);
       } catch (error) {
-        console.error("Error fetching cohort data:", error);
+        console.error('Error fetching cohort data:', error);
       }
     };
 
@@ -52,15 +53,15 @@ function SideNavbar(props: SideNavbarProps) {
       ...category,
       menuOptions: category.menuOptions.map(option => {
         const isOptionEnabled = option?.configName
-          ? webConfig?.[option.configName] ?? option.isEnabled
+          ? (webConfig?.[option.configName] ?? option.isEnabled)
           : option?.isEnabled;
 
         const updatedSubMenuOptions = option?.subMenuOption?.map(subOption => {
           const isSubOptionEnabled = subOption.configName
-            ? webConfig?.[subOption.configName] ?? subOption.isEnabled
+            ? (webConfig?.[subOption.configName] ?? subOption.isEnabled)
             : subOption.isEnabled;
 
-          return { ...subOption, isEnabled: isSubOptionEnabled };
+          return {...subOption, isEnabled: isSubOptionEnabled};
         });
 
         return {
@@ -72,48 +73,45 @@ function SideNavbar(props: SideNavbarProps) {
     }));
   };
 
-
   useEffect(() => {
     setSideNavbarOptions(updateMenuOptions());
   }, [webConfig]);
 
   useEffect(() => {
     const isActive = sideNavbarOptions.some(category =>
-      category.menuOptions.some(option =>
-        option.url === currentUrl ||
-        (option.subMenuOption?.some(subOption => subOption.url === currentUrl))
+      category.menuOptions.some(
+        option =>
+          option.url === currentUrl ||
+          option.subMenuOption?.some(subOption => subOption.url === currentUrl)
       )
     );
 
     if (isActive) {
       setActiveItem(currentUrl);
-    }
-    else {
-      setActiveItem("");
+    } else {
+      setActiveItem('');
     }
   }, [location]);
 
-  const handleItemClick = (url: string | undefined, external: boolean | undefined) => {
+  const handleItemClick = (
+    url: string | undefined,
+    external: boolean | undefined
+  ) => {
     if (url) {
       if (external) {
         window.open(url, '_blank');
-
-      }
-      else {
+      } else {
         navigate(url);
-        setActiveItem(url)
+        setActiveItem(url);
       }
       onItemClick && onItemClick();
     }
-
   };
 
-  const sideBarClassName = cn(s.sideBar, className,
-  );
+  const sideBarClassName = cn(s.sideBar, className);
 
   return (
     <div className={sideBarClassName}>
-
       {/* logo section */}
 
       <LogoSection logo={logo} logoText={logoText} url={url} />
@@ -131,7 +129,7 @@ function SideNavbar(props: SideNavbarProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default SideNavbar;

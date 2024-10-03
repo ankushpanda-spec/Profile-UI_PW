@@ -1,2 +1,1 @@
-
-export {default as InfoIcon} from './profile/InfoIcon'
+export {default as InfoIcon} from './profile/InfoIcon';

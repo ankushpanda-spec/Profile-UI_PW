@@ -1,13 +1,13 @@
-import { useScreen } from '@pw-tech/omni-context';
-import { Typography } from '@pw-tech/omni-ui';
+import {useScreen} from '@pw-tech/omni-context';
+import {Typography} from '@pw-tech/omni-ui';
 import AvatarDropdown from '../../Avatar/AvatarDropdown';
-import { MobileAppStoreBadge } from '../../Badge';
-import { BackButton, CohortButton, MenuButton } from '../../Button';
-import { AuthHeaderProps } from '../Types';
+import {MobileAppStoreBadge} from '../../Badge';
+import {BackButton, CohortButton, MenuButton} from '../../Button';
+import {AuthHeaderProps} from '../Types';
 import Auth from './Layout';
 
 function Layout(props: AuthHeaderProps) {
-  const { isMobile } = useScreen();
+  const {isMobile} = useScreen();
   const {
     menuActionConfig,
     cohortActionConfig,
@@ -17,13 +17,13 @@ function Layout(props: AuthHeaderProps) {
     onProfileClick,
   } = props;
 
-  const { enable: menuEnable = true, callback: onMenuClick } = menuActionConfig;
+  const {enable: menuEnable = true, callback: onMenuClick} = menuActionConfig;
   const {
     enable: cohortEnable,
     callback: onCohortClick,
     cohortData,
   } = cohortActionConfig;
-  const { enable: backEnable, callback: onBackClick } = backActionConfig;
+  const {enable: backEnable, callback: onBackClick} = backActionConfig;
 
   return (
     <Auth
@@ -34,10 +34,7 @@ function Layout(props: AuthHeaderProps) {
         <>
           {backEnable && <BackButton onClick={onBackClick} />}
           {cohortEnable && (
-            <CohortButton
-              onClick={onCohortClick}
-              iconSrc={cohortData?.webIcon}
-            >
+            <CohortButton onClick={onCohortClick} iconSrc={cohortData?.webIcon}>
               {cohortData?.name || 'Select'}
             </CohortButton>
           )}

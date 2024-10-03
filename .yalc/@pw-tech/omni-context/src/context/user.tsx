@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, {createContext, ReactNode, useContext, useState} from 'react';
 
 /**
  * Type definition for the user object.
@@ -11,8 +11,8 @@ type User = Record<string, any>;
  * @property {(user: User | null) => void} setUser - Function to manually set or update the user data.
  */
 interface UserContextType {
-    user: User | null;
-    setUser: (user: User | null) => void;
+  user: User | null;
+  setUser: (user: User | null) => void;
 }
 
 /**
@@ -28,11 +28,11 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
  * @throws {Error} - If the hook is used outside of a UserProvider.
  */
 export const useUser = (): UserContextType => {
-    const context = useContext(UserContext);
-    if (!context) {
-        throw new Error('OMNI CONEXT: useUser must be used within a UserProvider');
-    }
-    return context;
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('OMNI CONEXT: useUser must be used within a UserProvider');
+  }
+  return context;
 };
 
 /**
@@ -40,32 +40,32 @@ export const useUser = (): UserContextType => {
  * @property {ReactNode} children - The child components that will have access to the UserContext.
  */
 interface UserProviderProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 /**
  * UserProvider component to wrap around parts of the app that need access to the user state.
  * It provides the user object and setUser function to the component tree.
- * 
+ *
  * @param {UserProviderProps} props - The properties for the UserProvider component.
  * @returns {JSX.Element} - The UserContext provider wrapping its children.
  */
-export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
-    // State for storing the user object, initialized as null
-    const [user, setUserState] = useState<User | null>(null);
+export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
+  // State for storing the user object, initialized as null
+  const [user, setUserState] = useState<User | null>(null);
 
-    /**
-     * Sets or updates the user state.
-     * 
-     * @param {User} newUser - The user data to set or update.
-     */
-    const setUser = (newUser: User | null) => {
-        setUserState(newUser);
-    };
+  /**
+   * Sets or updates the user state.
+   *
+   * @param {User} newUser - The user data to set or update.
+   */
+  const setUser = (newUser: User | null) => {
+    setUserState(newUser);
+  };
 
-    return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {children}
-        </UserContext.Provider>
-    );
+  return (
+    <UserContext.Provider value={{user, setUser}}>
+      {children}
+    </UserContext.Provider>
+  );
 };

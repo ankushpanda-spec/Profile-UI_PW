@@ -6,6 +6,6 @@ declare namespace NodeJS {
     PUBLIC_CLIENT_SECRET: string;
     PUBLIC_ORGANISATION_ID: string;
     PUBLIC_MOBILE_APP_DOWNLOAD_REDIRECTION_LINK: string;
-    PUBLIC_HOME_PAGE_URL:string;
+    PUBLIC_HOME_PAGE_URL: string;
   }
 }

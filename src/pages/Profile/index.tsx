@@ -1,9 +1,7 @@
-import ProfileContainer from "@/components/profile/ProfileContainer"
-
+import ProfileContainer from '@/components/profile/ProfileContainer';
 
 const Profile = () => {
-    return <ProfileContainer/>
+  return <ProfileContainer />;
+};
 
-}
-
-export default Profile
+export default Profile;

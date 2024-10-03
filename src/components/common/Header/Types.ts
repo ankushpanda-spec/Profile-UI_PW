@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import {ReactNode} from 'react';
 
 export interface ActionProps {
   enable?: boolean;
@@ -14,7 +14,7 @@ export interface AuthHeaderProps {
   backActionConfig: ActionProps;
   userConfig: Record<string, any>;
   onAppDownloadClick?: () => void;
-  onProfileClick?:()=>void
+  onProfileClick?: () => void;
 }
 export interface AuthHeaderLayoutProps {
   menuAction: ReactNode;
