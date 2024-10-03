@@ -14,7 +14,7 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <GlobalProvider>
-        <BrowserRouter basename={process.env.PUBLIC_BASE_PATH}>
+        <BrowserRouter>
           <ErrorBoundary>
             <BaseLayout>
               <App />

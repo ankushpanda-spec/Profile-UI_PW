@@ -1,4 +1,4 @@
-import { useUser } from '@/context';
+import { useUser } from '@pw-tech/omni-context';
 import { useEffect, useState } from 'react';
 import EditProfileModal from './EditProfile';
 const UserDetails = () => {
@@ -58,8 +58,8 @@ const UserDetails = () => {
         <span className="caption-1 semibold cursor-pointer text-xs" onClick={handleOpenEditModal}>Edit</span>
       </div>
       {sections.map((section: any, index: number) => {
-        return <>
-          <div key={index} className="w-full lg:w-4/5 flex items-center justify-between mb-12">
+        return <div key={index}>
+          <div className="w-full lg:w-4/5 flex items-center justify-between mb-12">
             <h5 className="font-semibold text-[#dcdcdc] text-[10px]">{section.sectionName}</h5>
             <div className="w-3/5">
               <hr />
@@ -78,7 +78,7 @@ const UserDetails = () => {
             }
             )}
           </div>
-        </>
+        </div>
       })
       }
       <EditProfileModal modalHeader={'Edit Details'} modalBody={''} onCancel={handleCancel} isOpen={openEditModal} onClose={handleCloseEditModal} />

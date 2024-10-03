@@ -1,6 +1,5 @@
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
-import path from 'path';
 import {dependencies} from './package.json';
 export default defineConfig({
   server: {
@@ -22,17 +21,16 @@ export default defineConfig({
           singleton: true,
           requiredVersion: dependencies['react-dom'],
         },
-        'shared-context' : {
+        '@pw-tech/omni-context': {
           singleton: true,
-        }
+        },
       },
-    }
-  }, 
+    },
+  },
   plugins: [pluginReact()],
   tools: {
     rspack: (config, {appendPlugins}) => {
-      appendPlugins([
-      ]);
+      appendPlugins([]);
     },
   },
 });
