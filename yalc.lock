@@ -5,10 +5,6 @@
       "signature": "a98c50245bcb19db3c6b7ccbef3153d7",
       "file": true,
       "replaced": "0.0.0-alpha-0.1"
-    },
-    "@pw-tech/omni-context": {
-      "signature": "904f2fab30feecd04c4022baf670f42c",
-      "file": true
     }
   }
 }
