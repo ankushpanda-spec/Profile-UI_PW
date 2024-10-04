@@ -1,8 +1,8 @@
 import ErrorBoundary from '@/ErrorBoundary';
 import My404NotFound from '@/pages/404NotFound';
+import Profile from '@/pages/Profile';
 import Study from '@/pages/Study';
-import { Route, Routes } from 'react-router-dom';
-
+import {Route, Routes} from 'react-router-dom';
 
 const Router = () => {
   return (
@@ -15,7 +15,15 @@ const Router = () => {
           </ErrorBoundary>
         }
       />
-      <Route path='*' element={<My404NotFound />} />
+      <Route
+        path="/profile"
+        element={
+          <ErrorBoundary>
+            <Profile />
+          </ErrorBoundary>
+        }
+      />
+      <Route path="*" element={<My404NotFound />} />
     </Routes>
   );
 };

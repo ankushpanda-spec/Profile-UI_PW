@@ -7,14 +7,13 @@ import { GlobalProvider } from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
-
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
   root.render(
     <React.StrictMode>
       <GlobalProvider>
-        <BrowserRouter basename={process.env.PUBLIC_BASE_PATH}>
+        <BrowserRouter>
           <ErrorBoundary>
             <BaseLayout>
               <App />

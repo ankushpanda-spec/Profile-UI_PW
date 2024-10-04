@@ -6,6 +6,6 @@
 
 @layer base {
   html {
-    @apply scrollbar-thumb-primary scrollbar-track-white bg-white font-reddit;
+    @apply bg-white font-reddit scrollbar-track-white scrollbar-thumb-primary;
   }
 }

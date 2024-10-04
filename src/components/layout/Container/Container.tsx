@@ -1,5 +1,5 @@
-import { cn } from '@/utils';
-import { ReactNode } from 'react';
+import {cn} from '@/utils';
+import {ReactNode} from 'react';
 
 function Container({
   children,
@@ -16,7 +16,9 @@ function Container({
         className
       )}
     >
-      <div className="max-w-[1180px] w-[-webkit-fill-available]">{children}</div>
+      <div className="w-[-webkit-fill-available] max-w-[1180px]">
+        {children}
+      </div>
     </section>
   );
 }

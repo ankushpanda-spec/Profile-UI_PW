@@ -1,0 +1,144 @@
+.container {
+  @apply grid w-full grid-cols-8 overflow-x-hidden p-5 scrollbar-none lg:gap-4 lg:p-10;
+}
+
+.containerChildOne {
+  @apply col-span-8 lg:col-span-2;
+}
+
+.wrapper {
+  @apply relative flex w-full items-center justify-center object-contain;
+}
+
+.userAvatarContainer {
+  @apply w-8/12 rounded-full object-contain;
+}
+.cameraIcon {
+  @apply absolute bottom-0 right-12 cursor-pointer;
+}
+.profileDetails {
+  @apply col-span-8 flex flex-col lg:col-span-6;
+}
+.levelUpContainer {
+  @apply my-12 mb-40 flex flex-col rounded-lg bg-[#f1f5fe] p-16;
+}
+.levelUpContainerChildOne {
+  @apply text-xl font-bold text-black;
+}
+
+.levelUpContainerChildTwo {
+  @apply mt-8 grid grid-cols-2 gap-16;
+}
+
+.levelUpMapContainer {
+  @apply mt-10 flex flex-col rounded-lg border bg-white p-16;
+}
+
+.levelUpParent {
+  @apply flex justify-between sm:gap-10 md:gap-auto;
+}
+
+.levelUpParentTwo {
+  @apply block;
+}
+.levelUpWrapper {
+  @apply p-16;
+
+  & > div {
+    @apply text-base font-semibold lg:text-lg;
+  }
+}
+
+.levelUpParentThree {
+  @apply p-4;
+  & > div {
+    @apply text-base font-semibold lg:text-lg;
+  }
+}
+
+.levelUpParentFour {
+  @apply flex pt-8;
+
+  & > img {
+    @apply ml-1;
+  }
+}
+
+.userDetailsContainer {
+  @apply w-full;
+}
+
+.udOne {
+  @apply my-12 flex w-full items-center justify-between;
+}
+.udOneTitle {
+  @apply text-base font-bold lg:text-xl;
+}
+.udEditText {
+  @apply cursor-pointer text-xs font-semibold;
+}
+
+.udTwo {
+  @apply mb-12 flex w-full items-center justify-between lg:w-4/5;
+}
+
+.udTwoSection {
+  @apply text-[10px] font-semibold text-[#dcdcdc];
+}
+
+.udLine {
+  @apply w-3/5;
+}
+
+.udSectionContainer {
+  @apply my-8;
+}
+
+.udSectionWrapper {
+  @apply mb-12 flex w-full items-center justify-between font-semibold lg:w-4/5;
+}
+
+.udSectionKey {
+  @apply text-xs font-semibold text-[#878787] lg:text-sm;
+}
+.udSectionValue {
+  @apply w-3/5 text-xs text-[#333333] lg:text-sm;
+}
+
+.pdContainer {
+  @apply flex w-full flex-col rounded-lg p-8 lg:w-52;
+}
+.pdBgBlack {
+  @apply bg-black;
+}
+.pdBgDefault {
+  @apply bg-[#5a4bda0d];
+}
+.infoIcon {
+  @apply cursor-pointer self-end;
+}
+.PDtextContainer {
+  @apply relative flex flex-col px-16 pb-16 pt-4;
+}
+.infoContainer {
+  @apply absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center pb-2;
+}
+.infoText {
+  @apply text-center text-white;
+}
+
+.pdParent {
+  @apply mt-20;
+}
+.pdParentOne {
+  @apply flex align-bottom;
+}
+.knowMore {
+  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary;
+}
+.titleContainer {
+  @apply mt-16 flex flex-col gap-12 sm:flex-row;
+}
+.modalFooter {
+  @apply flex flex-row items-center justify-end gap-12;
+}
