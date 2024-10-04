@@ -1,6 +1,6 @@
 import { XPIcon } from '@/assets/images';
 import LevelUpOverviewData from '@/services/datalayer.service';
-import { Tooltip, Typography } from '@pw-tech/omni-ui';
+import { Tooltip, TooltipBody, TooltipHeader, Typography } from '@pw-tech/omni-ui';
 import { useState } from 'react';
 import { InfoIcon } from '../icons';
 import s from "./index.module.css";
@@ -26,43 +26,23 @@ const LevelUpContainer = () => {
                 </Typography>
                 <div className={s.levelUpParentTwo}>
                   <Tooltip
+
                     label={<InfoIcon />}
                     open={showTooltip}
                     onClose={handleToolTipClose}
-                    origin="center"
+                    origin={index == 0 ? "center" : "end"}
                     position="bottom"
                     variant="dark"
                   >
                     <div className={s.levelUpWrapper}>
-                      <div>
-                        {el.tooltip.title}
-                      </div>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: el.tooltip.content,
-                        }}
-                      />
-                    </div>
-                  </Tooltip>
-                </div>
-                <div className={s.levelUpParentTwo}>
-                  <Tooltip
-                    label={<InfoIcon />}
-                    open={showTooltip}
-                    onClose={handleToolTipClose}
-                    origin="center"
-                    position="left"
-                    variant="dark"
-                  >
-                    <div className={s.levelUpParentThree}>
-                      <div>
-                        {el.tooltip.title}
-                      </div>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: el.tooltip.content,
-                        }}
-                      />
+                      <TooltipHeader>{el.tooltip.title}</TooltipHeader>
+                      <TooltipBody>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: el.tooltip.content,
+                          }}
+                        />
+                      </TooltipBody>
                     </div>
                   </Tooltip>
                 </div>
