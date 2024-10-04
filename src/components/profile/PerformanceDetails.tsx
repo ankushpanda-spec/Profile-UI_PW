@@ -1,8 +1,9 @@
 import { useFeedbackData } from '@/hooks/useGetFeedbackPerformance';
+import { cn } from '@/utils';
 import { Typography } from '@pw-tech/omni-ui';
 import { useEffect, useState } from 'react';
 import { InfoIcon } from '../icons';
-
+import s from "./index.module.css";
 const DoubtSolverCard = ({
   title,
   info,
@@ -18,21 +19,18 @@ const DoubtSolverCard = ({
   };
   return (
     <div
-      className={`flex w-full flex-col rounded-lg p-8 lg:w-52 ${showInfo ? 'bg-black' : 'bg-[#5a4bda0d]'}`}
+      className={cn(s.pdContainer, showInfo ? s.pdBgBlack : s.pdBgDefault)}
     >
-      <div className="flex justify-end" onClick={handleInfoClick}>
-        <InfoIcon height={10} width={10} className="cursor-pointer" />
-      </div>
-
-      <div className="relative flex flex-col px-16 pb-16 pt-4">
+      <InfoIcon height={10} width={10} className={s.infoIcon} onClick={handleInfoClick} />
+      <div className={s.PDtextContainer}>
         <Typography variant="tiny">{title}</Typography>
         <Typography variant="heading4" weight="bold">
           {data}
         </Typography>
         {showInfo && (
-          <div className="absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center pb-2">
+          <div className={s.infoContainer}>
             <span
-              className="body-2 text-center text-white"
+              className={s.infoText}
               dangerouslySetInnerHTML={{ __html: info }}
             />
           </div>
@@ -60,18 +58,16 @@ const PerformanceDetails = () => {
     ]);
   }, [_PerformanceAsDoubtSolver]);
   return (
-    <div className="mt-20">
-      <div className="flex align-bottom">
+    <div className={s.pdParent}>
+      <div className={s.pdParentOne}>
         <Typography variant="heading4" weight="semi-bold" color="static-black">
           Performace as Doubt Solver
         </Typography>
-        <div className="ml-10 mt-4 align-text-bottom text-[10px] text-xs">
-          <Typography color="primary" weight="semi-bold" variant="tiny">
-            Know more
-          </Typography>
-        </div>
+        <Typography color="primary" weight="semi-bold" variant="tiny" className={s.knowMore}>
+          Know more
+        </Typography>
       </div>
-      <div className="mt-16 flex flex-col gap-12 sm:flex-row">
+      <div className={s.titleContainer}>
         {tiles.map((tile: any, index: number) => {
           return (
             <DoubtSolverCard

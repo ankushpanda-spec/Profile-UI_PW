@@ -2,10 +2,12 @@ const InfoIcon = ({
   height,
   width,
   className,
+  onClick,
 }: {
   height?: number;
   width?: number;
   className?: string;
+  onClick?: () => void
 }) => {
   return (
     <svg
@@ -15,6 +17,7 @@ const InfoIcon = ({
       viewBox="0 0 16 16"
       fill="none"
       className={className}
+      onClick={onClick}
     >
       <path
         d="M8 1C4.13438 1 1 4.13438 1 8C1 11.8656 4.13438 15 8 15C11.8656 15 15 11.8656 15 8C15 4.13438 11.8656 1 8 1ZM8 13.8125C4.79063 13.8125 2.1875 11.2094 2.1875 8C2.1875 4.79063 4.79063 2.1875 8 2.1875C11.2094 2.1875 13.8125 4.79063 13.8125 8C13.8125 11.2094 11.2094 13.8125 8 13.8125Z"

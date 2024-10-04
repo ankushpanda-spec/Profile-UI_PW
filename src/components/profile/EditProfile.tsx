@@ -6,7 +6,7 @@ import {
   ModalHeader,
   Typography,
 } from '@pw-tech/omni-ui';
-
+import s from "./index.module.css";
 const EditProfileModal = ({
   modalHeader,
   onCancel,
@@ -39,9 +39,9 @@ const EditProfileModal = ({
         </form>
       </ModalBody>
       <ModalFooter>
-        <div className="flex flex-row items-center justify-end gap-12">
+        <div className={s.modalFooter}>
           <Button
-            className="Modal_buttonClassName__SXfTH"
+            className="h-auto"
             size="small"
             variant="secondary"
             onClick={onCancel}
@@ -49,7 +49,7 @@ const EditProfileModal = ({
             Close
           </Button>
           <Button
-            className="Modal_buttonClassName__SXfTH"
+            className="h-auto"
             size="small"
             variant="primary"
           >

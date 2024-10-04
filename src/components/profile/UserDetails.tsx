@@ -1,6 +1,7 @@
 import {useUser} from '@pw-tech/omni-context';
 import {useEffect, useState} from 'react';
 import EditProfileModal from './EditProfile';
+import s from "./index.module.css"
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
   const [openEditModal, setOpenEditModal] = useState<boolean>(false);
@@ -59,11 +60,11 @@ const UserDetails = () => {
     setSections(_sections);
   }, [_User]);
   return (
-    <div className="w-full">
-      <div className="my-12 flex w-full items-center justify-between">
-        <h4 className="text-base font-bold lg:text-xl">Profile Detail</h4>
+    <div className={s.userDetailsContainer}>
+      <div className={s.udOne}>
+        <h4 className={s.udOneTitle}>Profile Detail</h4>
         <span
-          className="caption-1 semibold cursor-pointer text-xs"
+          className={s.udEditText}
           onClick={handleOpenEditModal}
         >
           Edit
@@ -72,25 +73,25 @@ const UserDetails = () => {
       {sections.map((section: any, index: number) => {
         return (
           <div key={index}>
-            <div className="mb-12 flex w-full items-center justify-between lg:w-4/5">
-              <h5 className="text-[10px] font-semibold text-[#dcdcdc]">
+            <div className={s.udTwo}>
+              <h5 className={s.udTwoSection}>
                 {section.sectionName}
               </h5>
-              <div className="w-3/5">
+              <div className={s.udLine}>
                 <hr />
               </div>
             </div>
-            <div className="my-8">
+            <div className={s.udSectionContainer}>
               {section.values.map((data: any, index: number) => {
                 return (
                   <div
                     key={index}
-                    className="mb-12 flex w-full items-center justify-between font-semibold lg:w-4/5"
+                    className={s.udSectionWrapper}
                   >
-                    <div className="text-xs font-semibold text-[#878787] lg:text-sm">
+                    <div className={s.udSectionKey}>
                       {data.key}
                     </div>
-                    <div className="w-3/5 text-xs text-[#333333] lg:text-sm">
+                    <div className={s.udSectionValue}>
                       {data.value}
                     </div>
                   </div>
