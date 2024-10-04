@@ -1,7 +1,6 @@
 import {webSDK} from '@/integration/webSDK';
 import {ApiClient} from '@pw-tech/web-sdk';
-
-const feedbackOverallApi = '/v1/doubts/subject-matter-expert/feedback-overall';
+import {feedbackOverallApi} from './constants';
 
 export const fetchUser = async () => {
   try {
