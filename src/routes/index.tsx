@@ -3,6 +3,7 @@ import My404NotFound from '@/pages/404NotFound';
 import Profile from '@/pages/Profile';
 import Study from '@/pages/Study';
 import {Route, Routes} from 'react-router-dom';
+import Pdf from '@/pages/Pdf';
 
 const Router = () => {
   return (
@@ -20,6 +21,14 @@ const Router = () => {
         element={
           <ErrorBoundary>
             <Profile />
+          </ErrorBoundary>
+        }
+      />
+      <Route
+        path="/pdf-viewer"
+        element={
+          <ErrorBoundary>
+            <Pdf />
           </ErrorBoundary>
         }
       />
