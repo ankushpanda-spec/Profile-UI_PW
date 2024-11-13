@@ -1,10 +1,51 @@
-.wrapper{
-    @apply w-full h-screen flex flex-col
+.container{
+    @apply flex flex-col h-screen overflow-hidden
 }
-.header{
-    @apply bg-neutral-700 h-80 w-full flex items-center justify-between text-white px-20 shrink-0 top-0 fixed z-10
+.headerWrapper{
+
+    @apply bg-gray-100 flex items-center justify-between h-64 px-12 border-b z-50 shadow-md
+}
+.headerContainer{
+    @apply flex items-center gap-8
+}
+
+
+.sidebarWrapper{
+    @apply  bg-gray-100  overflow-y-auto h-full transition-all duration-[250ms] ease-in-out max-w-0 -translate-x-full  shadow-md z-30
+}
+.showSidebar{
+    @apply translate-x-0 min-w-[240px] 
+}
+
+
+.sidebarSubContainer{
+    @apply flex flex-col items-center py-12
+}
+
+.sidebarPage{
+    @apply cursor-pointer relative my-4 shadow-xl opacity-35 hover:opacity-100 bg-gray-700 transition-opacity 
+
+    
+}
+.selectedPage{
+    @apply border-4 border-primary-200 opacity-100
+}
+.sidebarPageNo{
+    @apply flex items-center text-center my-4 justify-center
 }
 
 .subContainer{
-    @apply flex flex-row w-full h-screen border-t-2
+    @apply flex flex-1 overflow-hidden bg-gray-100
+}
+
+.icon{
+    @apply size-32 cursor-pointer rounded p-4 hover:bg-primary-400 hover:text-white active:bg-primary-600
+}
+
+.mainContentWrapper{
+    @apply flex-1 overflow-auto bg-gray-200 flex flex-col items-center p-4 h-screen
+}
+
+.mainContentContainer{
+    @apply bg-white shadow-xl mb-8
 }
