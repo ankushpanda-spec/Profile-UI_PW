@@ -182,7 +182,7 @@ export default function PdfViewer() {
     )
   }
 
-  function renderMainContent(){
+  function renderMainContent(scale:number){
     return(
       <main ref={mainContentRef} className={s.mainContentWrapper}>
           
@@ -204,14 +204,24 @@ export default function PdfViewer() {
 
   return (
    
-      
-        <div className={s.container}>
-          {renderHeader()}
-          <div className={s.subContainer}>
-            {renderSidebar()}
-            {renderMainContent()}
-          </div>
-        </div>
+      <>
+      {!isMobile ? 
+      <div className={s.container}>
+      {renderHeader()}
+      <div className={s.subContainer}>
+        {renderSidebar()}
+        {renderMainContent(scale)}
+      </div>
+    </div>
+  :
+  (<>
+
+  
+  {renderMainContent(0.6)}
+   </>)  
+  }
+      </>
+        
       
     
   );
