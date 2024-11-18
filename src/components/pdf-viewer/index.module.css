@@ -1,17 +1,17 @@
 .container{
-    @apply flex flex-col h-screen overflow-hidden
+    @apply flex flex-col h-screen overflow-hidden absolute top-0 left-0 w-full
 }
 .headerWrapper{
 
-    @apply bg-gray-100 flex items-center justify-between h-64 px-12  z-50 shadow-md
+    @apply bg-gray-100 flex items-center  h-64 px-12  z-50 shadow-md
 
 }
 .headerWrapper.darkMode{
     @apply bg-grey-1 text-white 
 }
 
-.headerContainer{
-    @apply flex items-center gap-8
+.headerCenter{
+    @apply flex items-center gap-8 w-full justify-center
 }
 
 
@@ -25,7 +25,9 @@
 .showSidebar{
     @apply translate-x-0 min-w-[240px] 
 }
-
+.tooltip{
+    @apply p-6
+}
 
 .sidebarSubContainer{
     @apply flex flex-col items-center py-12

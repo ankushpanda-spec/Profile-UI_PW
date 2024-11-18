@@ -7,9 +7,10 @@ import s from './index.module.css'
 import cn from 'clsx'
 
 import { ChevronLeft , ChevronRight} from '@/assets/icons'
-import { Typography , Tooltip } from '@pw-tech/omni-ui'
+import { Typography , Tooltip, Button } from '@pw-tech/omni-ui'
 import { PdfViewerProps } from './types';
 import Mode from '../icons/pdf-viewer/Mode';
+import FitToPage from '../icons/pdf-viewer/FitToPage';
 
 
 
@@ -22,13 +23,15 @@ export default function PdfViewer(props:PdfViewerProps){
   const [scale, setScale] = useState<number>(1.0)
   const [showSidebar, setShowSidebar] = useState<boolean>(true)
   const [darkMode , setDarkMode] = useState<boolean>(false)
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
 
   const mainContentRef = useRef<HTMLDivElement>(null)
   
   const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sidebarRef = useRef<HTMLDivElement>(null)
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([])
-  
+  const tooltipVariant = darkMode ? "dark" : "light";
 
 
   useEffect(() => {
@@ -59,10 +62,10 @@ export default function PdfViewer(props:PdfViewerProps){
   };
 
   const changeScale = (newScale: number) => {
-    setScale(Math.min(Math.max(0.5, newScale), 1.5))
+    setScale(Math.min(Math.max(0.25, newScale), 2))
   }
 
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (!mainContentRef.current) return;
@@ -97,6 +100,7 @@ export default function PdfViewer(props:PdfViewerProps){
         mainContent.removeEventListener('scroll', handleScroll);
       }
     };
+    
   }, [numPages , isMobile]);
 
   useEffect(() => {
@@ -106,57 +110,115 @@ export default function PdfViewer(props:PdfViewerProps){
         block: 'nearest',
       })
     }
+
   }, [pageNumber])
 
-  function renderPagination(){
-    return(
-      <div className={s.headerContainer}>
-      
-        <ChevronLeft className={cn(s.icon , {[s.disabled] : pageNumber ===1 , [s.darkMode]: darkMode}) } onClick ={()=> changePage(-1)}/>
-      
-      
-        <Typography > {pageNumber}  /   {numPages} </Typography>
-        
-       
-      
-      
-        <ChevronRight className={cn(s.icon , {[s.disabled] : pageNumber === numPages , [s.darkMode]: darkMode}) } onClick={() => changePage(1)} />
-      
-    </div>
-    )
-  }
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullScreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullScreen(false);
+    }
+  };
 
   function renderHeader(){
     return(
       <header className={cn(s.headerWrapper , {[s.darkMode]: darkMode})}>
-        
-      <MenuIcon className={cn(s.icon, {[s.darkMode]: darkMode})} onClick={() => setShowSidebar(!showSidebar)}/>
+      <div>
+      <MenuIcon
+  className={cn(s.icon, { [s.darkMode]: darkMode })}
+  onClick={() => {
+    setShowSidebar(!showSidebar);
+    
+   
+  }}
+/>
+
+      </div>
+      <div className={s.headerCenter}>
+      <Tooltip
+      label={<ChevronLeft className={cn(s.icon , {[s.disabled] : pageNumber ===1 , [s.darkMode]: darkMode}) } onClick ={()=> changePage(-1)}/>
+    }
       
-      {renderPagination()}
-    <div className={s.headerContainer}>
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+        Previous Page
+      </Typography>
+    </Tooltip>
+        
       
-        <ZoomOut className={cn(s.icon , {[s.disabled] : scale === 0.5  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale - 0.1)} />
-     
-      <input
-        type="range"
-        min={0.5}
-        max={1.5}
-        step={0.1}
-        value={scale}
-        onChange={(e) => setScale(Number(e.target.value))}
-        className="size-44"
-        aria-label="Zoom Level"
-      />
+        <Typography > {pageNumber}  /   {numPages} </Typography>
+        
+        <Tooltip
+      label={<ChevronRight className={cn(s.icon , {[s.disabled] : pageNumber === numPages , [s.darkMode]: darkMode}) } onClick={() => changePage(1)} />
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+     <Typography className={s.tooltip}>Next Page</Typography>
+    </Tooltip>
+      
       
         
-        
-     <ZoomIn className= {cn(s.icon , {[s.disabled] : scale === 1.5  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale + 0.1)}/>
       
     
-      <Mode className={cn(s.icon , {[s.darkMode]: darkMode}) } onClick={()=> setDarkMode(!darkMode)}/>
+      <Typography color="text-body-2">|</Typography>
+      <Tooltip
+      label={<ZoomOut className={cn(s.icon , {[s.disabled] : scale === 0.25  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale - 0.05)} />
+     
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+        Zoom Out
+      </Typography>
+    </Tooltip>
+        
+        <Typography>{Math.round(scale * 100)} %</Typography>
+
       
         
-    </div>
+        <Tooltip
+      label={<ZoomIn className= {cn(s.icon , {[s.disabled] : scale === 2 , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale + 0.05)}/>
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+        Zoom In
+      </Typography>
+    </Tooltip> 
+     
+      
+    <Typography color="text-body-2">|</Typography>
+    <Tooltip
+      label={ <Mode className={cn(s.icon , {[s.darkMode]: darkMode}) } onClick={()=> setDarkMode(!darkMode)}/>
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+       {`Switch to the ${darkMode ? 'light' : 'dark'} theme`}
+      </Typography>
+    </Tooltip> 
+    <Button onClick = {toggleFullScreen}>Button</Button>
+     
+      </div>
+    
   </header>
     )
   }
