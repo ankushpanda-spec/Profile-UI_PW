@@ -1,36 +1,45 @@
 import React, { useState, useRef ,useEffect , useMemo} from 'react'
 import {useScreen} from '@pw-tech/omni-context';
 import { pdfjs, Document, Page } from 'react-pdf'
-import 'react-pdf/dist/Page/AnnotationLayer.css'
-import 'react-pdf/dist/Page/TextLayer.css'
+
 import { MenuIcon, ZoomIn, ZoomOut } from '../icons'
 import s from './index.module.css'
 import cn from 'clsx'
 
 import { ChevronLeft , ChevronRight} from '@/assets/icons'
-import { Typography } from '@pw-tech/omni-ui'
+import { Typography , Tooltip } from '@pw-tech/omni-ui'
+import { PdfViewerProps } from './types';
+import Mode from '../icons/pdf-viewer/Mode';
 
 
 
-export default function PdfViewer() {
+export default function PdfViewer(props:PdfViewerProps){
+
+  const {pdfFile = "demo.pdf"} = props;
   const {isMobile} = useScreen();
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [scale, setScale] = useState<number>(1.0)
   const [showSidebar, setShowSidebar] = useState<boolean>(true)
+  const [darkMode , setDarkMode] = useState<boolean>(false)
 
   const mainContentRef = useRef<HTMLDivElement>(null)
   
   const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const sidebarRef = useRef<HTMLDivElement>(null)
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([])
-  const pdfFile = useMemo(() => "demo.pdf", []);
+  
 
 
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
   }, []);
-  
+
+  useEffect(() => { 
+   setPageNumber(1); 
+   setDarkMode(false)
+  }, [isMobile]);
+
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
@@ -88,7 +97,7 @@ export default function PdfViewer() {
         mainContent.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [numPages]);
+  }, [numPages , isMobile]);
 
   useEffect(() => {
     if (sidebarRef.current && thumbnailRefs.current[pageNumber - 1]) {
@@ -98,28 +107,35 @@ export default function PdfViewer() {
       })
     }
   }, [pageNumber])
-  function renderHeader(){
+
+  function renderPagination(){
     return(
-      <header className={s.headerWrapper}>
+      <div className={s.headerContainer}>
+      
+        <ChevronLeft className={cn(s.icon , {[s.disabled] : pageNumber ===1 , [s.darkMode]: darkMode}) } onClick ={()=> changePage(-1)}/>
+      
+      
+        <Typography > {pageNumber}  /   {numPages} </Typography>
         
-      <MenuIcon className={s.icon} onClick={() => setShowSidebar(!showSidebar)}/>
-    
-    <div className={s.headerContainer}>
-      
-        <ChevronLeft className={s.icon} onClick ={()=> changePage(-1)}/>
+       
       
       
-        <Typography > {pageNumber}</Typography>
-        <Typography>/</Typography>
-        <Typography> {numPages}</Typography>
-      
-      
-        <ChevronRight className={s.icon} onClick={() => changePage(1)} />
+        <ChevronRight className={cn(s.icon , {[s.disabled] : pageNumber === numPages , [s.darkMode]: darkMode}) } onClick={() => changePage(1)} />
       
     </div>
+    )
+  }
+
+  function renderHeader(){
+    return(
+      <header className={cn(s.headerWrapper , {[s.darkMode]: darkMode})}>
+        
+      <MenuIcon className={cn(s.icon, {[s.darkMode]: darkMode})} onClick={() => setShowSidebar(!showSidebar)}/>
+      
+      {renderPagination()}
     <div className={s.headerContainer}>
       
-        <ZoomOut className={s.icon} onClick={() => changeScale(scale - 0.1)} />
+        <ZoomOut className={cn(s.icon , {[s.disabled] : scale === 0.5  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale - 0.1)} />
      
       <input
         type="range"
@@ -132,7 +148,14 @@ export default function PdfViewer() {
         aria-label="Zoom Level"
       />
       
-        <ZoomIn className= {s.icon} onClick={() => changeScale(scale + 0.1)}/>
+        
+        
+     <ZoomIn className= {cn(s.icon , {[s.disabled] : scale === 1.5  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale + 0.1)}/>
+      
+    
+      <Mode className={cn(s.icon , {[s.darkMode]: darkMode}) } onClick={()=> setDarkMode(!darkMode)}/>
+      
+        
     </div>
   </header>
     )
@@ -140,7 +163,7 @@ export default function PdfViewer() {
 
   function renderSidebar(){
     return(
-      <aside className={cn(s.sidebarWrapper , {[s.showSidebar]: showSidebar}) } ref={sidebarRef}>
+      <aside className={cn(s.sidebarWrapper , {[s.showSidebar]: showSidebar , [s.darkMode]:darkMode}) } ref={sidebarRef}>
            
             
               <Document
@@ -184,7 +207,7 @@ export default function PdfViewer() {
 
   function renderMainContent(scale:number){
     return(
-      <main ref={mainContentRef} className={s.mainContentWrapper}>
+      <main ref={mainContentRef} className={cn(s.mainContentWrapper , {[s.darkMode]:darkMode})}>
           
             <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
          {Array.from({ length: numPages }, (_, index) => (
@@ -193,7 +216,7 @@ export default function PdfViewer() {
            ref={(el) => (pageRefs.current[index] = el)}
            className={s.mainContentContainer}
           >
-           <Page pageNumber={index + 1} scale={scale} renderTextLayer={false} />
+           <Page pageNumber={index + 1} scale={scale} renderTextLayer={false} renderAnnotationLayer={false} />
          </div>
         ))}
      </Document>
@@ -208,17 +231,19 @@ export default function PdfViewer() {
       {!isMobile ? 
       <div className={s.container}>
       {renderHeader()}
-      <div className={s.subContainer}>
+      <div className={cn(s.subContainer  , {[s.darkMode]: darkMode})}>
         {renderSidebar()}
         {renderMainContent(scale)}
       </div>
     </div>
   :
-  (<>
+  (
+   <>
+   <Typography className='flex justify-center items-center p-4'>{pageNumber} / {numPages}</Typography>
 
-  
   {renderMainContent(0.6)}
-   </>)  
+   </>
+   )  
   }
       </>
         
