@@ -7,10 +7,13 @@ import s from './index.module.css'
 import cn from 'clsx'
 
 import { ChevronLeft , ChevronRight} from '@/assets/icons'
-import { Typography , Tooltip, Button } from '@pw-tech/omni-ui'
+import { Typography , Tooltip, Button, InputField } from '@pw-tech/omni-ui'
 import { PdfViewerProps } from './types';
 import Mode from '../icons/pdf-viewer/Mode';
-import FitToPage from '../icons/pdf-viewer/FitToPage';
+import FullScreen from '../icons/pdf-viewer/FullScreen';
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import Rotate from '../icons/pdf-viewer/Rotate';
 
 
 
@@ -24,7 +27,8 @@ export default function PdfViewer(props:PdfViewerProps){
   const [showSidebar, setShowSidebar] = useState<boolean>(true)
   const [darkMode , setDarkMode] = useState<boolean>(false)
   const [isFullScreen, setIsFullScreen] = useState(false);
-
+  const [rotation, setRotation] = useState<number>(0)
+  const [inputPageNumber, setInputPageNumber] = useState<string>('1')
 
   const mainContentRef = useRef<HTMLDivElement>(null)
   
@@ -41,6 +45,7 @@ export default function PdfViewer(props:PdfViewerProps){
   useEffect(() => { 
    setPageNumber(1); 
    setDarkMode(false)
+   setRotation(0)
   }, [isMobile]);
 
 
@@ -64,6 +69,19 @@ export default function PdfViewer(props:PdfViewerProps){
   const changeScale = (newScale: number) => {
     setScale(Math.min(Math.max(0.25, newScale), 2))
   }
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullScreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullScreen(false);
+    }
+  };
+  const rotatePages = () => {
+    setRotation((prevRotation) => (prevRotation + 90) % 360)
+  }
+
 
   
   useEffect(() => {
@@ -88,6 +106,7 @@ export default function PdfViewer(props:PdfViewerProps){
       });
 
       setPageNumber(closestPage); // Update pageNumber based on scroll only
+      setInputPageNumber(closestPage.toString())
     };
 
     const mainContent = mainContentRef.current;
@@ -112,16 +131,25 @@ export default function PdfViewer(props:PdfViewerProps){
     }
 
   }, [pageNumber])
+  const handlePageInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '')
+    setInputPageNumber(value)
+  }
 
-  const toggleFullScreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      setIsFullScreen(true);
+  const handlePageInputBlur = () => {
+    const newPage = parseInt(inputPageNumber, 10)
+    if (!isNaN(newPage) && newPage >= 1 && newPage <= numPages) {
+      scrollToPage(newPage)
     } else {
-      document.exitFullscreen();
-      setIsFullScreen(false);
+      setInputPageNumber(pageNumber.toString())
     }
-  };
+  }
+
+  const handlePageInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handlePageInputBlur()
+    }
+  }
 
   function renderHeader(){
     return(
@@ -151,8 +179,17 @@ export default function PdfViewer(props:PdfViewerProps){
       </Typography>
     </Tooltip>
         
-      
-        <Typography > {pageNumber}  /   {numPages} </Typography>
+    <input
+            value={inputPageNumber}
+            onChange={handlePageInputChange}
+            onBlur={handlePageInputBlur}
+            onKeyUp={handlePageInputKeyPress}
+            className={cn(s.pageInput , {[s.darkMode]: darkMode})}
+            type="text"
+            size={2}
+            
+          />
+        <Typography >   /   {numPages} </Typography>
         
         <Tooltip
       label={<ChevronRight className={cn(s.icon , {[s.disabled] : pageNumber === numPages , [s.darkMode]: darkMode}) } onClick={() => changePage(1)} />
@@ -215,8 +252,30 @@ export default function PdfViewer(props:PdfViewerProps){
        {`Switch to the ${darkMode ? 'light' : 'dark'} theme`}
       </Typography>
     </Tooltip> 
-    <Button onClick = {toggleFullScreen}>Button</Button>
-     
+    <Tooltip
+      label={ <FullScreen className={cn(s.icon , {[s.darkMode]: darkMode}) } onClick={()=> toggleFullScreen()}/>
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+       Full Screen
+      </Typography>
+    </Tooltip> 
+    <Tooltip
+      label={ <Rotate className={cn(s.icon , {[s.darkMode]: darkMode}) } onClick={()=> rotatePages()}/>
+    }
+      
+      origin="center"
+      position="bottom"
+      variant={tooltipVariant}
+    >
+      <Typography className={s.tooltip}>
+       Rotate
+      </Typography>
+    </Tooltip> 
       </div>
     
   </header>
@@ -232,6 +291,7 @@ export default function PdfViewer(props:PdfViewerProps){
                 file={pdfFile}
                 onLoadSuccess={onDocumentLoadSuccess}
                 className={s.sidebarSubContainer}
+                rotate={rotation}
               >
                 {Array.from(new Array(numPages), (el, index) => 
                 <div key={index} ref={(el) => (thumbnailRefs.current[index] = el)}>
@@ -247,7 +307,9 @@ export default function PdfViewer(props:PdfViewerProps){
     >
       <Page
         pageNumber={index+1}
-        height={200}
+        height={150}
+        
+        
         renderTextLayer={false}
         renderAnnotationLayer={false}
       />
@@ -271,14 +333,14 @@ export default function PdfViewer(props:PdfViewerProps){
     return(
       <main ref={mainContentRef} className={cn(s.mainContentWrapper , {[s.darkMode]:darkMode})}>
           
-            <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+            <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess} rotate={rotation}>
          {Array.from({ length: numPages }, (_, index) => (
           <div
            key={index}
            ref={(el) => (pageRefs.current[index] = el)}
            className={s.mainContentContainer}
           >
-           <Page pageNumber={index + 1} scale={scale} renderTextLayer={false} renderAnnotationLayer={false} />
+           <Page pageNumber={index + 1} scale={scale} renderTextLayer={true} renderAnnotationLayer={true} />
          </div>
         ))}
      </Document>

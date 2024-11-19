@@ -34,7 +34,7 @@
 }
 
 .sidebarPage{
-    @apply cursor-pointer relative my-4 shadow-xl opacity-35 hover:opacity-100 transition-opacity 
+    @apply cursor-pointer relative my-4 shadow-xl opacity-35 hover:opacity-100 transition-opacity overflow-hidden
   
 }
 .selectedPage{
@@ -51,7 +51,12 @@
     @apply bg-grey-2
 }
 
-
+.pageInput{
+   @apply focus-visible:outline-none text-center
+}
+.pageInput.darkMode{
+    @apply text-white bg-black focus-visible:outline-none text-center
+}
 .icon{
     @apply size-32 cursor-pointer rounded p-4 hover:bg-primary-400 hover:text-white active:bg-primary-600
 }
