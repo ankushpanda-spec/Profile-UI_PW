@@ -16,7 +16,7 @@
 
 
 .sidebarWrapper{
-    @apply  bg-gray-100  overflow-y-auto h-full transition-all duration-[250ms] ease-in-out max-w-0 -translate-x-full  shadow-md z-30
+    @apply  bg-gray-100  overflow-y-auto max-h-screen transition-all duration-[250ms] ease-in-out max-w-0 -translate-x-full  shadow-md z-30
 }
 .sidebarWrapper.darkMode{
     @apply bg-grey-1 text-white
@@ -69,7 +69,8 @@
 
 
 .mainContentWrapper{
-    @apply flex-1 overflow-auto bg-gray-200 flex flex-col items-center p-8 h-screen
+    @apply flex-1 overflow-y-auto bg-gray-200 flex flex-col items-center p-8 max-h-screen touch-none;
+   
 }
 .mainContentWrapper.darkMode{
     @apply bg-grey-2

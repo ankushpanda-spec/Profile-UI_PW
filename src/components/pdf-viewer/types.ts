@@ -1,7 +1,7 @@
 import { PDFDataRangeTransport } from 'pdfjs-dist';
 
 
-type PdfFileType =
+export type PdfFileType =
   | string
   | File
   | {
@@ -12,4 +12,5 @@ type PdfFileType =
 
 export interface PdfViewerProps{
     pdfFile: PdfFileType;
+    title?: string;
 }

@@ -19,12 +19,12 @@ import Rotate from '../icons/pdf-viewer/Rotate';
 
 export default function PdfViewer(props:PdfViewerProps){
 
-  const {pdfFile = "demo.pdf"} = props;
+  const {pdfFile  , title} = props;
   const {isMobile} = useScreen();
   const [numPages, setNumPages] = useState<number>(0)
   const [pageNumber, setPageNumber] = useState<number>(1)
   const [scale, setScale] = useState<number>(1.0)
-  const [showSidebar, setShowSidebar] = useState<boolean>(true)
+  const [showSidebar, setShowSidebar] = useState<boolean>(false)
   const [darkMode , setDarkMode] = useState<boolean>(false)
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [rotation, setRotation] = useState<number>(0)
@@ -123,6 +123,30 @@ export default function PdfViewer(props:PdfViewerProps){
   }, [numPages , isMobile]);
 
   useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.01 : 0.01;
+        
+        changeScale(scale + delta);
+        
+      }
+    };
+
+    const mainContent = mainContentRef.current;
+    if (mainContent) {
+      mainContent.addEventListener('wheel', handleWheel, { passive: false });
+      
+    }
+
+    return () => {
+      if (mainContent) {
+        mainContent.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [scale, changeScale]);
+
+  useEffect(() => {
     if (sidebarRef.current && thumbnailRefs.current[pageNumber - 1]) {
       thumbnailRefs.current[pageNumber - 1]?.scrollIntoView({
         behavior: 'smooth',
@@ -154,7 +178,7 @@ export default function PdfViewer(props:PdfViewerProps){
   function renderHeader(){
     return(
       <header className={cn(s.headerWrapper , {[s.darkMode]: darkMode})}>
-      <div>
+      <div className='flex flex-row gap-16 justify-center items-center'>
       <MenuIcon
   className={cn(s.icon, { [s.darkMode]: darkMode })}
   onClick={() => {
@@ -163,7 +187,7 @@ export default function PdfViewer(props:PdfViewerProps){
    
   }}
 />
-
+{title && <Typography className='text-nowrap' weight="semi-bold">{title}</Typography>}
       </div>
       <div className={s.headerCenter}>
       <Tooltip
@@ -174,6 +198,7 @@ export default function PdfViewer(props:PdfViewerProps){
       position="bottom"
       variant={tooltipVariant}
     >
+      
       <Typography className={s.tooltip}>
         Previous Page
       </Typography>
@@ -308,7 +333,7 @@ export default function PdfViewer(props:PdfViewerProps){
       <Page
         pageNumber={index+1}
         height={150}
-        
+        width={150}
         
         renderTextLayer={false}
         renderAnnotationLayer={false}
