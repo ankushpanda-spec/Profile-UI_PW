@@ -44,8 +44,9 @@ export default function PdfViewer(props:PdfViewerProps){
 
   useEffect(() => { 
    setPageNumber(1); 
-   setDarkMode(false)
-   setRotation(0)
+   setDarkMode(false);
+   setRotation(0);
+   setInputPageNumber('1');
   }, [isMobile]);
 
 
@@ -66,9 +67,12 @@ export default function PdfViewer(props:PdfViewerProps){
     });
   };
 
-  const changeScale = (newScale: number) => {
-    setScale(Math.min(Math.max(0.25, newScale), 2))
-  }
+  const changeScale = (delta: number) => {
+    setScale((prevScale) => {
+      const newScale = prevScale + delta; 
+      return Math.max(0.25, Math.min(newScale, 2)); 
+    });
+  };
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
@@ -127,8 +131,8 @@ export default function PdfViewer(props:PdfViewerProps){
       if (e.ctrlKey) {
         e.preventDefault();
         const delta = e.deltaY > 0 ? -0.01 : 0.01;
-        
-        changeScale(scale + delta);
+       
+        changeScale(delta);
         
       }
     };
@@ -144,7 +148,7 @@ export default function PdfViewer(props:PdfViewerProps){
         mainContent.removeEventListener('wheel', handleWheel);
       }
     };
-  }, [scale, changeScale]);
+  }, [scale , isMobile]);
 
   useEffect(() => {
     if (sidebarRef.current && thumbnailRefs.current[pageNumber - 1]) {
@@ -233,7 +237,7 @@ export default function PdfViewer(props:PdfViewerProps){
     
       <Typography color="text-body-2">|</Typography>
       <Tooltip
-      label={<ZoomOut className={cn(s.icon , {[s.disabled] : scale === 0.25  , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale - 0.05)} />
+      label={<ZoomOut className={cn(s.icon , {[s.disabled] : scale === 0.25  , [s.darkMode]: darkMode}) } onClick={() => changeScale(-0.05)} />
      
     }
       
@@ -251,7 +255,7 @@ export default function PdfViewer(props:PdfViewerProps){
       
         
         <Tooltip
-      label={<ZoomIn className= {cn(s.icon , {[s.disabled] : scale === 2 , [s.darkMode]: darkMode}) } onClick={() => changeScale(scale + 0.05)}/>
+      label={<ZoomIn className= {cn(s.icon , {[s.disabled] : scale === 2 , [s.darkMode]: darkMode}) } onClick={() => changeScale(0.05)}/>
     }
       
       origin="center"

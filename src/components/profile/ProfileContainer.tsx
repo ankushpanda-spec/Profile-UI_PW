@@ -1,6 +1,7 @@
 import { CameraIcon } from '@/assets/images';
 import { lazy } from 'react';
 import s from "./index.module.css";
+import { Link } from 'react-router-dom';
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
 
@@ -18,6 +19,7 @@ const ProfileContainer = () => {
       </div>
       <div className={s.profileDetails}>
         <ProfileDetails />
+        <Link to="/pdf-viewer/testing-all-actions-009825">Open PDF</Link>
       </div>
     </div>
   );
