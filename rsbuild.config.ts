@@ -11,6 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './profile': './src/pages/Profile/index.tsx',
+        './pdf': './src/pages/Pdf/index.tsx'
       },
       shared: {
         react: {
