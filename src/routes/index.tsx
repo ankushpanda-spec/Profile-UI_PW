@@ -25,7 +25,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/pdf-viewer"
+        path="/pdf-viewer/:contentId"
         element={
           <ErrorBoundary>
             <Pdf />

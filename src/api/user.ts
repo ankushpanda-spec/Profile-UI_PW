@@ -1,6 +1,6 @@
 import {webSDK} from '@/integration/webSDK';
 import {ApiClient} from '@pw-tech/web-sdk';
-import {feedbackOverallApi , pdfDetialApi} from './constants';
+import {feedbackOverallApi , pdfDetailApi} from './constants';
 
 export const fetchUser = async () => {
   try {
@@ -44,7 +44,7 @@ export const getPdfDetails  = async (params: {
 }, contentId: string = '') => {
   
   try {
-    const apiPath = pdfDetialApi;
+    const apiPath = pdfDetailApi;
 
     // Construct parameters
     const queryParams = buildParams({
