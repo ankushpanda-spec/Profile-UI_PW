@@ -36,7 +36,7 @@ export default function PdfViewer(props:PdfViewerProps){
   const sidebarRef = useRef<HTMLDivElement>(null)
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([])
   const tooltipVariant = darkMode ? "dark" : "light";
-
+  
 
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -53,7 +53,7 @@ export default function PdfViewer(props:PdfViewerProps){
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
   }
-
+ 
   const scrollToPage = (page: number) => {
     pageRefs.current[page - 1]?.scrollIntoView({ behavior: 'auto' });
     setPageNumber(page); // Update displayed page only
@@ -85,8 +85,8 @@ export default function PdfViewer(props:PdfViewerProps){
   const rotatePages = () => {
     setRotation((prevRotation) => (prevRotation + 90) % 360)
   }
-
-
+  
+  
   
   useEffect(() => {
     const handleScroll = () => {
@@ -391,11 +391,30 @@ export default function PdfViewer(props:PdfViewerProps){
     </div>
   :
   (
-   <>
-   <Typography className='flex justify-center items-center p-4'>{pageNumber} / {numPages}</Typography>
-
-  {renderMainContent(0.6)}
-   </>
+   <div className={s.mContainer}>
+    <Typography  className='flex justify-center'>
+              {pageNumber} / {numPages}
+            </Typography>
+         
+    <main ref={mainContentRef} className={cn(s.mainContentWrapper , {[s.darkMode]:darkMode})}>
+          
+          <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+         
+       {Array.from({ length: numPages }, (_, index) => (
+        <div
+         key={index}
+         ref={(el) => (pageRefs.current[index] = el)}
+         className={s.mainContentContainer}
+        >
+        
+           
+         <Page pageNumber={index + 1} scale={0.5} />
+       </div>
+      ))}
+   </Document>
+        
+      </main>
+   </div>
    )  
   }
       </>

@@ -30,7 +30,7 @@
 }
 
 .sidebarSubContainer{
-    @apply flex flex-col items-center py-12
+    @apply flex  flex-grow flex-col items-center py-12
 }
 
 .sidebarPage{
@@ -69,7 +69,7 @@
 
 
 .mainContentWrapper{
-    @apply flex-1 overflow-y-auto bg-gray-200 flex flex-col items-center p-8 max-h-screen touch-none;
+    @apply flex-1 overflow-y-auto bg-gray-200  p-8 max-h-screen touch-none;
    
 }
 .mainContentWrapper.darkMode{
@@ -77,5 +77,5 @@
 }
 
 .mainContentContainer{
-    @apply bg-white shadow-xl mb-8
+    @apply bg-white shadow-xl mb-8 w-min m-auto
 }
