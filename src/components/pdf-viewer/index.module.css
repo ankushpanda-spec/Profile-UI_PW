@@ -3,7 +3,7 @@
 }
 .headerWrapper{
 
-    @apply bg-gray-100 flex items-center  h-64 px-12  z-50 shadow-md
+    @apply bg-gray-100 flex items-center  h-64 px-32  z-50 shadow-md
 
 }
 .headerWrapper.darkMode{
@@ -22,7 +22,7 @@
     @apply bg-grey-1 text-white
 }
 
-.showSidebar{
+.showThumbnail{
     @apply translate-x-0 min-w-[240px] 
 }
 .tooltip{
@@ -78,4 +78,8 @@
 
 .mainContentContainer{
     @apply bg-white shadow-xl mb-8 w-min m-auto
+}
+
+.mContainer{
+ @apply absolute top-0 left-0 w-full h-screen overflow-hidden bg-gray-200
 }

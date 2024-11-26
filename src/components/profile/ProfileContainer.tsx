@@ -19,7 +19,6 @@ const ProfileContainer = () => {
       </div>
       <div className={s.profileDetails}>
         <ProfileDetails />
-        <Link to="/pdf-viewer/testing-all-actions-009825">Open PDF</Link>
       </div>
     </div>
   );
