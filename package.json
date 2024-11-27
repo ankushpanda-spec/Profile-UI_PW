@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@module-federation/enhanced": "^0.5.2",
+    "@module-federation/rsbuild-plugin": "0.7.0",
     "@module-federation/runtime": "^0.5.2",
     "@pw-tech/omni-context": "0.0.6-alpha-1.0",
     "@pw-tech/omni-ui": "0.0.12-alpha-1.1",
@@ -29,8 +30,8 @@
     "@commitlint/config-conventional": "^19.5.0",
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.11.1",
-    "@rsbuild/core": "1.0.1-beta.15",
-    "@rsbuild/plugin-react": "1.0.1-beta.15",
+    "@rsbuild/core": "1.1.0",
+    "@rsbuild/plugin-react": "1.0.6",
     "@types/node": "^22.7.3",
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",

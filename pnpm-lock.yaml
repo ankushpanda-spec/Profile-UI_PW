@@ -11,6 +11,12 @@ importers:
       '@module-federation/enhanced':
         specifier: ^0.5.2
         version: 0.5.2(typescript@5.6.2)(webpack@5.95.0)
+<<<<<<< HEAD
+=======
+      '@module-federation/rsbuild-plugin':
+        specifier: 0.7.0
+        version: 0.7.0(@module-federation/enhanced@0.5.2(typescript@5.6.2)(webpack@5.95.0))(@rsbuild/core@1.1.0)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       '@module-federation/runtime':
         specifier: ^0.5.2
         version: 0.5.2
@@ -19,7 +25,11 @@ importers:
         version: 0.0.6-alpha-1.0(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)
       '@pw-tech/omni-ui':
         specifier: 0.0.12-alpha-1.1
+<<<<<<< HEAD
         version: 0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@types/babel__core@7.20.5)(canvas@2.11.2)(eslint@8.57.1)(tailwindcss@3.4.13)(type-fest@0.21.3)(typescript@5.6.2)
+=======
+        version: 0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@rspack/core@1.1.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(eslint@8.57.1)(tailwindcss@3.4.13)(type-fest@0.21.3)(typescript@5.6.2)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       '@pw-tech/web-sdk':
         specifier: 0.0.6-23
         version: 0.0.6-23
@@ -29,18 +39,24 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+<<<<<<< HEAD
       pdfjs-dist:
         specifier: ^4.8.69
         version: 4.8.69
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+<<<<<<< HEAD
       react-pdf:
         specifier: ^9.1.1
         version: 9.1.1(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       react-router-dom:
         specifier: ^6.26.2
         version: 6.26.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -64,11 +80,19 @@ importers:
         specifier: ^9.11.1
         version: 9.11.1
       '@rsbuild/core':
+<<<<<<< HEAD
         specifier: 1.0.1-beta.15
         version: 1.0.1-beta.15
       '@rsbuild/plugin-react':
         specifier: 1.0.1-beta.15
         version: 1.0.1-beta.15(@rsbuild/core@1.0.1-beta.15)
+=======
+        specifier: 1.1.0
+        version: 1.1.0
+      '@rsbuild/plugin-react':
+        specifier: 1.0.6
+        version: 1.0.6(@rsbuild/core@1.1.0)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       '@types/node':
         specifier: ^22.7.3
         version: 22.7.3
@@ -1142,10 +1166,13 @@ packages:
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
 
+<<<<<<< HEAD
   '@mapbox/node-pre-gyp@1.0.11':
     resolution: {integrity: sha512-Yhlar6v9WQgUp/He7BdgzOz8lqMQ8sU+jkCq7Wx8Myc5YFJLbEe7lgui/V7G1qB1DJykHSGwreceSaD60Y0PUQ==}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   '@module-federation/bridge-react-webpack-plugin@0.5.2':
     resolution: {integrity: sha512-G+7X1okrBBxZ8ADfsRWOaoqZETXZS/biOfoJamWrPTZ+4P5f/k53+bpKlAryXQKvGI10dmkoIz+iPvx6oyR3Mg==}
 
@@ -1178,6 +1205,16 @@ packages:
   '@module-federation/manifest@0.5.2':
     resolution: {integrity: sha512-rF6Ggg7FV2ZyJY4zjDirfXJdhkF7HPo+TChCMVuS8uwUvRVq+UnMkJw8FBA0FfVfqRpyDQ/k3M06emFifGYQ1w==}
 
+<<<<<<< HEAD
+=======
+  '@module-federation/rsbuild-plugin@0.7.0':
+    resolution: {integrity: sha512-yFH9ycOOB4iotnvVW8gEctZGy0GQCged4n9Sjw8tBDVSrWjWW+XcSEqJFj01rEuHWXK2VJRRrKo2DQJ7Lc0RKQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@module-federation/enhanced': 0.7.0
+      '@rsbuild/core': 1.x
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   '@module-federation/rspack@0.5.2':
     resolution: {integrity: sha512-WYbf/EXQiVT+9J1Um0ppQLWssBVPi2froKXL0JcXs/PR9aVzeWvGVNLfc8aCHcsAn+wSmDBJjAOV94IqeWfd/w==}
     peerDependencies:
@@ -1189,29 +1226,55 @@ packages:
       vue-tsc:
         optional: true
 
+<<<<<<< HEAD
   '@module-federation/runtime-tools@0.2.3':
     resolution: {integrity: sha512-capN8CVTCEqNAjnl102girrkevczoQfnQYyiYC4WuyKsg7+LUqfirIe1Eiyv6VSE2UgvOTZDnqvervA6rBOlmg==}
+=======
+  '@module-federation/runtime-tools@0.5.1':
+    resolution: {integrity: sha512-nfBedkoZ3/SWyO0hnmaxuz0R0iGPSikHZOAZ0N/dVSQaIzlffUo35B5nlC2wgWIc0JdMZfkwkjZRrnuuDIJbzg==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/runtime-tools@0.5.2':
     resolution: {integrity: sha512-T8Rr+wfbqg+CkHJml3y5Hk4a7gxJuCjXySJ8qdKQlPlS4yC1muAssTxeUBLwE+feWStQO/aJgJPYWtSQSLIRrQ==}
 
+<<<<<<< HEAD
   '@module-federation/runtime@0.2.3':
     resolution: {integrity: sha512-N+ZxBUb1mkmfO9XT1BwgYQgShtUTlijHbukqQ4afFka5lRAT+ayC7RKfHJLz0HbuexKPCmPBDfdmCnErR5WyTQ==}
+=======
+  '@module-federation/runtime@0.5.1':
+    resolution: {integrity: sha512-xgiMUWwGLWDrvZc9JibuEbXIbhXg6z2oUkemogSvQ4LKvrl/n0kbqP1Blk669mXzyWbqtSp6PpvNdwaE1aN5xQ==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/runtime@0.5.2':
     resolution: {integrity: sha512-TJtDTWShnXoMnKakiqT1d/ssdME1RBnyyno0s/DEEbHMh8u/9DCPn2I7nu88EV3v3rz/HaMXLTRaahNb3Sxr0w==}
 
+<<<<<<< HEAD
   '@module-federation/sdk@0.2.3':
     resolution: {integrity: sha512-W9zrPchLocyCBc/B8CW21akcfJXLl++9xBe1L1EtgxZGfj/xwHt0GcBWE/y+QGvYTL2a1iZjwscbftbUhxgxXg==}
+=======
+  '@module-federation/sdk@0.5.1':
+    resolution: {integrity: sha512-exvchtjNURJJkpqjQ3/opdbfeT2wPKvrbnGnyRkrwW5o3FH1LaST1tkiNviT6OXTexGaVc2DahbdniQHVtQ7pA==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/sdk@0.5.2':
     resolution: {integrity: sha512-NYjj+/8SI1Fvl3GwYZdclgalWCfqkygAbraUlOCFffyS9sLoFmThe1/rwbg42sC40H0YjmRfgxgAIHsXkTBHew==}
 
+<<<<<<< HEAD
   '@module-federation/third-party-dts-extractor@0.5.2':
     resolution: {integrity: sha512-cNGtUpRWC8qpH4u1/qgoNAU0RHBQjmxM17a1pomRWL0Bl/6vRLp9z1hTsmG2RM3VxBU8vdzA89ahfEisAWQw/g==}
 
   '@module-federation/webpack-bundler-runtime@0.2.3':
     resolution: {integrity: sha512-L/jt2uJ+8dwYiyn9GxryzDR6tr/Wk8rpgvelM2EBeLIhu7YxCHSmSjQYhw3BTux9zZIr47d1K9fGjBFsVRd/SQ==}
+=======
+  '@module-federation/sdk@0.7.0':
+    resolution: {integrity: sha512-4V/ACYDoEOlV8sFcIBx6DPd6DQ/Zn5ckbdNVgO+8md3F9rHUdZowEDCpwzg4au0ZDMiaO2VS/6PIIVKKJw+W4g==}
+
+  '@module-federation/third-party-dts-extractor@0.5.2':
+    resolution: {integrity: sha512-cNGtUpRWC8qpH4u1/qgoNAU0RHBQjmxM17a1pomRWL0Bl/6vRLp9z1hTsmG2RM3VxBU8vdzA89ahfEisAWQw/g==}
+
+  '@module-federation/webpack-bundler-runtime@0.5.1':
+    resolution: {integrity: sha512-mMhRFH0k2VjwHt3Jol9JkUsmI/4XlrAoBG3E0o7HoyoPYv1UFOWyqAflfANcUPgbYpvqmyLzDcO+3IT36LXnrA==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/webpack-bundler-runtime@0.5.2':
     resolution: {integrity: sha512-YwOXL8pnBJCD9wzEqd5hnTtxiXrNPVJev9go7VgW3NtpUwxuGqDiyI2d4o7VuuJZZpaXbwUREXPAwGYJFaKKtw==}
@@ -1525,6 +1588,7 @@ packages:
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
 
+<<<<<<< HEAD
   '@rsbuild/core@1.0.1-beta.15':
     resolution: {integrity: sha512-Y9N5GvGhorbP5RCOJDYZ+gUJGSBbDAUlntLeXFOF4bSQU7Pa+tzt/tuL44wxuPjjEMj87wQz4K6wYOUVov9gZw==}
     engines: {node: '>=16.7.0'}
@@ -1585,6 +1649,68 @@ packages:
 
   '@rspack/core@1.0.0-beta.5':
     resolution: {integrity: sha512-X8amU6N26FE4/3JPs+asTIeBZlESrfCC4jlfEOc6bsjLCiMK8NkF3r84xFG7qpGBe178c+yXwmBluyHUkMGHqg==}
+=======
+  '@rsbuild/core@1.1.0':
+    resolution: {integrity: sha512-SyQlJjWgR1VwLt4nuiY0g6L9INv2koH232TeDZuopvNgbRytskD3kJ8bbGWBBXsQjZjtqBEh5ishqf8CIfF8dQ==}
+    engines: {node: '>=16.7.0'}
+    hasBin: true
+
+  '@rsbuild/plugin-react@1.0.6':
+    resolution: {integrity: sha512-k2VS7nvNm74DlVQROK+w+Ua1j60n3qSnVFva8zjmj6uakLCxxp85aRwfEHzaVP/YdDLffweypROuQPYvTZ57ew==}
+    peerDependencies:
+      '@rsbuild/core': 1.x
+
+  '@rspack/binding-darwin-arm64@1.1.4':
+    resolution: {integrity: sha512-mSN9OWvenbD125THkj3nFOlJCk5o44C8uc0YH7gK1uR77g98USiC/4eSWXKqP+sRfDBplQEzannuPrBW1nPimQ==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@rspack/binding-darwin-x64@1.1.4':
+    resolution: {integrity: sha512-ECmcTJecXwqhqqpOjfjIcwDp8UqJ3D1Crc2COG+wUfwejtbqs9twUTaufZz7U7xna+oyfJ4GRNSKS9xs4N2kPQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rspack/binding-linux-arm64-gnu@1.1.4':
+    resolution: {integrity: sha512-QVRFV6+z1DopeGn8rLRbBNrWXuBvp7J19lTtvx9F5mItzTiBVHmNqFt31namm59xkhHJ3leng7l2F39qcOMOIA==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rspack/binding-linux-arm64-musl@1.1.4':
+    resolution: {integrity: sha512-UCateQWfEpEyFOC/tkuicXpIm81s5DavcwKjX3wwh1JB/KO6UxGHK8F75BV4K3Coo/UEiNCvL8xrB7eDjMDwYg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rspack/binding-linux-x64-gnu@1.1.4':
+    resolution: {integrity: sha512-Nz5Bt1PDxebVRU321h9AGkLRQL5n9Xgt+rluWAXLVtyxM9aPavmvu1n6/G9stXwQdnUVrZIUs7EzhIhWBe5R/A==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rspack/binding-linux-x64-musl@1.1.4':
+    resolution: {integrity: sha512-1XG795a+M4vE7JLyeDa1oktr4WU/I5IQ9d8Vk3PVtF59IxnKpjOb3vdGhXP7Ke2zWP6C2YQzWotez6AbO3uWeA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rspack/binding-win32-arm64-msvc@1.1.4':
+    resolution: {integrity: sha512-1hXOgHxnrBmjBNUluy9MbFMQi4lnAS199JD5UHRc2mx5i+D8cjAiBsWHzIcK4xzsxu2IYgVGsJcdIA8/zV/PVQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rspack/binding-win32-ia32-msvc@1.1.4':
+    resolution: {integrity: sha512-Jfq6gF5QKOYZsgDYRx+fWipDHmtHxq6jniws1WAE8F5w1qIt/dAHzW3a6+3VwCih9lQEEH3Rimy/ECB0oergng==}
+    cpu: [ia32]
+    os: [win32]
+
+  '@rspack/binding-win32-x64-msvc@1.1.4':
+    resolution: {integrity: sha512-d9HUGVfNFhB+r32kDPkzHeMmgwemTFsDymnWJUgUrojzTJ326JrDmEXVeCnAHfwBSC9w4/mp4H+4iGhIdKSo9w==}
+    cpu: [x64]
+    os: [win32]
+
+  '@rspack/binding@1.1.4':
+    resolution: {integrity: sha512-XdR/4DACpLqNjxEw+ikg5FN2dQbOAxj7fDlndNio0l+m8ThPiIsetkJ2FNSlxt/K4SVnIrwAkhE5kabVNKR4EA==}
+
+  '@rspack/core@1.1.4':
+    resolution: {integrity: sha512-JUU1pS11TY3/MwnezBfLLp3+7zfkd4Adzo8Pv4f4R1KoJyX1FYBFBcKnfZBlaGYi2C2e5ZDrrHxQlrPmygjbuw==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@swc/helpers': '>=0.5.1'
@@ -1592,8 +1718,13 @@ packages:
       '@swc/helpers':
         optional: true
 
+<<<<<<< HEAD
   '@rspack/lite-tapable@1.0.0':
     resolution: {integrity: sha512-7MZf4lburSUZoEenwazwUDKHhqyfnLCGnQ/tKcUtztfmVzfjZfRn/EaiT0AKkYGnL2U8AGsw89oUeVyvaOLVCw==}
+=======
+  '@rspack/lite-tapable@1.0.1':
+    resolution: {integrity: sha512-VynGOEsVw2s8TAlLf/uESfrgfrq2+rcXB1muPJYBWbsm1Oa6r5qVQhjA5ggM6z/coYPrsVMgovl3Ff7Q7OCp1w==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     engines: {node: '>=16.0.0'}
 
   '@rspack/plugin-react-refresh@1.0.0':
@@ -1678,8 +1809,13 @@ packages:
     resolution: {integrity: sha512-DOBOK255wfQxguUta2INKkzPj6AIS6iafZYiYmHn6W3pHlycSRRlvWKCfLDG10fXfLWqE3DJHgRUOyJYmARa7g==}
     engines: {node: '>=10'}
 
+<<<<<<< HEAD
   '@swc/helpers@0.5.11':
     resolution: {integrity: sha512-YNlnKRWF2sVojTpIyzwou9XoTNbzbzONwRhOoniEioF1AtaitTvVZblaQRrAzChWQ1bLYyYSWzM18y4WwgzJ+A==}
+=======
+  '@swc/helpers@0.5.15':
+    resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@tailwindcss/forms@0.5.7':
     resolution: {integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==}
@@ -1978,9 +2114,12 @@ packages:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     deprecated: Use your platform's native atob() and btoa() methods instead
 
+<<<<<<< HEAD
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
     engines: {node: '>= 0.6'}
@@ -2101,6 +2240,7 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
+<<<<<<< HEAD
   aproba@2.0.0:
     resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
 
@@ -2109,6 +2249,8 @@ packages:
     engines: {node: '>=10'}
     deprecated: This package is no longer supported.
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
@@ -2274,9 +2416,12 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
+<<<<<<< HEAD
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   batch@0.6.1:
     resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
 
@@ -2291,9 +2436,12 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
+<<<<<<< HEAD
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
 
@@ -2336,9 +2484,12 @@ packages:
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
+<<<<<<< HEAD
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   builtin-modules@3.3.0:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
@@ -2384,6 +2535,7 @@ packages:
   caniuse-lite@1.0.30001664:
     resolution: {integrity: sha512-AmE7k4dXiNKQipgn7a2xg558IRqPN3jMQY/rOsbxDhrd0tyChwbITBfiwtnqz8bi2M5mIWbxAYBvk7W7QBUS2g==}
 
+<<<<<<< HEAD
   canvas@2.11.2:
     resolution: {integrity: sha512-ItanGBMrmRV7Py2Z+Xhs7cT+FNt5K0vPL4p9EZ/UX/Mu7hFbkxSjKF2KVtPwX7UYWp7dRKnrTvReflgrItJbdw==}
     engines: {node: '>=6'}
@@ -2392,6 +2544,8 @@ packages:
     resolution: {integrity: sha512-esx4bYDznnqgRX4G8kaEaf0W3q8xIc51WpmrIitDzmcoEgwnv9wSKdzT6UxWZ4wkVu5+ileofppX0TpyviJRdQ==}
     engines: {node: ^18.12.0 || >= 20.9.0}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   case-sensitive-paths-webpack-plugin@2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
     engines: {node: '>=4'}
@@ -2431,6 +2585,7 @@ packages:
     resolution: {integrity: sha512-n8enUVCED/KVRQlab1hr3MVpcVMvxtZjmEa956u+4YijlmQED223XMSYj2tLuKvr4jcCTzNNMpQDUer72MMmzA==}
     engines: {node: '>= 14.16.0'}
 
+<<<<<<< HEAD
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
@@ -2438,6 +2593,8 @@ packages:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   chrome-trace-event@1.0.4:
     resolution: {integrity: sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==}
     engines: {node: '>=6.0'}
@@ -2495,10 +2652,13 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
+<<<<<<< HEAD
   color-support@1.1.3:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   colord@2.9.3:
     resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
 
@@ -2552,9 +2712,12 @@ packages:
     resolution: {integrity: sha512-U73+6lQFmfiNPrYbXqr6kZ1i1wiRqXnp2nhMsINseWXO8lDau0LGEffJ8kQi4EjLZympVgRdvqjAgiZ1tgzDDA==}
     engines: {node: '>=0.8'}
 
+<<<<<<< HEAD
   console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
     engines: {node: '>= 0.6'}
@@ -2602,6 +2765,12 @@ packages:
   core-js@3.38.1:
     resolution: {integrity: sha512-OP35aUorbU3Zvlx7pjsFdu1rGNnD4pgw/CWoYzRY3t2EzoVT7shKHY1dlAy3f41cGIO7ZDPQimhGFTlEYkG/Hw==}
 
+<<<<<<< HEAD
+=======
+  core-js@3.39.0:
+    resolution: {integrity: sha512-raM0ew0/jJUqkJ0E6e8UDtl+y/7ktFivgWvqw8dNSQeNWoSDLvQ1H/RN3aPXB9tBd4/FhyR4RDPGhsNIMsAn7g==}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
@@ -2826,6 +2995,7 @@ packages:
   decimal.js@10.4.3:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
 
+<<<<<<< HEAD
   decompress-response@4.2.1:
     resolution: {integrity: sha512-jOSne2qbyE+/r8G1VU+G/82LBs2Fs4LAsTiLSHOCOMZQl2OKZ6i8i4IyHemTe+/yIXOtTcRQMzPcgyhoFlqPkw==}
     engines: {node: '>=8'}
@@ -2834,6 +3004,8 @@ packages:
     resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
     engines: {node: '>=10'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   dedent@0.7.0:
     resolution: {integrity: sha512-Q6fKUPqnAHAyhiUgFU7BUzLiv0kd8saH9al7tnu5Q/okj6dnupxyTgFIBjVzJATdfIAm9NAsvXNzjaKa+bxVyA==}
 
@@ -2844,10 +3016,13 @@ packages:
     resolution: {integrity: sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< HEAD
   deep-extend@0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
@@ -2886,18 +3061,24 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
+<<<<<<< HEAD
   dequal@2.0.3:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
 
+<<<<<<< HEAD
   detect-libc@2.0.3:
     resolution: {integrity: sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw==}
     engines: {node: '>=8'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   detect-newline@3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
@@ -3026,9 +3207,12 @@ packages:
     resolution: {integrity: sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg==}
     engines: {node: '>= 0.8'}
 
+<<<<<<< HEAD
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   enhanced-resolve@5.17.1:
     resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
     engines: {node: '>=10.13.0'}
@@ -3289,10 +3473,13 @@ packages:
     resolution: {integrity: sha512-Zk/eNKV2zbjpKzrsQ+n1G6poVbErQxJ0LBOJXaKZ1EViLzH+hrLu9cdXI4zw9dBQJslwBEpbQ2P1oS7nDxs6jQ==}
     engines: {node: '>= 0.8.0'}
 
+<<<<<<< HEAD
   expand-template@2.0.3:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
     engines: {node: '>=6'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   expand-tilde@2.0.2:
     resolution: {integrity: sha512-A5EmesHW6rfnZ9ysHQjPdJRni0SRar0tjtG5MNtm9n5TUvsYU8oozprtRD4AqHxcZWWlVuAmQo2nWKfN9oyjTw==}
     engines: {node: '>=0.10.0'}
@@ -3440,9 +3627,12 @@ packages:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
 
+<<<<<<< HEAD
   fs-constants@1.0.0:
     resolution: {integrity: sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   fs-extra@10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
@@ -3455,10 +3645,13 @@ packages:
     resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}
     engines: {node: '>=10'}
 
+<<<<<<< HEAD
   fs-minipass@2.1.0:
     resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
     engines: {node: '>= 8'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   fs-monkey@1.0.6:
     resolution: {integrity: sha512-b1FMfwetIKymC0eioW7mTywihSQE4oLzQn1dB6rZB5fx/3NpNEdAWeCSMB+60/AeT0TCXsxzAlcYVEFCTAksWg==}
 
@@ -3480,11 +3673,14 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
+<<<<<<< HEAD
   gauge@3.0.2:
     resolution: {integrity: sha512-+5J6MS/5XksCuXq++uFRsnUd7Ovu1XenbeuIuNRJxYWjgQbPuFhT14lAvsWfqfAmnwluf1OwMjz39HjfLPci0Q==}
     engines: {node: '>=10'}
     deprecated: This package is no longer supported.
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -3521,9 +3717,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+<<<<<<< HEAD
   github-from-package@0.0.0:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -3624,9 +3823,12 @@ packages:
     resolution: {integrity: sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< HEAD
   has-unicode@2.0.1:
     resolution: {integrity: sha512-8Rf9Y83NBReMnx0gFzA8JImQACstCYWUplepDa9xprwwtmgEZUF0h/i5xSA625zB/I37EtrswSST6OXxwaaIJQ==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
@@ -3744,9 +3946,12 @@ packages:
     resolution: {integrity: sha512-00n6YnVHKrinT9t0d9+5yZC6UBNJANpYEQvL2LlX6Ab9lnmxzIRcEmTPuyGScvl1+jKuCICX1Z0Ab1pPKKdikA==}
     engines: {node: '>=4'}
 
+<<<<<<< HEAD
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
     engines: {node: '>= 4'}
@@ -3987,6 +4192,13 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
+<<<<<<< HEAD
+=======
+  isomorphic-rslog@0.0.5:
+    resolution: {integrity: sha512-pkU3vvajRJ0LKLaMFy8Cj7ElbFUdkQKVhUk+DQsVCYsLW4uulU65C2s3l+Sm5OtiOwprzkYYcAIJa/COwCYHWA==}
+    engines: {node: '>=14.17.6'}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   isomorphic-ws@5.0.0:
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
     peerDependencies:
@@ -4441,9 +4653,12 @@ packages:
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
+<<<<<<< HEAD
   make-cancellable-promise@1.3.2:
     resolution: {integrity: sha512-GCXh3bq/WuMbS+Ky4JBPW1hYTOU+znU+Q5m9Pu+pI8EoUqIHk9+tviOKC6/qhHh8C4/As3tzJ69IF32kdz85ww==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -4452,9 +4667,12 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
 
+<<<<<<< HEAD
   make-event-props@1.6.2:
     resolution: {integrity: sha512-iDwf7mA03WPiR8QxvcVHmVWEPfMY1RZXerDVNCRYW7dUr2ppH3J58Rwb39/WG39yTZdRSxr3x+2v22tvI0VEvA==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   makeerror@1.0.12:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
 
@@ -4479,6 +4697,7 @@ packages:
   merge-descriptors@1.0.3:
     resolution: {integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==}
 
+<<<<<<< HEAD
   merge-refs@1.3.0:
     resolution: {integrity: sha512-nqXPXbso+1dcKDpPCXvwZyJILz+vSLqGGOnDrYHQYE+B8n9JTCekVLC65AfCpR4ggVyA/45Y0iR9LDyS2iI+zA==}
     peerDependencies:
@@ -4487,6 +4706,8 @@ packages:
       '@types/react':
         optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
 
@@ -4523,6 +4744,7 @@ packages:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
 
+<<<<<<< HEAD
   mimic-response@2.1.0:
     resolution: {integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==}
     engines: {node: '>=8'}
@@ -4531,6 +4753,8 @@ packages:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   mini-css-extract-plugin@2.9.1:
     resolution: {integrity: sha512-+Vyi+GCCOHnrJ2VPS+6aPoXN2k2jgUzDRhTFLjjTBn23qyXJXkjUWQgTL+mXpF5/A8ixLdCc6kWsoeOjKGejKQ==}
     engines: {node: '>= 12.13.0'}
@@ -4558,6 +4782,7 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
+<<<<<<< HEAD
   minipass@3.3.6:
     resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
     engines: {node: '>=8'}
@@ -4566,10 +4791,13 @@ packages:
     resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   minipass@7.1.2:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+<<<<<<< HEAD
   minizlib@2.1.2:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
     engines: {node: '>= 8'}
@@ -4577,15 +4805,20 @@ packages:
   mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
 
+<<<<<<< HEAD
   mkdirp@1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
@@ -4599,17 +4832,23 @@ packages:
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
 
+<<<<<<< HEAD
   nan@2.22.0:
     resolution: {integrity: sha512-nbajikzWTMwsW+eSsNm3QwlOs7het9gGJU5dDZzRTQGk03vyBOauxgI4VakDzE0PtsGTmXPsXTbbjVhRwR5mpw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   nanoid@3.3.7:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+<<<<<<< HEAD
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
 
@@ -4626,6 +4865,7 @@ packages:
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
+<<<<<<< HEAD
   node-abi@3.71.0:
     resolution: {integrity: sha512-SZ40vRiy/+wRTf21hxkkEjPJZpARzUMVcJoQse2EF8qkUWbbO2z7vd5oA/H6bVH6SZQ5STGcu0KRDS7biNRfxw==}
     engines: {node: '>=10'}
@@ -4642,6 +4882,8 @@ packages:
       encoding:
         optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   node-forge@1.3.1:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
     engines: {node: '>= 6.13.0'}
@@ -4656,11 +4898,14 @@ packages:
     resolution: {integrity: sha512-OXdegQq03OmXEjt2hZP33W2YPs/E5BcFQks46+G2gAxs4gHOIVD1u7EqlYLYSKsaIpyKCK9Gbk0ta1/gjRSMRQ==}
     engines: {node: '>=6'}
 
+<<<<<<< HEAD
   nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
     engines: {node: '>=6'}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -4677,10 +4922,13 @@ packages:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
 
+<<<<<<< HEAD
   npmlog@5.0.1:
     resolution: {integrity: sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw==}
     deprecated: This package is no longer supported.
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   nth-check@1.0.2:
     resolution: {integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==}
 
@@ -4865,6 +5113,7 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
+<<<<<<< HEAD
   path2d@0.2.2:
     resolution: {integrity: sha512-+vnG6S4dYcYxZd+CZxzXCNKdELYZSKfohrk98yajCo1PtRoDgCTrrwOvK1GT0UoAdVszagDVllQc0U1vaX4NUQ==}
     engines: {node: '>=6'}
@@ -4877,6 +5126,8 @@ packages:
     resolution: {integrity: sha512-IHZsA4T7YElCKNNXtiLgqScw4zPd3pG9do8UrznC757gMd7UPeHSL2qwNNMJo4r79fl8oj1Xx+1nh2YkzdMpLQ==}
     engines: {node: '>=18'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   performance-now@2.1.0:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
 
@@ -5336,11 +5587,14 @@ packages:
     resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+<<<<<<< HEAD
   prebuild-install@7.1.2:
     resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
     engines: {node: '>=10'}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   prelude-ls@1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
     engines: {node: '>= 0.8.0'}
@@ -5447,9 +5701,12 @@ packages:
   psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
 
+<<<<<<< HEAD
   pump@3.0.2:
     resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -5489,10 +5746,13 @@ packages:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
 
+<<<<<<< HEAD
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   react-app-polyfill@3.0.0:
     resolution: {integrity: sha512-sZ41cxiU5llIB003yxxQBYrARBqe0repqPTTYBTmMqTz9szeBbE37BehCE891NZsmdZqqP+xWKdT3eo3vOzN8w==}
     engines: {node: '>=14'}
@@ -5541,6 +5801,7 @@ packages:
     peerDependencies:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
+<<<<<<< HEAD
   react-pdf@9.1.1:
     resolution: {integrity: sha512-Cn3RTJZMqVOOCgLMRXDamLk4LPGfyB2Np3OwQAUjmHIh47EpuGW1OpAA1Z1GVDLoHx4d5duEDo/YbUkDbr4QFQ==}
     peerDependencies:
@@ -5551,6 +5812,8 @@ packages:
       '@types/react':
         optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   react-redux@9.1.2:
     resolution: {integrity: sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==}
     peerDependencies:
@@ -5890,9 +6153,12 @@ packages:
     resolution: {integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==}
     engines: {node: '>= 0.8.0'}
 
+<<<<<<< HEAD
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
     engines: {node: '>= 0.4'}
@@ -5929,6 +6195,7 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+<<<<<<< HEAD
   simple-concat@1.0.1:
     resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
 
@@ -5938,6 +6205,8 @@ packages:
   simple-get@4.0.1:
     resolution: {integrity: sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
@@ -6105,10 +6374,13 @@ packages:
     resolution: {integrity: sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==}
     engines: {node: '>=6'}
 
+<<<<<<< HEAD
   strip-json-comments@2.0.1:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
@@ -6194,6 +6466,7 @@ packages:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
 
+<<<<<<< HEAD
   tar-fs@2.1.1:
     resolution: {integrity: sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==}
 
@@ -6205,6 +6478,8 @@ packages:
     resolution: {integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A==}
     engines: {node: '>=10'}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
     engines: {node: '>=8'}
@@ -6265,9 +6540,12 @@ packages:
   thunky@1.1.0:
     resolution: {integrity: sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==}
 
+<<<<<<< HEAD
   tiny-invariant@1.3.3:
     resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tinyexec@0.3.0:
     resolution: {integrity: sha512-tVGE0mVJPGb0chKhqmsoosjsS+qUnJVGJpZgsHYQcGoPlG3B51R3PouqTgEGH2Dc9jjFyOqOpix6ZHNMXp1FZg==}
 
@@ -6290,9 +6568,12 @@ packages:
     resolution: {integrity: sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag==}
     engines: {node: '>=6'}
 
+<<<<<<< HEAD
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tr46@1.0.1:
     resolution: {integrity: sha512-dTpowEjclQ7Kgx5SdBkqRzVhERQXov8/l9Ft9dVM9fmg0W0KQSVaXX9T4i6twCPNtYiZM53lpSSUAwJbFPOHxA==}
 
@@ -6315,6 +6596,12 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
+<<<<<<< HEAD
+=======
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tsscmp@1.0.6:
     resolution: {integrity: sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA==}
     engines: {node: '>=0.6.x'}
@@ -6325,9 +6612,12 @@ packages:
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
 
+<<<<<<< HEAD
   tunnel-agent@0.6.0:
     resolution: {integrity: sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   type-check@0.3.2:
     resolution: {integrity: sha512-ZCmOJdvOWDBYJlzAoFkC+Q0+bUyEOS1ltgp1MGU03fqHG+dbi9tBFU2Rd9QKiDZFAYrhPh2JUf7rZRIuHRKtOg==}
     engines: {node: '>= 0.8.0'}
@@ -6513,9 +6803,12 @@ packages:
   walker@1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
 
+<<<<<<< HEAD
   warning@4.0.3:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   watchpack@2.4.2:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
     engines: {node: '>=10.13.0'}
@@ -6523,9 +6816,12 @@ packages:
   wbuf@1.7.3:
     resolution: {integrity: sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==}
 
+<<<<<<< HEAD
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
 
@@ -6600,9 +6896,12 @@ packages:
   whatwg-mimetype@2.3.0:
     resolution: {integrity: sha512-M4yMwr6mAnQz76TbJm914+gPpB/nCwvZbJU28cUD6dR004SAxDLOOSUaB1JDRqLtaOV/vi0IC5lEAGFgrjGv/g==}
 
+<<<<<<< HEAD
   whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   whatwg-url@7.1.0:
     resolution: {integrity: sha512-WUu7Rg1DroM7oQvGWfOiAK21n74Gg+T4elXEQYkOhtyLeWiJFoOGLXPKI/9gzIie9CtwVLm8wtw6YJdKyxSjeg==}
 
@@ -6634,9 +6933,12 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
+<<<<<<< HEAD
   wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
@@ -6760,9 +7062,12 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
+<<<<<<< HEAD
   yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
@@ -8037,7 +8342,11 @@ snapshots:
       jest-util: 28.1.3
       slash: 3.0.0
 
+<<<<<<< HEAD
   '@jest/core@27.5.1(canvas@2.11.2)':
+=======
+  '@jest/core@27.5.1':
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@jest/console': 27.5.1
       '@jest/reporters': 27.5.1
@@ -8220,6 +8529,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
+<<<<<<< HEAD
   '@mapbox/node-pre-gyp@1.0.11':
     dependencies:
       detect-libc: 2.0.3
@@ -8236,6 +8546,8 @@ snapshots:
       - supports-color
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   '@module-federation/bridge-react-webpack-plugin@0.5.2':
     dependencies:
       '@module-federation/sdk': 0.5.2
@@ -8307,6 +8619,15 @@ snapshots:
       - utf-8-validate
       - vue-tsc
 
+<<<<<<< HEAD
+=======
+  '@module-federation/rsbuild-plugin@0.7.0(@module-federation/enhanced@0.5.2(typescript@5.6.2)(webpack@5.95.0))(@rsbuild/core@1.1.0)':
+    dependencies:
+      '@module-federation/enhanced': 0.5.2(typescript@5.6.2)(webpack@5.95.0)
+      '@module-federation/sdk': 0.7.0
+      '@rsbuild/core': 1.1.0
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   '@module-federation/rspack@0.5.2(typescript@5.6.2)':
     dependencies:
       '@module-federation/bridge-react-webpack-plugin': 0.5.2
@@ -8323,38 +8644,69 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+<<<<<<< HEAD
   '@module-federation/runtime-tools@0.2.3':
     dependencies:
       '@module-federation/runtime': 0.2.3
       '@module-federation/webpack-bundler-runtime': 0.2.3
+=======
+  '@module-federation/runtime-tools@0.5.1':
+    dependencies:
+      '@module-federation/runtime': 0.5.1
+      '@module-federation/webpack-bundler-runtime': 0.5.1
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/runtime-tools@0.5.2':
     dependencies:
       '@module-federation/runtime': 0.5.2
       '@module-federation/webpack-bundler-runtime': 0.5.2
 
+<<<<<<< HEAD
   '@module-federation/runtime@0.2.3':
     dependencies:
       '@module-federation/sdk': 0.2.3
+=======
+  '@module-federation/runtime@0.5.1':
+    dependencies:
+      '@module-federation/sdk': 0.5.1
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/runtime@0.5.2':
     dependencies:
       '@module-federation/sdk': 0.5.2
 
+<<<<<<< HEAD
   '@module-federation/sdk@0.2.3': {}
 
   '@module-federation/sdk@0.5.2': {}
 
+=======
+  '@module-federation/sdk@0.5.1': {}
+
+  '@module-federation/sdk@0.5.2': {}
+
+  '@module-federation/sdk@0.7.0':
+    dependencies:
+      isomorphic-rslog: 0.0.5
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   '@module-federation/third-party-dts-extractor@0.5.2':
     dependencies:
       find-pkg: 2.0.0
       fs-extra: 9.1.0
       resolve: 1.22.8
 
+<<<<<<< HEAD
   '@module-federation/webpack-bundler-runtime@0.2.3':
     dependencies:
       '@module-federation/runtime': 0.2.3
       '@module-federation/sdk': 0.2.3
+=======
+  '@module-federation/webpack-bundler-runtime@0.5.1':
+    dependencies:
+      '@module-federation/runtime': 0.5.1
+      '@module-federation/sdk': 0.5.1
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@module-federation/webpack-bundler-runtime@0.5.2':
     dependencies:
@@ -8403,7 +8755,11 @@ snapshots:
       - '@types/react'
       - redux
 
+<<<<<<< HEAD
   '@pw-tech/omni-ui@0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@types/babel__core@7.20.5)(canvas@2.11.2)(eslint@8.57.1)(tailwindcss@3.4.13)(type-fest@0.21.3)(typescript@5.6.2)':
+=======
+  '@pw-tech/omni-ui@0.0.12-alpha-1.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@rspack/core@1.1.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(eslint@8.57.1)(tailwindcss@3.4.13)(type-fest@0.21.3)(typescript@5.6.2)':
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.13)
       '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.13)
@@ -8415,7 +8771,11 @@ snapshots:
       react-day-picker: 8.10.1(date-fns@3.6.0)(react@18.3.1)
       react-dom: 18.3.1(react@18.3.1)
       react-lottie-player: 2.1.0(react@18.3.1)
+<<<<<<< HEAD
       react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@types/babel__core@7.20.5)(canvas@2.11.2)(eslint@8.57.1)(react@18.3.1)(sass@1.79.3)(type-fest@0.21.3)(typescript@5.6.2)
+=======
+      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@rspack/core@1.1.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(eslint@8.57.1)(react@18.3.1)(sass@1.79.3)(type-fest@0.21.3)(typescript@5.6.2)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       sass: 1.79.3
       tailwind-merge: 2.5.2
       tailwindcss-animate: 1.0.7(tailwindcss@3.4.13)
@@ -8682,22 +9042,30 @@ snapshots:
       picomatch: 2.3.1
       rollup: 2.79.2
 
+<<<<<<< HEAD
   '@rsbuild/core@1.0.1-beta.15':
+=======
+  '@rsbuild/core@1.1.0':
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
-      '@rspack/core': 1.0.0-beta.5(@swc/helpers@0.5.11)
-      '@rspack/lite-tapable': 1.0.0
-      '@swc/helpers': 0.5.11
-      caniuse-lite: 1.0.30001664
-      core-js: 3.38.1
+      '@rspack/core': 1.1.4(@swc/helpers@0.5.15)
+      '@rspack/lite-tapable': 1.0.1
+      '@swc/helpers': 0.5.15
+      core-js: 3.39.0
     optionalDependencies:
       fsevents: 2.3.3
 
+<<<<<<< HEAD
   '@rsbuild/plugin-react@1.0.1-beta.15(@rsbuild/core@1.0.1-beta.15)':
+=======
+  '@rsbuild/plugin-react@1.0.6(@rsbuild/core@1.1.0)':
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
-      '@rsbuild/core': 1.0.1-beta.15
+      '@rsbuild/core': 1.1.0
       '@rspack/plugin-react-refresh': 1.0.0(react-refresh@0.14.2)
       react-refresh: 0.14.2
 
+<<<<<<< HEAD
   '@rspack/binding-darwin-arm64@1.0.0-beta.5':
     optional: true
 
@@ -8747,6 +9115,57 @@ snapshots:
       '@swc/helpers': 0.5.11
 
   '@rspack/lite-tapable@1.0.0': {}
+=======
+  '@rspack/binding-darwin-arm64@1.1.4':
+    optional: true
+
+  '@rspack/binding-darwin-x64@1.1.4':
+    optional: true
+
+  '@rspack/binding-linux-arm64-gnu@1.1.4':
+    optional: true
+
+  '@rspack/binding-linux-arm64-musl@1.1.4':
+    optional: true
+
+  '@rspack/binding-linux-x64-gnu@1.1.4':
+    optional: true
+
+  '@rspack/binding-linux-x64-musl@1.1.4':
+    optional: true
+
+  '@rspack/binding-win32-arm64-msvc@1.1.4':
+    optional: true
+
+  '@rspack/binding-win32-ia32-msvc@1.1.4':
+    optional: true
+
+  '@rspack/binding-win32-x64-msvc@1.1.4':
+    optional: true
+
+  '@rspack/binding@1.1.4':
+    optionalDependencies:
+      '@rspack/binding-darwin-arm64': 1.1.4
+      '@rspack/binding-darwin-x64': 1.1.4
+      '@rspack/binding-linux-arm64-gnu': 1.1.4
+      '@rspack/binding-linux-arm64-musl': 1.1.4
+      '@rspack/binding-linux-x64-gnu': 1.1.4
+      '@rspack/binding-linux-x64-musl': 1.1.4
+      '@rspack/binding-win32-arm64-msvc': 1.1.4
+      '@rspack/binding-win32-ia32-msvc': 1.1.4
+      '@rspack/binding-win32-x64-msvc': 1.1.4
+
+  '@rspack/core@1.1.4(@swc/helpers@0.5.15)':
+    dependencies:
+      '@module-federation/runtime-tools': 0.5.1
+      '@rspack/binding': 1.1.4
+      '@rspack/lite-tapable': 1.0.1
+      caniuse-lite: 1.0.30001664
+    optionalDependencies:
+      '@swc/helpers': 0.5.15
+
+  '@rspack/lite-tapable@1.0.1': {}
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@rspack/plugin-react-refresh@1.0.0(react-refresh@0.14.2)':
     dependencies:
@@ -8843,9 +9262,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@swc/helpers@0.5.11':
     dependencies:
       tslib: 2.7.0
+=======
+  '@swc/helpers@0.5.15':
+    dependencies:
+      tslib: 2.8.1
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
 
   '@tailwindcss/forms@0.5.7(tailwindcss@3.4.13)':
     dependencies:
@@ -9224,9 +9649,12 @@ snapshots:
 
   abab@2.0.6: {}
 
+<<<<<<< HEAD
   abbrev@1.1.1:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   accepts@1.3.8:
     dependencies:
       mime-types: 2.1.35
@@ -9326,6 +9754,7 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
+<<<<<<< HEAD
   aproba@2.0.0:
     optional: true
 
@@ -9337,6 +9766,10 @@ snapshots:
 
   arg@5.0.2: {}
 
+=======
+  arg@5.0.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   argparse@1.0.10:
     dependencies:
       sprintf-js: 1.0.3
@@ -9593,11 +10026,16 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
+<<<<<<< HEAD
   base64-js@1.5.1:
     optional: true
 
   batch@0.6.1: {}
 
+=======
+  batch@0.6.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   bfj@7.1.0:
     dependencies:
       bluebird: 3.7.2
@@ -9610,6 +10048,7 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
+<<<<<<< HEAD
   bl@4.1.0:
     dependencies:
       buffer: 5.7.1
@@ -9619,6 +10058,10 @@ snapshots:
 
   bluebird@3.7.2: {}
 
+=======
+  bluebird@3.7.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   body-parser@1.20.3:
     dependencies:
       bytes: 3.1.2
@@ -9673,6 +10116,7 @@ snapshots:
 
   buffer-from@1.1.2: {}
 
+<<<<<<< HEAD
   buffer@5.7.1:
     dependencies:
       base64-js: 1.5.1
@@ -9685,6 +10129,14 @@ snapshots:
 
   bytes@3.1.2: {}
 
+=======
+  builtin-modules@3.3.0: {}
+
+  bytes@3.0.0: {}
+
+  bytes@3.1.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   cache-content-type@1.0.1:
     dependencies:
       mime-types: 2.1.35
@@ -9720,6 +10172,7 @@ snapshots:
 
   caniuse-lite@1.0.30001664: {}
 
+<<<<<<< HEAD
   canvas@2.11.2:
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.11
@@ -9739,6 +10192,10 @@ snapshots:
 
   case-sensitive-paths-webpack-plugin@2.4.0: {}
 
+=======
+  case-sensitive-paths-webpack-plugin@2.4.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   chalk@2.4.2:
     dependencies:
       ansi-styles: 3.2.1
@@ -9779,6 +10236,7 @@ snapshots:
     dependencies:
       readdirp: 4.0.1
 
+<<<<<<< HEAD
   chownr@1.1.4:
     optional: true
 
@@ -9791,6 +10249,14 @@ snapshots:
 
   cjs-module-lexer@1.4.1: {}
 
+=======
+  chrome-trace-event@1.0.4: {}
+
+  ci-info@3.9.0: {}
+
+  cjs-module-lexer@1.4.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   class-variance-authority@0.7.0:
     dependencies:
       clsx: 2.0.0
@@ -9837,6 +10303,7 @@ snapshots:
 
   color-name@1.1.4: {}
 
+<<<<<<< HEAD
   color-support@1.1.3:
     optional: true
 
@@ -9844,6 +10311,12 @@ snapshots:
 
   colorette@2.0.20: {}
 
+=======
+  colord@2.9.3: {}
+
+  colorette@2.0.20: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -9887,9 +10360,12 @@ snapshots:
 
   connect-history-api-fallback@2.0.0: {}
 
+<<<<<<< HEAD
   console-control-strings@1.1.0:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   content-disposition@0.5.4:
     dependencies:
       safe-buffer: 5.2.1
@@ -9932,8 +10408,15 @@ snapshots:
 
   core-js@3.38.1: {}
 
+<<<<<<< HEAD
   core-util-is@1.0.3: {}
 
+=======
+  core-js@3.39.0: {}
+
+  core-util-is@1.0.3: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   cosmiconfig-typescript-loader@5.0.0(@types/node@22.7.3)(cosmiconfig@9.0.0(typescript@5.6.2))(typescript@5.6.2):
     dependencies:
       '@types/node': 22.7.3
@@ -9992,7 +10475,11 @@ snapshots:
       postcss: 8.4.47
       postcss-selector-parser: 6.1.2
 
+<<<<<<< HEAD
   css-loader@6.11.0(webpack@5.95.0):
+=======
+  css-loader@6.11.0(@rspack/core@1.1.4(@swc/helpers@0.5.15))(webpack@5.95.0):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.47)
       postcss: 8.4.47
@@ -10003,6 +10490,10 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.6.3
     optionalDependencies:
+<<<<<<< HEAD
+=======
+      '@rspack/core': 1.1.4(@swc/helpers@0.5.15)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       webpack: 5.95.0
 
   css-minimizer-webpack-plugin@3.4.1(webpack@5.95.0):
@@ -10158,6 +10649,7 @@ snapshots:
 
   decimal.js@10.4.3: {}
 
+<<<<<<< HEAD
   decompress-response@4.2.1:
     dependencies:
       mimic-response: 2.1.0
@@ -10172,6 +10664,12 @@ snapshots:
 
   deep-equal@1.0.1: {}
 
+=======
+  dedent@0.7.0: {}
+
+  deep-equal@1.0.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   deep-equal@2.2.3:
     dependencies:
       array-buffer-byte-length: 1.0.1
@@ -10193,6 +10691,7 @@ snapshots:
       which-collection: 1.0.2
       which-typed-array: 1.1.15
 
+<<<<<<< HEAD
   deep-extend@0.6.0:
     optional: true
 
@@ -10200,6 +10699,12 @@ snapshots:
 
   deepmerge@4.3.1: {}
 
+=======
+  deep-is@0.1.4: {}
+
+  deepmerge@4.3.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   default-gateway@6.0.3:
     dependencies:
       execa: 5.1.1
@@ -10226,6 +10731,7 @@ snapshots:
 
   depd@2.0.0: {}
 
+<<<<<<< HEAD
   dequal@2.0.3: {}
 
   destroy@1.2.0: {}
@@ -10239,6 +10745,16 @@ snapshots:
 
   detect-node@2.1.0: {}
 
+=======
+  destroy@1.2.0: {}
+
+  detect-newline@3.1.0: {}
+
+  detect-node-es@1.1.0: {}
+
+  detect-node@2.1.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   detect-port-alt@1.1.6:
     dependencies:
       address: 1.2.2
@@ -10345,11 +10861,14 @@ snapshots:
 
   encodeurl@2.0.0: {}
 
+<<<<<<< HEAD
   end-of-stream@1.4.4:
     dependencies:
       once: 1.4.0
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   enhanced-resolve@5.17.1:
     dependencies:
       graceful-fs: 4.2.11
@@ -10502,7 +11021,11 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
+<<<<<<< HEAD
   eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(eslint@8.57.1)(jest@27.5.1(canvas@2.11.2))(typescript@5.6.2):
+=======
+  eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(eslint@8.57.1)(jest@27.5.1)(typescript@5.6.2):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@babel/core': 7.25.2
       '@babel/eslint-parser': 7.25.1(@babel/core@7.25.2)(eslint@8.57.1)
@@ -10514,7 +11037,11 @@ snapshots:
       eslint: 8.57.1
       eslint-plugin-flowtype: 8.0.3(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(eslint@8.57.1)
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)
+<<<<<<< HEAD
       eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(jest@27.5.1(canvas@2.11.2))(typescript@5.6.2)
+=======
+      eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(jest@27.5.1)(typescript@5.6.2)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       eslint-plugin-jsx-a11y: 6.10.0(eslint@8.57.1)
       eslint-plugin-react: 7.37.0(eslint@8.57.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.1)
@@ -10583,13 +11110,21 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
+<<<<<<< HEAD
   eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(jest@27.5.1(canvas@2.11.2))(typescript@5.6.2):
+=======
+  eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(jest@27.5.1)(typescript@5.6.2):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@typescript-eslint/experimental-utils': 5.62.0(eslint@8.57.1)(typescript@5.6.2)
       eslint: 8.57.1
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.6.2))(eslint@8.57.1)(typescript@5.6.2)
+<<<<<<< HEAD
       jest: 27.5.1(canvas@2.11.2)
+=======
+      jest: 27.5.1
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -10761,9 +11296,12 @@ snapshots:
 
   exit@0.1.2: {}
 
+<<<<<<< HEAD
   expand-template@2.0.3:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   expand-tilde@2.0.2:
     dependencies:
       homedir-polyfill: 1.0.3
@@ -10962,9 +11500,12 @@ snapshots:
 
   fresh@0.5.2: {}
 
+<<<<<<< HEAD
   fs-constants@1.0.0:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   fs-extra@10.1.0:
     dependencies:
       graceful-fs: 4.2.11
@@ -10984,6 +11525,7 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.1
 
+<<<<<<< HEAD
   fs-minipass@2.1.0:
     dependencies:
       minipass: 3.3.6
@@ -10998,6 +11540,17 @@ snapshots:
 
   function-bind@1.1.2: {}
 
+=======
+  fs-monkey@1.0.6: {}
+
+  fs.realpath@1.0.0: {}
+
+  fsevents@2.3.3:
+    optional: true
+
+  function-bind@1.1.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   function.prototype.name@1.1.6:
     dependencies:
       call-bind: 1.0.7
@@ -11007,6 +11560,7 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
+<<<<<<< HEAD
   gauge@3.0.2:
     dependencies:
       aproba: 2.0.0
@@ -11024,6 +11578,12 @@ snapshots:
 
   get-caller-file@2.0.5: {}
 
+=======
+  gensync@1.0.0-beta.2: {}
+
+  get-caller-file@2.0.5: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   get-intrinsic@1.2.4:
     dependencies:
       es-errors: 1.3.0
@@ -11052,9 +11612,12 @@ snapshots:
       meow: 12.1.1
       split2: 4.2.0
 
+<<<<<<< HEAD
   github-from-package@0.0.0:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   glob-parent@5.1.2:
     dependencies:
       is-glob: 4.0.3
@@ -11165,9 +11728,12 @@ snapshots:
     dependencies:
       has-symbols: 1.0.3
 
+<<<<<<< HEAD
   has-unicode@2.0.1:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
@@ -11205,7 +11771,11 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.34.0
 
+<<<<<<< HEAD
   html-webpack-plugin@5.6.0(webpack@5.95.0):
+=======
+  html-webpack-plugin@5.6.0(@rspack/core@1.1.4(@swc/helpers@0.5.15))(webpack@5.95.0):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@types/html-minifier-terser': 6.1.0
       html-minifier-terser: 6.1.0
@@ -11213,6 +11783,10 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.2.1
     optionalDependencies:
+<<<<<<< HEAD
+=======
+      '@rspack/core': 1.1.4(@swc/helpers@0.5.15)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       webpack: 5.95.0
 
   htmlparser2@6.1.0:
@@ -11309,6 +11883,7 @@ snapshots:
     dependencies:
       harmony-reflect: 1.6.2
 
+<<<<<<< HEAD
   ieee754@1.2.1:
     optional: true
 
@@ -11320,6 +11895,16 @@ snapshots:
 
   immutable@4.3.7: {}
 
+=======
+  ignore@5.3.2: {}
+
+  immer@10.1.1: {}
+
+  immer@9.0.21: {}
+
+  immutable@4.3.7: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   import-fresh@3.3.0:
     dependencies:
       parent-module: 1.0.1
@@ -11504,6 +12089,11 @@ snapshots:
 
   isexe@2.0.0: {}
 
+<<<<<<< HEAD
+=======
+  isomorphic-rslog@0.0.5: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   isomorphic-ws@5.0.0(ws@8.17.1):
     dependencies:
       ws: 8.17.1
@@ -11590,7 +12180,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   jest-cli@27.5.1(canvas@2.11.2):
+=======
+  jest-cli@27.5.1:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@jest/core': 27.5.1(canvas@2.11.2)
       '@jest/test-result': 27.5.1
@@ -11611,7 +12205,11 @@ snapshots:
       - ts-node
       - utf-8-validate
 
+<<<<<<< HEAD
   jest-config@27.5.1(canvas@2.11.2):
+=======
+  jest-config@27.5.1:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@babel/core': 7.25.2
       '@jest/test-sequencer': 27.5.1
@@ -11662,7 +12260,11 @@ snapshots:
       jest-util: 27.5.1
       pretty-format: 27.5.1
 
+<<<<<<< HEAD
   jest-environment-jsdom@27.5.1(canvas@2.11.2):
+=======
+  jest-environment-jsdom@27.5.1:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
@@ -11797,7 +12399,11 @@ snapshots:
       resolve.exports: 1.1.1
       slash: 3.0.0
 
+<<<<<<< HEAD
   jest-runner@27.5.1(canvas@2.11.2):
+=======
+  jest-runner@27.5.1:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@jest/console': 27.5.1
       '@jest/environment': 27.5.1
@@ -11912,7 +12518,11 @@ snapshots:
       leven: 3.1.0
       pretty-format: 27.5.1
 
+<<<<<<< HEAD
   jest-watch-typeahead@1.1.0(jest@27.5.1(canvas@2.11.2)):
+=======
+  jest-watch-typeahead@1.1.0(jest@27.5.1):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       ansi-escapes: 4.3.2
       chalk: 4.1.2
@@ -11962,7 +12572,11 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
+<<<<<<< HEAD
   jest@27.5.1(canvas@2.11.2):
+=======
+  jest@27.5.1:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@jest/core': 27.5.1(canvas@2.11.2)
       import-local: 3.2.0
@@ -11987,7 +12601,11 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+<<<<<<< HEAD
   jsdom@16.7.0(canvas@2.11.2):
+=======
+  jsdom@16.7.0:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       abab: 2.0.6
       acorn: 8.12.1
@@ -12246,8 +12864,11 @@ snapshots:
     dependencies:
       sourcemap-codec: 1.4.8
 
+<<<<<<< HEAD
   make-cancellable-promise@1.3.2: {}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
@@ -12256,8 +12877,11 @@ snapshots:
     dependencies:
       semver: 7.6.3
 
+<<<<<<< HEAD
   make-event-props@1.6.2: {}
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   makeerror@1.0.12:
     dependencies:
       tmpl: 1.0.5
@@ -12276,6 +12900,7 @@ snapshots:
 
   merge-descriptors@1.0.3: {}
 
+<<<<<<< HEAD
   merge-refs@1.3.0(@types/react@18.3.9):
     optionalDependencies:
       '@types/react': 18.3.9
@@ -12286,6 +12911,14 @@ snapshots:
 
   methods@1.1.2: {}
 
+=======
+  merge-stream@2.0.0: {}
+
+  merge2@1.4.1: {}
+
+  methods@1.1.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   micromatch@4.0.8:
     dependencies:
       braces: 3.0.3
@@ -12303,12 +12936,15 @@ snapshots:
 
   mimic-fn@2.1.0: {}
 
+<<<<<<< HEAD
   mimic-response@2.1.0:
     optional: true
 
   mimic-response@3.1.0:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   mini-css-extract-plugin@2.9.1(webpack@5.95.0):
     dependencies:
       schema-utils: 4.2.0
@@ -12333,6 +12969,7 @@ snapshots:
 
   minimist@1.2.8: {}
 
+<<<<<<< HEAD
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
@@ -12352,10 +12989,15 @@ snapshots:
   mkdirp-classic@0.5.3:
     optional: true
 
+=======
+  minipass@7.1.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
 
+<<<<<<< HEAD
   mkdirp@1.0.4:
     optional: true
 
@@ -12363,6 +13005,12 @@ snapshots:
 
   ms@2.1.3: {}
 
+=======
+  ms@2.0.0: {}
+
+  ms@2.1.3: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   multicast-dns@7.2.5:
     dependencies:
       dns-packet: 5.6.1
@@ -12374,6 +13022,7 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
+<<<<<<< HEAD
   nan@2.22.0:
     optional: true
 
@@ -12390,11 +13039,24 @@ snapshots:
 
   neo-async@2.6.2: {}
 
+=======
+  nanoid@3.3.7: {}
+
+  natural-compare-lite@1.4.0: {}
+
+  natural-compare@1.4.0: {}
+
+  negotiator@0.6.3: {}
+
+  neo-async@2.6.2: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   no-case@3.0.4:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.7.0
 
+<<<<<<< HEAD
   node-abi@3.71.0:
     dependencies:
       semver: 7.6.3
@@ -12414,12 +13076,21 @@ snapshots:
 
   node-releases@2.0.18: {}
 
+=======
+  node-forge@1.3.1: {}
+
+  node-int64@0.4.0: {}
+
+  node-releases@2.0.18: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   node-schedule@2.1.1:
     dependencies:
       cron-parser: 4.9.0
       long-timeout: 0.1.1
       sorted-array-functions: 1.3.0
 
+<<<<<<< HEAD
   nopt@5.0.0:
     dependencies:
       abbrev: 1.1.1
@@ -12431,10 +13102,19 @@ snapshots:
 
   normalize-url@6.1.0: {}
 
+=======
+  normalize-path@3.0.0: {}
+
+  normalize-range@0.1.2: {}
+
+  normalize-url@6.1.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
 
+<<<<<<< HEAD
   npmlog@5.0.1:
     dependencies:
       are-we-there-yet: 2.0.0
@@ -12443,6 +13123,8 @@ snapshots:
       set-blocking: 2.0.0
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   nth-check@1.0.2:
     dependencies:
       boolbase: 1.0.0
@@ -12635,6 +13317,7 @@ snapshots:
 
   path-type@4.0.0: {}
 
+<<<<<<< HEAD
   path2d@0.2.2:
     optional: true
 
@@ -12663,6 +13346,20 @@ snapshots:
 
   pirates@4.0.6: {}
 
+=======
+  performance-now@2.1.0: {}
+
+  picocolors@0.2.1: {}
+
+  picocolors@1.1.0: {}
+
+  picomatch@2.3.1: {}
+
+  pify@2.3.0: {}
+
+  pirates@4.0.6: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   pkg-dir@4.2.0:
     dependencies:
       find-up: 4.1.0
@@ -13097,6 +13794,7 @@ snapshots:
       picocolors: 1.1.0
       source-map-js: 1.2.1
 
+<<<<<<< HEAD
   prebuild-install@7.1.2:
     dependencies:
       detect-libc: 2.0.3
@@ -13117,6 +13815,12 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
+=======
+  prelude-ls@1.1.2: {}
+
+  prelude-ls@1.2.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   prettier-plugin-tailwindcss@0.6.8(prettier@3.3.3):
     dependencies:
       prettier: 3.3.3
@@ -13169,6 +13873,7 @@ snapshots:
 
   psl@1.9.0: {}
 
+<<<<<<< HEAD
   pump@3.0.2:
     dependencies:
       end-of-stream: 1.4.4
@@ -13179,6 +13884,12 @@ snapshots:
 
   q@1.5.1: {}
 
+=======
+  punycode@2.3.1: {}
+
+  q@1.5.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
@@ -13206,6 +13917,7 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
+<<<<<<< HEAD
   rc@1.2.8:
     dependencies:
       deep-extend: 0.6.0
@@ -13214,6 +13926,8 @@ snapshots:
       strip-json-comments: 2.0.1
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   react-app-polyfill@3.0.0:
     dependencies:
       core-js: 3.38.1
@@ -13292,6 +14006,7 @@ snapshots:
       react: 18.3.1
       rfdc: 1.4.1
 
+<<<<<<< HEAD
   react-pdf@9.1.1(@types/react@18.3.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       clsx: 2.1.1
@@ -13312,6 +14027,10 @@ snapshots:
 
   react-redux@9.1.2(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1):
     dependencies:
+=======
+  react-redux@9.1.2(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1):
+    dependencies:
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       '@types/use-sync-external-store': 0.0.3
       react: 18.3.1
       use-sync-external-store: 1.2.2(react@18.3.1)
@@ -13354,7 +14073,11 @@ snapshots:
       '@remix-run/router': 1.19.2
       react: 18.3.1
 
+<<<<<<< HEAD
   react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@types/babel__core@7.20.5)(canvas@2.11.2)(eslint@8.57.1)(react@18.3.1)(sass@1.79.3)(type-fest@0.21.3)(typescript@5.6.2):
+=======
+  react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(@rspack/core@1.1.4(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(eslint@8.57.1)(react@18.3.1)(sass@1.79.3)(type-fest@0.21.3)(typescript@5.6.2):
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
     dependencies:
       '@babel/core': 7.25.2
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(react-refresh@0.11.0)(type-fest@0.21.3)(webpack-dev-server@4.15.2(webpack@5.95.0))(webpack@5.95.0)
@@ -13367,16 +14090,20 @@ snapshots:
       browserslist: 4.24.0
       camelcase: 6.3.0
       case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.11.0(webpack@5.95.0)
+      css-loader: 6.11.0(@rspack/core@1.1.4(@swc/helpers@0.5.15))(webpack@5.95.0)
       css-minimizer-webpack-plugin: 3.4.1(webpack@5.95.0)
       dotenv: 10.0.0
       dotenv-expand: 5.1.0
       eslint: 8.57.1
+<<<<<<< HEAD
       eslint-config-react-app: 7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(eslint@8.57.1)(jest@27.5.1(canvas@2.11.2))(typescript@5.6.2)
+=======
+      eslint-config-react-app: 7.0.1(@babel/plugin-syntax-flow@7.24.7(@babel/core@7.25.2))(@babel/plugin-transform-react-jsx@7.25.2(@babel/core@7.25.2))(eslint@8.57.1)(jest@27.5.1)(typescript@5.6.2)
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
       eslint-webpack-plugin: 3.2.0(eslint@8.57.1)(webpack@5.95.0)
       file-loader: 6.2.0(webpack@5.95.0)
       fs-extra: 10.1.0
-      html-webpack-plugin: 5.6.0(webpack@5.95.0)
+      html-webpack-plugin: 5.6.0(@rspack/core@1.1.4(@swc/helpers@0.5.15))(webpack@5.95.0)
       identity-obj-proxy: 3.0.0
       jest: 27.5.1(canvas@2.11.2)
       jest-resolve: 27.5.1
@@ -13743,9 +14470,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   set-blocking@2.0.0:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   set-function-length@1.2.2:
     dependencies:
       define-data-property: 1.1.4
@@ -13785,6 +14515,7 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
+<<<<<<< HEAD
   simple-concat@1.0.1:
     optional: true
 
@@ -13808,6 +14539,14 @@ snapshots:
 
   slash@4.0.0: {}
 
+=======
+  sisteransi@1.0.5: {}
+
+  slash@3.0.0: {}
+
+  slash@4.0.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   sockjs@0.3.24:
     dependencies:
       faye-websocket: 0.11.4
@@ -13993,11 +14732,16 @@ snapshots:
 
   strip-final-newline@2.0.0: {}
 
+<<<<<<< HEAD
   strip-json-comments@2.0.1:
     optional: true
 
   strip-json-comments@3.1.1: {}
 
+=======
+  strip-json-comments@3.1.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   style-loader@3.3.4(webpack@5.95.0):
     dependencies:
       webpack: 5.95.0
@@ -14108,6 +14852,7 @@ snapshots:
 
   tapable@2.2.1: {}
 
+<<<<<<< HEAD
   tar-fs@2.1.1:
     dependencies:
       chownr: 1.1.4
@@ -14137,6 +14882,10 @@ snapshots:
 
   temp-dir@2.0.0: {}
 
+=======
+  temp-dir@2.0.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tempy@0.6.0:
     dependencies:
       is-stream: 2.0.1
@@ -14189,6 +14938,7 @@ snapshots:
 
   thunky@1.1.0: {}
 
+<<<<<<< HEAD
   tiny-invariant@1.3.3: {}
 
   tinyexec@0.3.0: {}
@@ -14197,6 +14947,14 @@ snapshots:
 
   to-fast-properties@2.0.0: {}
 
+=======
+  tinyexec@0.3.0: {}
+
+  tmpl@1.0.5: {}
+
+  to-fast-properties@2.0.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
@@ -14210,9 +14968,12 @@ snapshots:
       universalify: 0.2.0
       url-parse: 1.5.10
 
+<<<<<<< HEAD
   tr46@0.0.3:
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tr46@1.0.1:
     dependencies:
       punycode: 2.3.1
@@ -14236,18 +14997,28 @@ snapshots:
 
   tslib@2.7.0: {}
 
+<<<<<<< HEAD
   tsscmp@1.0.6: {}
 
+=======
+  tslib@2.8.1: {}
+
+  tsscmp@1.0.6: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   tsutils@3.21.0(typescript@5.6.2):
     dependencies:
       tslib: 1.14.1
       typescript: 5.6.2
 
+<<<<<<< HEAD
   tunnel-agent@0.6.0:
     dependencies:
       safe-buffer: 5.2.1
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   type-check@0.3.2:
     dependencies:
       prelude-ls: 1.1.2
@@ -14418,10 +15189,13 @@ snapshots:
     dependencies:
       makeerror: 1.0.12
 
+<<<<<<< HEAD
   warning@4.0.3:
     dependencies:
       loose-envify: 1.4.0
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   watchpack@2.4.2:
     dependencies:
       glob-to-regexp: 0.4.1
@@ -14431,6 +15205,7 @@ snapshots:
     dependencies:
       minimalistic-assert: 1.0.1
 
+<<<<<<< HEAD
   webidl-conversions@3.0.1:
     optional: true
 
@@ -14440,6 +15215,14 @@ snapshots:
 
   webidl-conversions@6.1.0: {}
 
+=======
+  webidl-conversions@4.0.2: {}
+
+  webidl-conversions@5.0.0: {}
+
+  webidl-conversions@6.1.0: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   webpack-dev-middleware@5.3.4(webpack@5.95.0):
     dependencies:
       colorette: 2.0.20
@@ -14553,12 +15336,15 @@ snapshots:
 
   whatwg-mimetype@2.3.0: {}
 
+<<<<<<< HEAD
   whatwg-url@5.0.0:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
     optional: true
 
+=======
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   whatwg-url@7.1.0:
     dependencies:
       lodash.sortby: 4.7.0
@@ -14617,6 +15403,7 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
+<<<<<<< HEAD
   wide-align@1.1.5:
     dependencies:
       string-width: 4.2.3
@@ -14624,6 +15411,10 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
+=======
+  word-wrap@1.2.5: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   workbox-background-sync@6.6.0:
     dependencies:
       idb: 7.1.1
@@ -14784,6 +15575,7 @@ snapshots:
 
   yallist@3.1.1: {}
 
+<<<<<<< HEAD
   yallist@4.0.0:
     optional: true
 
@@ -14795,6 +15587,16 @@ snapshots:
 
   yargs-parser@21.1.1: {}
 
+=======
+  yaml@1.10.2: {}
+
+  yaml@2.5.1: {}
+
+  yargs-parser@20.2.9: {}
+
+  yargs-parser@21.1.1: {}
+
+>>>>>>> feat/PCT-001/Upgrade-RsBuild
   yargs@16.2.0:
     dependencies:
       cliui: 7.0.4
