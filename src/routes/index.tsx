@@ -25,16 +25,15 @@ const Router = () => {
         }
       />
       <Route
-        path="/pdf-viewer/:contentId"
+        path="/pdf-viewer"
         element={
           
-            <div>Hello</div>
+          <ErrorBoundary>
+          <Pdf/>
+        </ErrorBoundary>
           
         }
-        loader={({ params }) => {
-          console.log(params.contentId);
-          return true
-        }}
+       
       />
       <Route path="*" element={<My404NotFound />} />
     </Routes>

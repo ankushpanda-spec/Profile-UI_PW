@@ -97,7 +97,7 @@ const Toolbar: React.FC<HeaderProps> = ({
   };
   return (
     <header className={cn(s.headerWrapper, {[s.darkMode]: darkMode})}>
-      <div className="flex flex-row items-center justify-center gap-16">
+      <div className="flex flex-row items-center justify-center gap-8">
         <MenuIcon
           className={iconClassName}
           onClick={onSidebarToggle}
@@ -194,7 +194,7 @@ const Toolbar: React.FC<HeaderProps> = ({
         
         
       </div>
-      <div className='flex flex-row items-center justify-center gap-16'>
+      <div className='flex flex-row items-center justify-center gap-8'>
       <CustomTooltip
           label={
             <Mode

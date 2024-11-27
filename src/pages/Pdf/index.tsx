@@ -14,15 +14,15 @@ const Pdf = () => {
   const url = searchParams.get("pdfUrl");
 
   useEffect(() => {
-   
+    if(url && contentId){
+      setError("Invalid request");
+      setLoading(false);
+    }
     if (url) {
       setPdfUrl(url);
-      setPdfTitle("PDF");
       setLoading(false);
       return;
     }
-
-    
     if (contentId) {
       async function fetchData() {
         try {
@@ -33,12 +33,11 @@ const Pdf = () => {
               pdfDetails.content[0]?.fileId.baseUrl +
                 pdfDetails.content[0]?.fileId.key || "";
             setPdfUrl(src);
-            setPdfTitle(pdfDetails.title || "PDF"); 
+            setPdfTitle(pdfDetails.title); 
           } else {
             setError("No data available.");
           }
         } catch (error) {
-          console.error("Error:", error);
           setError("Failed to load PDF.");
         } finally {
           setLoading(false);
