@@ -4,11 +4,8 @@ import { pluginReact } from '@rsbuild/plugin-react';
 import { dependencies } from './package.json';
 
 export default defineConfig({
-  output: {
-    assetPrefix: '/study-v2/',
-  },
   server: {
-    port: 3000,
+    port: 3001,
   },
   html: {
     template: './public/index.html',
