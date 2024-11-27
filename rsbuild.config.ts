@@ -1,12 +1,30 @@
-import {defineConfig} from '@rsbuild/core';
-import {pluginReact} from '@rsbuild/plugin-react';
-import {dependencies} from './package.json';
+import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
+import { defineConfig } from '@rsbuild/core';
+import { pluginReact } from '@rsbuild/plugin-react';
+import { dependencies } from './package.json';
+
 export default defineConfig({
-  server: {
-    port: 3001,
+  output: {
+    assetPrefix: '/study-v2/',
   },
-  moduleFederation: {
-    options: {
+  server: {
+    port: 3000,
+  },
+  html: {
+    template: './public/index.html',
+  },
+  source: {
+    entry: {
+      index: './src/index.tsx',
+    },
+    alias: {
+      "@/*": "./src/*"
+    }
+  },
+
+  plugins: [
+    pluginReact(),
+    pluginModuleFederation({
       name: 'MFCommon',
       filename: 'remoteEntry.js',
       exposes: {
@@ -15,22 +33,29 @@ export default defineConfig({
       shared: {
         react: {
           singleton: true,
-          requiredVersion: dependencies['react'],
+          version: dependencies['react'],
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: dependencies['react-dom'],
+          version: dependencies['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
         },
         '@pw-tech/omni-context': {
           singleton: true,
         },
+        '@pw-tech/web-sdk': {
+          singleton: true,
+        },
+
       },
-    },
-  },
-  plugins: [pluginReact()],
+    }),
+  ],
   tools: {
     rspack: (config, {appendPlugins}) => {
       appendPlugins([]);
     },
   },
+
 });
