@@ -23,7 +23,7 @@
 }
 
 .showThumbnail{
-    @apply translate-x-0 min-w-[240px] 
+    @apply translate-x-0  md:min-w-[200px] lg:min-w-[240px]
 }
 .tooltip{
     @apply p-6

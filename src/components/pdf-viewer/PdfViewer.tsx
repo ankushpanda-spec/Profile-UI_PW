@@ -21,10 +21,11 @@ export default function PdfViewer(props: PdfViewerProps) {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [rotation, setRotation] = useState<number>(0);
   const [inputPageNumber, setInputPageNumber] = useState<string>('1');
-
+  const [pageDimensions , setPageDimensions] = useState({width:1 , height:1})
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const mainContentRef = useRef<HTMLDivElement>(null);
   const pageRefs = useRef<(HTMLDivElement | null)[]>([]);
- 
+  
 
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -37,15 +38,51 @@ export default function PdfViewer(props: PdfViewerProps) {
     setInputPageNumber('1');
   }, [isMobile]);
 
+  function onDocumentLoadSuccess(pdf: pdfjs.PDFDocumentProxy): void {
+    setNumPages(pdf.numPages);
 
-  const onDocumentLoadSuccess = ({numPages}: {numPages: number}) => {
-    setNumPages(numPages);
-  };
+    // Get the dimensions of the first page (assuming all pages has the same shape)
+    pdf.getPage(1).then(page => {
+      const viewport = page.getViewport({ scale: 1 });
+      setPageDimensions({
+        width: viewport.width,
+        height: viewport.height,
+      });
+    });
+  }
+  useEffect(() => {
+    function updateContainerSize() {
+      if (mainContentRef.current) {
+        setContainerSize({
+          width: mainContentRef.current.offsetWidth - 32 ,
+          height: mainContentRef.current.offsetHeight - 32,
+        });
+        console.log(mainContentRef.current.offsetWidth);
+      }
+    }
+   
+    updateContainerSize();
+   
+    window.addEventListener("resize", updateContainerSize);
+    
+    return () => window.removeEventListener("resize", updateContainerSize);
+  }, [showThumbnail]);
+  
+  // Calculate scale factor when dimensions change
+  useEffect(() => {
+    if (pageDimensions && containerSize.width > 0 && containerSize.height > 0) {
+      const scaleX = containerSize.width / pageDimensions.width;
+      
+      const newScale = Math.min(scaleX, 1);
+      setScale(newScale);
+    }
+  }, [pageDimensions, containerSize]);
 
   const scrollToPage = (page: number) => {
     pageRefs.current[page - 1]?.scrollIntoView({behavior: 'auto'});
     setPageNumber(page); // Update displayed page only
   };
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,11 +131,10 @@ export default function PdfViewer(props: PdfViewerProps) {
 
         setScale(prevScale => {
           const newScale = prevScale + delta;
-          return Math.max(0.25, Math.min(newScale, 2));
+          return Math.max(0.25, Math.min(newScale, 5));
         });
       }
     };
-
     const mainContent = mainContentRef.current;
     if (mainContent) {
       mainContent.addEventListener('wheel', handleWheel, {passive: false});
@@ -109,7 +145,7 @@ export default function PdfViewer(props: PdfViewerProps) {
         mainContent.removeEventListener('wheel', handleWheel);
       }
     };
-  }, [scale, isMobile]);
+  }, [isMobile]);
 
   
 
@@ -131,6 +167,7 @@ export default function PdfViewer(props: PdfViewerProps) {
               className={s.mainContentContainer}
             >
               <Page pageNumber={index + 1} scale={scale} />
+             
             </div>
           ))}
         </Document>
@@ -175,8 +212,8 @@ export default function PdfViewer(props: PdfViewerProps) {
           <Typography className="flex justify-center">
             {pageNumber} / {numPages}
           </Typography>
-
-          {renderMainContent(0.5)}
+           
+          {renderMainContent(scale)}
         </div>
       )}
     </>

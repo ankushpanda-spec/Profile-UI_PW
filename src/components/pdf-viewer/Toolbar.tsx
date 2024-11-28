@@ -2,7 +2,8 @@ import React from 'react';
 import {Typography, Tooltip} from '@pw-tech/omni-ui';
 import Mode from '../icons/pdf-viewer/Mode';
 import FullScreen from '../icons/pdf-viewer/FullScreen';
-import Rotate from '../icons/pdf-viewer/Rotate';
+import AntiClockwiseIcon from '../icons/pdf-viewer/AntiClockwiseIcon';
+import ClockwiseIcon from '../icons/pdf-viewer/ClockwiseIcon';
 import {MenuIcon, ZoomIn, ZoomOut} from '../icons';
 import {ChevronLeft, ChevronRight} from '@/assets/icons';
 import {HeaderProps, TooltipProps} from './types';
@@ -38,9 +39,10 @@ const Toolbar: React.FC<HeaderProps> = ({
   const changeScale = (delta: number) => {
     setScale(prevScale => {
       const newScale = prevScale + delta;
-      return Math.max(0.25, Math.min(newScale, 2));
+      return Math.max(0.25, Math.min(newScale, 5));
     });
   };
+
   const changePage = (offset: number) => {
     setPageNumber(prevPageNumber => {
       const newPageNumber = Math.min(
@@ -51,9 +53,7 @@ const Toolbar: React.FC<HeaderProps> = ({
       return newPageNumber;
     });
   };
-  const rotatePages = () => {
-    setRotation(prevRotation => (prevRotation + 90) % 360);
-  };
+ 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
@@ -74,7 +74,13 @@ const Toolbar: React.FC<HeaderProps> = ({
       setInputPageNumber(pageNumber.toString());
     }
   };
+  const rotateClockwise = () => {
+    setRotation((prevRotation) => (prevRotation + 90) % 360);
+  };
 
+  const rotateAnticlockwise = () => {
+    setRotation((prevRotation) => (prevRotation - 90) % 360);
+  };
   const handlePageInputKeyPress = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
@@ -95,6 +101,7 @@ const Toolbar: React.FC<HeaderProps> = ({
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
   };
+  
   return (
     <header className={cn(s.headerWrapper, {[s.darkMode]: darkMode})}>
       <div className="flex flex-row items-center justify-center gap-8">
@@ -178,21 +185,27 @@ const Toolbar: React.FC<HeaderProps> = ({
         />
 
         <Typography color="text-body-2">|</Typography>
-        
         <CustomTooltip
           label={
-            <Rotate
+            <AntiClockwiseIcon
               className={iconClassName}
-              onClick={rotatePages}
+              onClick={rotateAnticlockwise}
             />
           }
           variant={tooltipVariant}
-          title="Rotate"
+          title="Rotate CounterClockwise"
         />
-        
-
-        
-        
+        <CustomTooltip
+          label={
+            <ClockwiseIcon
+              className={iconClassName}
+              onClick={rotateClockwise}
+            />
+          }
+          variant={tooltipVariant}
+          title="Rotate Clockwise"
+        />
+       
       </div>
       <div className='flex flex-row items-center justify-center gap-8'>
       <CustomTooltip

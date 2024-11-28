@@ -10,7 +10,7 @@ const Pdf = () => {
   const [error, setError] = useState<string>("");
 
   const [searchParams] = useSearchParams();
-  const contentId  = searchParams.get("contentId");
+  const contentId  = searchParams.get("contentId")?.toString();
   const url = searchParams.get("pdfUrl");
 
   useEffect(() => {
