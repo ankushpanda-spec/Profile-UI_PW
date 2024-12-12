@@ -142,3 +142,15 @@
 .modalFooter {
   @apply flex flex-row items-center justify-end gap-12;
 }
+
+.termsList {
+  @apply mt-2 pl-4;
+}
+
+.modalFooter {
+  @apply flex justify-end p-4;
+}
+
+.fullWidthFooter {
+  @apply w-full justify-between;
+}

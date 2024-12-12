@@ -1,4 +1,4 @@
-import ProfileContainer from '@/components/profile/ProfileContainer';
+import ProfileContainer from '@/features/shared-mf/profile/ui/ProfileContainer';
 
 const Profile = () => {
   return <ProfileContainer />;
