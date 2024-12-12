@@ -1,12 +1,10 @@
-// Declarations for modules without types
+import {AuthService} from '@pw-tech/web-sdk';
 
 declare global {
   interface Window {
-    PWWebSDK: AuthService; // Make sure AuthService is the correct type
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    PWWebSDK: AuthService;
     initPWAuthWebSDK: (props: any) => void;
   }
 }
 
-// To ensure this file is treated as a module
 export {};
