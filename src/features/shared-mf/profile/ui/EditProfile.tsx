@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Button,
   Modal,
@@ -9,6 +9,8 @@ import {
   Dropdown,
   InputField,
   RadioButton,
+  Separator,
+  Alert,
 } from '@pw-tech/omni-ui';
 import s from "../styles/index.module.css";
 import { fetchCities, fetchStates } from '../api';
@@ -44,12 +46,12 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 }) => {
   const [showWarningForNameChange, setShowWarningForNameChange] = useState(false);
   const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
-  const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] = useState(false);
+  const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] =
+    useState(false);
   const [loadingStates, setLoadingStates] = useState(true);
   const [loadingCities, setLoadingCities] = useState(false);
   const [states, setStates] = useState<LabelValue[]>([]);
   const [cities, setCities] = useState<LabelValue[]>([]);
-
   useEffect(() => {
     const fetchStateData = async () => {
       try {
@@ -68,14 +70,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   useEffect(() => {
     const fetchCityData = async () => {
-      if (userInfo.state) {
-        setLoadingCities(true);  // Show loader for cities
+      if (userInfo?.state) {
+        console.log("Fetching.....")
+        setLoadingCities(true); // Show loader for cities
         try {
           const country = 'IND'; // Adjust as needed
-          const response: any = await fetchCities(country, userInfo.state);
+          const response: any = await fetchCities(country, userInfo?.state);
           const citiesInFormattedForm: LabelValue[] = formatToLabelValue(response.data);
           setCities(citiesInFormattedForm); // Assuming response contains cities data
-          setLoadingCities(false);  // Stop the loader when data is fetched
+          setLoadingCities(false); // Stop the loader when data is fetched
         } catch (error) {
           console.error("Error fetching cities:", error);
           setLoadingCities(false);
@@ -83,7 +86,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       }
     };
     fetchCityData();
-  }, [userInfo.state, states]);  // Re-fetch cities when state changes
+  }, []);  // Re-fetch cities when state changes
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -100,7 +103,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       closeOnOutsideClick
       onClose={onCancel}
       showCloseIcon
-      size="extra-small"
+      size="small"
       isOpen={isOpen}
     >
       <ModalHeader>
@@ -108,112 +111,143 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
           {modalHeader}
         </Typography>
       </ModalHeader>
+      <Separator />
       <ModalBody>
-        <form autoComplete="off" className="mb-4">
+        <form autoComplete="off" className="w-full">
           {/* First Name */}
-          <FormItem label="First Name">
+          <div className="flex flex-col items-start gap-8">
             <InputField
               name="firstName"
-              value={userInfo.firstName}
+              value={userInfo?.firstName}
               onChange={handleInputChange}
               placeholder="Enter First Name"
-              required
               type="text"
               fullWidth
+              label="First Name"
+              variant="outside"
             />
-          </FormItem>
 
-          {/* Last Name */}
-          <FormItem label="Last Name">
-            <InputField
-              name="lastName"
-              value={userInfo.lastName}
-              onChange={handleInputChange}
-              placeholder="Enter Last Name"
-              required
-              type="text"
-              fullWidth
-            />
-          </FormItem>
+            <div className="flex w-full flex-col items-start gap-12">
+              {/* Last Name */}
 
-          {/* Gender */}
-          <FormItem label="Gender">
-            <div className="flex">
-              <RadioButton
-                name="gender"
-                value="Male"
-                checked={userInfo.gender === 'Male'}
+              <InputField
+                name="lastName"
+                value={userInfo?.lastName}
                 onChange={handleInputChange}
-                variant="primary"
-                size="sm"
+                placeholder="Enter Last Name"
+                type="text"
+                fullWidth
+                label="Last Name"
+                variant="outside"
               />
-              <span className="ml-2">Male</span>
-              <RadioButton
-                name="gender"
-                value="Female"
-                checked={userInfo.gender === 'Female'}
-                onChange={handleInputChange}
-                variant="primary"
-                size="sm"
-                className="ml-4"
+              <Alert
+                heading="If you change your profile name, you wont be able to update it till “dd/mm/yyyy”!"
+                intent="warning"
+                fullWidth
+                onClose={() => {}}
               />
-              <span className="ml-2">Female</span>
             </div>
-          </FormItem>
+          </div>
+          {/* Gender */}
+
+          <div className="flex items-center gap-24">
+            <Typography variant="regular" weight="semi-bold">
+              Gender
+            </Typography>
+            <div className="flex items-center gap-12">
+              <div className="flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32">
+                <div className="flex items-start gap-10">
+                  <RadioButton
+                    name="gender"
+                    value="Male"
+                    checked={userInfo?.gender === 'Male'}
+                    onChange={handleInputChange}
+                    variant="primary"
+                    size="sm"
+                  />
+                  <Typography variant="regular" weight="medium">
+                    Male
+                  </Typography>
+                </div>
+              </div>
+              <div className="flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32">
+                <div className="flex items-start gap-10">
+                  <RadioButton
+                    name="gender"
+                    value="Female"
+                    checked={userInfo?.gender === 'Female'}
+                    onChange={handleInputChange}
+                    variant="primary"
+                    size="sm"
+                  />
+                  <Typography variant="regular" weight="medium">
+                    Female
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Mobile */}
-          <FormItem label="Mobile No">
-            <div className="flex justify-between items-center p-[8px] border rounded-md bg-[#efefef4d] w-full">
-              <span>{userInfo.primaryNumber}</span>
-              <Typography
-                variant="small"
-                weight="semi-bold"
-                className="text-[#5a4bda] cursor-pointer hover:underline"
-                onClick={handleUpdateNumberClick}
-                style={{
-                  opacity: isUpdateNumberConfigLoading ? 0.7 : 1,
-                  pointerEvents: isUpdateNumberConfigLoading ? 'none' : 'auto',
-                }}
-              >
-                {isUpdateNumberConfigLoading ? 'Updating...' : 'Update Number'}
-              </Typography>
-            </div>
-          </FormItem>
+          <div className="flex-start flex flex-col items-stretch gap-8">
+            <InputField
+              label="Mobile Number"
+              onChange={() => {}}
+              onClick={handleUpdateNumberClick}
+              action={() => {}}
+              placeholder="Placeholder"
+              fullWidth
+              variant="outside"
+              type="number"
+              actionText="Update Number"
+              value={userInfo?.primaryNumber}
+            />
 
-          {/* Email */}
-          <FormItem label="Email">
+            {/* Email */}
+
             <InputField
               name="email"
-              value={userInfo.email}
+              value={userInfo?.email}
               onChange={handleInputChange}
               placeholder="Enter Email"
-              required
               type="text"
               fullWidth
+              label="Email"
+              variant="outside"
             />
-          </FormItem>
 
-          {/* State */}
-          <FormItem label="State">
+            {/* State */}
+
             <Dropdown
               name="state"
-              onChange={(e: any) => setUserInfo((prev) => ({ ...prev, state: e.value }))}
+              onChange={(e: any) =>
+                setUserInfo(prev => ({...prev, state: e.value}))
+              }
               options={states}
               placeholder="Select State"
               fullWidth
+              label="State"
+              variant="outside"
+              required={false}
+              values={[userInfo?.state]}
             />
-          </FormItem>
 
-          {/* City */}
-          <FormItem label="City">
+            {/* City */}
+
             <Dropdown
               name="city"
-              onChange={(e: any) => setUserInfo((prev) => ({ ...prev, city: e.value }))}
+              onChange={(e: any) =>
+                setUserInfo(prev => ({...prev, city: e.value}))
+              }
               options={cities}
               placeholder="Select City"
               fullWidth
+              label="City"
+              variant="outside"
+              required={false}
+              values={[userInfo?.city]}
             />
-          </FormItem>
+          </div>
         </form>
       </ModalBody>
       <ModalFooter>
@@ -230,12 +264,4 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   );
 };
 
-const FormItem: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
-  <div className="flex flex-col md:flex-row md:items-center justify-between mb-[16px]">
-    <Typography className="text-[#878787] font-semibold text-sm tracking-[.28px]">
-      {label}
-    </Typography>
-    <div className="w-full md:w-10/12 lg:w-9/12">{children}</div>
-  </div>
-);
 export default EditProfileModal;
