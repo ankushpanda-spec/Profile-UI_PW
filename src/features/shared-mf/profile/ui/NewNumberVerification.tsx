@@ -1,73 +1,177 @@
-import React, { useState } from 'react';
-import { Button, Typography, RadioButton, InputField } from '@pw-tech/omni-ui'; 
+import React, {useState} from 'react';
+import {
+  Button,
+  Typography,
+  RadioButton,
+  InputField,
+  ModalHeader,
+  ModalFooter,
+  Modal,
+  ModalBody,
+  Separator,
+  Loader,
+} from '@pw-tech/omni-ui';
 import GenericModal from './ModalComponent';
 import s from '../styles/index.module.css';
+import {fetchOtp} from '../api';
+import LoaderModal from './components/loader/LoaderModalComponent';
+import OTPVerificationModal from './OtpVerification';
+import getErrorMessage from '../services/showErrorService';
 
 const NewNumberVerification = ({
   isOpen,
-  onClose,
-  userInfo,
- 
+  handleEditModalOpen,
+  setActiveModal,
+  numberChangeRequestId,
+  setNewCountryCode,
+  setNewInputMobileNumber,
+  newInputMobileNumber,
+  newCountryCode,
+  isNewNumber,
 }: {
   isOpen: boolean;
-  onClose: () => void;
-  userInfo?: { countryCode: string; primaryNumber: string };
-//   onRequestOtp: (selectedNumber: string) => void;
+  handleEditModalOpen: () => void;
+  numberChangeRequestId: string;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  setNewCountryCode:React.Dispatch<React.SetStateAction<string>>;
+  setNewInputMobileNumber:React.Dispatch<React.SetStateAction<string>>;
+  newInputMobileNumber:string;
+  newCountryCode:string;
+  isNewNumber:boolean;
 }) => {
-  const [selectedMobileNumber, setSelectedMobileNumber] = useState<string | null>(null);
+  
+  const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [inputErrorMessageShown, setInputErrorMessageShown] =
+    useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
 
-  const handleRequestOtp = () => {
-    if (selectedMobileNumber) {
-    //   onRequestOtp(selectedMobileNumber);
+    // Reset the error message and visibility
+    if (inputErrorMessageShown) {
+      setInputErrorMessage('');
+      setInputErrorMessageShown(false);
+    }
+
+    setNewInputMobileNumber(value);
+  };
+  console.log('numberChangeRequestId', numberChangeRequestId);
+
+  const onContinueClick = async () => {
+    const errorMessage = checkMobileNumber(newInputMobileNumber);
+    if (errorMessage) {
+      setInputErrorMessage(errorMessage);
+      setInputErrorMessageShown(true);
+      return;
+    }
+    const apiData = {
+      phone: newInputMobileNumber,
+      countryCode: newCountryCode,
+      isNewNumber: isNewNumber,
+      organizationId: process.env.PUBLIC_ORGANISATION_ID,
+      requestId: numberChangeRequestId,
+    };
+    try {
+      setLoading(true);
+      const res: any = await fetchOtp(apiData);
+
+      if (res?.success) {
+        setActiveModal('newNumberOtpVerification');
+      } else {
+        if (res?.message) {
+          setInputErrorMessage(res.message);
+          setInputErrorMessageShown(true);
+        } else {
+          throw new Error('');
+        }
+      }
+      setLoading(false);
+    } catch (err) {
+      const errorObj = getErrorMessage(err);
+
+      setInputErrorMessage(errorObj.message);
+      setInputErrorMessageShown(true);
+
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const checkMobileNumber = (mobileNumber: string): string => {
+    if (!mobileNumber) {
+      return 'Please enter a vaild mobile number';
+    }
+    if (newCountryCode === '+91' && mobileNumber.length !== 10) {
+      return 'Please enter a valid 10 digits number';
+    }
+    if (newCountryCode !== '+91' && mobileNumber.length < 4) {
+      return 'Please enter a number with minimum 4 digits';
+    }
+    return '';
+  };
+  const mobileNumberInputKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === 'Enter') {
+      onContinueClick();
+    }
+  };
 
   return (
-    <GenericModal
-      header={
-        <Typography color="static-black" variant="heading3" weight="bold">
-          Enter New Number
-        </Typography>
-      }
-      body={
-        <div className="px-4">
-          <Typography className="text-base leading-6 font-semibold text-[#3d3d3d]" color="static-black" variant="regular">
-            <div className='mb-[24px]'>
-            OTP will be sent on this number for verification.
-            </div>
+    <>
+      <Modal isOpen={isOpen} size="small" onClose={handleEditModalOpen}>
+        <ModalHeader>
+          <Typography color="static-black" variant="heading3" weight="bold">
+            Enter New Number
           </Typography>
-          <InputField
-            label="Mobile Number"
-            onBlur={function noRefCheck(){}}
-            onChange={function noRefCheck(){}}
-            onClick={function noRefCheck(){}}
-            onFocus={function noRefCheck(){}}
-            placeholder="Enter your phone number"
-            required
-            type="number"
-            fullWidth
-            message="Your contents won't be accessible on the old number."
+        </ModalHeader>
+        <Separator />
+        <ModalBody>
+          <div className="flex flex-col gap-24">
+            <Typography
+              weight="semi-bold"
+              color="static-black"
+              variant="regular"
+            >
+              OTP will be sent on this number for verification.
+            </Typography>
+            <InputField
+              label="Mobile Number"
+              placeholder="Enter your phone number"
+              type="number"
+              fullWidth
+              message={
+                inputErrorMessageShown
+                  ? inputErrorMessage
+                  : "Your contents won't be accessible on the old number."
+              }
+              onChange={handleInputChange}
+              onKeyDown={mobileNumberInputKeyPress}
+              error={inputErrorMessageShown}
             />
-        </div>
-      }
-      footer={
-        <div className={`${s.modalFooter} ${s.fullWidthFooter}`}>
+          </div>
+
+          {loading && <LoaderModal isOpen={loading} message="Sending OTP..." />}
+        </ModalBody>
+
+        <ModalFooter>
           <Button
+            type="button"
             className="h-auto w-full"
             size="large"
             variant="primary"
-            onClick={handleRequestOtp}
-            disabled={!selectedMobileNumber}
+            onClick={onContinueClick}
           >
             Continue
           </Button>
-        </div>
-      }
-      onCancel={onClose}
-      isOpen={isOpen}
-      size="small"
-    />
+
+          {errorMessage && <Typography> {errorMessage}</Typography>}
+        </ModalFooter>
+      </Modal>
+    </>
   );
 };
 

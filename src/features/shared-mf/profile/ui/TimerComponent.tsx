@@ -9,7 +9,7 @@ interface TimerComponentProps {
 
 const TimerComponent: React.FC<TimerComponentProps> = ({ seconds, onTimerEnd }) => {
   const [timeLeft, setTimeLeft] = useState(seconds);
-
+ 
   useEffect(() => {
     if (timeLeft <= 0) return; // If the timer is already done, no need to set up another interval
 
@@ -29,16 +29,15 @@ const TimerComponent: React.FC<TimerComponentProps> = ({ seconds, onTimerEnd }) 
   }, [timeLeft, onTimerEnd]);
 
   return (
-    <div className="text-center">
-      <Typography
-        color="static-black"
-        variant="tiny"
-        weight="medium"
-        className={`${s.timerText}`} // This class is for the CSS styles you provided
-      >
+      
+    <>
+    {timeLeft > 0 && (
+      <Typography color="static-black" variant="regular" weight="medium">
         {timeLeft} seconds
       </Typography>
-    </div>
+    )}
+  </>
+    
   );
 };
 

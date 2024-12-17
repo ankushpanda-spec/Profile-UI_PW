@@ -3,8 +3,9 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Separator,
 } from '@pw-tech/omni-ui';
-import BorderDivider from './BorderDivider';
+
 
 const GenericModal = ({
   header,
@@ -40,7 +41,7 @@ const GenericModal = ({
           {header}    
         </ModalHeader>
       )}
-      {showBorder && <BorderDivider/>}
+      {showBorder && <Separator/>}
       <ModalBody>{body}</ModalBody>
       {footer && <ModalFooter>{footer}</ModalFooter>}
     </Modal>

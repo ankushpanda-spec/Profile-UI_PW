@@ -1,78 +1,88 @@
 import React, { useState } from 'react';
-import { Button, Typography, RadioButton } from '@pw-tech/omni-ui'; 
-import GenericModal from './ModalComponent';
+import { Button, Typography, RadioButton, ModalHeader, ModalBody, ModalFooter, Modal, Separator} from '@pw-tech/omni-ui'; 
 import s from '../styles/index.module.css';
+import { useUser } from '@pw-tech/omni-context';
+import { fetchOtp } from '../api';
+import LoaderModal from './components/loader/LoaderModalComponent';
 
 const OldPhoneNumberModal = ({
   isOpen,
-  onClose,
-  userInfo,
-  onRequestOtp,
+  setActiveModal,
+  numberChangeRequestId,
+  selectedMobileNumber,
+  setSelectedMobileNumber,
+  handleEditModalOpen
 }: {
   isOpen: boolean;
-  onClose: () => void;
-  userInfo?: { countryCode: string; primaryNumber: string };
-  onRequestOtp: (selectedNumber: string) => void;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  numberChangeRequestId: string;
+  selectedMobileNumber:string;
+  setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>
+  handleEditModalOpen: () => void;
+
 }) => {
-  const [selectedMobileNumber, setSelectedMobileNumber] = useState<string | null>(null);
-
-  const handleRequestOtp = () => {
-    if (selectedMobileNumber) {
-      onRequestOtp(selectedMobileNumber);
-    }
-  };
-
-  const handleRadioChange = (phoneNumber: string) => {
-
+  const {user} = useUser()
+  
+  const [error , setError] = useState();
+  const [loading , setLoading] = useState<boolean>(false);
+  
+  const handleRequestOtp = async () => {
+     setLoading(true)
+      try{
+        const apiData = {
+          phone: selectedMobileNumber,
+          countryCode: user?.countryCode,
+          isNewNumber: false,
+          organizationId: process.env.PUBLIC_ORGANISATION_ID,
+          requestId:numberChangeRequestId,
+        };
+        const res: any = await fetchOtp(apiData)
+        if(res.success){
+           setActiveModal('otpVerification')
+        }
+        else{
+         setError(res.error);
+        }
+      }
+      catch(error){
+        setError(error);
+        setLoading(false);
+      }
+      finally{
+       setLoading(false);
+      }
   }
 
-  return (
-    <GenericModal
-      header={
-        <Typography color="static-black" variant="heading3" weight="bold">
-          Select Mobile Number
-        </Typography>
-      }
-      body={
-        <div className="px-4">
-          <Typography className="text-base leading-6 font-semibold text-[#3d3d3d]" color="static-black" variant="regular">
-            <div className='mb-[24px]'>
-            Please note that you will not be able to change your mobile number after this for a year. Please select a previously used mobile number to continue.
-            </div>
-          </Typography>
 
-          {/* Radio Button with number beside it */}
-          {userInfo && (
-            <div className="flex items-center ">
-              <RadioButton
-                onChange={() => handleRadioChange(userInfo.primaryNumber)}
-                variant="primary"
-                size='sm'
-              />
-              <Typography variant="regular" className="ml-2 text-base leading-6 text-[#3d3d3d]">
-                {userInfo.countryCode} {userInfo.primaryNumber}
+  return (
+    <Modal isOpen={isOpen} size="small" onClose={handleEditModalOpen}>
+     <ModalHeader>
+        <Typography color="text-heading" variant="heading4" weight="semi-bold">
+        Select Mobile Number
+        </Typography>
+        </ModalHeader>
+        <Separator/>
+      <ModalBody>
+         <div className='flex flex-start gap-24 pb-8 flex-col'>
+            <Typography variant="regular" weight="medium" color="text-body-1">
+            Please note that you will not be able to change your mobile number after this for a year. Please select a previously used mobile number to continue
+            </Typography>
+            <div className='flex flex-col gap-24 self-stretch items-start justify-end'>
+             <div className='flex items-center gap-8 py-8 px-8'>
+              <RadioButton size="sm" onClick= {()=> setSelectedMobileNumber(user?.primaryNumber)}/>
+              <Typography variant="regular" weight="medium" color="text-body-1">
+              {user?.primaryNumber}
               </Typography>
+             </div>
+            <Button fullWidth size="large"
+            disabled={!selectedMobileNumber} onClick = {handleRequestOtp} >Request OTP</Button>
             </div>
-          )}
-        </div>
-      }
-      footer={
-        <div className={`${s.modalFooter} ${s.fullWidthFooter}`}>
-          <Button
-            className="h-auto w-full"
-            size="large"
-            variant="primary"
-            onClick={handleRequestOtp}
-            disabled={!selectedMobileNumber}
-          >
-            Request OTP
-          </Button>
-        </div>
-      }
-      onCancel={onClose}
-      isOpen={isOpen}
-      size="small"
-    />
+         </div>
+
+          {loading && <LoaderModal isOpen={loading} message='Sending OTP...' />}
+        </ModalBody>
+     
+    </Modal>
   );
 };
 

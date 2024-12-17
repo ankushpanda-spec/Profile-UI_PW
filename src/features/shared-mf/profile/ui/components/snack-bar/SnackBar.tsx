@@ -6,8 +6,11 @@ import {
     message = "error while fetching",
     duration = 5000,
     position = { horizontal: 'right', vertical: 'bottom' },
-    variant = 'info',
+    variant = 'error',
     background = 'dark',
+    open,
+    setOpen,
+
   }) => {
     
   
@@ -15,9 +18,11 @@ import {
         <Toast
         message={message}
         anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
-        autoHideDuration={5000}
-        variant='info'
+        autoHideDuration={duration}
+        variant='error'
         background='dark'
+        open ={open}
+        onClose={() => setOpen(!open)}
         />
     )
   

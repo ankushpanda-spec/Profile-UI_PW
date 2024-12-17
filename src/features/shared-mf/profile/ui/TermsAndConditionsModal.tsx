@@ -1,75 +1,75 @@
-
-import { Button, Typography } from '@pw-tech/omni-ui';
-import s from "../styles/index.module.css";
+import {
+  Button,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Typography,
+  Modal,
+} from '@pw-tech/omni-ui';
+import s from '../styles/index.module.css';
 import GenericModal from './ModalComponent';
 import BorderDivider from './BorderDivider';
-import { fetchStates } from '../api';
-import { useEffect } from 'react';
+import {fetchStates} from '../api';
+import {useEffect, useState} from 'react';
 
 const TermsAndConditionsModal = ({
   isOpen,
-  onCancel,
-  onUpdate,
+  setActiveModal,
+  
+  handleEditModalOpen,
 }: {
   isOpen: boolean;
-  onCancel: () => void; // Function to handle cancel action
-  onUpdate: () => void; // Function to handle update action
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+
+  handleEditModalOpen: () => void;
 }) => {
 
-
+  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
+  
+  const handleClose = () => {
+    setIsModalOpen(false);
+    handleEditModalOpen()
+  } 
+  
   return (
-    <GenericModal
-      header={
-        <Typography color="static-black" variant="heading3" weight="bold">
+    <Modal isOpen={isModalOpen} size="small" onClose={handleClose}>
+      <ModalHeader>
+        <Typography color="static-black" variant="heading4" weight="semi-bold">
           Terms and Conditions
         </Typography>
-      }
-      body={
-        
-        <div>
-          <Typography variant='regular'>
-            <div className='mb-[24px] text-base leading-6 font-semibold text-[#3d3d3d]'>
-            Before continuing to change the mobile number, please agree to the terms and conditions:
-            </div>
+      </ModalHeader>
+      <ModalBody>
+        <div className="flex flex-col items-start gap-24">
+          <Typography variant="regular" weight="semi-bold" color="text-body-1">
+            Before continuing to change the mobile number, please agree to the
+            terms and conditions:
           </Typography>
           <ul className={`${s.termsList} list-disc pl-5`}>
             <li>
-              <Typography variant="regular" className='mb-[8px] text-[#3d3d3d] font-semibold'>
+              <Typography variant="regular" color="text-body-1" weight="medium">
                 You can only change your number once in 365 days.
               </Typography>
             </li>
             <li>
-              <Typography variant="regular" className='mb-[8px] text-[#3d3d3d] font-semibold'>
-                You won't be able to access your batches and content on the old number.
+              <Typography variant="regular" color="text-body-1">
+                You won't be able to access your batches and content on the old
+                number.
               </Typography>
             </li>
           </ul>
         </div>
-      }
-      footer={
-        <div className={`${s.modalFooter} ${s.fullWidthFooter}`}>
-          <Button
-            className="h-auto w-full"
-            size="large"
-            variant="lowFocus"
-            onClick={onCancel}
-          >
+      </ModalBody>
+      <ModalFooter>
+        <div className="flex items-start gap-16 self-stretch">
+          <Button fullWidth size="large" variant="lowFocus" onClick={handleClose}>
             Decline
           </Button>
-          <Button
-            className="h-auto w-full"
-            size="large"
-            variant="primary"
-            onClick={onUpdate}
-          >
+          <Button fullWidth size="large" variant="primary" onClick={() => setActiveModal('oldPhoneNumber')}>
             Accept
           </Button>
         </div>
-      }
-      onCancel={onCancel}
-      isOpen={isOpen}
-      size="small"
-    />
+      </ModalFooter>
+    </Modal>
   );
 };
 

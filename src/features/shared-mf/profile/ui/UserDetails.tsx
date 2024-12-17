@@ -10,18 +10,13 @@ import LoaderModal from './components/loader/LoaderModalComponent';
 import { ModalTypes } from '../types/constants';
 import localStorageService from '../services/localStorageService';
 import SnackBar from './components/snack-bar/SnackBar';
+import UpdateSuccessModal from './UpdateSuccess';
 
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
-  const [activeModal, setActiveModal] = useState<string | null>(null); // State to manage active modal
+  const [editModalOpen, setEditModalOpen] = useState<boolean>(false); // State to manage active modal
   const { user: _User, setUser: _setUser } = useUser();
 
-
-  
-
-  const handleCloseModal = () => {
-    setActiveModal(null); // Close any open modal
-  };
 
   useEffect(() => {
     const _sections: any = [];
@@ -54,7 +49,7 @@ const UserDetails = () => {
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
         <h4 className={s.udOneTitle}>Profile Detail</h4>
-        <span className={s.udEditText} onClick={() => setActiveModal('editProfile')}>
+        <span className={s.udEditText} onClick={() => setEditModalOpen(true)}>
           Edit
         </span>
       </div>
@@ -77,54 +72,11 @@ const UserDetails = () => {
         </div>
       ))}
 
-      {/* Conditional Rendering of Modals */}
-      {activeModal === ModalTypes.EditProfile && (
         <EditProfileModal
-          modalHeader="Edit Details"
-          onCancel={handleCloseModal}
-          isOpen={true}
-          onClose={handleCloseModal}
-          userInfo={_User || {}}
-          setUserInfo={_setUser}
-        />
-      )}
-      {activeModal === ModalTypes.TermsAndConditions && (
-        <TermsAndConditionsModal
-          onCancel={handleCloseModal}
-          isOpen={true}
-          onUpdate={() => console.log('Updating terms and conditions')}
-        />
-      )}
-      {activeModal === ModalTypes.OldPhoneNumber && (
-        <OldPhoneNumberModal
-          isOpen={true}
-          onClose={handleCloseModal}
-          onRequestOtp={() => console.log('Requesting OTP')}
-          userInfo={{
-            countryCode: '+1',
-            primaryNumber: '123-456-7890',
-          }}
-        />
-      )}
-      {activeModal === ModalTypes.OTPVerification && (
-        <OTPVerificationModal
-          isOpen={true}
-          onClose={handleCloseModal}
-          otpInputConfig={{ otpLength: 6 }}
-          data={{ countryCode: '+1', mobileNumber: '1234567890', isNewNumber: false }}
-          onVerifyOtp={() => console.log('OTP Verified')}
-          onResendOtp={() => console.log('OTP Resent')}
-          isLoading={() => false}
-          showResendTimer={true}
-          editNumberIcon=""
-          onResendTimerEnd={() => console.log('Resend Timer Ended')}
-          handleFillEvent={(event) => console.log('OTP Filled', event)}
-          handleOtpChange={(event) => console.log('OTP Changed', event)}
-        />
-      )}
-      {activeModal === ModalTypes.NewNumberVerification && (
-        <NewNumberVerification isOpen={true} onClose={handleCloseModal} />
-      )}
+          editModalOpen={editModalOpen}
+          handleEditModalClose= {() => setEditModalOpen(false)}
+          handleEditModalOpen = {() => setEditModalOpen(true)}
+          />
     </div>
   );
 };

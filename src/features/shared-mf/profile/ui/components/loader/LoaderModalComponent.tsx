@@ -1,32 +1,25 @@
-import { Loader } from '@pw-tech/omni-ui';
-import GenericModal from '../../ModalComponent';
+import { Loader, ModalBody, Modal } from '@pw-tech/omni-ui';
+
 
 const LoaderModal = ({
   isOpen,
-  onCancel,
-  message = 'Loading, please wait...',
+
+  message = 'Loading....',
 }: {
   isOpen: boolean; // Determines if the modal is open
-  onCancel: () => void; // Function to call when closing the modal
   message?: string; // Custom loading message (optional)
 }) => {
   return (
-    <GenericModal
-      header={<div></div>} // No header
-      body={
-        <Loader
-            message={message}
-            size="medium"
-            />
-      }
-      footer={<></>} // No footer
-      isOpen={isOpen}
-      onCancel={onCancel}
-      size="medium"
-      closeOnOutsideClick={false} // Prevent closing on outside click
-      showCloseIcon={false} // No close icon
-      showBorder={false} // No border below header (since there is no header)
-    />
+    <Modal size="extra-small" isOpen={isOpen} showCloseIcon={false}>
+      <ModalBody>
+      <div className='flex flex-wrap mx-2 overflow-hidden justify-center items-center my-2 px-2'>
+      <Loader size="medium"/>
+      <div className='my-2 px-2 w-full overflow-hidden text-center'>
+      {message}
+      </div>
+      </div>
+      </ModalBody>
+    </Modal>
   );
 };
 

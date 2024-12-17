@@ -1,4 +1,4 @@
-import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser } from "./constants";
+import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
 import {ApiClient} from '@pw-tech/web-sdk';
 
 export const fetchStates = async (country: string) => {
@@ -21,7 +21,7 @@ export const fetchCities = async (country: string, state: string) => {
     }
 };
 
-export const fetchIsEligible = async () => {
+export const fetchUpdateNumberConfig = async () => {
     try {
         const url = getIsEligible();
         return await ApiClient.get(url, {});
@@ -30,7 +30,6 @@ export const fetchIsEligible = async () => {
         throw error;
       }
 }
-
 
 export const fetchOtp = async (payload: {
     countryCode: string;
@@ -46,6 +45,22 @@ export const fetchOtp = async (payload: {
           console.error("Error fetching OTP:", error);
           throw error;
     }
+};
+export const verifyOtp = async (payload: {
+  countryCode: string;
+  isNewNumber: boolean;
+  organizationId: string;
+  phone: string;
+  otp: string;
+  requestId: string;
+    }) => {
+      try {
+        const url = verifyOtpUrl() ;
+        return await ApiClient.post(url, payload);
+      } catch (error) {
+        console.error("Error Verifying OTP:", error);
+        throw error;
+  }
 };
 
 

@@ -3,10 +3,22 @@ export enum ModalTypes {
     TermsAndConditions = 'termsAndConditions',
     OldPhoneNumber = 'oldPhoneNumber',
     OTPVerification = 'otpVerification',
-    NewNumberVerification = 'newNumberVerification',
+    NewNumberComponent = 'newNumberComponent',
+    NewNumberOTPVerification = 'newNumberOtpVerification',
+    UpdateSuccess = "updateSuccess",
   }
 
 export type LabelValue = {
   label: string;
   value: string;
 };
+
+export interface UserInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  gender: string;
+  city: string;
+  state: string;
+}
