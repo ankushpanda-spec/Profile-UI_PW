@@ -5,6 +5,7 @@ import { useUser } from '@pw-tech/omni-context';
 import { fetchOtp } from '../api';
 import LoaderModal from './components/loader/LoaderModalComponent';
 import getErrorMessage from '../services/showErrorService';
+import { useLoader } from '@/hooks/showLoader';
 
 const OldPhoneNumberModal = ({
   isOpen,
@@ -16,33 +17,34 @@ const OldPhoneNumberModal = ({
 }: {
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  numberChangeRequestId: string;
+  numberChangeRequestId: string | undefined;
   selectedMobileNumber:string;
   setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>
   handleEditModalOpen: () => void;
 
 }) => {
   const {user} = useUser()
-  
+  const {showLoader , hideLoader} = useLoader();
   const [error , setError] = useState<string>('');
-  const [loading , setLoading] = useState<boolean>(false);
+  
   const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
   
   const handleClose = () => {
     setIsModalOpen(false);
+    setActiveModal('');
     handleEditModalOpen()
   } 
   
   
   const handleRequestOtp = async () => {
-     setLoading(true)
+     showLoader("Sending OTP...")
       try{
         const apiData = {
           phone: selectedMobileNumber,
           countryCode: user?.countryCode,
           isNewNumber: false,
           organizationId: process.env.PUBLIC_ORGANISATION_ID,
-          requestId:numberChangeRequestId,
+          requestId:numberChangeRequestId || '',
         };
         const res: any = await fetchOtp(apiData)
         if(res.success){
@@ -55,10 +57,10 @@ const OldPhoneNumberModal = ({
       catch(error){
         const errorObj = getErrorMessage(error);
         setError(errorObj.message);
-        setLoading(false);
+        hideLoader();
       }
       finally{
-       setLoading(false);
+       hideLoader();
       }
   }
 
@@ -94,7 +96,7 @@ const OldPhoneNumberModal = ({
           </div> }
          </div>
 
-          {loading && <LoaderModal isOpen={loading} message='Sending OTP...' />}
+         
         </ModalBody>
      
     </Modal>

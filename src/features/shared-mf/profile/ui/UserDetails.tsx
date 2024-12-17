@@ -9,7 +9,6 @@ import NewNumberVerification from './NewNumberVerification';
 import LoaderModal from './components/loader/LoaderModalComponent';
 import { ModalTypes } from '../types/constants';
 import localStorageService from '../services/localStorageService';
-import SnackBar from './components/snack-bar/SnackBar';
 import UpdateSuccessModal from './UpdateSuccess';
 
 const UserDetails = () => {
@@ -71,12 +70,12 @@ const UserDetails = () => {
           </div>
         </div>
       ))}
-      {editModalOpen && 
+     
         <EditProfileModal
           editModalOpen={editModalOpen}
           handleEditModalClose= {() => setEditModalOpen(false)}
           handleEditModalOpen = {() => setEditModalOpen(true)}
-          /> }
+          /> 
     </div>
   );
 };

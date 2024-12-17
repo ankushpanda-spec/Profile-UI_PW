@@ -33,7 +33,7 @@ const OTPVerificationModal = ({
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   selectedMobileNumber: string;
-  numberChangeRequestId: string;
+  numberChangeRequestId: string | undefined;
   handleEditModalOpen: () => void;
   nextActiveModal: string;
   isNewNumber:boolean;
@@ -49,7 +49,6 @@ const OTPVerificationModal = ({
   
   const handleClose = () => {
     setIsModalOpen(false);
-    setActiveModal('');
     handleEditModalOpen()
   } 
   
@@ -95,7 +94,7 @@ const OTPVerificationModal = ({
         countryCode: countryCode,
         isNewNumber: isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID,
-        requestId: numberChangeRequestId,
+        requestId: numberChangeRequestId || '',
       };
       const res: any = await fetchOtp(apiData);
       if (res.success) {
@@ -126,7 +125,7 @@ const OTPVerificationModal = ({
         isNewNumber: isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID,
         otp: otp,
-        requestId: numberChangeRequestId,
+        requestId: numberChangeRequestId || '',
       };
       const res: any = await verifyOtp(apiData);
       if (res.success) {

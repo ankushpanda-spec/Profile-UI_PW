@@ -32,7 +32,7 @@ const NewNumberVerification = ({
 }: {
   isOpen: boolean;
   handleEditModalOpen: () => void;
-  numberChangeRequestId: string;
+  numberChangeRequestId: string | undefined;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   setNewCountryCode:React.Dispatch<React.SetStateAction<string>>;
   setNewInputMobileNumber:React.Dispatch<React.SetStateAction<string>>;
@@ -49,7 +49,6 @@ const NewNumberVerification = ({
   
   const handleClose = () => {
     setIsModalOpen(false);
-    setActiveModal('');
     handleEditModalOpen()
   
   } 
@@ -79,7 +78,7 @@ const NewNumberVerification = ({
       countryCode: newCountryCode,
       isNewNumber: isNewNumber,
       organizationId: process.env.PUBLIC_ORGANISATION_ID,
-      requestId: numberChangeRequestId,
+      requestId: numberChangeRequestId || '',
     };
     try {
       showLoader("Sending OTP...")
@@ -95,7 +94,7 @@ const NewNumberVerification = ({
           throw new Error('');
         }
       }
-      hideLoader();
+      
     } catch (err) {
       const errorObj = getErrorMessage(err);
 

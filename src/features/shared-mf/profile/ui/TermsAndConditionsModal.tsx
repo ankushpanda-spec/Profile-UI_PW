@@ -28,7 +28,6 @@ const TermsAndConditionsModal = ({
   
   const handleClose = () => {
     setIsModalOpen(false);
-    setActiveModal('');
     handleEditModalOpen()
   } 
   

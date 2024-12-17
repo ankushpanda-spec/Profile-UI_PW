@@ -90,12 +90,9 @@ useEffect(() => {
     setValue("state" , user.address?.state)
   }
 }, [user]);
-
-useEffect(()=> {
-  setCount((prev) => prev+1);
-  console.log("activeModal" , count , activeModal);
-} , [activeModal])
-
+useEffect(()=>{
+ console.log("ACTIVE MODAL" , activeModal)
+} , [activeModal]);
   useEffect(() => {
     const nameUpdateBlockedUntil = user?.nameUpdateBlockedUntil;
     const currentDate = new Date();
@@ -127,17 +124,18 @@ useEffect(()=> {
 
   useEffect(() => {
     const fetchStateData = async () => {
+      if(editModalOpen){
       try {
-        showLoader("Loading...");
+        showLoader("Loading...")
         const country = 'IND'; // Adjust as needed
         const response: any = await fetchStates(country);
         const statesInFormattedForm: LabelValue[] = formatToLabelValue(response.data);
         setStates(statesInFormattedForm); // Assuming response contains states data
       } catch (error) {
         console.error('Error fetching states:', error);
-      } finally {
-        hideLoader(); // Stop the loader when data is fetched or an error occurs
-      }
+      } finally{
+        hideLoader();
+      } }
     };
     
     fetchStateData();
@@ -168,7 +166,7 @@ useEffect(()=> {
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
-    setActiveModal('termsAndConditions');
+    
     setIsUpdateNumberConfigLoading(true);
     try {
       const res: any = await fetchUpdateNumberConfig();
@@ -178,12 +176,10 @@ useEffect(()=> {
       const eligible = res.data.isEligible;
       const failureReason = res.data.failureReason;
       
-      if (eligible) {
-        setActiveModal('termsAndConditions');
-       
-        
+      if (true) {
+
+        setActiveModal('termsAndConditions')
         handleEditModalClose();
-        
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
       }
@@ -228,7 +224,7 @@ useEffect(()=> {
     setActiveModal('');
   }
   return (
-    <>
+    <> {editModalOpen && 
       <Modal
         closeOnOutsideClick
         onClose={handleEditModalClose}
@@ -447,7 +443,7 @@ useEffect(()=> {
             </div>
           </ModalFooter>
         </form>
-      </Modal>
+      </Modal> }
 
 
       {activeModal === ModalTypes.TermsAndConditions && (
