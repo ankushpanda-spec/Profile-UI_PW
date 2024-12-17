@@ -17,6 +17,8 @@ import {useUser} from '@pw-tech/omni-context';
 import {fetchOtp, verifyOtp} from '../api';
 import LoaderModal from './components/loader/LoaderModalComponent';
 import { count } from 'console';
+import getErrorMessage from '../services/showErrorService';
+import { useLoader } from '@/hooks/showLoader';
 
 const OTPVerificationModal = ({
   isOpen,
@@ -38,13 +40,19 @@ const OTPVerificationModal = ({
   countryCode: string;
 }) => {
   const {user , setUser} = useUser();
+  const {showLoader , hideLoader} = useLoader();
   const [otp, setOtp] = useState<string>('');
-  const [error, setError] = useState();
-  const [loading, setLoading] = useState(false);
-  const [loadingMessage, setLoadingMessage] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const [showResendMessage, setShowResendMessage] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(30);
- 
+  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
+  
+  const handleClose = () => {
+    setIsModalOpen(false);
+    setActiveModal('');
+    handleEditModalOpen()
+  } 
+  
   useEffect(() => {
     if (timeLeft <= 0) return; // If the timer is already done, no need to set up another interval
 
@@ -62,6 +70,7 @@ const OTPVerificationModal = ({
     return () => clearInterval(timerInterval);
   }, [timeLeft]);
   const handleOTPComplete = (otp: number) => {
+    
     setOtp(otp.toString());
   };
 
@@ -77,8 +86,9 @@ const OTPVerificationModal = ({
 
   const onResendOtp = async () => {
     
-    setLoading(true);
-    setLoadingMessage('Sending OTP...');
+    
+    setError('')
+    showLoader('Sending OTP...');
     try {
       const apiData = {
         phone: selectedMobileNumber,
@@ -89,25 +99,26 @@ const OTPVerificationModal = ({
       };
       const res: any = await fetchOtp(apiData);
       if (res.success) {
-        setLoading(false);
+        hideLoader();
         setShowResendMessage(true);
         setTimeLeft(30);
       } else {
         setError(res.error);
       }
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      const errorObj = getErrorMessage(error);
+      setError(errorObj.message);
+      hideLoader()
     } finally {
-      setLoading(false);
+      hideLoader()
       setShowResendMessage(true);
       setTimeLeft(30);
     }
   };
 
   const handleVerifyOtp = async () => {
-    setLoading(true);
-    setLoadingMessage('Verifying OTP...');
+  
+    showLoader('Verifying OTP...');
     try {
       const apiData = {
         phone: selectedMobileNumber,
@@ -119,8 +130,7 @@ const OTPVerificationModal = ({
       };
       const res: any = await verifyOtp(apiData);
       if (res.success) {
-        if(isNewNumber){
-         
+        if(isNewNumber){  
           updateNumberInGlobalState();
         }
         setActiveModal( nextActiveModal);
@@ -129,17 +139,18 @@ const OTPVerificationModal = ({
         setError(res?.message || '');
       
       }
-      setLoading(false);
+      hideLoader();
     } catch (error) {
-      setError(error);
-      setLoading(false);
+      const errorObj = getErrorMessage(error);
+      setError(errorObj.message);
+      hideLoader();
     } finally {
-      setLoading(false);
+      hideLoader();
     }
   };
 
   return (
-    <Modal size="small" isOpen={isOpen} onClose={handleEditModalOpen}>
+    <Modal size="small" isOpen={isModalOpen} onClose={handleClose}>
       <ModalHeader>
         <Typography color="text-heading" variant="heading4" weight="semi-bold">
           OTP Verification
@@ -198,6 +209,7 @@ const OTPVerificationModal = ({
                 size="medium"
                 variant="link"
                 className="text-[#0592CB] underline"
+                disabled={timeLeft>0}
               >
                 Resend
               </Button>
@@ -206,13 +218,14 @@ const OTPVerificationModal = ({
           <Button fullWidth disabled={!otp} onClick={handleVerifyOtp}>
             Verify OTP
           </Button>
+          {error && 
           <div className="flex items-center gap-6">
             <Typography variant="tiny" weight="semi-bold" color="error">
-              The OTP you have entered is incorrect
+             {error}
             </Typography>
-          </div>
+          </div> }
         </div>
-        {loading && <LoaderModal isOpen={loading} message={loadingMessage} />}
+        
       </ModalBody>
     </Modal>
   );

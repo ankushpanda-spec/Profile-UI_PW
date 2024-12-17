@@ -8,19 +8,29 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { fetchUser } from '@/api';
 import { fetchFile } from '../api';
-import SnackBar from './components/snack-bar/SnackBar';
 import { useUser } from '@pw-tech/omni-context';
+import { useSnackbar } from '@/hooks/showSnackBar';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
 
 const ProfileContainer = () => {
   // Ref for the hidden file input
+
   const [userImg, setUserImg] = useState<string | null>(null);
   const [snackBarOpen , setSnackBarOpen] = useState<boolean>(false);
   const [message , setMessage] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const {user , setUser} = useUser();
+  const showSnackBar = useSnackbar();
+  const user = (() => {
+    const userData = localStorageService.get("user");
+    try {
+      return userData ? JSON.parse(userData) : null; // Parse the stored string into an object
+    } catch (error) {
+      console.error("Invalid user data in localStorage:", error);
+      return null; // Return null if parsing fails
+    }
+  })();
   
   useEffect(() => {
     if (user?.imageId) {
@@ -51,9 +61,8 @@ const ProfileContainer = () => {
       const type = selectedFile.type;
 
        if(type !== 'image/png' && type !== 'image/jpg' && type !== 'image/jpeg'){ 
-        setSnackBarOpen(true)
-        setMessage("Please select image file only")
-        console.log("Please select image file only")
+        showSnackBar("Please select image file only")
+        
         return;
       
        } else{ // Create a FormData object
@@ -111,7 +120,7 @@ const ProfileContainer = () => {
       <div className={s.profileDetails}>
         <ProfileDetails />
       </div>
-      <SnackBar  open={snackBarOpen} setOpen={setSnackBarOpen}/>
+      
     </div>
   );
 };

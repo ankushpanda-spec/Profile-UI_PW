@@ -17,6 +17,7 @@ import {fetchOtp} from '../api';
 import LoaderModal from './components/loader/LoaderModalComponent';
 import OTPVerificationModal from './OtpVerification';
 import getErrorMessage from '../services/showErrorService';
+import { useLoader } from '@/hooks/showLoader';
 
 const NewNumberVerification = ({
   isOpen,
@@ -39,12 +40,19 @@ const NewNumberVerification = ({
   newCountryCode:string;
   isNewNumber:boolean;
 }) => {
-  
+  const {showLoader , hideLoader} = useLoader()
   const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [inputErrorMessageShown, setInputErrorMessageShown] =
     useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
+  
+  const handleClose = () => {
+    setIsModalOpen(false);
+    setActiveModal('');
+    handleEditModalOpen()
+  
+  } 
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -74,9 +82,9 @@ const NewNumberVerification = ({
       requestId: numberChangeRequestId,
     };
     try {
-      setLoading(true);
+      showLoader("Sending OTP...")
       const res: any = await fetchOtp(apiData);
-
+       
       if (res?.success) {
         setActiveModal('newNumberOtpVerification');
       } else {
@@ -87,16 +95,16 @@ const NewNumberVerification = ({
           throw new Error('');
         }
       }
-      setLoading(false);
+      hideLoader();
     } catch (err) {
       const errorObj = getErrorMessage(err);
 
       setInputErrorMessage(errorObj.message);
       setInputErrorMessageShown(true);
 
-      setLoading(false);
+     hideLoader();
     } finally {
-      setLoading(false);
+      hideLoader();
     }
   };
 
@@ -122,7 +130,7 @@ const NewNumberVerification = ({
 
   return (
     <>
-      <Modal isOpen={isOpen} size="small" onClose={handleEditModalOpen}>
+      <Modal isOpen={isModalOpen} size="small" onClose={handleClose}>
         <ModalHeader>
           <Typography color="static-black" variant="heading3" weight="bold">
             Enter New Number
@@ -154,7 +162,7 @@ const NewNumberVerification = ({
             />
           </div>
 
-          {loading && <LoaderModal isOpen={loading} message="Sending OTP..." />}
+        
         </ModalBody>
 
         <ModalFooter>

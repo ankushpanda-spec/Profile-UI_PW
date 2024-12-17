@@ -4,6 +4,7 @@ import s from '../styles/index.module.css';
 import { useUser } from '@pw-tech/omni-context';
 import { fetchOtp } from '../api';
 import LoaderModal from './components/loader/LoaderModalComponent';
+import getErrorMessage from '../services/showErrorService';
 
 const OldPhoneNumberModal = ({
   isOpen,
@@ -23,8 +24,15 @@ const OldPhoneNumberModal = ({
 }) => {
   const {user} = useUser()
   
-  const [error , setError] = useState();
+  const [error , setError] = useState<string>('');
   const [loading , setLoading] = useState<boolean>(false);
+  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
+  
+  const handleClose = () => {
+    setIsModalOpen(false);
+    handleEditModalOpen()
+  } 
+  
   
   const handleRequestOtp = async () => {
      setLoading(true)
@@ -45,7 +53,8 @@ const OldPhoneNumberModal = ({
         }
       }
       catch(error){
-        setError(error);
+        const errorObj = getErrorMessage(error);
+        setError(errorObj.message);
         setLoading(false);
       }
       finally{
@@ -55,7 +64,7 @@ const OldPhoneNumberModal = ({
 
 
   return (
-    <Modal isOpen={isOpen} size="small" onClose={handleEditModalOpen}>
+    <Modal isOpen={isModalOpen} size="small" onClose={handleClose}>
      <ModalHeader>
         <Typography color="text-heading" variant="heading4" weight="semi-bold">
         Select Mobile Number
@@ -77,6 +86,12 @@ const OldPhoneNumberModal = ({
             <Button fullWidth size="large"
             disabled={!selectedMobileNumber} onClick = {handleRequestOtp} >Request OTP</Button>
             </div>
+            {error && 
+          <div className="flex items-center gap-6">
+            <Typography variant="tiny" weight="semi-bold" color="error">
+             {error}
+            </Typography>
+          </div> }
          </div>
 
           {loading && <LoaderModal isOpen={loading} message='Sending OTP...' />}

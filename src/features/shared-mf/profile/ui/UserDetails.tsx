@@ -71,12 +71,12 @@ const UserDetails = () => {
           </div>
         </div>
       ))}
-
+      {editModalOpen && 
         <EditProfileModal
           editModalOpen={editModalOpen}
           handleEditModalClose= {() => setEditModalOpen(false)}
           handleEditModalOpen = {() => setEditModalOpen(true)}
-          />
+          /> }
     </div>
   );
 };

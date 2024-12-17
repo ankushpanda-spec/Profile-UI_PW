@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, act} from 'react';
 import {
   Button,
   Modal,
@@ -19,7 +19,7 @@ import {
   fetchUpdateNumberConfig,
 } from '../api';
 import {formatToLabelValue} from '../services/utils';
-import {LabelValue, ModalTypes, UserInfo} from '../types/constants';
+import {LabelValue, ModalTypes, UpdateNumberConfig, UserInfo} from '../types/constants';
 import {useUser} from '@pw-tech/omni-context';
 import {useForm, Controller} from 'react-hook-form';
 import LoaderModal from './components/loader/LoaderModalComponent';
@@ -28,6 +28,8 @@ import OldPhoneNumberModal from './OldPhoneNumberComponent';
 import OTPVerificationModal from './OtpVerification';
 import NewNumberVerification from './NewNumberVerification';
 import UpdateSuccessModal from './UpdateSuccess';
+import getErrorMessage from '../services/showErrorService';
+import { useLoader } from '@/hooks/showLoader';
 
 type EditProfileModalProps = {
   editModalOpen: boolean;
@@ -41,7 +43,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   handleEditModalOpen,
 }) => {
   const {user} = useUser();
-
+  const {showLoader , hideLoader} = useLoader()
   const formData: UserInfo = {
     firstName: user?.firstName || '',
     lastName: user?.lastName || '',
@@ -51,7 +53,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     city: user?.address?.city || '',
     state: user?.address?.state || '',
   };
-  console.log('formData', formData);
+  
   const {handleSubmit, control, setValue, watch} = useForm({
     defaultValues: formData
   });
@@ -63,12 +65,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] =
     useState(false);
 
-  const [updateNumberConfig, setUpdateNumberConfig] = useState();
-
+  const [updateNumberConfig, setUpdateNumberConfig] = useState<UpdateNumberConfig>();
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
-  const [calculatedDate, setCalculatedDate] = useState('');
-  const [loadingStates, setLoadingStates] = useState(true);
-  const [loadingCities, setLoadingCities] = useState(false);
+  const [calculatedDate, setCalculatedDate] = useState<string | null>(null);
   const [selectedMobileNumber, setSelectedMobileNumber] = useState<string>('');
   const [newInputMobileNumber , setNewInputMobileNumber] = useState<string>('');
   const [newCountryCode ,setNewCountryCode] = useState<string>('+91');
@@ -77,7 +76,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
   
-console.log("ACTIVE MODAL" , activeModal)
+const [count , setCount] = useState<number>(1);
 
 useEffect(() => {
   if (user) {
@@ -87,10 +86,15 @@ useEffect(() => {
     setValue("email", user.email);
     setValue("mobile" , user.primaryNumber)
     setValue("gender" , user.gender)
-    setValue("city" , user.address.city)
-    setValue("state" , user.address.state)
+    setValue("city" , user.address?.city)
+    setValue("state" , user.address?.state)
   }
 }, [user]);
+
+useEffect(()=> {
+  setCount((prev) => prev+1);
+  console.log("activeModal" , count , activeModal);
+} , [activeModal])
 
   useEffect(() => {
     const nameUpdateBlockedUntil = user?.nameUpdateBlockedUntil;
@@ -103,8 +107,12 @@ useEffect(() => {
     futureDate.setDate(currentDate.getDate() + 180);
 
     // Format the futureDate and blockedUntilDate
-    const formatDate = date => {
-      const options = {day: '2-digit', month: '2-digit', year: 'numeric'};
+    const formatDate = (date:Date | null) => {
+      const options: Intl.DateTimeFormatOptions = {
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric',
+      };
       return date ? date.toLocaleDateString('en-GB', options) : null;
     };
 
@@ -120,28 +128,26 @@ useEffect(() => {
   useEffect(() => {
     const fetchStateData = async () => {
       try {
+        showLoader("Loading...");
         const country = 'IND'; // Adjust as needed
         const response: any = await fetchStates(country);
-        const statesInFormattedForm: LabelValue[] = formatToLabelValue(
-          response.data
-        );
+        const statesInFormattedForm: LabelValue[] = formatToLabelValue(response.data);
         setStates(statesInFormattedForm); // Assuming response contains states data
-        setLoadingStates(false); // Stop the loader when data is fetched
       } catch (error) {
         console.error('Error fetching states:', error);
-        setLoadingStates(false);
       } finally {
-        setLoadingStates(false);
+        hideLoader(); // Stop the loader when data is fetched or an error occurs
       }
     };
+    
     fetchStateData();
   }, []);
-
+  
   useEffect(() => {
     const fetchCityData = async () => {
       if (selectedState) {
-        console.log('Fetching.....');
-        setLoadingCities(true); // Show loader for cities
+        
+        showLoader("Loading...");
         try {
           const country = 'IND'; // Adjust as needed
           const response: any = await fetchCities(country, selectedState);
@@ -149,12 +155,12 @@ useEffect(() => {
             response.data
           );
           setCities(citiesInFormattedForm); // Assuming response contains cities data
-          setLoadingCities(false); // Stop the loader when data is fetched
+          
         } catch (error) {
           console.error('Error fetching cities:', error);
-          setLoadingCities(false);
+          
         } finally {
-          setLoadingCities(false);
+          hideLoader();
         }
       }
     };
@@ -162,27 +168,30 @@ useEffect(() => {
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
-    console.log('Hello it is clicked');
+    setActiveModal('termsAndConditions');
     setIsUpdateNumberConfigLoading(true);
     try {
-      const config: any = await fetchUpdateNumberConfig();
-      setUpdateNumberConfig(config.data);
-
-      const isPureOfflineUser = config.isOffline;
-      const eligible = config.isEligible;
-      const failureReason = config.failureReason;
-      if (true) {
-        handleEditModalClose();
+      const res: any = await fetchUpdateNumberConfig();
+      
+      setUpdateNumberConfig(res.data);
+      const isPureOfflineUser = res.data.isOffline;
+      const eligible = res.data.isEligible;
+      const failureReason = res.data.failureReason;
+      
+      if (eligible) {
         setActiveModal('termsAndConditions');
-        console.log('HELLLlooo', activeModal);
+       
+        
+        handleEditModalClose();
+        
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
       }
     } catch (error) {
-      setUpdateNumberErrorMessage(error);
+      const errorObj = getErrorMessage(error);
+      setUpdateNumberErrorMessage(errorObj.message);
     } finally {
       setIsUpdateNumberConfigLoading(false);
-      console.log('configggg', updateNumberConfig?.requestId);
     }
   };
 
@@ -217,7 +226,6 @@ useEffect(() => {
   const handleSuccessModalClose = () => {
     handleEditModalOpen();
     setActiveModal('');
-
   }
   return (
     <>
@@ -251,10 +259,10 @@ useEffect(() => {
                   required: 'First Name is required',
                   pattern: {
                     value: /^[A-Za-z]+$/,
-                    message: 'First Name should contain only alphabets',
+                    message: '',
                   },
                 }}
-                render={({field, fieldState: {error}}) => (
+                render={({field}) => (
                   <>
                     <InputField
                       {...field}
@@ -266,9 +274,6 @@ useEffect(() => {
                       onFocus={onNameClicked}
                       onBlur={onNameClickedRemove}
                     />
-                    {error && (
-                      <Typography color="error">{error.message}</Typography>
-                    )}
                   </>
                 )}
               />
@@ -363,8 +368,10 @@ useEffect(() => {
                     type="number"
                     fullWidth
                     variant="outside"
-                    actionText="Update Number"
-                    readOnly
+                    actionText={isUpdateNumberConfigLoading ? "Updating..." : "Update Number"}
+                    minLength={4}
+                    maxLength={16}
+                  
                     action={handleUpdateNumber}
                   />
                 )}
@@ -422,7 +429,7 @@ useEffect(() => {
                 )}
               />
             </div>
-            {loadingCities && <LoaderModal isOpen={loadingCities} />}
+           
           </ModalBody>
           <ModalFooter>
             <div className={s.modalFooter}>
@@ -432,15 +439,16 @@ useEffect(() => {
                 onClick={handleEditModalClose}
                 type="button"
               >
-                Close
+                Cancel
               </Button>
               <Button size="small" variant="primary" type="submit">
-                Update & Save
+                Save Changes
               </Button>
             </div>
           </ModalFooter>
         </form>
       </Modal>
+
 
       {activeModal === ModalTypes.TermsAndConditions && (
         <TermsAndConditionsModal
@@ -449,6 +457,7 @@ useEffect(() => {
           handleEditModalOpen={handleEditModalOpen}
         />
       )}
+
       {activeModal === ModalTypes.OldPhoneNumber && (
         <OldPhoneNumberModal
           selectedMobileNumber={selectedMobileNumber}
@@ -506,3 +515,4 @@ useEffect(() => {
 };
 
 export default EditProfileModal;
+
