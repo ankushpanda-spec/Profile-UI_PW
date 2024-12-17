@@ -1,3 +1,4 @@
+import { UpdateNumberConfig } from "../types/constants";
 import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
 import {ApiClient} from '@pw-tech/web-sdk';
 
@@ -22,15 +23,14 @@ export const fetchCities = async (country: string, state: string) => {
 };
 
 export const fetchUpdateNumberConfig = async () => {
-    try {
-        const url = getIsEligible();
-        return await ApiClient.get(url, {});
-      } catch (error) {
-        console.error("Error fetching cities:", error);
-        throw error;
-      }
-}
-
+  try {
+    const url = getIsEligible();
+    return await ApiClient.get(url, {});
+  } catch (error) {
+    console.error("Error", error);
+    throw error;
+  }
+};
 export const fetchOtp = async (payload: {
     countryCode: string;
     isNewNumber: boolean;

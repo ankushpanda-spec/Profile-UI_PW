@@ -22,3 +22,14 @@ export interface UserInfo {
   city: string;
   state: string;
 }
+
+export interface UpdateNumberConfig {
+  isEligible: boolean;
+  failureReason: string;
+  cooldownPeriod: number;
+  requestId: string;
+  isOffline: boolean;
+  offlineInstruction: string;
+  termsNCO: string;
+  isAwarenessPopupEnabled: boolean;
+}

@@ -7,6 +7,9 @@ import { GlobalProvider } from './context';
 import ErrorBoundary from './ErrorBoundary';
 import './index.css';
 
+import SnackbarWrapper from './context/SnackbarContext';
+import LoaderWrapper from './context/LoaderContext';
+
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
@@ -16,7 +19,11 @@ if (rootEl) {
         <BrowserRouter>
           <ErrorBoundary>
             <BaseLayout>
+             <SnackbarWrapper>
+              <LoaderWrapper>
               <App />
+              </LoaderWrapper>
+              </SnackbarWrapper>
             </BaseLayout>
           </ErrorBoundary>
         </BrowserRouter>
