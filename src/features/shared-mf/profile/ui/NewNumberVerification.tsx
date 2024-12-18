@@ -2,22 +2,19 @@ import React, {useState} from 'react';
 import {
   Button,
   Typography,
-  RadioButton,
   InputField,
   ModalHeader,
   ModalFooter,
   Modal,
   ModalBody,
   Separator,
-  Loader,
 } from '@pw-tech/omni-ui';
-import GenericModal from './ModalComponent';
+
 import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
-import LoaderModal from './components/loader/LoaderModalComponent';
-import OTPVerificationModal from './OtpVerification';
 import getErrorMessage from '../services/showErrorService';
-import { useLoader } from '@/hooks/showLoader';
+import {useLoader} from '@/hooks/showLoader';
+import ErrorIcon from '@/assets/icons/ErrorIcon';
 
 const NewNumberVerification = ({
   isOpen,
@@ -34,25 +31,25 @@ const NewNumberVerification = ({
   handleEditModalOpen: () => void;
   numberChangeRequestId: string | undefined;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  setNewCountryCode:React.Dispatch<React.SetStateAction<string>>;
-  setNewInputMobileNumber:React.Dispatch<React.SetStateAction<string>>;
-  newInputMobileNumber:string;
-  newCountryCode:string;
-  isNewNumber:boolean;
+  setNewCountryCode: React.Dispatch<React.SetStateAction<string>>;
+  setNewInputMobileNumber: React.Dispatch<React.SetStateAction<string>>;
+  newInputMobileNumber: string;
+  newCountryCode: string;
+  isNewNumber: boolean;
 }) => {
-  const {showLoader , hideLoader} = useLoader()
+  const {showLoader, hideLoader} = useLoader();
   const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [inputErrorMessageShown, setInputErrorMessageShown] =
     useState<boolean>(false);
-  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
-  
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+
   const handleClose = () => {
     setIsModalOpen(false);
-    handleEditModalOpen()
-  
-  } 
-  
+    setActiveModal('');
+    handleEditModalOpen();
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
@@ -64,7 +61,6 @@ const NewNumberVerification = ({
 
     setNewInputMobileNumber(value);
   };
-  console.log('numberChangeRequestId', numberChangeRequestId);
 
   const onContinueClick = async () => {
     const errorMessage = checkMobileNumber(newInputMobileNumber);
@@ -81,9 +77,9 @@ const NewNumberVerification = ({
       requestId: numberChangeRequestId || '',
     };
     try {
-      showLoader("Sending OTP...")
+      showLoader('Sending OTP...');
       const res: any = await fetchOtp(apiData);
-       
+
       if (res?.success) {
         setActiveModal('newNumberOtpVerification');
       } else {
@@ -94,14 +90,13 @@ const NewNumberVerification = ({
           throw new Error('');
         }
       }
-      
     } catch (err) {
       const errorObj = getErrorMessage(err);
 
       setInputErrorMessage(errorObj.message);
       setInputErrorMessageShown(true);
 
-     hideLoader();
+      hideLoader();
     } finally {
       hideLoader();
     }
@@ -119,11 +114,19 @@ const NewNumberVerification = ({
     }
     return '';
   };
-  const mobileNumberInputKeyPress = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
+  const mobileNumberInputKeyPress = (event: any) => {
     if (event.key === 'Enter') {
       onContinueClick();
+    }
+    const digitRegExp = /^[0-9\b]+$/;
+    const pressedKey = String.fromCharCode(event.keyCode);
+    if (!digitRegExp.test(pressedKey)) {
+      event.preventDefault();
+      setInputErrorMessage('Please enter numbers only');
+      setInputErrorMessageShown(true);
+      return false;
+    } else {
+      return true;
     }
   };
 
@@ -158,10 +161,10 @@ const NewNumberVerification = ({
               onChange={handleInputChange}
               onKeyDown={mobileNumberInputKeyPress}
               error={inputErrorMessageShown}
+              maxLength={newCountryCode === '+91' ? 10 : 16}
+              minLength={newCountryCode === '+91' ? 10 : 4}
             />
           </div>
-
-        
         </ModalBody>
 
         <ModalFooter>
@@ -175,7 +178,14 @@ const NewNumberVerification = ({
             Continue
           </Button>
 
-          {errorMessage && <Typography> {errorMessage}</Typography>}
+          {errorMessage && (
+            <div className="flex items-center gap-6 text-error">
+              <ErrorIcon />
+              <Typography variant="tiny" weight="semi-bold" color="error">
+                {errorMessage}
+              </Typography>
+            </div>
+          )}
         </ModalFooter>
       </Modal>
     </>

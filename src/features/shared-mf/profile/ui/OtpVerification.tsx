@@ -3,22 +3,18 @@ import {
   Button,
   Typography,
   OTP,
-  ModalFooter,
   ModalHeader,
   ModalBody,
   Modal,
   Separator,
 } from '@pw-tech/omni-ui';
-import GenericModal from './ModalComponent';
 import s from '../styles/index.module.css';
-import TimerComponent from './TimerComponent';
 import EditIcon from '@/assets/icons/EditIcon';
 import {useUser} from '@pw-tech/omni-context';
 import {fetchOtp, verifyOtp} from '../api';
-import LoaderModal from './components/loader/LoaderModalComponent';
-import { count } from 'console';
 import getErrorMessage from '../services/showErrorService';
 import { useLoader } from '@/hooks/showLoader';
+import ErrorIcon from '@/assets/icons/ErrorIcon';
 
 const OTPVerificationModal = ({
   isOpen,
@@ -218,7 +214,8 @@ const OTPVerificationModal = ({
             Verify OTP
           </Button>
           {error && 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 text-error">
+            <ErrorIcon />
             <Typography variant="tiny" weight="semi-bold" color="error">
              {error}
             </Typography>

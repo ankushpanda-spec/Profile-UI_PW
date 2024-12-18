@@ -113,7 +113,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
 
     if (!blockedUntilDate || blockedUntilDate < currentDate) {
       setCalculatedDate(formatDate(futureDate));
-      setIsUpdateNameDisabled(true);
+      setIsUpdateNameDisabled(false);
     } else {
       setCalculatedDate(formatDate(blockedUntilDate));
       setIsUpdateNameDisabled(true);
