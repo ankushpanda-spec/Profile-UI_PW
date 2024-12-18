@@ -38,7 +38,7 @@ type EditProfileModalProps = {
   handleEditModalOpen: () => void;
 };
 
-const EditProfileModal: React.FC<EditProfileModalProps> = ({
+const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   editModalOpen,
   handleEditModalClose,
   handleEditModalOpen,
@@ -55,7 +55,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     city: user?.address?.city || '',
     state: user?.address?.state || '',
   };
- console.log("USER", user);
+  console.log('USER', user);
   const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
     defaultValues: formData,
   });
@@ -113,7 +113,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
     if (!blockedUntilDate || blockedUntilDate < currentDate) {
       setCalculatedDate(formatDate(futureDate));
-      setIsUpdateNameDisabled(false);
+      setIsUpdateNameDisabled(true);
     } else {
       setCalculatedDate(formatDate(blockedUntilDate));
       setIsUpdateNameDisabled(true);
@@ -122,21 +122,19 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   useEffect(() => {
     const fetchStateData = async () => {
-     
-        try {
-          showLoader('Loading...');
-          const country = 'IND'; // Adjust as needed
-          const response: any = await fetchStates(country);
-          const statesInFormattedForm: LabelValue[] = formatToLabelValue(
-            response.data
-          );
-          setStates(statesInFormattedForm); // Assuming response contains states data
-        } catch (error) {
-          console.error('Error fetching states:', error);
-        } finally {
-          hideLoader();
-        }
-      
+      try {
+        showLoader('Loading...');
+        const country = 'IND'; // Adjust as needed
+        const response: any = await fetchStates(country);
+        const statesInFormattedForm: LabelValue[] = formatToLabelValue(
+          response.data
+        );
+        setStates(statesInFormattedForm); // Assuming response contains states data
+      } catch (error) {
+        console.error('Error fetching states:', error);
+      } finally {
+        hideLoader();
+      }
     };
 
     fetchStateData();
@@ -173,7 +171,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       const eligible = res.data.isEligible;
       const failureReason = res.data.failureReason;
 
-      if (true) {
+      if (eligible || isPureOfflineUser) {
         setActiveModal('termsAndConditions');
         handleEditModalClose();
       } else if (!eligible && failureReason) {
@@ -317,7 +315,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                       {...field}
                       placeholder="Enter First Name"
                       type="text"
-                      disabled={isUpdateNameDisabled}
+                      readOnly={isUpdateNameDisabled && user?.firstName}
                       fullWidth
                       label="First Name"
                       variant="outside"
@@ -339,7 +337,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                       <InputField
                         {...field}
                         placeholder="Enter Last Name"
-                        disabled={isUpdateNameDisabled}
+                        readOnly={isUpdateNameDisabled && user?.lastName}
                         type="text"
                         fullWidth
                         label="Last Name"
@@ -350,13 +348,21 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                       />
                     )}
                   />
-                  {showWarningForNameChange && (
-                    <Alert
-                      heading={`If you change your profile name, you wont be able to update it till ${calculatedDate}!`}
-                      intent="error"
-                      fullWidth
-                    />
-                  )}
+                  {showWarningForNameChange &&
+                    (isUpdateNameDisabled ? (
+                      <Alert
+                        heading={`You have already updated your profile name once! You won’t be able to
+        update it before ${ calculatedDate }!`}
+                        intent="error"
+                        fullWidth
+                      />
+                    ) : (
+                      <Alert
+                        heading={`If you change your profile name, you won't be able to update it till ${calculatedDate}!`}
+                        intent="warning"
+                        fullWidth
+                      />
+                    ))}
                 </div>
               </div>
               {/* Gender */}
@@ -433,6 +439,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                       maxLength={16}
                       readOnly
                       action={handleUpdateNumber}
+                      message={updateNumberErrorMessage}
                     />
                   )}
                 />
@@ -581,4 +588,4 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   );
 };
 
-export default EditProfileModal;
+export default EditProfileFrom;

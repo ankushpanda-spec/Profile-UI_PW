@@ -1,5 +1,5 @@
-import { useUser } from '@pw-tech/omni-context';
-import { useEffect, useState } from 'react';
+import {useUser} from '@pw-tech/omni-context';
+import {useEffect, useState} from 'react';
 import EditProfileModal from './EditProfile';
 import s from '../styles/index.module.css';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
@@ -7,24 +7,24 @@ import OldPhoneNumberModal from './OldPhoneNumberComponent';
 import OTPVerificationModal from './OtpVerification';
 import NewNumberVerification from './NewNumberVerification';
 import LoaderModal from './components/loader/LoaderModalComponent';
-import { ModalTypes } from '../types/constants';
+import {ModalTypes} from '../types/constants';
 import localStorageService from '../services/localStorageService';
 import UpdateSuccessModal from './UpdateSuccess';
 
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
-  const [editModalOpen, setEditModalOpen] = useState<boolean>(false); // State to manage active modal
-  const { user: _User, setUser: _setUser } = useUser();
-
+  const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
+  const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
+  const {user: _User, setUser: _setUser} = useUser();
 
   useEffect(() => {
     const _sections: any = [];
     _sections.push({
       sectionName: 'Personal Details',
       values: [
-        { key: 'Name', value: _User?.firstName + ' ' + _User?.lastName },
-        { key: 'Mobile No', value: _User?.primaryNumber },
-        { key: 'Email', value: _User?.email },
+        {key: 'Name', value: _User?.firstName + ' ' + _User?.lastName},
+        {key: 'Mobile No', value: _User?.primaryNumber},
+        {key: 'Email', value: _User?.email},
         {
           key: 'Living City/Village/Town',
           value: _User?.profileId?.address?.city || 'N/A',
@@ -35,10 +35,10 @@ const UserDetails = () => {
     _sections.push({
       sectionName: 'Academic Details',
       values: [
-        { key: 'Class', value: _User?.profileId.class },
-        { key: 'Board/State Board', value: _User?.profileId.board },
-        { key: 'Exams', value: _User?.profileId.exams.join('') },
-        { key: 'Language', value: _User?.profileId.language },
+        {key: 'Class', value: _User?.profileId.class},
+        {key: 'Board/State Board', value: _User?.profileId.board},
+        {key: 'Exams', value: _User?.profileId.exams.join('')},
+        {key: 'Language', value: _User?.profileId.language},
       ],
     });
     setSections(_sections);
@@ -48,7 +48,13 @@ const UserDetails = () => {
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
         <h4 className={s.udOneTitle}>Profile Detail</h4>
-        <span className={s.udEditText} onClick={() => setEditModalOpen(true)}>
+        <span
+          className={s.udEditText}
+          onClick={() => {
+            setIsEditFormOpen(!isEditFormOpen);
+            setEditModalOpen(true);
+          }}
+        >
           Edit
         </span>
       </div>
@@ -70,13 +76,13 @@ const UserDetails = () => {
           </div>
         </div>
       ))}
-     
-        <EditProfileModal
-          editModalOpen={editModalOpen}
-          handleEditModalClose= {() => setEditModalOpen(false)}
-          handleEditModalOpen = {() => setEditModalOpen(true)}
-          /> 
-    </div>
+     {isEditFormOpen && 
+      <EditProfileModal
+        editModalOpen={editModalOpen}
+        handleEditModalClose={() => setEditModalOpen(false)}
+        handleEditModalOpen={() => setEditModalOpen(true)}
+      /> }
+    </div> 
   );
 };
 
