@@ -1,23 +1,16 @@
 import {useUser} from '@pw-tech/omni-context';
-import {useEffect, useState} from 'react';
-import EditProfileModal from './EditProfile';
+import {useEffect, useMemo, useState} from 'react';
 import s from '../styles/index.module.css';
-import TermsAndConditionsModal from './TermsAndConditionsModal';
-import OldPhoneNumberModal from './OldPhoneNumberComponent';
-import OTPVerificationModal from './OtpVerification';
-import NewNumberVerification from './NewNumberVerification';
-import LoaderModal from './components/loader/LoaderModalComponent';
-import {ModalTypes} from '../types/constants';
-import localStorageService from '../services/localStorageService';
-import UpdateSuccessModal from './UpdateSuccess';
+import EditProfileFrom from './EditProfile';
+import { webSDK } from '@/integration';
 
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
-  const {user: _User, setUser: _setUser} = useUser();
-
-  useEffect(() => {
+  const _User:any = webSDK.user;
+  
+  
     const _sections: any = [];
     _sections.push({
       sectionName: 'Personal Details',
@@ -35,14 +28,14 @@ const UserDetails = () => {
     _sections.push({
       sectionName: 'Academic Details',
       values: [
-        {key: 'Class', value: _User?.profileId.class},
-        {key: 'Board/State Board', value: _User?.profileId.board},
-        {key: 'Exams', value: _User?.profileId.exams.join('')},
-        {key: 'Language', value: _User?.profileId.language},
+        {key: 'Class', value: _User?.profileId?.class},
+        {key: 'Board/State Board', value: _User?.profileId?.board},
+        {key: 'Exams', value: _User?.profileId?.exams.join('')},
+        {key: 'Language', value: _User?.profileId?.language},
       ],
     });
-    setSections(_sections);
-  }, [_User]);
+   
+ 
 
   return (
     <div className={s.userDetailsContainer}>
@@ -58,7 +51,7 @@ const UserDetails = () => {
           Edit
         </span>
       </div>
-      {sections.map((section: any, index: number) => (
+      {_sections.map((section: any, index: number) => (
         <div key={index}>
           <div className={s.udTwo}>
             <h5 className={s.udTwoSection}>{section.sectionName}</h5>
@@ -77,10 +70,11 @@ const UserDetails = () => {
         </div>
       ))}
      {isEditFormOpen && 
-      <EditProfileModal
+      <EditProfileFrom
         editModalOpen={editModalOpen}
         handleEditModalClose={() => setEditModalOpen(false)}
         handleEditModalOpen={() => setEditModalOpen(true)}
+        userInfo = {_User}
       /> }
     </div> 
   );

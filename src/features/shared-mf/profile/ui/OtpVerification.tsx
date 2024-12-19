@@ -10,11 +10,11 @@ import {
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import EditIcon from '@/assets/icons/EditIcon';
-import {useUser} from '@pw-tech/omni-context';
 import {fetchOtp, verifyOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
 import { useLoader } from '@/hooks/showLoader';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
+import { webSDK } from '@/integration';
 
 const OTPVerificationModal = ({
   isOpen,
@@ -25,6 +25,8 @@ const OTPVerificationModal = ({
   nextActiveModal,
   isNewNumber,
   countryCode,
+  showEditIcon,
+  userInfo,
 }: {
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
@@ -34,8 +36,10 @@ const OTPVerificationModal = ({
   nextActiveModal: string;
   isNewNumber:boolean;
   countryCode: string;
+  showEditIcon:boolean;
+  userInfo:any;
 }) => {
-  const {user , setUser} = useUser();
+  
   const {showLoader , hideLoader} = useLoader();
   const [otp, setOtp] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -70,18 +74,13 @@ const OTPVerificationModal = ({
   };
 
   const updateNumberInGlobalState =()=> {
-    if (selectedMobileNumber &&  user) {
-      setUser({
-        ...user,
-        primaryNumber: selectedMobileNumber,
-      });
-    
+    if (selectedMobileNumber &&  userInfo) {
+      const newUserInfo = {...userInfo , primaryNumber:selectedMobileNumber};
+      webSDK.setUser = newUserInfo;
     }
   }
 
-  const onResendOtp = async () => {
-    
-    
+  const onResendOtp = async () => {  
     setError('')
     showLoader('Sending OTP...');
     try {
@@ -172,7 +171,7 @@ const OTPVerificationModal = ({
                   >
                     {countryCode} {selectedMobileNumber}
                   </Typography>
-                  <EditIcon />
+                 {showEditIcon && <EditIcon  onClick= {() => setActiveModal('newNumberComponent')}/> }
                 </div>
               </div>
             </div>

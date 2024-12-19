@@ -13,7 +13,7 @@ import {
   Alert,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {fetchCities, fetchStates, fetchUpdateNumberConfig} from '../api';
+import {fetchCities, fetchStates, fetchUpdateNumberConfig, updateUser} from '../api';
 import {formatToLabelValue} from '../services/utils';
 import {
   LabelValue,
@@ -21,7 +21,7 @@ import {
   UpdateNumberConfig,
   UserInfo,
 } from '../types/constants';
-import {useUser} from '@pw-tech/omni-context';
+
 import {useForm, Controller} from 'react-hook-form';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
 import OldPhoneNumberModal from './OldPhoneNumberComponent';
@@ -31,31 +31,36 @@ import UpdateSuccessModal from './UpdateSuccess';
 import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
 import {useSnackbar} from '@/hooks/showSnackBar';
+import { webSDK } from '@/integration';
+
 
 type EditProfileModalProps = {
   editModalOpen: boolean;
   handleEditModalClose: () => void;
   handleEditModalOpen: () => void;
+  userInfo:any;
 };
 
 const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   editModalOpen,
   handleEditModalClose,
   handleEditModalOpen,
+  userInfo,
 }) => {
-  const {user} = useUser();
+ 
   const showSnackBar = useSnackbar();
   const {showLoader, hideLoader} = useLoader();
-  const formData: UserInfo = {
-    firstName: user?.firstName || '',
-    lastName: user?.lastName || '',
-    email: user?.email || '',
-    mobile: user?.primaryNumber || '',
-    gender: user?.gender || '',
-    city: user?.address?.city || '',
-    state: user?.address?.state || '',
+
+  const formData  = {
+    firstName: userInfo?.firstName || '',
+    lastName: userInfo?.lastName || '',
+    email: userInfo?.email || '',
+    mobile: userInfo?.primaryNumber  || '',
+    gender: userInfo?.gender || '',
+    city: userInfo?.address?.city || '',
+    state: userInfo?.address?.state || '',
   };
-  console.log('USER', user);
+
   const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
     defaultValues: formData,
   });
@@ -78,21 +83,9 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   const [cities, setCities] = useState<LabelValue[]>([]);
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
-
+ 
   useEffect(() => {
-    if (user) {
-      setValue('firstName', user.firstName);
-      setValue('lastName', user.lastName);
-      setValue('email', user.email);
-      setValue('mobile', user.primaryNumber);
-      setValue('gender', user.gender);
-      setValue('city', user.address?.city);
-      setValue('state', user.address?.state);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    const nameUpdateBlockedUntil = user?.nameUpdateBlockedUntil;
+    const nameUpdateBlockedUntil = userInfo?.nameUpdateBlockedUntil;
     const currentDate = new Date();
     const futureDate = new Date(currentDate);
     const blockedUntilDate = nameUpdateBlockedUntil
@@ -118,7 +111,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       setCalculatedDate(formatDate(blockedUntilDate));
       setIsUpdateNameDisabled(true);
     }
-  }, [user]);
+  }, [userInfo]);
 
   useEffect(() => {
     const fetchStateData = async () => {
@@ -195,11 +188,64 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
     setShowWarningForNameChange(false);
   };
 
-  const handleFormSubmit = (data: UserInfo) => {
-    console.log('data', data);
-    alert('Form Submitted');
+  const handleFormSubmit = async (data: UserInfo) => {
+    const { firstName, lastName, email, city, state, gender } = data;
+    if (firstName.includes('*') || lastName.includes('*') || email.includes('*')) {
+         showSnackBar("Special character '*' not allowed. Please refill");
+      return;
+    }
+    const cleanField = (field:string) => field.replace(/\*/g, '');
+    const cleanedData = {
+      firstName: cleanField(firstName),
+      lastName: cleanField(lastName),
+      email: cleanField(email).toLowerCase(),
+    };
+    // Set cleaned values back
+    setValue('firstName', cleanedData.firstName);
+    setValue('lastName', cleanedData.lastName);
+    setValue('email', cleanedData.email);
+    const payload = {
+      ...cleanedData,
+      profileId: {
+        ...userInfo.profileId,
+        address: {
+          city: city.trim(),
+          state: state.trim(),
+        },
+        gender: gender,
+      },
+      gender: gender,
+      address: {
+        city: city.trim(),
+        state: state.trim(),
+      },
+      isProfileCompleted: true,
+    };
+    
+    const newUserInfo = { ...userInfo, ...payload };
+     showLoader('Please wait');
+    try {
+     
+      const res:any = await updateUser(payload);
+      
+      if (res) {
+        const { nameUpdateBlockedUntil } = res.data; // Extract updateBlockUntil from res
+        if (nameUpdateBlockedUntil) {
+          newUserInfo.nameUpdateBlockedUntil = nameUpdateBlockedUntil; // Append updateBlockUntil to newUserInfo
+          
+        }
+        webSDK.setUser = newUserInfo;
+        setActiveModal("profileUpdateSuccess")
+        handleEditModalClose()
+       
+      }
+    } catch (e) {
+      alert(e);
+    } finally {
+      hideLoader();
+    }
   };
-
+  
   const handleSelectState = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -315,7 +361,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       {...field}
                       placeholder="Enter First Name"
                       type="text"
-                      readOnly={isUpdateNameDisabled && user?.firstName}
+                      readOnly={isUpdateNameDisabled && userInfo?.firstName}
                       fullWidth
                       label="First Name"
                       variant="outside"
@@ -337,7 +383,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       <InputField
                         {...field}
                         placeholder="Enter Last Name"
-                        readOnly={isUpdateNameDisabled && user?.lastName}
+                        readOnly={isUpdateNameDisabled && userInfo?.lastName}
                         type="text"
                         fullWidth
                         label="Last Name"
@@ -542,18 +588,21 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
+          userInfo={userInfo}
         />
       )}
       {activeModal === ModalTypes.OTPVerification && (
         <OTPVerificationModal
           selectedMobileNumber={selectedMobileNumber}
+          userInfo ={userInfo}
           isOpen={true}
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
-          countryCode={user?.countryCode}
+          countryCode={userInfo?.countryCode}
           nextActiveModal="newNumberComponent"
           isNewNumber={false}
+          showEditIcon={false}
         />
       )}
       {activeModal === ModalTypes.NewNumberComponent && (
@@ -577,12 +626,17 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
           countryCode={newCountryCode}
-          nextActiveModal="updateSuccess"
+          nextActiveModal="numberUpdateSuccess"
           isNewNumber={true}
+          showEditIcon={true}
+          userInfo ={userInfo}
         />
       )}
-      {activeModal === ModalTypes.UpdateSuccess && (
+      {activeModal === ModalTypes.NumberUpdateSuccess && (
         <UpdateSuccessModal isOpen={true} onClose={handleSuccessModalClose} />
+      )}
+       {activeModal === ModalTypes.ProfileUpdateSuccess && (
+        <UpdateSuccessModal isOpen={true} onClose={() => {handleEditModalClose(); setActiveModal('')  }} primaryMessage="Your Profile name has been successfully changed!" secondaryMessage=''/>
       )}
     </>
   );

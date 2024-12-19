@@ -5,7 +5,8 @@ export enum ModalTypes {
     OTPVerification = 'otpVerification',
     NewNumberComponent = 'newNumberComponent',
     NewNumberOTPVerification = 'newNumberOtpVerification',
-    UpdateSuccess = "updateSuccess",
+    NumberUpdateSuccess = "numberUpdateSuccess",
+    ProfileUpdateSuccess = "profileUpdateSuccess",
   }
 
 export type LabelValue = {

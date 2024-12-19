@@ -7,10 +7,7 @@ import {
   Modal,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import GenericModal from './ModalComponent';
-import BorderDivider from './BorderDivider';
-import {fetchStates} from '../api';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 
 const TermsAndConditionsModal = ({
   isOpen,
@@ -28,6 +25,7 @@ const TermsAndConditionsModal = ({
   
   const handleClose = () => {
     setIsModalOpen(false);
+    setActiveModal('');
     handleEditModalOpen()
   } 
   

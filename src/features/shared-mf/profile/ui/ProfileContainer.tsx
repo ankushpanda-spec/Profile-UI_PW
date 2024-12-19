@@ -1,15 +1,16 @@
-import { CameraIcon } from '@/assets/images';
+import {CameraIcon} from '@/assets/images';
 import {BoyAvatar} from '@/assets/images';
-import { GirlAvatar } from '@/assets/images';
-import { lazy, useRef } from 'react';
-import s from "../styles/index.module.css";
-import localStorageService from '../services/localStorageService';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import {GirlAvatar} from '@/assets/images';
+import {lazy, useRef} from 'react';
+import s from '../styles/index.module.css';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import {updateUser, uploadFile} from '../api';
+import {useSnackbar} from '@/hooks/showSnackBar';
+import {webSDK} from '@/integration/webSDK';
+import {useLoader} from '@/hooks/showLoader';
+import getErrorMessage from '../services/showErrorService';
 import { fetchUser } from '@/api';
-import { fetchFile } from '../api';
-import { useUser } from '@pw-tech/omni-context';
-import { useSnackbar } from '@/hooks/showSnackBar';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
@@ -18,19 +19,10 @@ const ProfileContainer = () => {
   // Ref for the hidden file input
 
   const [userImg, setUserImg] = useState<string | null>(null);
-  const [snackBarOpen , setSnackBarOpen] = useState<boolean>(false);
-  const [message , setMessage] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const showSnackBar = useSnackbar();
-  const user = (() => {
-    const userData = localStorageService.get("user");
-    try {
-      return userData ? JSON.parse(userData) : null; // Parse the stored string into an object
-    } catch (error) {
-      console.error("Invalid user data in localStorage:", error);
-      return null; // Return null if parsing fails
-    }
-  })();
+  const user:any = webSDK.user;
+  const {showLoader, hideLoader} = useLoader();
   
   useEffect(() => {
     if (user?.imageId) {
@@ -44,8 +36,8 @@ const ProfileContainer = () => {
     } else {
       setUserImg(null); // Default to null if no conditions are met
     }
-  }, [user]);
-
+  }, [user?.imageId , user?.profileId]);
+  
   // Function to handle camera icon click
   const handleCameraIconClick = () => {
     if (fileInputRef.current) {
@@ -54,53 +46,55 @@ const ProfileContainer = () => {
   };
 
   // Function to handle file selection
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: any) => {
     if (event.target.files && event.target.files.length > 0) {
-      const selectedFile = event.target.files[0];
-      console.log("file" ,selectedFile)
+      const selectedFile = event?.target?.files[0];
       const type = selectedFile.type;
-
-       if(type !== 'image/png' && type !== 'image/jpg' && type !== 'image/jpeg'){ 
-        showSnackBar("Please select image file only")
-        
+      if (
+        type !== 'image/png' &&
+        type !== 'image/jpg' &&
+        type !== 'image/jpeg'
+      ) {
+        showSnackBar('Please select image file only');
         return;
-      
-       } else{ // Create a FormData object
+      } else {
         const formData = new FormData();
-        formData.append('file', selectedFile,selectedFile.name);
-        
-        console.log("formData" , formData)
+        formData.append('file', selectedFile);
         try {
-          // Call fetchFile with the FormData object
-          const fileResponse = await fetchFile(formData);
-          console.log("File uploaded successfully:", fileResponse);
-    
-          // Extract imageId from the response (if applicable)
-          // const imageId = fileResponse?.data?.imageId;
-          // if (imageId) {
-          //   // Call fetchUser with the new imageId
-          //   await fetchUser({ imageId });
-          //   setUserImg(imageId.baseUrl + imageId.key); // Update the user image locally
-          // }
+          showLoader('Updating profile...');
+          const fileResponse: any = await uploadFile(formData);
+          if (fileResponse) {
+            const imageId = fileResponse.data?._id;
+            try {
+              const res = await updateUser({imageId: imageId});
+              if (res) {
+                const _UserInfo = {...user , imageId:fileResponse.data}
+                webSDK.setUser = _UserInfo;
+              }
+            } catch (error) {
+              const errorObj = getErrorMessage(error);
+              showSnackBar(errorObj.message);  
+            }
+
+          }
         } catch (error) {
-          console.error("Error uploading file or updating user:", error);
+          const errorObj = getErrorMessage(error);
+          showSnackBar(errorObj.message);
         } finally {
-          // Optional: handle loader state here
-        }}
-      
-      
+          hideLoader();
+        }
+      }
     } else {
-      console.log("No file selected");
+      console.log('No file selected');
       return;
     }
   };
-  
 
   return (
     <div className={s.container}>
       <div className={s.containerChildOne}>
         <div className={s.wrapper}>
-        <UserAvatar src={userImg} className={s.userAvatarContainer} />
+          <UserAvatar src={userImg} className={s.userAvatarContainer} />
           <img
             src={CameraIcon}
             className={s.cameraIcon}
@@ -112,15 +106,14 @@ const ProfileContainer = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: 'none' }}
+            style={{display: 'none'}}
             onChange={handleFileChange} // Handle file selection
           />
         </div>
       </div>
       <div className={s.profileDetails}>
-        <ProfileDetails />
+        <ProfileDetails/>
       </div>
-      
     </div>
   );
 };

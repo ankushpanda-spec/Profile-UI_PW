@@ -117,6 +117,7 @@ const NewNumberVerification = ({
   const mobileNumberInputKeyPress = (event: any) => {
     if (event.key === 'Enter') {
       onContinueClick();
+      return;
     }
     const digitRegExp = /^[0-9\b]+$/;
     const pressedKey = String.fromCharCode(event.keyCode);
@@ -161,8 +162,7 @@ const NewNumberVerification = ({
               onChange={handleInputChange}
               onKeyDown={mobileNumberInputKeyPress}
               error={inputErrorMessageShown}
-              maxLength={newCountryCode === '+91' ? 10 : 16}
-              minLength={newCountryCode === '+91' ? 10 : 4}
+             
             />
           </div>
         </ModalBody>
