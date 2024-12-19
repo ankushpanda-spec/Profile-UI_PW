@@ -64,16 +64,21 @@ export const verifyOtp = async (payload: {
 };
 
 
-export const fetchFile = async (payload: any) => {
-
+export const uploadFile = async (payload: FormData) => {
   console.log("checking here api", payload)
+  payload.forEach((value, key) => {
+    console.log( "checking in api" ,key, value);
+  });
+  
   try {
     const url = setFile();
-    return await ApiClient.post(url, payload, {
+    return await ApiClient.postMultipart(url, payload, {
       headers: {
-        'Content-Type': 'multipart/form-data', // Ensure proper header for FormData
+        'Content-Type': null, 
+        
       },
     });
+    // return await ApiClient.postMultipart(url, payload);
   } catch (error) {
     console.error('Error uploading file:', error);
     throw error;
@@ -81,7 +86,7 @@ export const fetchFile = async (payload: any) => {
 };
 
 
-export const fetchUser = async (payload: { user: any }) => {
+export const updateUser = async (payload: any ) => {
   try {
     const url = setUser();
     return await ApiClient.put(url, payload);
