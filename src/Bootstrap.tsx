@@ -9,6 +9,7 @@ import './index.css';
 
 import SnackbarWrapper from './context/SnackbarContext';
 import LoaderWrapper from './context/LoaderContext';
+import ErrorWrapper from './context/ErrorContext';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
@@ -21,7 +22,9 @@ if (rootEl) {
             <BaseLayout>
              <SnackbarWrapper>
               <LoaderWrapper>
+              <ErrorWrapper>
               <App />
+              </ErrorWrapper>
               </LoaderWrapper>
               </SnackbarWrapper>
             </BaseLayout>
