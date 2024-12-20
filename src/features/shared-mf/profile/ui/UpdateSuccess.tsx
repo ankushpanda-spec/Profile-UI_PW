@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Button, Typography, RadioButton, ModalHeader, ModalBody, ModalFooter, Modal, Separator} from '@pw-tech/omni-ui'; 
+import { Typography,ModalHeader, ModalBody, Modal} from '@pw-tech/omni-ui'; 
 import s from '../styles/index.module.css';
+import {Success} from "@/assets/images"
 
 const UpdateSuccessModal = ({
   isOpen,
@@ -17,12 +17,11 @@ const UpdateSuccessModal = ({
   
   return (
     <Modal onClose={onClose} isOpen={isOpen} size="small">
-     <ModalHeader/>
     
       <ModalBody>
        <div className='flex gap-20 p-20 flex-col items-center'>
         <div className='w-[104px] h-[102px] flex items-center justify-center'>
-         <img src="" alt="success-gif"/>
+         <img src={Success} alt="success-gif" className='w-full h-full'/>
          
         </div>
         <div className='flex flex-col gap-8 items-center'>
