@@ -1,5 +1,5 @@
 export enum ModalTypes {
-    EditProfile = 'editProfile',
+    OfflineUserInstructions = 'offlineUserInstructions',
     TermsAndConditions = 'termsAndConditions',
     OldPhoneNumber = 'oldPhoneNumber',
     OTPVerification = 'otpVerification',

@@ -32,6 +32,8 @@ import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
 import {useSnackbar} from '@/hooks/showSnackBar';
 import { webSDK } from '@/integration';
+import { useError } from '@/hooks/showError';
+import OfflineUserInstructionsModal from './OfflineUserInstructions';
 
 
 type EditProfileModalProps = {
@@ -50,6 +52,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
  
   const showSnackBar = useSnackbar();
   const {showLoader, hideLoader} = useLoader();
+  const showError = useError();
 
   const formData  = {
     firstName: userInfo?.firstName || '',
@@ -57,8 +60,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
     email: userInfo?.email || '',
     mobile: userInfo?.primaryNumber  || '',
     gender: userInfo?.gender || '',
-    city: userInfo?.address?.city || '',
-    state: userInfo?.address?.state || '',
+    city: userInfo?.profileId?.address?.city || '',
+    state: userInfo?.profileId?.address?.state || '',
   };
 
   const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
@@ -71,7 +74,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
   const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] =
     useState(false);
-
+  const [offlineInstructions , setOfflineInstructions] = useState<string>();
   const [updateNumberConfig, setUpdateNumberConfig] =
     useState<UpdateNumberConfig>();
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
@@ -112,17 +115,21 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       setIsUpdateNameDisabled(true);
     }
   }, [userInfo]);
-
+  
+  
   useEffect(() => {
     const fetchStateData = async () => {
+
       try {
         showLoader('Loading...');
+        
         const country = 'IND'; // Adjust as needed
         const response: any = await fetchStates(country);
         const statesInFormattedForm: LabelValue[] = formatToLabelValue(
           response.data
         );
         setStates(statesInFormattedForm); // Assuming response contains states data
+        
       } catch (error) {
         console.error('Error fetching states:', error);
       } finally {
@@ -155,17 +162,26 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
+    setUpdateNumberErrorMessage("");
     setIsUpdateNumberConfigLoading(true);
     try {
       const res: any = await fetchUpdateNumberConfig();
 
       setUpdateNumberConfig(res.data);
-      const isPureOfflineUser = res.data.isOffline;
-      const eligible = res.data.isEligible;
+      const isPureOfflineUser = !!res.data.isOffline;
+      const eligible = !!res.data.isEligible;
       const failureReason = res.data.failureReason;
+      const instructions = res.data.offlineInstruction;
+      console.log(typeof(res.data.offlineInstruction));
+      
 
       if (eligible || isPureOfflineUser) {
-        setActiveModal('termsAndConditions');
+        if(isPureOfflineUser){
+          setOfflineInstructions(instructions);
+          setActiveModal('offlineUserInstructions')
+        }
+        else{
+        setActiveModal('termsAndConditions'); }
         handleEditModalClose();
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
@@ -240,7 +256,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
        
       }
     } catch (e) {
-      alert(e);
+      const errorObj = getErrorMessage(e);
+      showError(errorObj.message);
     } finally {
       hideLoader();
     }
@@ -471,6 +488,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                   render={({field}) => (
                     <InputField
                       {...field}
+                      value={selectedMobileNumber ? selectedMobileNumber : userInfo?.primaryNumber}
                       label="Mobile Number"
                       placeholder="Enter Mobile Number"
                       type="number"
@@ -486,6 +504,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       readOnly
                       action={handleUpdateNumber}
                       message={updateNumberErrorMessage}
+                      error={updateNumberErrorMessage ? true : false }
                     />
                   )}
                 />
@@ -523,6 +542,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       required={false}
                       options={states}
                       onChange={handleSelectState}
+                      maxHeight={280}
                     />
                   )}
                 />
@@ -542,6 +562,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       variant="outside"
                       required={false}
                       onChange={handleSelectCity}
+                      disabled={!selectedState}
+                      maxHeight={280}
                     />
                   )}
                 />
@@ -572,6 +594,10 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
             </ModalFooter>
           </form>
         </Modal>
+      )}
+
+      {activeModal === ModalTypes.OfflineUserInstructions && (
+        <OfflineUserInstructionsModal  isOpen={true} onClose = {() => {handleEditModalOpen() ; setActiveModal('')}}  body={offlineInstructions} />
       )}
       {activeModal === ModalTypes.TermsAndConditions && (
         <TermsAndConditionsModal
@@ -636,10 +662,12 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
         <UpdateSuccessModal isOpen={true} onClose={handleSuccessModalClose} />
       )}
        {activeModal === ModalTypes.ProfileUpdateSuccess && (
-        <UpdateSuccessModal isOpen={true} onClose={() => {handleEditModalClose(); setActiveModal('')  }} primaryMessage="Your Profile name has been successfully changed!" secondaryMessage=''/>
+        <UpdateSuccessModal isOpen={true} onClose={() => {handleEditModalClose(); setActiveModal('')  }} primaryMessage="Your Profile has been successfully changed!" secondaryMessage=''/>
       )}
     </>
   );
 };
 
 export default EditProfileFrom;
+
+
