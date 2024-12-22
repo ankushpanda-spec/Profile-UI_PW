@@ -141,7 +141,7 @@ const NewNumberVerification = ({
         </ModalHeader>
         <Separator />
         <ModalBody>
-          <div className="flex flex-col gap-24">
+          <div className={s.nnvContainer}>
             <Typography
               weight="semi-bold"
               color="static-black"
@@ -162,7 +162,6 @@ const NewNumberVerification = ({
               onChange={handleInputChange}
               onKeyDown={mobileNumberInputKeyPress}
               error={inputErrorMessageShown}
-             
             />
           </div>
         </ModalBody>
@@ -170,7 +169,7 @@ const NewNumberVerification = ({
         <ModalFooter>
           <Button
             type="button"
-            className="h-auto w-full"
+            fullWidth
             size="large"
             variant="primary"
             onClick={onContinueClick}
@@ -179,7 +178,7 @@ const NewNumberVerification = ({
           </Button>
 
           {errorMessage && (
-            <div className="flex items-center gap-6 text-error">
+            <div className={s.errorMsg}>
               <ErrorIcon />
               <Typography variant="tiny" weight="semi-bold" color="error">
                 {errorMessage}

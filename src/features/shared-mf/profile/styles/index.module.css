@@ -143,8 +143,14 @@
   @apply flex flex-row items-center justify-end gap-12;
 }
 
+.terms{
+  @apply flex flex-col items-start gap-24
+}
 .termsList {
-  @apply mt-2 pl-4;
+  @apply mt-2 list-disc pl-5;
+}
+.termsFooter{
+  @apply flex items-start gap-16 self-stretch
 }
 
 .modalFooter {
@@ -153,4 +159,70 @@
 
 .fullWidthFooter {
   @apply w-full justify-between;
+}
+
+.epNameContainer{
+  @apply flex flex-col items-start gap-8
+}
+
+.epNameSubContainer{
+  @apply flex w-full flex-col items-start gap-12
+}
+
+.epGenderWrapper{
+  @apply flex items-center gap-24
+}
+.epGenderContainer{
+  @apply flex items-center gap-12
+}
+.epGenderSubContainer{
+  @apply flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32
+}
+.epGender{
+  @apply flex items-start gap-10
+}
+.epContainer{
+  @apply items-start flex flex-col self-stretch gap-8
+}
+
+.usContainer{
+  @apply flex gap-20 p-20 flex-col items-center
+}
+.usImageContainer{
+  @apply w-[104px] h-[102px] flex items-center justify-center
+}
+.usMsgContainer{
+  @apply flex flex-col gap-8 items-center
+}
+.errorMsg{
+  @apply flex items-center gap-6 text-error
+}
+
+.nnvContainer{
+  @apply flex flex-col gap-24
+}
+
+.opWrapper{
+  @apply flex items-start gap-24 pb-8 flex-col
+}
+
+.opContainer{
+  @apply flex flex-col gap-24 self-stretch items-start justify-end
+}
+.opSubContainer{
+  @apply flex items-center gap-8 py-8 px-8
+}
+.otpWrapper{
+  @apply flex w-full flex-col items-center justify-center gap-20 pb-8
+}
+
+.otpContainer{
+  @apply flex w-full flex-col items-center gap-16
+}
+
+.otpSubContainer{
+  @apply inline-flex flex-col items-center gap-8
+}
+.otpText{
+  @apply flex items-center justify-center gap-4
 }

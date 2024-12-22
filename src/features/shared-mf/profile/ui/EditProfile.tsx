@@ -13,7 +13,12 @@ import {
   Alert,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {fetchCities, fetchStates, fetchUpdateNumberConfig, updateUser} from '../api';
+import {
+  fetchCities,
+  fetchStates,
+  fetchUpdateNumberConfig,
+  updateUser,
+} from '../api';
 import {formatToLabelValue} from '../services/utils';
 import {
   LabelValue,
@@ -31,16 +36,15 @@ import UpdateSuccessModal from './UpdateSuccess';
 import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
 import {useSnackbar} from '@/hooks/showSnackBar';
-import { webSDK } from '@/integration';
-import { useError } from '@/hooks/showError';
+import {webSDK} from '@/integration';
+import {useError} from '@/hooks/showError';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
-
 
 type EditProfileModalProps = {
   editModalOpen: boolean;
   handleEditModalClose: () => void;
   handleEditModalOpen: () => void;
-  userInfo:any;
+  userInfo: any;
 };
 
 const EditProfileFrom: React.FC<EditProfileModalProps> = ({
@@ -49,16 +53,15 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   handleEditModalOpen,
   userInfo,
 }) => {
- 
   const showSnackBar = useSnackbar();
   const {showLoader, hideLoader} = useLoader();
   const showError = useError();
 
-  const formData  = {
+  const formData = {
     firstName: userInfo?.firstName || '',
     lastName: userInfo?.lastName || '',
     email: userInfo?.email || '',
-    mobile: userInfo?.primaryNumber  || '',
+    mobile: userInfo?.primaryNumber || '',
     gender: userInfo?.gender || '',
     city: userInfo?.profileId?.address?.city || '',
     state: userInfo?.profileId?.address?.state || '',
@@ -74,7 +77,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
   const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] =
     useState(false);
-  const [offlineInstructions , setOfflineInstructions] = useState<string>();
+  const [offlineInstructions, setOfflineInstructions] = useState<string>('');
   const [updateNumberConfig, setUpdateNumberConfig] =
     useState<UpdateNumberConfig>();
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
@@ -86,7 +89,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   const [cities, setCities] = useState<LabelValue[]>([]);
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
- 
+
   useEffect(() => {
     const nameUpdateBlockedUntil = userInfo?.nameUpdateBlockedUntil;
     const currentDate = new Date();
@@ -115,21 +118,18 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       setIsUpdateNameDisabled(true);
     }
   }, [userInfo]);
-  
-  
+
   useEffect(() => {
     const fetchStateData = async () => {
-
       try {
         showLoader('Loading...');
-        
+
         const country = 'IND'; // Adjust as needed
         const response: any = await fetchStates(country);
         const statesInFormattedForm: LabelValue[] = formatToLabelValue(
           response.data
         );
         setStates(statesInFormattedForm); // Assuming response contains states data
-        
       } catch (error) {
         console.error('Error fetching states:', error);
       } finally {
@@ -162,7 +162,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
-    setUpdateNumberErrorMessage("");
+    setUpdateNumberErrorMessage('');
     setIsUpdateNumberConfigLoading(true);
     try {
       const res: any = await fetchUpdateNumberConfig();
@@ -172,16 +172,15 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       const eligible = !!res.data.isEligible;
       const failureReason = res.data.failureReason;
       const instructions = res.data.offlineInstruction;
-      console.log(typeof(res.data.offlineInstruction));
-      
+      console.log(typeof res.data.offlineInstruction);
 
       if (eligible || isPureOfflineUser) {
-        if(isPureOfflineUser){
+        if (isPureOfflineUser) {
           setOfflineInstructions(instructions);
-          setActiveModal('offlineUserInstructions')
+          setActiveModal('offlineUserInstructions');
+        } else {
+          setActiveModal('termsAndConditions');
         }
-        else{
-        setActiveModal('termsAndConditions'); }
         handleEditModalClose();
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
@@ -205,12 +204,16 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   };
 
   const handleFormSubmit = async (data: UserInfo) => {
-    const { firstName, lastName, email, city, state, gender } = data;
-    if (firstName.includes('*') || lastName.includes('*') || email.includes('*')) {
-         showSnackBar("Special character '*' not allowed. Please refill");
+    const {firstName, lastName, email, city, state, gender} = data;
+    if (
+      firstName.includes('*') ||
+      lastName.includes('*') ||
+      email.includes('*')
+    ) {
+      showSnackBar("Special character '*' not allowed. Please refill");
       return;
     }
-    const cleanField = (field:string) => field.replace(/\*/g, '');
+    const cleanField = (field: string) => field.replace(/\*/g, '');
     const cleanedData = {
       firstName: cleanField(firstName),
       lastName: cleanField(lastName),
@@ -237,23 +240,20 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       },
       isProfileCompleted: true,
     };
-    
-    const newUserInfo = { ...userInfo, ...payload };
-     showLoader('Please wait');
+
+    const newUserInfo = {...userInfo, ...payload};
+    showLoader('Please wait');
     try {
-     
-      const res:any = await updateUser(payload);
-      
+      const res: any = await updateUser(payload);
+
       if (res) {
-        const { nameUpdateBlockedUntil } = res.data; // Extract updateBlockUntil from res
+        const {nameUpdateBlockedUntil} = res.data; // Extract updateBlockUntil from res
         if (nameUpdateBlockedUntil) {
           newUserInfo.nameUpdateBlockedUntil = nameUpdateBlockedUntil; // Append updateBlockUntil to newUserInfo
-          
         }
         webSDK.setUser = newUserInfo;
-        setActiveModal("profileUpdateSuccess")
-        handleEditModalClose()
-       
+        setActiveModal('profileUpdateSuccess');
+        handleEditModalClose();
       }
     } catch (e) {
       const errorObj = getErrorMessage(e);
@@ -262,7 +262,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       hideLoader();
     }
   };
-  
+
   const handleSelectState = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -368,7 +368,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
           >
             <ModalBody>
               {/* First Name */}
-              <div className="flex flex-col items-start gap-8">
+              <div className={s.epNameContainer}>
                 <Controller
                   name="firstName"
                   control={control}
@@ -389,7 +389,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                   )}
                 />
 
-                <div className="flex w-full flex-col items-start gap-12">
+                <div className={s.epNameSubContainer}>
                   {/* Last Name */}
 
                   <Controller
@@ -415,7 +415,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                     (isUpdateNameDisabled ? (
                       <Alert
                         heading={`You have already updated your profile name once! You won’t be able to
-        update it before ${ calculatedDate }!`}
+        update it before ${calculatedDate}!`}
                         intent="error"
                         fullWidth
                       />
@@ -430,13 +430,13 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
               </div>
               {/* Gender */}
 
-              <div className="flex items-center gap-24">
+              <div className={s.epGenderWrapper}>
                 <Typography variant="regular" weight="semi-bold">
                   Gender
                 </Typography>
-                <div className="flex items-center gap-12">
-                  <div className="flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32">
-                    <div className="flex items-start gap-10">
+                <div className={s.epGenderContainer}>
+                  <div className={s.epGenderSubContainer}>
+                    <div className={s.epGender}>
                       <Controller
                         name="gender"
                         control={control}
@@ -456,8 +456,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       </Typography>
                     </div>
                   </div>
-                  <div className="flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32">
-                    <div className="flex items-start gap-10">
+                  <div className={s.epGenderSubContainer}>
+                    <div className={s.epGender}>
                       <Controller
                         name="gender"
                         control={control}
@@ -481,14 +481,18 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
               </div>
 
               {/* Mobile */}
-              <div className="flex-start flex flex-col items-stretch gap-8">
+              <div className={s.epContainer}>
                 <Controller
                   name="mobile"
                   control={control}
                   render={({field}) => (
                     <InputField
                       {...field}
-                      value={selectedMobileNumber ? selectedMobileNumber : userInfo?.primaryNumber}
+                      value={
+                        selectedMobileNumber
+                          ? selectedMobileNumber
+                          : userInfo?.primaryNumber
+                      }
                       label="Mobile Number"
                       placeholder="Enter Mobile Number"
                       type="number"
@@ -504,7 +508,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       readOnly
                       action={handleUpdateNumber}
                       message={updateNumberErrorMessage}
-                      error={updateNumberErrorMessage ? true : false }
+                      error={updateNumberErrorMessage ? true : false}
                     />
                   )}
                 />
@@ -595,9 +599,15 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
           </form>
         </Modal>
       )}
-
       {activeModal === ModalTypes.OfflineUserInstructions && (
-        <OfflineUserInstructionsModal  isOpen={true} onClose = {() => {handleEditModalOpen() ; setActiveModal('')}}  body={offlineInstructions} />
+        <OfflineUserInstructionsModal
+          isOpen={true}
+          onClose={() => {
+            handleEditModalOpen();
+            setActiveModal('');
+          }}
+          body={offlineInstructions}
+        />
       )}
       {activeModal === ModalTypes.TermsAndConditions && (
         <TermsAndConditionsModal
@@ -620,7 +630,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
       {activeModal === ModalTypes.OTPVerification && (
         <OTPVerificationModal
           selectedMobileNumber={selectedMobileNumber}
-          userInfo ={userInfo}
+          userInfo={userInfo}
           isOpen={true}
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
@@ -655,19 +665,25 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
           nextActiveModal="numberUpdateSuccess"
           isNewNumber={true}
           showEditIcon={true}
-          userInfo ={userInfo}
+          userInfo={userInfo}
         />
       )}
       {activeModal === ModalTypes.NumberUpdateSuccess && (
         <UpdateSuccessModal isOpen={true} onClose={handleSuccessModalClose} />
       )}
-       {activeModal === ModalTypes.ProfileUpdateSuccess && (
-        <UpdateSuccessModal isOpen={true} onClose={() => {handleEditModalClose(); setActiveModal('')  }} primaryMessage="Your Profile has been successfully changed!" secondaryMessage=''/>
+      {activeModal === ModalTypes.ProfileUpdateSuccess && (
+        <UpdateSuccessModal
+          isOpen={true}
+          onClose={() => {
+            handleEditModalClose();
+            setActiveModal('');
+          }}
+          primaryMessage="Your Profile has been successfully changed!"
+          secondaryMessage=""
+        />
       )}
     </>
   );
 };
 
 export default EditProfileFrom;
-
-

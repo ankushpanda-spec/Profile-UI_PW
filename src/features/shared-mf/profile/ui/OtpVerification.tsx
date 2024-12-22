@@ -12,9 +12,9 @@ import s from '../styles/index.module.css';
 import EditIcon from '@/assets/icons/EditIcon';
 import {fetchOtp, verifyOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
-import { useLoader } from '@/hooks/showLoader';
+import {useLoader} from '@/hooks/showLoader';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
-import { webSDK } from '@/integration';
+import {webSDK} from '@/integration';
 
 const OTPVerificationModal = ({
   isOpen,
@@ -34,29 +34,28 @@ const OTPVerificationModal = ({
   numberChangeRequestId: string | undefined;
   handleEditModalOpen: () => void;
   nextActiveModal: string;
-  isNewNumber:boolean;
+  isNewNumber: boolean;
   countryCode: string;
-  showEditIcon:boolean;
-  userInfo:any;
+  showEditIcon: boolean;
+  userInfo: any;
 }) => {
-  
-  const {showLoader , hideLoader} = useLoader();
+  const {showLoader, hideLoader} = useLoader();
   const [otp, setOtp] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [showResendMessage, setShowResendMessage] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(30);
-  const [isModalOpen , setIsModalOpen] = useState<boolean>(isOpen);
-  
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+
   const handleClose = () => {
     setIsModalOpen(false);
-    handleEditModalOpen()
-  } 
-  
+    handleEditModalOpen();
+  };
+
   useEffect(() => {
     if (timeLeft <= 0) return; // If the timer is already done, no need to set up another interval
 
     const timerInterval = setInterval(() => {
-      setTimeLeft((prevTime) => {
+      setTimeLeft(prevTime => {
         if (prevTime <= 1) {
           clearInterval(timerInterval); // Stop the timer when it reaches 0
           return 0; // Ensures the timer reaches 0
@@ -69,19 +68,18 @@ const OTPVerificationModal = ({
     return () => clearInterval(timerInterval);
   }, [timeLeft]);
   const handleOTPComplete = (otp: number) => {
-    
     setOtp(otp.toString());
   };
 
-  const updateNumberInGlobalState =()=> {
-    if (selectedMobileNumber &&  userInfo) {
-      const newUserInfo = {...userInfo , primaryNumber:selectedMobileNumber};
+  const updateNumberInGlobalState = () => {
+    if (selectedMobileNumber && userInfo) {
+      const newUserInfo = {...userInfo, primaryNumber: selectedMobileNumber};
       webSDK.setUser = newUserInfo;
     }
-  }
+  };
 
-  const onResendOtp = async () => {  
-    setError('')
+  const onResendOtp = async () => {
+    setError('');
     showLoader('Sending OTP...');
     try {
       const apiData = {
@@ -102,16 +100,15 @@ const OTPVerificationModal = ({
     } catch (error) {
       const errorObj = getErrorMessage(error);
       setError(errorObj.message);
-      hideLoader()
+      hideLoader();
     } finally {
-      hideLoader()
+      hideLoader();
       setShowResendMessage(true);
       setTimeLeft(30);
     }
   };
 
   const handleVerifyOtp = async () => {
-  
     showLoader('Verifying OTP...');
     try {
       const apiData = {
@@ -124,14 +121,12 @@ const OTPVerificationModal = ({
       };
       const res: any = await verifyOtp(apiData);
       if (res.success) {
-        if(isNewNumber){  
+        if (isNewNumber) {
           updateNumberInGlobalState();
         }
-        setActiveModal( nextActiveModal);
-       
+        setActiveModal(nextActiveModal);
       } else {
         setError(res?.message || '');
-      
       }
       hideLoader();
     } catch (error) {
@@ -152,10 +147,9 @@ const OTPVerificationModal = ({
       </ModalHeader>
       <Separator />
       <ModalBody>
-        <div className="flex w-full flex-col items-center justify-center gap-20 pb-8">
-          <div className="flex w-full flex-col items-center gap-16">
-            <div className="h-[56px] w-[260px]">
-              <div className="inline-flex flex-col items-center gap-8">
+        <div className={s.otpWrapper}>
+          <div className={s.otpContainer}>
+              <div className={s.otpSubContainer}>
                 <Typography
                   variant="regular"
                   weight="medium"
@@ -163,7 +157,7 @@ const OTPVerificationModal = ({
                 >
                   Please enter the 6 digit code sent on
                 </Typography>
-                <div className="flex items-start justify-center gap-4">
+                <div className={s.otpText}>
                   <Typography
                     color="text-heading"
                     variant="regular"
@@ -171,9 +165,12 @@ const OTPVerificationModal = ({
                   >
                     {countryCode} {selectedMobileNumber}
                   </Typography>
-                 {showEditIcon && <EditIcon  onClick= {() => setActiveModal('newNumberComponent')}/> }
+                  {showEditIcon && (
+                    <EditIcon
+                      onClick={() => setActiveModal('newNumberComponent')}
+                    />
+                  )}
                 </div>
-              </div>
             </div>
 
             {/* OTP Input */}
@@ -187,14 +184,16 @@ const OTPVerificationModal = ({
               </Typography>
             )}
             {timeLeft > 0 && (
-      <Typography color="static-black" variant="regular" weight="medium">
-        {timeLeft} seconds
-      </Typography>
-    )}
-           
+              <Typography
+                color="static-black"
+                variant="regular"
+                weight="medium"
+              >
+                {timeLeft} seconds
+              </Typography>
+            )}
 
-            {/* Resend OTP and Error Message */}
-            <div className="flex items-center justify-center gap-4">
+            <div className={s.otpText}>
               <Typography color="text-body-1" variant="regular" weight="medium">
                 Didn't get an OTP?{' '}
               </Typography>
@@ -203,7 +202,7 @@ const OTPVerificationModal = ({
                 size="medium"
                 variant="link"
                 className="text-[#0592CB] underline"
-                disabled={timeLeft>0}
+                disabled={timeLeft > 0}
               >
                 Resend
               </Button>
@@ -212,15 +211,15 @@ const OTPVerificationModal = ({
           <Button fullWidth disabled={!otp} onClick={handleVerifyOtp}>
             Verify OTP
           </Button>
-          {error && 
-          <div className="flex items-center gap-6 text-error">
-            <ErrorIcon />
-            <Typography variant="tiny" weight="semi-bold" color="error">
-             {error}
-            </Typography>
-          </div> }
+          {error && (
+            <div className={s.errorMsg}>
+              <ErrorIcon />
+              <Typography variant="tiny" weight="semi-bold" color="error">
+                {error}
+              </Typography>
+            </div>
+          )}
         </div>
-        
       </ModalBody>
     </Modal>
   );

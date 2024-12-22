@@ -15,11 +15,13 @@ const OfflineUserInstructionsModal = ({
   onClose: () => void;
   body: string;
 }) => {
-    console.log("body" , body);
+  console.log('body', body);
   return (
     <Modal onClose={onClose} isOpen={isOpen} size="small">
       <ModalHeader>
-        <Typography weight="semi-bold" variant="heading4">Instructions</Typography>
+        <Typography weight="semi-bold" variant="heading4">
+          Instructions
+        </Typography>
       </ModalHeader>
       <Separator />
       <ModalBody>
