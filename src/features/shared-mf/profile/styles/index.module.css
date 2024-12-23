@@ -101,12 +101,21 @@
 .udSectionKey {
   @apply text-xs font-semibold text-[#878787] lg:text-sm;
 }
+
+.udNameSection{
+  @apply w-3/5 flex flex-row gap-8 items-center text-xs text-[#333333] lg:text-sm
+}
+.studentMaster{
+  @apply text-[#5A4BDA] font-semibold hover:underline cursor-pointer
+}
 .udSectionValue {
   @apply w-3/5 text-xs text-[#333333] lg:text-sm;
 }
-
+.verifiedIcon{
+  @apply w-10 h-10 items-center
+}
 .pdContainer {
-  @apply flex w-full flex-col rounded-lg p-8 lg:w-52;
+  @apply flex w-full flex-col rounded-lg p-8;
 }
 .pdBgBlack {
   @apply bg-black;
@@ -154,9 +163,12 @@
 }
 
 .modalFooter {
-  @apply flex justify-end p-4;
+  @apply flex md:justify-end flex-row gap-12 md:self-stretch;
 }
 
+.epCTA{
+  @apply md:w-[138px] w-full
+}
 .fullWidthFooter {
   @apply w-full justify-between;
 }
@@ -220,9 +232,13 @@
   @apply flex w-full flex-col items-center gap-16
 }
 
+
 .otpSubContainer{
   @apply inline-flex flex-col items-center gap-8
 }
 .otpText{
   @apply flex items-center justify-center gap-4
+}
+.resendBtn{
+  @apply text-[#0592CB] underline
 }

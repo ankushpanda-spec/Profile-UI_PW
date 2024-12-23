@@ -2,46 +2,51 @@ import {useUser} from '@pw-tech/omni-context';
 import {useEffect, useMemo, useState} from 'react';
 import s from '../styles/index.module.css';
 import EditProfileFrom from './EditProfile';
-import { webSDK } from '@/integration';
+import {webSDK} from '@/integration';
+import { useNavigate } from 'react-router-dom';
+import VerifiedIcon from '@/assets/icons/Verified';
+import EditIcon from '@/assets/icons/EditIcon';
+import { Typography } from '@pw-tech/omni-ui';
 
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
-  const _User:any = webSDK.user;
-  
-  
-    const _sections: any = [];
-    _sections.push({
-      sectionName: 'Personal Details',
-      values: [
-        {key: 'Name', value: _User?.firstName + ' ' + _User?.lastName},
-        {key: 'Mobile No', value: _User?.primaryNumber},
-        {key: 'Email', value: _User?.email},
-        {
-          key: 'Living City/Village/Town',
-          value: _User?.profileId?.address?.city || 'N/A',
-        },
-      ],
-    });
+  const _User: any = webSDK.user;
+  const navigate = useNavigate();
 
-    _sections.push({
-      sectionName: 'Academic Details',
-      values: [
-        {key: 'Class', value: _User?.profileId?.class},
-        {key: 'Board/State Board', value: _User?.profileId?.board},
-        {key: 'Exams', value: _User?.profileId?.exams.join('')},
-        {key: 'Language', value: _User?.profileId?.language},
-      ],
-    });
-   
- 
+  const _sections: any = [];
+  _sections.push({
+    sectionName: 'Personal Details',
+    values: [
+      {key: 'Name', value: _User?.firstName + ' ' + _User?.lastName},
+      {key: 'Mobile No', value: _User?.primaryNumber},
+      {key: 'Email', value: _User?.email},
+      {
+        key: 'Living City/Village/Town',
+        value: _User?.profileId?.address?.city || 'N/A',
+      },
+    ],
+  });
 
+  _sections.push({
+    sectionName: 'Academic Details',
+    values: [
+      {key: 'Class', value: _User?.profileId?.class},
+      {key: 'Board/State Board', value: _User?.profileId?.board},
+      {key: 'Exams', value: _User?.profileId?.exams.join('')},
+      {key: 'Language', value: _User?.profileId?.language},
+    ],
+  });
+
+  const navigateToStudentMaster = () => {
+    navigate("/student-master-program?cameFrom=Profile")
+  }
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
         <h4 className={s.udOneTitle}>Profile Detail</h4>
-        <span
+        {/* <span
           className={s.udEditText}
           onClick={() => {
             setIsEditFormOpen(!isEditFormOpen);
@@ -49,7 +54,17 @@ const UserDetails = () => {
           }}
         >
           Edit
-        </span>
+        </span> */}
+        <div className='flex justify-center items-center px-4 gap-4' onClick={() => {
+            setIsEditFormOpen(!isEditFormOpen);
+            setEditModalOpen(true);
+          }}>
+          <EditIcon className='h-16 w-16 text-primary'/>
+          <Typography variant='regular' color="primary" weight="medium">
+            Edit
+          </Typography>
+
+        </div>
       </div>
       {_sections.map((section: any, index: number) => (
         <div key={index}>
@@ -63,20 +78,29 @@ const UserDetails = () => {
             {section.values.map((data: any, index: number) => (
               <div key={index} className={s.udSectionWrapper}>
                 <div className={s.udSectionKey}>{data.key}</div>
-                <div className={s.udSectionValue}>{data.value}</div>
+                {data.key == 'Name' ? (
+                  <div className={s.udNameSection}>
+                     <div>{data.value}</div>
+                     <VerifiedIcon  className={s.verifiedIcon}/>
+                     <div className={s.studentMaster} onClick={navigateToStudentMaster}>Pw Student Master</div>
+                     </div>
+                ) : (
+                  <div className={s.udSectionValue}>{data.value}</div>
+                )}
               </div>
             ))}
           </div>
         </div>
       ))}
-     {isEditFormOpen && 
-      <EditProfileFrom
-        editModalOpen={editModalOpen}
-        handleEditModalClose={() => setEditModalOpen(false)}
-        handleEditModalOpen={() => setEditModalOpen(true)}
-        userInfo = {_User}
-      /> }
-    </div> 
+      {isEditFormOpen && (
+        <EditProfileFrom
+          editModalOpen={editModalOpen}
+          handleEditModalClose={() => setEditModalOpen(false)}
+          handleEditModalOpen={() => setEditModalOpen(true)}
+          userInfo={_User}
+        />
+      )}
+    </div>
   );
 };
 

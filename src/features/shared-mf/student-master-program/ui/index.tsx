@@ -5,10 +5,14 @@ import { useEffect, useState } from 'react';
 import { FaqModel, STUDENT_MASTER_PROGRAM } from '../types';
 import { getFaqs } from '../api';
 import { useSnackbar } from '@/hooks/showSnackBar';
+import PlayIcon from '@/assets/icons/PlayIcon';
+import { useError } from '@/hooks/showError';
+import getErrorMessage from '../../profile/services/showErrorService';
 
 
 const StudentMasterProgram = () => {
   const showSnackBar = useSnackbar();
+  const showError = useError();
   const [bannerVideo ,setBannerVideo  ] = useState<FaqModel | null>(null);
   const [bannerImg, setBannerImg] = useState<string | null>(null);
   const [description, setDescription] = useState<FaqModel | null>(null);
@@ -19,10 +23,8 @@ const StudentMasterProgram = () => {
       let list: Array<FaqModel> = [];
       try {
         const res = await getFaqs(faqId);
-       
         if (res) {
-          const list = res.map((item : FaqModel) => new FaqModel(item)); 
-
+          list = res.map((item : FaqModel) => new FaqModel(item)); 
           const video : FaqModel = list.find((o:FaqModel) => o.title.toLowerCase() === 'video') || new FaqModel({});
           setBannerVideo(video);
 
@@ -32,7 +34,8 @@ const StudentMasterProgram = () => {
           setBannerImg(video.imageId.baseUrl + video.imageId.key);
         }
       } catch (e) {
-        console.log(e);
+        const errorObj = getErrorMessage(e);
+        showError(errorObj.message);
       }
     };
 
@@ -55,17 +58,17 @@ const StudentMasterProgram = () => {
 
 
   return (
-    <div className="flex flex-col items-start gap-24 rounded-lg bg-white p-16 md:p-24 lg:p-32">
-      <div className="flex flex-col items-start gap-24 self-stretch">
+    <div className="flex flex-col items-start gap-24 rounded-lg bg-white p-16 md:px-24 md:py-32 lg:p-32">
+      
         <div className="flex items-start gap-24 self-stretch">
-          <div className="flex flex-col items-start justify-center gap-16">
+         
             <Typography weight="semi-bold" variant="heading3">
               PW Student Master Program
             </Typography>
-          </div>
+         
         </div>
         <div className="flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pt-16 md:flex-row md:rounded-3xl md:pl-24 md:pt-24 lg:pl-32 lg:pt-32">
-          <div className="flex flex-col items-start gap-12 pb-32">
+          <div className="flex flex-col items-start gap-12 md:pb-32">
             <Typography variant="heading4" weight="bold">
               {' '}
               About
@@ -93,32 +96,34 @@ const StudentMasterProgram = () => {
                   </Typography>
                 </li>
               </ul>
-              {/* <Typography dangerouslySetInnerHTML={{__html : description?.description || ''}}/> */}
+             
             </div>
+             {/* <Typography dangerouslySetInnerHTML={{__html : description?.description || ''}}/> */}
           </div>
-          
-          <div className="relative h-[218px] md:h-auto md:w-[252px] lg:h-[246px] lg:w-[298px] flex-shrink-0 flex justify-center md:self-stretch">
-            
-            <div className="absolute  flex h-[229px] w-[251px] items-center justify-center">
-              <Vector />
-            </div>
-            <div
-              className="absolute w-[150px] h-[218px] md:w-[218px] md:h-[317px] lg:h-[249px] lg:w-[172px] bg-cover bg-center"
+         
+          <div className="relative flex-shrink-0 flex justify-center self-stretch h-auto lg:w-[298px] overflow-y-clip">
+          <div
+              className="z-20 min-w-[150px] min-h-[218px] md:min-w-[218px] md:min-h-[317px] lg:min-h-[249px] lg:min-w-[172px] bg-cover bg-center"
               style={{backgroundImage: `url(${AP_SIR})`}}
             ></div>
+            <div className="z-10 absolute  flex min-h-[229px] min-w-[251px] items-center justify-center">
+              <Vector />
+            </div>
+            
           </div>
-          
-        </div>
+          </div>
+       
         
         <div className="flex flex-col items-center gap-16 self-stretch rounded-3xl px-12 md:px-24 py-16">
           <Typography variant="heading4" weight="bold">
             How it works?
           </Typography>
-          <div className=" w-[304px] md:w-[608px] lg:w-[880px] h-[171px] md:h-[342px] lg:h-[495px] flex-shrink-0 rounded-xl bg-[#D9D9D9]">
-            <div>Ellipse fluent pay</div>
+          <div className=" w-[304px] md:w-[608px] lg:w-[880px] h-[171px] md:h-[342px] lg:h-[495px] flex-shrink-0 rounded-xl bg-[#D9D9D9] justify-center items-center flex">
+            <div className='w-32 h-32  md:w-[72px] md:h-[71px] flex items-center justify-center rounded-full bg-black'>
+               <PlayIcon className='w-14 h-14 md:w-[29px] md:h-[28px] justify-center items-center flex' /></div>
           </div>
         </div>
-      </div>
+     
     </div>
   );
 };

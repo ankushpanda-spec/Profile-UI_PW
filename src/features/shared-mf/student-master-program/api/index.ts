@@ -1,7 +1,7 @@
 import { ApiClient } from "@pw-tech/web-sdk";
-import { FaqModelObject } from "../types";
+import { FaqModel, FaqModelObject} from "../types";
 
-export const getFaqs = async (catId: string, isPrivate?: boolean):  Promise<FaqModelObject>   => {
+export const getFaqs = async (catId: string, isPrivate?: boolean):  Promise<FaqModel[]>   => {
     try {
       const url = `v1/faq-category/${catId}/list`;
       const config = isPrivate
@@ -11,7 +11,7 @@ export const getFaqs = async (catId: string, isPrivate?: boolean):  Promise<FaqM
           organizationId: process.env.PUBLIC_ORGANISATION_ID,
         },
       };
-      const response = await ApiClient.get<{ data: FaqModelObject }>(url, config);
+      const response = await ApiClient.get<FaqModelObject>(url, config);
       return response.data;
 
     } catch (error) {

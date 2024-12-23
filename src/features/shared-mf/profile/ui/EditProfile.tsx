@@ -583,6 +583,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                     reset(); // Reset the form when the modal is closed
                   }}
                   type="button"
+                  className={s.epCTA}
                 >
                   Cancel
                 </Button>
@@ -591,6 +592,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                   variant="primary"
                   disabled={!formState.isValid}
                   type="submit"
+                  className={s.epCTA}
                 >
                   Save Changes
                 </Button>

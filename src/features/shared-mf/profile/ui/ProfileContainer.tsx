@@ -10,7 +10,6 @@ import {useSnackbar} from '@/hooks/showSnackBar';
 import {webSDK} from '@/integration/webSDK';
 import {useLoader} from '@/hooks/showLoader';
 import getErrorMessage from '../services/showErrorService';
-import { fetchUser } from '@/api';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
