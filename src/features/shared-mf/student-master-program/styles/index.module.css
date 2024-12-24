@@ -1,0 +1,40 @@
+.studentMaster{
+    @apply flex flex-col items-start gap-24 rounded-lg bg-white p-16 md:px-24 md:py-32 lg:p-32
+}
+
+.smTitle{
+    @apply flex items-start gap-24 self-stretch
+}
+.smAbout{
+    @apply flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pt-16 md:flex-row md:rounded-3xl md:pl-24 md:pt-24 lg:pl-32 lg:pt-32
+}
+.smAboutTitle{
+    @apply flex flex-col items-start gap-12 md:pb-32 min-w-[70%]
+}
+.smDescription{
+    @apply flex flex-col items-start justify-center gap-14 self-stretch
+}
+.smImage{
+    @apply relative flex h-auto flex-shrink-0 justify-center self-stretch overflow-y-clip lg:w-[298px]
+}
+.smApSir{
+    @apply z-20 min-h-[218px] min-w-[150px] bg-cover bg-center md:min-h-[317px] md:min-w-[218px] lg:min-h-[249px] lg:min-w-[172px]
+}
+
+.smIcon{
+    @apply absolute z-10 flex min-h-[229px] min-w-[251px] items-center justify-center
+}
+.smHowItWork{
+    @apply flex flex-col items-center gap-16 self-stretch rounded-3xl px-12 py-16 md:px-24
+}
+
+.smVideoWrapper{
+    @apply flex h-[171px] w-[304px] flex-shrink-0 items-center justify-center rounded-xl bg-[#D9D9D9] md:h-[342px] md:w-[608px] lg:h-[495px] lg:w-[880px]
+}
+.smPlayButton{
+    @apply flex h-32 w-32 items-center justify-center rounded-full bg-black md:h-[71px] md:w-[72px]
+}
+
+.smPlayIcon{
+    @apply flex h-14 w-14 items-center justify-center md:h-[28px] md:w-[29px]
+}
