@@ -86,7 +86,7 @@ const OTPVerificationModal = ({
         phone: selectedMobileNumber,
         countryCode: countryCode,
         isNewNumber: isNewNumber,
-        organizationId: process.env.PUBLIC_ORGANISATION_ID,
+        organizationId: process.env.PUBLIC_ORGANISATION_ID || "",
         requestId: numberChangeRequestId || '',
       };
       const res: any = await fetchOtp(apiData);
@@ -115,7 +115,7 @@ const OTPVerificationModal = ({
         phone: selectedMobileNumber,
         countryCode: countryCode,
         isNewNumber: isNewNumber,
-        organizationId: process.env.PUBLIC_ORGANISATION_ID,
+        organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         otp: otp,
         requestId: numberChangeRequestId || '',
       };
