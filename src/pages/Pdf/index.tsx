@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PdfViewer from "@/components/pdf-viewer/PdfViewer";
+import { PdfViewer } from "@pw-tech/omni-ui";
 import { getPdfDetails } from "@/api";
 import { useSearchParams } from "react-router-dom";
 
