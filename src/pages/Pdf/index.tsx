@@ -11,7 +11,7 @@ const Pdf = () => {
 
   const [searchParams] = useSearchParams();
   const contentId  = searchParams.get("contentId")?.toString();
-  const url = searchParams.get("pdfUrl");
+  const url = searchParams.get("pdf");
 
   useEffect(() => {
     if(url && contentId){
