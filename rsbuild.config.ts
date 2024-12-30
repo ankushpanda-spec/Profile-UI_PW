@@ -1,7 +1,8 @@
-import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
-import { defineConfig } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
-import { dependencies } from './package.json';
+import {pluginModuleFederation} from '@module-federation/rsbuild-plugin';
+import {defineConfig} from '@rsbuild/core';
+import {pluginReact} from '@rsbuild/plugin-react';
+import path from 'path';
+import {dependencies} from './package.json';
 
 export default defineConfig({
   server: {
@@ -10,15 +11,6 @@ export default defineConfig({
   html: {
     template: './public/index.html',
   },
-  source: {
-    entry: {
-      index: './src/index.tsx',
-    },
-    alias: {
-      "@/*": "./src/*"
-    }
-  },
-
   plugins: [
     pluginReact(),
     pluginModuleFederation({
@@ -37,9 +29,6 @@ export default defineConfig({
           singleton: true,
           version: dependencies['react-dom'],
         },
-        'react-router-dom': {
-          singleton: true,
-        },
         '@pw-tech/omni-context': {
           singleton: true,
         },
@@ -48,6 +37,9 @@ export default defineConfig({
         },
 
       },
+      runtimePlugins: [
+        path.resolve(__dirname, './hooks-mf/offlineRemotePlugin.ts'),
+      ],
     }),
   ],
   tools: {
