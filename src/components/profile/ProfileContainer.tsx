@@ -1,7 +1,6 @@
 import { CameraIcon } from '@/assets/images';
 import { lazy } from 'react';
 import s from "./index.module.css";
-import { Link } from 'react-router-dom';
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
 
