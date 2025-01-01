@@ -39,6 +39,17 @@ import {useSnackbar} from '@/hooks/showSnackBar';
 import {webSDK} from '@/integration';
 import {useError} from '@/hooks/showError';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
+import {
+  checkDigitInput,
+  checkEmail,
+  fetchCityData,
+  fetchStateData,
+  handleFormSubmit,
+  handleSelectCity,
+  handleSelectState,
+  onNameClicked,
+  onNameClickedRemove,
+} from '../lib';
 
 type EditProfileModalProps = {
   editModalOpen: boolean;
@@ -53,10 +64,6 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   handleEditModalOpen,
   userInfo,
 }) => {
-  const showSnackBar = useSnackbar();
-  const {showLoader, hideLoader} = useLoader();
-  const showError = useError();
-
   const formData = {
     firstName: userInfo?.firstName || '',
     lastName: userInfo?.lastName || '',
@@ -120,45 +127,11 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   }, [userInfo]);
 
   useEffect(() => {
-    const fetchStateData = async () => {
-      try {
-        showLoader('Loading...');
-
-        const country = 'IND'; // Adjust as needed
-        const response: any = await fetchStates(country);
-        const statesInFormattedForm: LabelValue[] = formatToLabelValue(
-          response.data
-        );
-        setStates(statesInFormattedForm); // Assuming response contains states data
-      } catch (error) {
-        console.error('Error fetching states:', error);
-      } finally {
-        hideLoader();
-      }
-    };
-
-    fetchStateData();
+    fetchStateData(setStates);
   }, []);
 
-  useEffect(() => {
-    const fetchCityData = async () => {
-      if (selectedState) {
-        showLoader('Loading...');
-        try {
-          const country = 'IND'; // Adjust as needed
-          const response: any = await fetchCities(country, selectedState);
-          const citiesInFormattedForm: LabelValue[] = formatToLabelValue(
-            response.data
-          );
-          setCities(citiesInFormattedForm); // Assuming response contains cities data
-        } catch (error) {
-          console.error('Error fetching cities:', error);
-        } finally {
-          hideLoader();
-        }
-      }
-    };
-    fetchCityData();
+  useEffect(() => { 
+    fetchCityData(selectedState,setCities);
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
@@ -193,141 +166,6 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
     }
   };
 
-  const onNameClicked = () => {
-    setShowWarningForNameChange(true);
-  };
-  const onNameClickedRemove = () => {
-    if (isUpdateNameDisabled) {
-      return;
-    }
-    setShowWarningForNameChange(false);
-  };
-
-  const handleFormSubmit = async (data: UserInfo) => {
-    const {firstName, lastName, email, city, state, gender} = data;
-    if (
-      firstName.includes('*') ||
-      lastName.includes('*') ||
-      email.includes('*')
-    ) {
-      showSnackBar("Special character '*' not allowed. Please refill");
-      return;
-    }
-    const cleanField = (field: string) => field.replace(/\*/g, '');
-    const cleanedData = {
-      firstName: cleanField(firstName),
-      lastName: cleanField(lastName),
-      email: cleanField(email).toLowerCase(),
-    };
-    // Set cleaned values back
-    setValue('firstName', cleanedData.firstName);
-    setValue('lastName', cleanedData.lastName);
-    setValue('email', cleanedData.email);
-    const payload = {
-      ...cleanedData,
-      profileId: {
-        ...userInfo.profileId,
-        address: {
-          city: city.trim(),
-          state: state.trim(),
-        },
-        gender: gender,
-      },
-      gender: gender,
-      address: {
-        city: city.trim(),
-        state: state.trim(),
-      },
-      isProfileCompleted: true,
-    };
-
-    const newUserInfo = {...userInfo, ...payload};
-    showLoader('Please wait');
-    try {
-      const res: any = await updateUser(payload);
-
-      if (res) {
-        const {nameUpdateBlockedUntil} = res.data; // Extract updateBlockUntil from res
-        if (nameUpdateBlockedUntil) {
-          newUserInfo.nameUpdateBlockedUntil = nameUpdateBlockedUntil; // Append updateBlockUntil to newUserInfo
-        }
-        webSDK.setUser = newUserInfo;
-        setActiveModal('profileUpdateSuccess');
-        handleEditModalClose();
-      }
-    } catch (e) {
-      const errorObj = getErrorMessage(e);
-      showError(errorObj.message);
-    } finally {
-      hideLoader();
-    }
-  };
-
-  const handleSelectState = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setValue('state', e.target.value);
-    setValue('city', '');
-  };
-
-  const handleSelectCity = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setValue('city', e.target.value || '');
-  };
-
-  const isASCII = (input: string) => {
-    return /^[\x00-\x7F]*$/.test(input);
-  };
-
-  const checkDigitInput = (event: any, inputName: 'firstName' | 'lastName') => {
-    const regExp = /^[0-9\b]+$/;
-    const regSpecialCharacter = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
-    const isAscii = isASCII(event.key);
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      let value = event.target.value;
-      let valueReplaced = value.toString().replace(/[^a-zA-Z\s]/gm, '');
-      setValue(inputName, valueReplaced.toString().trim());
-      if (value != valueReplaced) {
-        showSnackBar('Hindi Character, Emojis not allowed.');
-      }
-    }
-
-    if (
-      regExp.test(event.key) ||
-      regSpecialCharacter.test(event.key) ||
-      !isAscii
-    ) {
-      event.preventDefault();
-      showSnackBar('Please enter alphabets only');
-      return false;
-    } else {
-      return true;
-    }
-  };
-  const checkEmail = (event: any) => {
-    const isAscii = isASCII(event.key);
-    const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      let value = event.target.value;
-      let valueReplaced = value.toString().replace(/[^a-zA-Z0-9_.\-\s@]/gm, '');
-      setValue('email', valueReplaced.toString().trim());
-      if (value != valueReplaced) {
-        showSnackBar('Hindi Character, Emojis not allowed.');
-      }
-    }
-
-    if (regExp.test(event.key) || event.key === ' ' || !isAscii) {
-      event.preventDefault();
-      showSnackBar('Please enter proper email only');
-      return false;
-    } else {
-      return true;
-    }
-  };
   const handleSuccessModalClose = () => {
     handleEditModalOpen();
     setActiveModal('');
@@ -362,8 +200,16 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
               if (e.key === 'Enter') e.preventDefault();
             }}
             onSubmit={e => {
-              e.preventDefault();
-              handleSubmit(handleFormSubmit)();
+              e.preventDefault(); // Prevent default form submission behavior
+              handleSubmit(data =>
+                handleFormSubmit(
+                  data,
+                  setValue,
+                  setActiveModal,
+                  userInfo,
+                  handleEditModalClose
+                )
+              )();
             }}
           >
             <ModalBody>
@@ -382,9 +228,9 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       fullWidth
                       label="First Name"
                       variant="outside"
-                      onFocus={onNameClicked}
-                      onBlur={onNameClickedRemove}
-                      onKeyDown={e => checkDigitInput(e, 'firstName')}
+                      onFocus={() => onNameClicked(setShowWarningForNameChange)}
+                      onBlur={() => onNameClickedRemove(isUpdateNameDisabled, setShowWarningForNameChange)}
+                      onKeyDown={e => checkDigitInput(e, 'firstName', setValue)}
                     />
                   )}
                 />
@@ -405,9 +251,11 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                         fullWidth
                         label="Last Name"
                         variant="outside"
-                        onFocus={onNameClicked}
-                        onBlur={onNameClickedRemove}
-                        onKeyDown={e => checkDigitInput(e, 'lastName')}
+                        onFocus={() => onNameClicked(setShowWarningForNameChange)}
+                      onBlur={() => onNameClickedRemove(isUpdateNameDisabled, setShowWarningForNameChange)}
+                        onKeyDown={e =>
+                          checkDigitInput(e, 'lastName', setValue)
+                        }
                       />
                     )}
                   />
@@ -526,7 +374,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       fullWidth
                       label="Email"
                       variant="outside"
-                      onKeyDown={e => checkEmail(e)}
+                      onKeyDown={e => checkEmail(e, setValue)}
                     />
                   )}
                 />
@@ -545,7 +393,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       variant="outside"
                       required={false}
                       options={states}
-                      onChange={handleSelectState}
+                      onChange={e => handleSelectState(e, setValue)}
                       maxHeight={280}
                     />
                   )}
@@ -565,7 +413,7 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       label="City"
                       variant="outside"
                       required={false}
-                      onChange={handleSelectCity}
+                      onChange={e => handleSelectCity(e, setValue)}
                       disabled={!selectedState}
                       maxHeight={280}
                     />
