@@ -10,7 +10,8 @@ import {useError} from '@/hooks/showError';
 import getErrorMessage from '../../profile/services/showErrorService';
 import {Storage} from '@pw-tech/web-sdk';
 import {useLocation} from 'react-router-dom';
-import s from "../styles/index.module.css"
+import s from '../styles/index.module.css';
+import {webSDK} from '@/integration';
 
 const StudentMasterProgram = () => {
   const showSnackBar = useSnackbar();
@@ -20,6 +21,11 @@ const StudentMasterProgram = () => {
   const [bannerVideo, setBannerVideo] = useState<FaqModel | null>(null);
   const [bannerImg, setBannerImg] = useState<string | null>(null);
   const [description, setDescription] = useState<FaqModel | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+
+  const RANDOM_ID = webSDK.randomId;
+  const ACCESS_TOKEN = webSDK.accessToken;
 
   useEffect(() => {
     const fetchFaq = async () => {
@@ -63,7 +69,7 @@ const StudentMasterProgram = () => {
       };
       Storage.set('VIDEO_DETAILS', videoObject, {plain: true});
       Storage.set('videoBackUrl', routeUrl, {plain: true});
-      //Video Player
+      setIsPlaying(true)
     }
   };
 
@@ -102,16 +108,32 @@ const StudentMasterProgram = () => {
         <Typography variant="heading4" weight="bold">
           How it works?
         </Typography>
+        
+      {isPlaying ? (
+        <iframe
+          src={`${process.env.PUBLIC_VIDEO_PLAYER_URL}?type=youtube&src=${bannerVideo?.videoUrl}&token=${ACCESS_TOKEN}&random_id=${RANDOM_ID}&back_button=false&three_dots=false`}
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+          className={s.smVideoWrapper}
+        ></iframe>
+      ) : (
         <div
           className={s.smVideoWrapper}
           onClick={howItWorkVideo}
+          style={{
+            backgroundImage: `url(${bannerImg || BANNER_IMG})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
+          
           <div className={s.smPlayButton}>
             <PlayIcon className={s.smPlayIcon} />
           </div>
         </div>
-      </div>
+      )}
     </div>
+      </div>
+    
   );
 };
 

@@ -9,7 +9,7 @@
     @apply flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pt-16 md:flex-row md:rounded-3xl md:pl-24 md:pt-24 lg:pl-32 lg:pt-32
 }
 .smAboutTitle{
-    @apply flex flex-col items-start gap-12 md:pb-32 min-w-[70%]
+    @apply flex flex-col items-start gap-12 md:pb-32  md:min-w-[50%] lg:min-w-[70%]
 }
 .smDescription{
     @apply flex flex-col items-start justify-center gap-14 self-stretch
@@ -29,7 +29,7 @@
 }
 
 .smVideoWrapper{
-    @apply flex h-[171px] w-[304px] flex-shrink-0 items-center justify-center rounded-xl bg-[#D9D9D9] md:h-[342px] md:w-[608px] lg:h-[495px] lg:w-[880px]
+    @apply flex h-[171px] w-[304px] flex-shrink-0 items-center justify-center rounded-xl md:h-[342px] md:w-[608px] lg:h-[495px] lg:w-[880px]
 }
 .smPlayButton{
     @apply flex h-32 w-32 items-center justify-center rounded-full bg-black md:h-[71px] md:w-[72px]
