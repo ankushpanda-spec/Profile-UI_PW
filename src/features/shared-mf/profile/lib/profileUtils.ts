@@ -6,7 +6,7 @@ import getErrorMessage from '../services/showErrorService';
 import {webSDK} from '@/integration';
 import {useLoader} from '@/hooks/showLoader';
 import {useError} from '@/hooks/showError';
-import { formatToLabelValue, isASCII } from '../lib';
+import { formatToLabelValue, isASCII } from '.';
 
 
 const useProfileUtils = () => {

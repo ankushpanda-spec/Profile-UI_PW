@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@pw-tech/omni-ui';
 import React, {useEffect, useState} from 'react';
-import useProfileUtils from '../lib/utils';
+import useProfileUtils from  '../lib/profileUtils'
 import {Controller, useForm} from 'react-hook-form';
 import {
   handleSelectCity,
@@ -21,20 +21,11 @@ import {
   onNameClickedRemove,
 } from '../lib';
 import s from '../styles/index.module.css';
-import {LabelValue, UpdateNumberConfig} from '../types/constants';
+import {LabelValue} from '../types/constants';
 import getErrorMessage from '../services/showErrorService';
 import {fetchUpdateNumberConfig} from '../api';
+import { EditProfileFormProps } from '../types';
 
-
-type EditProfileFormProps = {
-    editModalOpen: boolean;
-    userInfo: any;
-    setUpdateNumberConfig:React.Dispatch<React.SetStateAction<UpdateNumberConfig | undefined>>
-    setActiveModal: React.Dispatch<React.SetStateAction<string>>
-    setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>
-    selectedMobileNumber:string
-    handleEditModalClose: () => void
-  };
 
   const EditProfileForm: React.FC<EditProfileFormProps> = ({
     editModalOpen,

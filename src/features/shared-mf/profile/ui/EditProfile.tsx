@@ -1,24 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {fetchUpdateNumberConfig} from '../api';
-
 import {ModalTypes, UpdateNumberConfig} from '../types/constants';
-
-import {useForm, Controller} from 'react-hook-form';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
 import OldPhoneNumberModal from './OldPhoneNumberComponent';
 import OTPVerificationModal from './OtpVerification';
 import NewNumberVerification from './NewNumberVerification';
 import UpdateSuccessModal from './UpdateSuccess';
-import getErrorMessage from '../services/showErrorService';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import EditProfileForm from './EditProfileForm';
-
-type EditProfileModalProps = {
-  editModalOpen: boolean;
-  handleEditModalClose: () => void;
-  handleEditModalOpen: () => void;
-  userInfo: any;
-};
+import { EditProfileModalProps } from '../types';
 
 const EditProfile: React.FC<EditProfileModalProps> = ({
   editModalOpen,
