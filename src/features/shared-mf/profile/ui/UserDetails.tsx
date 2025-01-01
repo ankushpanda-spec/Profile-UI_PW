@@ -1,12 +1,11 @@
-import {useUser} from '@pw-tech/omni-context';
-import {useEffect, useMemo, useState} from 'react';
+import {useState} from 'react';
 import s from '../styles/index.module.css';
-import EditProfileFrom from './EditProfile';
 import {webSDK} from '@/integration';
 import { useNavigate } from 'react-router-dom';
 import VerifiedIcon from '@/assets/icons/Verified';
 import EditIcon from '@/assets/icons/EditIcon';
 import { Typography } from '@pw-tech/omni-ui';
+import EditProfile from './EditProfile';
 
 const UserDetails = () => {
   const [sections, setSections] = useState<any>([]);
@@ -93,7 +92,7 @@ const UserDetails = () => {
         </div>
       ))}
       {isEditFormOpen && (
-        <EditProfileFrom
+        <EditProfile
           editModalOpen={editModalOpen}
           handleEditModalClose={() => setEditModalOpen(false)}
           handleEditModalOpen={() => setEditModalOpen(true)}
