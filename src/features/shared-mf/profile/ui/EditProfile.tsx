@@ -13,13 +13,8 @@ import {
   Alert,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {
-  fetchCities,
-  fetchStates,
-  fetchUpdateNumberConfig,
-  updateUser,
-} from '../api';
-import {formatToLabelValue} from '../services/utils';
+import {fetchUpdateNumberConfig} from '../api';
+
 import {
   LabelValue,
   ModalTypes,
@@ -40,16 +35,12 @@ import {webSDK} from '@/integration';
 import {useError} from '@/hooks/showError';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import {
-  checkDigitInput,
-  checkEmail,
-  fetchCityData,
-  fetchStateData,
-  handleFormSubmit,
   handleSelectCity,
   handleSelectState,
   onNameClicked,
   onNameClickedRemove,
 } from '../lib';
+import useProfileUtils from '../../profile/lib/utils'
 
 type EditProfileModalProps = {
   editModalOpen: boolean;
@@ -77,7 +68,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
   const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
     defaultValues: formData,
   });
-
+  const {checkDigitInput, checkEmail, fetchStateData, fetchCityData,  handleFormSubmit} =
+    useProfileUtils();
   const [activeModal, setActiveModal] = useState<string>('');
   const [showWarningForNameChange, setShowWarningForNameChange] =
     useState(false);
@@ -130,8 +122,8 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
     fetchStateData(setStates);
   }, []);
 
-  useEffect(() => { 
-    fetchCityData(selectedState,setCities);
+  useEffect(() => {
+    fetchCityData(selectedState, setCities);
   }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
@@ -229,7 +221,12 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                       label="First Name"
                       variant="outside"
                       onFocus={() => onNameClicked(setShowWarningForNameChange)}
-                      onBlur={() => onNameClickedRemove(isUpdateNameDisabled, setShowWarningForNameChange)}
+                      onBlur={() =>
+                        onNameClickedRemove(
+                          isUpdateNameDisabled,
+                          setShowWarningForNameChange
+                        )
+                      }
                       onKeyDown={e => checkDigitInput(e, 'firstName', setValue)}
                     />
                   )}
@@ -251,8 +248,15 @@ const EditProfileFrom: React.FC<EditProfileModalProps> = ({
                         fullWidth
                         label="Last Name"
                         variant="outside"
-                        onFocus={() => onNameClicked(setShowWarningForNameChange)}
-                      onBlur={() => onNameClickedRemove(isUpdateNameDisabled, setShowWarningForNameChange)}
+                        onFocus={() =>
+                          onNameClicked(setShowWarningForNameChange)
+                        }
+                        onBlur={() =>
+                          onNameClickedRemove(
+                            isUpdateNameDisabled,
+                            setShowWarningForNameChange
+                          )
+                        }
                         onKeyDown={e =>
                           checkDigitInput(e, 'lastName', setValue)
                         }
