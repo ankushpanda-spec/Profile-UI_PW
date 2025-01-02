@@ -1,4 +1,4 @@
-import { UpdateNumberConfig } from "./constants";
+import { LabelValue, UpdateNumberConfig } from "./constants";
 
 export type EditProfileModalProps = {
     editModalOpen: boolean;
@@ -15,4 +15,7 @@ export type EditProfileModalProps = {
     setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>
     selectedMobileNumber:string
     handleEditModalClose: () => void
+    cities: LabelValue[],
+    states: LabelValue[],
+    setSelectedState:React.Dispatch<React.SetStateAction<string>>
   };

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {ModalTypes, UpdateNumberConfig} from '../types/constants';
+import {LabelValue, ModalTypes, UpdateNumberConfig} from '../types/constants';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
 import OldPhoneNumberModal from './OldPhoneNumberComponent';
 import OTPVerificationModal from './OtpVerification';
@@ -8,6 +8,7 @@ import UpdateSuccessModal from './UpdateSuccess';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import EditProfileForm from './EditProfileForm';
 import { EditProfileModalProps } from '../types';
+import useProfileUtils from '../lib/profileUtils';
 
 const EditProfile: React.FC<EditProfileModalProps> = ({
   editModalOpen,
@@ -15,6 +16,8 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   handleEditModalOpen,
   userInfo,
 }) => {
+  const {fetchStateData,
+    fetchCityData} = useProfileUtils();
   const [activeModal, setActiveModal] = useState<string>('');
 
   const [offlineInstructions, setOfflineInstructions] = useState<string>('');
@@ -24,11 +27,21 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   const [selectedMobileNumber, setSelectedMobileNumber] = useState<string>('');
   const [newInputMobileNumber, setNewInputMobileNumber] = useState<string>('');
   const [newCountryCode, setNewCountryCode] = useState<string>('+91');
-
+  const [states, setStates] = useState<LabelValue[]>([]);
+  const [cities, setCities] = useState<LabelValue[]>([]);
+  const [selectedState , setSelectedState] = useState<string>('');
   const handleSuccessModalClose = () => {
     handleEditModalOpen();
     setActiveModal('');
   };
+
+  useEffect(() => {
+    fetchStateData(setStates);
+  }, []);
+
+  useEffect(() => {
+    fetchCityData(selectedState, setCities);
+  }, [selectedState]); // Re-fetch cities when state changes
   return (
     <>
       {' '}
@@ -41,6 +54,9 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           setOfflineInstructions={setOfflineInstructions}
           selectedMobileNumber={selectedMobileNumber}
           handleEditModalClose={handleEditModalClose}
+          cities={cities}
+          states={states}
+          setSelectedState={setSelectedState}
         />
       )}
       {activeModal === ModalTypes.OfflineUserInstructions && (

@@ -35,6 +35,9 @@ import { EditProfileFormProps } from '../types';
     setOfflineInstructions,
     selectedMobileNumber,
     handleEditModalClose,
+    cities,
+    states,
+    setSelectedState,
   }) => {
   const formData = {
     firstName: userInfo?.firstName || '',
@@ -49,8 +52,7 @@ import { EditProfileFormProps } from '../types';
   const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
     defaultValues: formData,
   });
-  const [states, setStates] = useState<LabelValue[]>([]);
-  const [cities, setCities] = useState<LabelValue[]>([]);
+  
   const [showWarningForNameChange, setShowWarningForNameChange] =
     useState(false);
     const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
@@ -60,22 +62,17 @@ import { EditProfileFormProps } from '../types';
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
+  
+  useEffect(() => {
+   setSelectedState(selectedState)
+  } , [selectedState])
 
   const {
     checkDigitInput,
     checkEmail,
-    fetchStateData,
-    fetchCityData,
     handleFormSubmit,
   } = useProfileUtils();
 
-  useEffect(() => {
-    fetchStateData(setStates);
-  }, []);
-
-  useEffect(() => {
-    fetchCityData(selectedState, setCities);
-  }, [selectedState]); // Re-fetch cities when state changes
 
   const handleUpdateNumber = async () => {
     setUpdateNumberErrorMessage('');
