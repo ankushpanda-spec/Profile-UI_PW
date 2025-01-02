@@ -73,7 +73,7 @@ const NewNumberVerification = ({
       phone: newInputMobileNumber,
       countryCode: newCountryCode,
       isNewNumber: isNewNumber,
-      organizationId: process.env.PUBLIC_ORGANISATION_ID,
+      organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
       requestId: numberChangeRequestId || '',
     };
     try {

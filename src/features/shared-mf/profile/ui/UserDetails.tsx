@@ -8,7 +8,6 @@ import { Typography } from '@pw-tech/omni-ui';
 import EditProfile from './EditProfile';
 
 const UserDetails = () => {
-  const [sections, setSections] = useState<any>([]);
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
   const _User: any = webSDK.user;

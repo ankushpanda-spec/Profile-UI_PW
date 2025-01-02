@@ -50,7 +50,7 @@ const OldPhoneNumberModal = ({
         phone: selectedMobileNumber,
         countryCode: userInfo?.countryCode,
         isNewNumber: false,
-        organizationId: process.env.PUBLIC_ORGANISATION_ID,
+        organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
       };
       const res: any = await fetchOtp(apiData);
