@@ -9,15 +9,12 @@ import {
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import {useState} from 'react';
+import { TermsAndConditionsProps } from '../types';
 
-const TermsAndConditionsModal = ({
+const TermsAndConditionsModal:React.FC<TermsAndConditionsProps> = ({
   isOpen,
   setActiveModal,
   handleEditModalOpen,
-}: {
-  isOpen: boolean;
-  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  handleEditModalOpen: () => void;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
   const handleClose = () => {

@@ -19,3 +19,63 @@ export type EditProfileModalProps = {
     states: LabelValue[],
     setSelectedState:React.Dispatch<React.SetStateAction<string>>
   };
+
+export type NewNumberVerificationProps={
+  isOpen: boolean;
+  handleEditModalOpen: () => void;
+  numberChangeRequestId: string | undefined;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  setNewCountryCode: React.Dispatch<React.SetStateAction<string>>;
+  setNewInputMobileNumber: React.Dispatch<React.SetStateAction<string>>;
+  newInputMobileNumber: string;
+  newCountryCode: string;
+  isNewNumber: boolean;
+};
+
+export type OldPhoneNumberProps = {
+  isOpen: boolean;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  numberChangeRequestId: string | undefined;
+  selectedMobileNumber: string;
+  setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>;
+  handleEditModalOpen: () => void;
+  userInfo: any;
+}
+
+export type OtpVerificationProps = {
+  isOpen: boolean;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  selectedMobileNumber: string;
+  numberChangeRequestId: string | undefined;
+  handleEditModalOpen: () => void;
+  nextActiveModal: string;
+  isNewNumber: boolean;
+  countryCode: string;
+  showEditIcon: boolean;
+  userInfo: any;
+}
+
+export type TermsAndConditionsProps = {
+  isOpen: boolean;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  handleEditModalOpen: () => void;
+}
+export type UpdateSuccessProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  primaryMessage?: string;
+  secondaryMessage?: string;
+}
+
+export type UserAvatarProps = {
+  src?: string;
+  height?: number;
+  width?: number;
+  className?: string;
+}
+
+export type OfflineUserInstructionsProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  body: string;
+}

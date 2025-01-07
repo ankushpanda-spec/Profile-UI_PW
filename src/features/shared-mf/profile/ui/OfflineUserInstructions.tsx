@@ -5,15 +5,12 @@ import {
   Modal,
   Separator,
 } from '@pw-tech/omni-ui';
+import { OfflineUserInstructionsProps } from '../types';
 
-const OfflineUserInstructionsModal = ({
+const OfflineUserInstructionsModal: React.FC<OfflineUserInstructionsProps> = ({
   isOpen,
   onClose,
   body,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  body: string;
 }) => {
   console.log('body', body);
   return (

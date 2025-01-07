@@ -15,8 +15,9 @@ import {fetchOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
+import { NewNumberVerificationProps } from '../types';
 
-const NewNumberVerification = ({
+const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   isOpen,
   handleEditModalOpen,
   setActiveModal,
@@ -26,16 +27,6 @@ const NewNumberVerification = ({
   newInputMobileNumber,
   newCountryCode,
   isNewNumber,
-}: {
-  isOpen: boolean;
-  handleEditModalOpen: () => void;
-  numberChangeRequestId: string | undefined;
-  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  setNewCountryCode: React.Dispatch<React.SetStateAction<string>>;
-  setNewInputMobileNumber: React.Dispatch<React.SetStateAction<string>>;
-  newInputMobileNumber: string;
-  newCountryCode: string;
-  isNewNumber: boolean;
 }) => {
   const {showLoader, hideLoader} = useLoader();
   const [inputErrorMessage, setInputErrorMessage] = useState<string>('');

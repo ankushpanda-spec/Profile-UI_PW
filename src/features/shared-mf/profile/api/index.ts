@@ -1,4 +1,3 @@
-import { UpdateNumberConfig } from "../types/constants";
 import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
 import {ApiClient} from '@pw-tech/web-sdk';
 

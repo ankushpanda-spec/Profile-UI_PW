@@ -1,17 +1,13 @@
 import {Typography, ModalHeader, ModalBody, Modal} from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import {Success} from '@/assets/images';
+import { UpdateSuccessProps } from '../types';
 
-const UpdateSuccessModal = ({
+const UpdateSuccessModal:React.FC<UpdateSuccessProps> = ({
   isOpen,
   onClose,
   primaryMessage = 'Your number has been successfully changed!',
   secondaryMessage = 'Your all batches and other content will be transferred to your new number within 2 hour',
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  primaryMessage?: string;
-  secondaryMessage?: string;
 }) => {
   return (
     <Modal onClose={onClose} isOpen={isOpen} size="small">

@@ -5,7 +5,6 @@ import {
   RadioButton,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   Modal,
   Separator,
 } from '@pw-tech/omni-ui';
@@ -13,9 +12,9 @@ import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
-import {webSDK} from '@/integration';
+import { OldPhoneNumberProps } from '../types';
 
-const OldPhoneNumberModal = ({
+const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   isOpen,
   setActiveModal,
   numberChangeRequestId,
@@ -23,14 +22,6 @@ const OldPhoneNumberModal = ({
   setSelectedMobileNumber,
   handleEditModalOpen,
   userInfo,
-}: {
-  isOpen: boolean;
-  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  numberChangeRequestId: string | undefined;
-  selectedMobileNumber: string;
-  setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>;
-  handleEditModalOpen: () => void;
-  userInfo: any;
 }) => {
   const {showLoader, hideLoader} = useLoader();
   const [error, setError] = useState<string>('');

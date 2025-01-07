@@ -1,15 +1,11 @@
 import { BoyAvatar } from '@/assets/images';
+import { UserAvatarProps } from '../types';
 
-const UserAvatar = ({
+const UserAvatar: React.FC<UserAvatarProps> = ({
   src = BoyAvatar,
   height,
   width,
   className,
-}: {
-  src?: string;
-  height?: number;
-  width?: number;
-  className?: string;
 }) => {
   return (
     <img

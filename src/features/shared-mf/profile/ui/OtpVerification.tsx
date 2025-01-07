@@ -15,8 +15,9 @@ import getErrorMessage from '../services/showErrorService';
 import {useLoader} from '@/hooks/showLoader';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 import {webSDK} from '@/integration';
+import { OtpVerificationProps } from '../types';
 
-const OTPVerificationModal = ({
+const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isOpen,
   setActiveModal,
   selectedMobileNumber,
@@ -27,17 +28,6 @@ const OTPVerificationModal = ({
   countryCode,
   showEditIcon,
   userInfo,
-}: {
-  isOpen: boolean;
-  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  selectedMobileNumber: string;
-  numberChangeRequestId: string | undefined;
-  handleEditModalOpen: () => void;
-  nextActiveModal: string;
-  isNewNumber: boolean;
-  countryCode: string;
-  showEditIcon: boolean;
-  userInfo: any;
 }) => {
   const {showLoader, hideLoader} = useLoader();
   const [otp, setOtp] = useState<string>('');
