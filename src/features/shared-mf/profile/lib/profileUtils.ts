@@ -1,12 +1,12 @@
 import {useSnackbar} from '@/hooks/showSnackBar';
 import {UseFormSetValue} from 'react-hook-form';
-import {LabelValue, UserInfo} from '../types/constants';
 import {fetchCities, fetchStates, updateUser} from '../api';
 import getErrorMessage from '../services/showErrorService';
 import {webSDK} from '@/integration';
 import {useLoader} from '@/hooks/showLoader';
 import {useError} from '@/hooks/showError';
 import { formatToLabelValue, isASCII } from '.';
+import { LabelValue, UserInfo } from '../types';
 
 
 const useProfileUtils = () => {

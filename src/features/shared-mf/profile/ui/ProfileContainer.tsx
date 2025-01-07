@@ -1,6 +1,3 @@
-import {CameraIcon} from '@/assets/images';
-import {BoyAvatar} from '@/assets/images';
-import {GirlAvatar} from '@/assets/images';
 import {lazy, useRef} from 'react';
 import s from '../styles/index.module.css';
 import {useEffect} from 'react';
@@ -10,6 +7,7 @@ import {useSnackbar} from '@/hooks/showSnackBar';
 import {webSDK} from '@/integration/webSDK';
 import {useLoader} from '@/hooks/showLoader';
 import getErrorMessage from '../services/showErrorService';
+import { BoyAvatar, CameraIcon, GirlAvatar } from '../constants';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));

@@ -1,5 +1,4 @@
 import Vector from '@/assets/icons/Vector';
-import {AP_SIR, BANNER_IMG} from '@/assets/images';
 import {Typography} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
 import {FaqModel, STUDENT_MASTER_PROGRAM} from '../types';
@@ -12,6 +11,7 @@ import {Storage} from '@pw-tech/web-sdk';
 import {useLocation} from 'react-router-dom';
 import s from '../styles/index.module.css';
 import {webSDK} from '@/integration';
+import { AP_SIR, BANNER_IMG } from '../../profile/constants';
 
 const StudentMasterProgram = () => {
   const showSnackBar = useSnackbar();

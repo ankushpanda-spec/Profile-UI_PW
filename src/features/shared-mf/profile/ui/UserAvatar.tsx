@@ -1,4 +1,4 @@
-import { BoyAvatar } from '@/assets/images';
+import { BoyAvatar } from '../constants';
 import { UserAvatarProps } from '../types';
 
 const UserAvatar: React.FC<UserAvatarProps> = ({

@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {LabelValue, ModalTypes, UpdateNumberConfig} from '../types/constants';
 import TermsAndConditionsModal from './TermsAndConditionsModal';
 import OldPhoneNumberModal from './OldPhoneNumberComponent';
 import OTPVerificationModal from './OtpVerification';
@@ -7,8 +6,9 @@ import NewNumberVerification from './NewNumberVerification';
 import UpdateSuccessModal from './UpdateSuccess';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import EditProfileForm from './EditProfileForm';
-import { EditProfileModalProps } from '../types';
+import { EditProfileModalProps, LabelValue, UpdateNumberConfig } from '../types';
 import useProfileUtils from '../lib/profileUtils';
+import { ModalTypes } from '../constants';
 
 const EditProfile: React.FC<EditProfileModalProps> = ({
   editModalOpen,

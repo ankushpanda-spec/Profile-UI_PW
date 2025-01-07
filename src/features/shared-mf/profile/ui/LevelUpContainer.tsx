@@ -1,9 +1,9 @@
-import { XPIcon } from '@/assets/images';
 import LevelUpOverviewData from '@/services/datalayer.service';
 import { Tooltip, TooltipBody, TooltipHeader, Typography } from '@pw-tech/omni-ui';
 import { useState } from 'react';
 import s from "../styles/index.module.css";
 import { InfoIcon } from '@/components/icons';
+import { XPIcon } from '../constants';
 const LevelUpContainer = () => {
   const data = LevelUpOverviewData;
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
