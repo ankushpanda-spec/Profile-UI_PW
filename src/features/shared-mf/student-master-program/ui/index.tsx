@@ -121,9 +121,8 @@ const StudentMasterProgram = () => {
           onClick={howItWorkVideo}
           style={{
             backgroundImage: `url(${bannerImg || BANNER_IMG})`,
-            // backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundSize: "100%",
+            backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
           }}
         >
