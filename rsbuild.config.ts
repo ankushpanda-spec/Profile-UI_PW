@@ -25,7 +25,7 @@ export default defineConfig({
       name: 'MFCommon',
       filename: 'remoteEntry.js',
       exposes: {
-        './Library': './src/routes/RouteList.tsx',
+        './MfCommon': './src/routes/RouteList.tsx',
       },
       shared: {
         react: {
