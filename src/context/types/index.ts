@@ -1,0 +1,25 @@
+import { ReactNode } from "react";
+
+export type ErrorContextType = {
+    showError: (error:string) => void;
+   
+  };
+
+export interface ErrorWrapperProps {
+    children?: ReactNode;
+  }
+export interface LoaderWrapperProps {
+    children?: ReactNode;
+  }
+
+export type LoaderContextType = {
+    showLoader: (primaryMessage:string , secondaryMessage?:string) => void;
+    hideLoader: () => void;
+  };
+ 
+export  type ToastVariant = "info" | "success" | "error";
+  
+export  type SnackbarContextType = {
+    showSnackbar: (message: string, duration?: number, variant?: ToastVariant) => void;
+  };
+  

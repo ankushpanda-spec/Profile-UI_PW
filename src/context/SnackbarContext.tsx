@@ -1,12 +1,7 @@
 // SnackbarWrapper.tsx
 import React, { createContext, useState, ReactNode } from 'react';
-import { Toast } from '@pw-tech/omni-ui'; // Assuming you already have the Toast component
-
-type ToastVariant = "info" | "success" | "error";
-
-type SnackbarContextType = {
-  showSnackbar: (message: string, duration?: number, variant?: ToastVariant) => void;
-};
+import { SnackbarContextType, ToastVariant } from './types';
+import { Toast } from '@pw-tech/omni-ui';
 
 export const SnackbarContext = createContext<SnackbarContextType | undefined>(undefined);
 

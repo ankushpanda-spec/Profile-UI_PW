@@ -1,0 +1,12 @@
+.loader{
+    @apply flex flex-wrap mx-2 overflow-hidden justify-center items-center my-2 px-2
+}
+.primaryMessage{
+    @apply my-2 px-2 w-full overflow-hidden text-center
+}
+.button{
+    @apply flex justify-center mb-12
+}
+.textError{
+    @apply w-full text-center
+}
