@@ -11,26 +11,42 @@ export default defineConfig({
   html: {
     template: './public/index.html',
   },
+  source: {
+    entry: {
+      index: "./src/index.tsx",
+    },
+    alias: {
+      '@/*': './src/*',
+    },
+  },
   plugins: [
     pluginReact(),
     pluginModuleFederation({
       name: 'MFCommon',
       filename: 'remoteEntry.js',
       exposes: {
-        './profile': './src/pages/Profile/index.tsx',
+        './MfCommon': './src/routes/RouteList.tsx',
       },
       shared: {
         react: {
           singleton: true,
-          version: dependencies['react'],
+          requiredVersion: dependencies['react'],
         },
         'react-dom': {
           singleton: true,
-          version: dependencies['react-dom'],
+          requiredVersion: dependencies['react-dom'],
+        },
+        'react-router-dom': {
+          singleton: true,
+          requiredVersion: dependencies['react-router-dom'],
         },
         '@pw-tech/omni-context': {
           singleton: true,
         },
+        '@pw-tech/web-sdk': {
+          singleton: true,
+        },
+        
       },
       runtimePlugins: [
         path.resolve(__dirname, './hooks-mf/offlineRemotePlugin.ts'),

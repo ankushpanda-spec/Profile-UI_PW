@@ -1,14 +1,15 @@
-import ErrorBoundary from '@/ErrorBoundary';
-import My404NotFound from '@/pages/404NotFound';
+import {Route, Routes} from 'react-router-dom';
+import RouteList from './RouteList';
 import Login from '@/pages/login/ui';
-import Profile from '@/pages/Profile';
+import My404NotFound from '@/pages/404NotFound';
+import {AuthGuard} from './Guards';
+import ErrorBoundary from '@/ErrorBoundary';
 import Study from '@/pages/Study';
-import { Route, Routes } from 'react-router-dom';
-import { AuthGuard } from './Guards';
 
 const Router = () => {
   return (
     <Routes>
+      {RouteList}
       <Route element={<AuthGuard />}>
         <Route
           path="/"
@@ -18,18 +19,10 @@ const Router = () => {
             </ErrorBoundary>
           }
         />
-        <Route
-          path="/profile"
-          element={
-            <ErrorBoundary>
-              <Profile />
-            </ErrorBoundary>
-          }
-        />
       </Route>
-      <Route path='/login' element={<Login />} />
-      <Route path="*" element={<My404NotFound />} />
+      <Route path="/login" element={<Login />} />
 
+      <Route path="*" element={<My404NotFound />} />
     </Routes>
   );
 };
