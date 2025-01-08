@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { PdfViewer } from "@pw-tech/omni-ui";
-import { getPdfDetails } from "@/api";
 import { useSearchParams } from "react-router-dom";
+import { getPdfDetails } from "../api";
 
-const Pdf = () => {
+const PdfContainer = () => {
   const [pdfUrl, setPdfUrl] = useState<string>("");
   const [pdfTitle, setPdfTitle] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
@@ -54,7 +54,7 @@ const Pdf = () => {
     return <div>Error: {error}</div>;
   }
 
-  return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} />;
+  return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} isLoading={loading} /> ;
 };
 
-export default Pdf;
+export default PdfContainer;

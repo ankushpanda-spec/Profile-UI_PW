@@ -1,11 +1,10 @@
 import {Route} from 'react-router-dom';
 import {AuthGuard} from './Guards';
 import ErrorBoundary from '@/ErrorBoundary';
-import Study from '@/pages/Study';
 import Profile from '@/pages/Profile';
-import Login from '@/pages/login/ui';
 import StudentMaster from '@/pages/Student-Master-Program';
 import MFCOMMON_ROUTES from '@/constants/routes.constants';
+import PDFViewer from '@/pages/Pdf-Viewer';
 
 const RouteList = (
   <>
@@ -23,6 +22,14 @@ const RouteList = (
       element={
         <ErrorBoundary>
           <StudentMaster />
+        </ErrorBoundary>
+      }
+    />
+     <Route
+      path={MFCOMMON_ROUTES.MFCOMMON_PDF_VIEWER}
+      element={
+        <ErrorBoundary>
+          <PDFViewer/>
         </ErrorBoundary>
       }
     />
