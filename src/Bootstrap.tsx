@@ -16,7 +16,7 @@ if (rootEl) {
         <BrowserRouter>
           <ErrorBoundary>
             <BaseLayout>
-              <App />
+              <App />  
             </BaseLayout>
           </ErrorBoundary>
         </BrowserRouter>

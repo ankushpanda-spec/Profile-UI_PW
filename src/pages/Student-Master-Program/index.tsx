@@ -1,18 +1,17 @@
+import StudentMasterProgram from '@/features/shared-mf/student-master-program/ui';
 import ErrorWrapper from '@/context/ErrorContext';
 import LoaderWrapper from '@/context/LoaderContext';
 import SnackbarWrapper from '@/context/SnackbarContext';
-import ProfileContainer from '@/features/shared-mf/profile/ui/ProfileContainer';
-
-const Profile = () => {
+const StudentMaster = () => {
   return (
     <SnackbarWrapper>
       <LoaderWrapper>
         <ErrorWrapper>
-          <ProfileContainer />
+          <StudentMasterProgram />
         </ErrorWrapper>
       </LoaderWrapper>
     </SnackbarWrapper>
   );
 };
 
-export default Profile;
+export default StudentMaster;

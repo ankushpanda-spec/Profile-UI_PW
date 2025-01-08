@@ -2,8 +2,8 @@ import { useFeedbackData } from '@/hooks/useGetFeedbackPerformance';
 import { cn } from '@/utils';
 import { Typography } from '@pw-tech/omni-ui';
 import { useEffect, useState } from 'react';
-import { InfoIcon } from '../icons';
-import s from "./index.module.css";
+import { InfoIcon } from '../../../../components/icons';
+import s from "../styles/index.module.css";
 const DoubtSolverCard = ({
   title,
   info,
