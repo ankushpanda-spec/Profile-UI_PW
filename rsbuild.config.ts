@@ -19,6 +19,9 @@ export default defineConfig({
       '@/*': './src/*',
     },
   },
+  output: {
+    assetPrefix: process.env.PUBLIC_FE_URL,
+  },
   plugins: [
     pluginReact(),
     pluginModuleFederation({
