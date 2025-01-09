@@ -2,8 +2,6 @@ export {default as ArrowRightStartOnRect} from './ArrowRightStartOnRect';
 export {default as Batches} from './Batches';
 export {default as BriefCase} from './BriefCase';
 export {default as ChevronDownFilled} from './ChevronDownFilled';
-export {default as ChevronLeft} from './ChevronLeft';
-export {default as ChevronRight} from './ChevronRight';
 export {default as ContactUs} from './ContactUs';
 export {
   GetItOn as GetItOnText,
