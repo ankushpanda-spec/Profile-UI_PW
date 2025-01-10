@@ -1,0 +1,13 @@
+.subHeader {
+  @apply sticky left-0 top-0 z-[100] flex w-[100%] flex-col justify-center border-b border-[#ccc] bg-white;
+}
+.container {
+  @apply mx-0 !important;
+}
+.wrapper {
+  @apply flex w-full px-32;
+}
+
+.mfCommon {
+  @apply flex w-full flex-col items-center justify-center;
+}
