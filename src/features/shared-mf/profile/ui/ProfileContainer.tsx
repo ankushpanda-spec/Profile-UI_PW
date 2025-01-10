@@ -1,13 +1,11 @@
-import {lazy, useRef} from 'react';
-import s from '../styles/index.module.css';
-import {useEffect} from 'react';
-import {useState} from 'react';
-import {updateUser, uploadFile} from '../api';
-import {useSnackbar} from '@/hooks/showSnackBar';
-import {webSDK} from '@/integration/webSDK';
-import {useLoader} from '@/hooks/showLoader';
-import getErrorMessage from '../services/showErrorService';
+import { useLoader } from '@/hooks/showLoader';
+import { useSnackbar } from '@/hooks/showSnackBar';
+import { webSDK } from '@/integration/webSDK';
+import { lazy, useEffect, useRef, useState } from 'react';
+import { updateUser, uploadFile } from '../api';
 import { BoyAvatar, CameraIcon, GirlAvatar } from '../constants';
+import getErrorMessage from '../services/showErrorService';
+import s from '../styles/index.module.css';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
@@ -18,9 +16,9 @@ const ProfileContainer = () => {
   const [userImg, setUserImg] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const showSnackBar = useSnackbar();
-  const user:any = webSDK.user;
-  const {showLoader, hideLoader} = useLoader();
-  
+  const user: any = webSDK.user;
+  const { showLoader, hideLoader } = useLoader();
+
   useEffect(() => {
     if (user?.imageId) {
       setUserImg(user.imageId.baseUrl + user.imageId.key);
@@ -33,8 +31,8 @@ const ProfileContainer = () => {
     } else {
       setUserImg(null); // Default to null if no conditions are met
     }
-  }, [user?.imageId , user?.profileId]);
-  
+  }, [user?.imageId, user?.profileId]);
+
   // Function to handle camera icon click
   const handleCameraIconClick = () => {
     if (fileInputRef.current) {
@@ -63,14 +61,14 @@ const ProfileContainer = () => {
           if (fileResponse) {
             const imageId = fileResponse.data?._id;
             try {
-              const res = await updateUser({imageId: imageId});
+              const res = await updateUser({ imageId: imageId });
               if (res) {
-                const _UserInfo = {...user , imageId:fileResponse.data}
+                const _UserInfo = { ...user, imageId: fileResponse.data }
                 webSDK.setUser = _UserInfo;
               }
             } catch (error) {
               const errorObj = getErrorMessage(error);
-              showSnackBar(errorObj.message);  
+              showSnackBar(errorObj.message);
             }
 
           }
@@ -91,7 +89,7 @@ const ProfileContainer = () => {
     <div className={s.container}>
       <div className={s.containerChildOne}>
         <div className={s.wrapper}>
-          <UserAvatar src={userImg} className={s.userAvatarContainer} />
+          <UserAvatar src={userImg || ''} className={s.userAvatarContainer} />
           <img
             src={CameraIcon}
             className={s.cameraIcon}
@@ -103,13 +101,13 @@ const ProfileContainer = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{display: 'none'}}
+            style={{ display: 'none' }}
             onChange={handleFileChange} // Handle file selection
           />
         </div>
       </div>
       <div className={s.profileDetails}>
-        <ProfileDetails/>
+        <ProfileDetails />
       </div>
     </div>
   );

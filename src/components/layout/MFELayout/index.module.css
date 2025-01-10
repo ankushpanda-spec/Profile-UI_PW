@@ -5,9 +5,16 @@
   @apply mx-0 !important;
 }
 .wrapper {
-  @apply flex w-full px-32;
+  @apply flex w-full justify-center px-[16px] sm:px-32;
+}
+
+@media (min-width: 2160px) {
+  .wrapper {
+    padding-left: 154px;
+    padding-right: 154px;
+  }
 }
 
 .mfCommon {
-  @apply flex w-full flex-col items-center justify-center;
+  @apply flex w-full flex-col items-center gap-[20px];
 }
