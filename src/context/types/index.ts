@@ -16,10 +16,4 @@ export type LoaderContextType = {
     showLoader: (primaryMessage:string , secondaryMessage?:string) => void;
     hideLoader: () => void;
   };
- 
-export  type ToastVariant = "info" | "success" | "error";
-  
-export  type SnackbarContextType = {
-    showSnackbar: (message: string, duration?: number, variant?: ToastVariant) => void;
-  };
   

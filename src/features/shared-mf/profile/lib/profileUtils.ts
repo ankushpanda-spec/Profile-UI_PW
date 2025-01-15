@@ -1,4 +1,3 @@
-import {useSnackbar} from '@/hooks/showSnackBar';
 import {UseFormSetValue} from 'react-hook-form';
 import {fetchCities, fetchStates, updateUser} from '../api';
 import getErrorMessage from '../services/showErrorService';
@@ -7,10 +6,11 @@ import {useLoader} from '@/hooks/showLoader';
 import {useError} from '@/hooks/showError';
 import { formatToLabelValue, isASCII } from '.';
 import { LabelValue, UserInfo } from '../types';
+import { useToast } from '@pw-tech/omni-ui';
 
 
 const useProfileUtils = () => {
-const showSnackBar = useSnackbar();
+const {toast} = useToast();
 const {showLoader, hideLoader} = useLoader();
 const showError = useError();
 
@@ -38,7 +38,14 @@ const checkDigitInput = (
     let valueReplaced = value.toString().replace(/[^a-zA-Z\s]/gm, '');
     setValue(inputName, valueReplaced.toString().trim());
     if (value != valueReplaced) {
-      showSnackBar('Hindi Character, Emojis not allowed.');
+      toast({
+        message: 'Hindi Character, Emojis not allowed.',
+        variant: 'error',
+        anchorOrigin: {
+          horizontal: 'center',
+          vertical: 'top',
+        },
+      });
     }
   }
 
@@ -48,7 +55,14 @@ const checkDigitInput = (
     !isAscii
   ) {
     event.preventDefault();
-    showSnackBar('Please enter alphabets only');
+    toast({
+      message: 'Please enter alphabets only',
+      variant: 'error',
+      anchorOrigin: {
+        horizontal: 'center',
+        vertical: 'top',
+      },
+    });
     return false;
   } else {
     return true;
@@ -76,13 +90,27 @@ const checkDigitInput = (
     let valueReplaced = value.toString().replace(/[^a-zA-Z0-9_.\-\s@]/gm, '');
     setValue('email', valueReplaced.toString().trim());
     if (value != valueReplaced) {
-      showSnackBar('Hindi Character, Emojis not allowed.');
+      toast({
+        message: 'Hindi Character, Emojis not allowed.',
+        variant: 'error',
+        anchorOrigin: {
+          horizontal: 'center',
+          vertical: 'top',
+        },
+      });
     }
   }
 
   if (regExp.test(event.key) || event.key === ' ' || !isAscii) {
     event.preventDefault();
-    showSnackBar('Please enter proper email only');
+    toast({
+      message: 'Please enter proper email only',
+      variant: 'error',
+      anchorOrigin: {
+        horizontal: 'center',
+        vertical: 'top',
+      },
+    });
     return false;
   } else {
     return true;
@@ -110,7 +138,14 @@ const checkDigitInput = (
     lastName.includes('*') ||
     email.includes('*')
   ) {
-    showSnackBar("Special character '*' not allowed. Please refill");
+    toast({
+      message: "Special character '*' not allowed. Please refill",
+      variant: 'error',
+      anchorOrigin: {
+        horizontal: 'center',
+        vertical: 'top',
+      },
+    });
     return;
   }
   const cleanField = (field: string) => field.replace(/\*/g, '');

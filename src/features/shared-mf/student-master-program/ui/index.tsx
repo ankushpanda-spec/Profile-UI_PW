@@ -1,9 +1,8 @@
 import Vector from '@/assets/icons/Vector';
-import {Typography} from '@pw-tech/omni-ui';
+import {Typography, useToast} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
 import {FaqModel, STUDENT_MASTER_PROGRAM} from '../types';
 import {getFaqs} from '../api';
-import {useSnackbar} from '@/hooks/showSnackBar';
 import PlayIcon from '@/assets/icons/PlayIcon';
 import {useError} from '@/hooks/showError';
 import getErrorMessage from '../../profile/services/showErrorService';
@@ -11,10 +10,9 @@ import {Storage} from '@pw-tech/web-sdk';
 import {useLocation} from 'react-router-dom';
 import s from '../styles/index.module.css';
 import {webSDK} from '@/integration';
-import { AP_SIR, BANNER_IMG } from '../../profile/constants';
+import {AP_SIR, BANNER_IMG} from '../../profile/constants';
 
 const StudentMasterProgram = () => {
-  const showSnackBar = useSnackbar();
   const showError = useError();
   const location = useLocation();
   const routeUrl = `${location.pathname}${location.search}`;
@@ -22,7 +20,7 @@ const StudentMasterProgram = () => {
   const [bannerImg, setBannerImg] = useState<string | null>(null);
   const [description, setDescription] = useState<FaqModel | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const {toast} = useToast();
 
   const RANDOM_ID = webSDK.randomId;
   const ACCESS_TOKEN = webSDK.accessToken;
@@ -59,7 +57,14 @@ const StudentMasterProgram = () => {
 
   const howItWorkVideo = () => {
     if (bannerVideo?.videoUrl === '' || !bannerVideo?.videoUrl) {
-      showSnackBar('No Preview Available');
+      toast({
+        message: 'No Preview Available',
+        variant: 'error',
+        anchorOrigin: {
+          horizontal: 'center',
+          vertical: 'top',
+        },
+      });
     } else {
       const videoObject = {
         embedCode: bannerVideo?.videoUrl,
@@ -69,7 +74,7 @@ const StudentMasterProgram = () => {
       };
       Storage.set('VIDEO_DETAILS', videoObject, {plain: true});
       Storage.set('videoBackUrl', routeUrl, {plain: true});
-      setIsPlaying(true)
+      setIsPlaying(true);
     }
   };
 
@@ -108,33 +113,31 @@ const StudentMasterProgram = () => {
         <Typography variant="heading4" weight="bold">
           How it works?
         </Typography>
-        
-      {isPlaying ? (
-        <iframe
-          src={`${process.env.PUBLIC_VIDEO_PLAYER_URL}?type=youtube&src=${bannerVideo?.videoUrl}&token=${ACCESS_TOKEN}&random_id=${RANDOM_ID}&back_button=false&three_dots=false`}
-          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-          className={s.smVideoWrapper}
-        ></iframe>
-      ) : (
-        <div
-          className={s.smVideoWrapper}
-          onClick={howItWorkVideo}
-          style={{
-            backgroundImage: `url(${bannerImg || BANNER_IMG})`,
-            backgroundPosition: "center",
-            backgroundSize: "100% 100%",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          
-          <div className={s.smPlayButton}>
-            <PlayIcon className={s.smPlayIcon} />
+
+        {isPlaying ? (
+          <iframe
+            src={`${process.env.PUBLIC_VIDEO_PLAYER_URL}?type=youtube&src=${bannerVideo?.videoUrl}&token=${ACCESS_TOKEN}&random_id=${RANDOM_ID}&back_button=false&three_dots=false`}
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            className={s.smVideoWrapper}
+          ></iframe>
+        ) : (
+          <div
+            className={s.smVideoWrapper}
+            onClick={howItWorkVideo}
+            style={{
+              backgroundImage: `url(${bannerImg || BANNER_IMG})`,
+              backgroundPosition: 'center',
+              backgroundSize: '100% 100%',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            <div className={s.smPlayButton}>
+              <PlayIcon className={s.smPlayIcon} />
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
       </div>
-    
+    </div>
   );
 };
 

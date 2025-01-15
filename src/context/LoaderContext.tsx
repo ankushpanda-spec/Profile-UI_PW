@@ -1,4 +1,3 @@
-// SnackbarWrapper.tsx
 import React, { createContext, useState, ReactNode } from 'react';
 import { Modal , ModalBody , Loader} from '@pw-tech/omni-ui'; // Assuming you already have the Toast component
 import { LoaderContextType, LoaderWrapperProps } from './types';
