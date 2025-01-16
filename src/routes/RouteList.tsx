@@ -6,27 +6,33 @@ import Profile from '@/pages/Profile';
 import StudentMaster from '@/pages/Student-Master-Program';
 import { Route } from 'react-router-dom';
 import { AuthGuard } from './Guards';
+import { Suspense } from 'react';
+import ContentLoader from '@/features/shared-mf/content-skeleton/ui';
 
 const RouteList = (
   <Route element={<AuthGuard />}>
     <Route
       path={MFCOMMON_ROUTES.MFCOMMON_PROFILE}
       element={
+        <Suspense fallback={<ContentLoader/>}>
         <ErrorBoundary>
           <MFELayout title='Profile'>
-            <Profile />
+          <Profile />
           </MFELayout>
         </ErrorBoundary>
+        </Suspense>
       }
     />
     <Route
       path={MFCOMMON_ROUTES.MFCOMMON_STUDENT_MASTER_PROGRAM}
       element={
+        <Suspense fallback={<ContentLoader/>}>
         <ErrorBoundary>
           <MFELayout title='Student Master'>
             <StudentMaster />
           </MFELayout>
         </ErrorBoundary>
+        </Suspense>
       }
     />
     <Route
