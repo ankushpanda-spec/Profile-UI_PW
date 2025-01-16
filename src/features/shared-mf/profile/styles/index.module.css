@@ -143,7 +143,7 @@
   @apply flex align-bottom;
 }
 .knowMore {
-  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary;
+  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary hover:underline;
 }
 .titleContainer {
   @apply mt-16 flex flex-col gap-12 sm:flex-row;
