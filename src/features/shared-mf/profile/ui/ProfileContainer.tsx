@@ -5,7 +5,8 @@ import {updateUser, uploadFile} from '../api';
 import {BoyAvatar, CameraIcon, GirlAvatar} from '../constants';
 import getErrorMessage from '../services/showErrorService';
 import s from '../styles/index.module.css';
-import {useToast} from '@pw-tech/omni-ui';
+import {Typography, useToast} from '@pw-tech/omni-ui';
+import Learn2EarnBage from './Learn2EarnBage';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
@@ -108,6 +109,7 @@ const ProfileContainer = () => {
   return (
     <div className={s.container}>
       <div className={s.containerChildOne}>
+        <div className={s.containerChildOneWrapper}>
         <div className={s.wrapper}>
           <UserAvatar src={userImg || ''} className={s.userAvatarContainer} />
           <img
@@ -125,6 +127,10 @@ const ProfileContainer = () => {
             onChange={handleFileChange} // Handle file selection
           />
         </div>
+        <Typography variant="subHeading" weight="semi-bold" color="static-black">{user?.firstName} {user?.lastName}</Typography>
+        </div>
+        <Learn2EarnBage />
+        
       </div>
       <div className={s.profileDetails}>
         <ProfileDetails />

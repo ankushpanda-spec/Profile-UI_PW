@@ -21,7 +21,6 @@ import {
   onNameClickedRemove,
 } from '../lib';
 import s from '../styles/index.module.css';
-import {LabelValue} from '../types/constants';
 import getErrorMessage from '../services/showErrorService';
 import {fetchUpdateNumberConfig} from '../api';
 import { EditProfileFormProps } from '../types';

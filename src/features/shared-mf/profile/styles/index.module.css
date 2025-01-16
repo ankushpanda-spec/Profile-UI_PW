@@ -3,7 +3,10 @@
 }
 
 .containerChildOne {
-  @apply col-span-8 lg:col-span-2;
+  @apply col-span-8 lg:col-span-2 gap-16 flex flex-col;
+}
+.containerChildOneWrapper{
+  @apply flex flex-col gap-8 justify-center items-center
 }
 
 .wrapper {
@@ -241,4 +244,13 @@
 }
 .resendBtn{
   @apply text-[#0592CB] underline
+}
+.learn2earnContainer{
+  @apply mx-auto flex w-1/2 items-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6 justify-center
+}
+.l2eBadgeContainer{
+  @apply flex items-center pb-[4.7px]
+}
+.l2eBadge{
+  @apply h-[18.8px] w-[18.8px] flex-shrink-0
 }
