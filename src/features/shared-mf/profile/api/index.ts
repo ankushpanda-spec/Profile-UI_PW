@@ -66,11 +66,6 @@ export const verifyOtp = async (payload: {
 
 
 export const uploadFile = async (payload: FormData) => {
-  console.log("checking here api", payload)
-  payload.forEach((value, key) => {
-    console.log( "checking in api" ,key, value);
-  });
-  
   try {
     const url = setFile();
     return await ApiClient.postMultipart(url, payload, {
