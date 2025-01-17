@@ -106,12 +106,16 @@ const getLearn2EarnConfig:any= async(cohortId: string) => {
 
 const getProfileData= async(cohortId: string) =>{
  const configData= await  getLearn2EarnConfig(cohortId);
-  const startDate = new Date(configData?.leaderboardUpdateNextDate);
+  const startDate = configData?.leaderboardUpdateNextDate 
+  ? new Date(configData.leaderboardUpdateNextDate) 
+  : new Date(); 
   startDate.setDate(
     startDate.getDate() -
       (configData?.featureDetails?.LEADERBOARD_UPDATE_DAYS - 1)
   );
-  const endDate = new Date(configData?.leaderboardUpdateNextDate);
+ const endDate = configData?.leaderboardUpdateNextDate 
+  ? new Date(configData.leaderboardUpdateNextDate) 
+  : new Date(); 
   const { utcStartDate, utcEndDate } = getUtcStartEndTime(startDate, endDate);
   try{
   const  url = `engagement/learn-to-earn/profile-data/${cohortId}?startDate=${utcStartDate}&endDate=${utcEndDate}`;
