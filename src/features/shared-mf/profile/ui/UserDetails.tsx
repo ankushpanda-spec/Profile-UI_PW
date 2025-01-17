@@ -53,11 +53,11 @@ const UserDetails = () => {
         >
           Edit
         </span> */}
-        <div className='flex justify-center items-center px-4 gap-4' onClick={() => {
+        <div className={s.editIconWrapper} onClick={() => {
             setIsEditFormOpen(!isEditFormOpen);
             setEditModalOpen(true);
           }}>
-          <EditIcon className='h-16 w-16 text-primary'/>
+          <EditIcon className={s.editIconClassName}/>
           <Typography variant='regular' color="primary" weight="medium">
             Edit
           </Typography>
@@ -80,7 +80,7 @@ const UserDetails = () => {
                   <div className={s.udNameSection}>
                      <div>{data.value}</div>
                      <VerifiedIcon  className={s.verifiedIcon}/>
-                     <div className={s.studentMaster} onClick={navigateToStudentMaster}>Pw Student Master</div>
+                     <div className={s.studentMaster} onClick={navigateToStudentMaster}>PW Student Master</div>
                      </div>
                 ) : (
                   <div className={s.udSectionValue}>{data.value}</div>

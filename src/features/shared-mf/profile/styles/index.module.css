@@ -3,7 +3,7 @@
 }
 
 .containerChildOne {
-  @apply col-span-8 lg:col-span-2 gap-16 flex flex-col;
+  @apply col-span-8 lg:col-span-2 gap-16 flex flex-col max-w-max mx-auto;
 }
 .containerChildOneWrapper{
   @apply flex flex-col gap-8 justify-center items-center
@@ -14,10 +14,10 @@
 }
 
 .userAvatarContainer {
-  @apply w-8/12 rounded-full object-contain;
+  @apply  w-[100px] h-[100px] lg:w-[159px] lg:h-[159px] rounded-full object-contain;
 }
 .cameraIcon {
-  @apply absolute bottom-0 right-12 cursor-pointer;
+  @apply absolute bottom-0 -right-8 lg:right-12 cursor-pointer ;
 }
 .profileDetails {
   @apply col-span-8 flex flex-col lg:col-span-6;
@@ -146,7 +146,7 @@
   @apply flex align-bottom;
 }
 .knowMore {
-  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary hover:underline;
+  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary hover:underline cursor-pointer;
 }
 .titleContainer {
   @apply mt-16 flex flex-col gap-12 sm:flex-row;
@@ -246,11 +246,17 @@
   @apply text-[#0592CB] underline
 }
 .learn2earnContainer{
-  @apply mx-auto flex w-1/2 items-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6 justify-center
+  @apply mx-auto flex w-full items-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6 justify-center
 }
 .l2eBadgeContainer{
   @apply flex items-center pb-[4.7px]
 }
 .l2eBadge{
   @apply h-[18.8px] w-[18.8px] flex-shrink-0
+}
+.editIconWrapper{
+  @apply flex justify-center items-center px-4 gap-4 cursor-pointer
+}
+.editIconClassName{
+  @apply h-16 w-16 text-primary
 }
