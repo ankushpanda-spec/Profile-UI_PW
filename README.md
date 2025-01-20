@@ -1,59 +1,110 @@
-# Module Federation Boilerplate
+# MF Common
+MF Common is a microfrontend application utilizing Module Federation to share common features and functions with the `study-main-mf` shell app. It includes shared modules, components, and utilities for features like `Profile` and `PDF Viewer`, making them reusable across different parts of the application.
 
-This boilerplate is set up for Module Federation and is integrated with PW OMNI UI, PW OMNI Context, WebSDK, and AuthSDK.
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Tech Stack](#tech-stack)
+3. [Prerequisites](#prerequisites)
+4. [Getting Started](#getting-started)
+5. [Deployments](#deployments)
+6. [Contributors](#contributors)
+7. [License](#license)
+
+## Project Overview
+
+MF Common acts as a shared library for the `study-main-mf` microfrontend, offering essential components and modules. This promotes reusability and consistency across various parts of the application.
+
+### Features
+
+The application includes the following features:
+
+- **Profile Page** : This module manages and shares the `profile` page functionality and component.
+- **PDF Viewer** : It provides a standardized `/notes` route used to render PDF files, ensuring a consistent approach to viewing and interacting with PDFs within the application.
+### Architecture
+
+- This application follows a Microfrontend Architecture.
+- RsBuild is used as the bundler, and Module Federation facilitates efficient sharing of dependencies.
+- It adheres to clean architecture principles, ensuring separation of concerns, clear responsibilities, and enhanced maintainability and scalability.
+
+## Tech Stack
+
+- **React**: Frontend framework
+- **TypeScript**: Programming language
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **CSS Modules**: Scoped and modular CSS to avoid global namespace conflicts.
+- **Rsbuild**:  Fast and efficient build tool for Rust-based projects.
+- **Module Federation**: Webpack feature for sharing code between different applications at runtime, enabling micro-frontend architecture.
+
+## Prerequisites
+
+Before starting, ensure you have the following dependencies installed:
+
+- **Node.js** (version 20.x or later)
+- **pnpm** (version 8.x or later)
 
 ## Getting Started
 
-### Initialize the Project
+Follow these steps to set up the project:
 
-1. **Install Dependencies:**
+### Cloning the Project
 
-   `pnpm install`
+Clone the project repository:
 
-2. **Run the Development Server:**
+```bash
+git clone https://gitlab.com/penpencil-services/central-team-fe/mf-common.git
+```
+Navigate into the project directory:
+```bash
+cd mf-common
+```
+### Installing Dependencies
 
-   `pnpm dev`
+Install project dependencies using pnpm:
 
-   - **Default Port:** 3000
-   - **Route to Use:** Switch to route `/study-v2` to run the application
+```bash
+pnpm install
+```
 
-### Environment Variables
+### Initialization
 
-- **Common Environment Variables:**
+As this is a frontend application, no specific database setup or migration is required.
 
-  - `.env`
+## Running the Project
 
-- **Development Environment Variables:**
+To start the development server, run:
 
-  - `.env.dev`
+```bash
+pnpm dev
+```
 
-- **Staging Environment Variables:**
+Visit [http://localhost:3001](http://localhost:3001) to access the application.
 
-  - `.env.staging`
+### Building the Project
 
-- **Production Environment Variables:**
+Build the project with the following command:
 
-  - `.env.production`
+```bash
+pnpm build
+```
 
-## Key Features
+The output will be in the \`dist/\` directory, ready for deployment.
 
-### Integration
+## Deployments
 
-- **AuthSDK:** Authentication & Cohort management.
-- **WebSDK:** Core web functionalities.
-- **OMNI UI:** Integrated UI components and theming.
-- **PW OMNI Context:** We are using PW OMNI Context for shared context.
 
-### Application Structure
+| Environments | Environment URLs        | Jenkins Jobs        | Deployment Instructions                                                                                         |
+| ------------ | ----------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Development   | [https://common-mf-dev.physicswallah.live](https://common-mf-dev.physicswallah.live) | [Dev Jenkins Job](https://jenkins.penpencil.co/job/Development/job/pw-common-mf/) | Use the \`development\` branch. Merges require review and approval from senior developers. |
 
-- **`src/Bootstrap.tsx`:** The main entry point where the App component is wrapped with:
 
-  - **Global Providers:** Providing access to all contexts.
-  - **Theme Provider:** Exposes the application to OMNI theming.
+## Contributors
 
-- **Base Layout:**
-  - Renders remote applications using Module Federation.
+A big thanks to the entire PW Central FE Team for their invaluable contributions and efforts in developing this project. Your dedication and hard work are greatly appreciated!
 
-## Bundler Configuration
+- [Lofty Khanna](https://gitlab.com/loftykhanna)
+- [Basit Qayoom](https://gitlab.com/basit.qayoom)
+- [Seema Kumari](https://gitlab.com/Seema_06)
 
-We are using rsbuild as bundler and the module federation config can be found in `rsbuild.config.ts`.
+## License
+
+This project is licensed under PW.
