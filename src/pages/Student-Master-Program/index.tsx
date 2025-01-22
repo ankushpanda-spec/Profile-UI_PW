@@ -1,16 +1,16 @@
 import StudentMasterProgram from '@/features/shared-mf/student-master-program/ui';
 import ErrorWrapper from '@/context/ErrorContext';
 import LoaderWrapper from '@/context/LoaderContext';
-import SnackbarWrapper from '@/context/SnackbarContext';
+import { ToastProvider } from '@pw-tech/omni-ui';
 const StudentMaster = () => {
   return (
-    <SnackbarWrapper>
+      <ToastProvider>
       <LoaderWrapper>
         <ErrorWrapper>
           <StudentMasterProgram />
         </ErrorWrapper>
       </LoaderWrapper>
-    </SnackbarWrapper>
+      </ToastProvider>
   );
 };
 

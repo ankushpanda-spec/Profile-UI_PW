@@ -21,7 +21,6 @@ import {
   onNameClickedRemove,
 } from '../lib';
 import s from '../styles/index.module.css';
-import {LabelValue} from '../types/constants';
 import getErrorMessage from '../services/showErrorService';
 import {fetchUpdateNumberConfig} from '../api';
 import { EditProfileFormProps } from '../types';
@@ -85,7 +84,6 @@ import { EditProfileFormProps } from '../types';
       const eligible = !!res.data.isEligible;
       const failureReason = res.data.failureReason;
       const instructions = res.data.offlineInstruction;
-      console.log(typeof res.data.offlineInstruction);
 
       if (eligible || isPureOfflineUser) {
         if (isPureOfflineUser) {
@@ -360,7 +358,6 @@ import { EditProfileFormProps } from '../types';
                   required={false}
                   options={states}
                   onChange={e => handleSelectState(e, setValue)}
-                  maxHeight={280}
                 />
               )}
             />
@@ -381,7 +378,6 @@ import { EditProfileFormProps } from '../types';
                   required={false}
                   onChange={e => handleSelectCity(e, setValue)}
                   disabled={!selectedState}
-                  maxHeight={280}
                 />
               )}
             />
