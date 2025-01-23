@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@pw-tech/omni-context':
-        specifier: 0.0.6-alpha-1.0
-        version: 0.0.6-alpha-1.0(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)
+        specifier: 0.0.6-alpha-1.4
+        version: 0.0.6-alpha-1.4(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)
       '@pw-tech/omni-ui':
         specifier: 0.0.17-alpha-1.14
         version: 0.0.17-alpha-1.14(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.0))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.0))(@rspack/core@1.1.6(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.9)(eslint@8.57.1)(jquery@3.7.1)(tailwindcss@3.4.13)(type-fest@0.21.3)(typescript@5.6.2)
@@ -1336,8 +1336,8 @@ packages:
       webpack-plugin-serve:
         optional: true
 
-  '@pw-tech/omni-context@0.0.6-alpha-1.0':
-    resolution: {integrity: sha512-EvAGHr+xiK22xwTjxDbJfuu+YkWMeYBlCiFsLAMTTkkk6kX0F3WfiizdTwYEo62LxKNT4MFeE1te7vPV5ElPeQ==}
+  '@pw-tech/omni-context@0.0.6-alpha-1.4':
+    resolution: {integrity: sha512-lrOweNYtqGE9XpqOl/qeY9BA6ZQzL4SwWpYYfd214GcMfDnjahcdNH3/Dq5mf5DUFXjLZwJOvl3Qyrz5OQ7X6g==}
     peerDependencies:
       react: ^16.13.0
 
@@ -8440,7 +8440,7 @@ snapshots:
       type-fest: 0.21.3
       webpack-dev-server: 4.15.2(webpack@5.95.0)
 
-  '@pw-tech/omni-context@0.0.6-alpha-1.0(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)':
+  '@pw-tech/omni-context@0.0.6-alpha-1.4(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)':
     dependencies:
       react: 18.3.1
       react-context-slices: 9.3.2(@types/react@18.3.9)(react@18.3.1)(redux@5.0.1)
