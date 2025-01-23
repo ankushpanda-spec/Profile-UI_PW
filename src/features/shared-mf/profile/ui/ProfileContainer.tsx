@@ -7,6 +7,7 @@ import getErrorMessage from '../services/showErrorService';
 import s from '../styles/index.module.css';
 import {Typography, useToast} from '@pw-tech/omni-ui';
 import Learn2EarnBage from './Learn2EarnBage';
+import { useUser } from '@pw-tech/omni-context';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
@@ -40,7 +41,7 @@ const ProfileContainer = () => {
       fileInputRef.current.click(); // Trigger file input click
     }
   };
-
+  const {setUser} = useUser()
   // Function to handle file selection
   const handleFileChange = async (event: any) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -86,6 +87,7 @@ const ProfileContainer = () => {
               });
             }
           }
+          setUser(webSDK.user)
         } catch (error) {
           const errorObj = getErrorMessage(error);
           toast({
@@ -130,7 +132,7 @@ const ProfileContainer = () => {
         <Typography variant="subHeading" weight="semi-bold" color="static-black">{user?.firstName} {user?.lastName}</Typography>
         </div>
         <Learn2EarnBage />
-        
+
       </div>
       <div className={s.profileDetails}>
         <ProfileDetails />
