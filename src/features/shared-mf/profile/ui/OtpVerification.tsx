@@ -57,8 +57,9 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     // Clean up the interval on component unmount
     return () => clearInterval(timerInterval);
   }, [timeLeft]);
-  const handleOTPComplete = (otp: number) => {
-    setOtp(otp.toString());
+
+  const handleOnChange = (otp: string) => {
+    setOtp(otp);
   };
 
   const updateNumberInGlobalState = () => {
@@ -165,7 +166,7 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
 
             {/* OTP Input */}
 
-            <OTP length={6} onOTPComplete={handleOTPComplete} />
+            <OTP length={6} value={otp}  onChange={handleOnChange} />
 
             {/* Resend OTP Timer */}
             {showResendMessage && (
@@ -188,7 +189,7 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
                 Didn't get an OTP?{' '}
               </Typography>
               <Button
-                onClick={onResendOtp}
+                onClick={() => setOtp("")}
                 size="medium"
                 variant="link"
                 className="text-[#0592CB] underline"
@@ -198,7 +199,7 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
               </Button>
             </div>
           </div>
-          <Button fullWidth disabled={!otp} onClick={handleVerifyOtp}>
+          <Button fullWidth disabled={otp.length!==6} onClick={handleVerifyOtp}>
             Verify OTP
           </Button>
           {error && (

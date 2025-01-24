@@ -12,7 +12,6 @@ const OfflineUserInstructionsModal: React.FC<OfflineUserInstructionsProps> = ({
   onClose,
   body,
 }) => {
-  console.log('body', body);
   return (
     <Modal onClose={onClose} isOpen={isOpen} size="small">
       <ModalHeader>

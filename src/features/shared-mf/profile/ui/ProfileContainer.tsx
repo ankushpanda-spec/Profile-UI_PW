@@ -1,11 +1,13 @@
-import { useLoader } from '@/hooks/showLoader';
-import { useSnackbar } from '@/hooks/showSnackBar';
-import { webSDK } from '@/integration/webSDK';
-import { lazy, useEffect, useRef, useState } from 'react';
-import { updateUser, uploadFile } from '../api';
-import { BoyAvatar, CameraIcon, GirlAvatar } from '../constants';
+import {useLoader} from '@/hooks/showLoader';
+import {webSDK} from '@/integration/webSDK';
+import {lazy, useEffect, useRef, useState} from 'react';
+import {updateUser, uploadFile} from '../api';
+import {BoyAvatar, CameraIcon, GirlAvatar} from '../constants';
 import getErrorMessage from '../services/showErrorService';
 import s from '../styles/index.module.css';
+import {Typography, useToast} from '@pw-tech/omni-ui';
+import Learn2EarnBage from './Learn2EarnBage';
+import { useUser } from '@pw-tech/omni-context';
 
 const UserAvatar = lazy(() => import('./UserAvatar'));
 const ProfileDetails = lazy(() => import('./ProfileDetails'));
@@ -15,9 +17,9 @@ const ProfileContainer = () => {
 
   const [userImg, setUserImg] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const showSnackBar = useSnackbar();
   const user: any = webSDK.user;
-  const { showLoader, hideLoader } = useLoader();
+  const {showLoader, hideLoader} = useLoader();
+  const {toast} = useToast();
 
   useEffect(() => {
     if (user?.imageId) {
@@ -39,7 +41,7 @@ const ProfileContainer = () => {
       fileInputRef.current.click(); // Trigger file input click
     }
   };
-
+  const {setUser} = useUser()
   // Function to handle file selection
   const handleFileChange = async (event: any) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -50,7 +52,14 @@ const ProfileContainer = () => {
         type !== 'image/jpg' &&
         type !== 'image/jpeg'
       ) {
-        showSnackBar('Please select image file only');
+        toast({
+          message: 'Please select image file only',
+          variant:"error",
+          anchorOrigin: {
+            horizontal: 'center',
+            vertical: 'top',
+          },
+        });
         return;
       } else {
         const formData = new FormData();
@@ -61,20 +70,34 @@ const ProfileContainer = () => {
           if (fileResponse) {
             const imageId = fileResponse.data?._id;
             try {
-              const res = await updateUser({ imageId: imageId });
+              const res = await updateUser({imageId: imageId});
               if (res) {
-                const _UserInfo = { ...user, imageId: fileResponse.data }
+                const _UserInfo = {...user, imageId: fileResponse.data};
                 webSDK.setUser = _UserInfo;
               }
             } catch (error) {
               const errorObj = getErrorMessage(error);
-              showSnackBar(errorObj.message);
+              toast({
+                message: errorObj.message,
+                variant:"error",
+                anchorOrigin: {
+                  horizontal: 'center',
+                  vertical: 'top',
+                },
+              });
             }
-
           }
+          setUser(webSDK.user)
         } catch (error) {
           const errorObj = getErrorMessage(error);
-          showSnackBar(errorObj.message);
+          toast({
+            message: errorObj.message,
+            variant:"error",
+            anchorOrigin: {
+              horizontal: 'center',
+              vertical: 'top',
+            },
+          });
         } finally {
           hideLoader();
         }
@@ -88,6 +111,7 @@ const ProfileContainer = () => {
   return (
     <div className={s.container}>
       <div className={s.containerChildOne}>
+        <div className={s.containerChildOneWrapper}>
         <div className={s.wrapper}>
           <UserAvatar src={userImg || ''} className={s.userAvatarContainer} />
           <img
@@ -101,10 +125,14 @@ const ProfileContainer = () => {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: 'none' }}
+            style={{display: 'none'}}
             onChange={handleFileChange} // Handle file selection
           />
         </div>
+        <Typography variant="subHeading" weight="semi-bold" color="static-black">{user?.firstName} {user?.lastName}</Typography>
+        </div>
+        <Learn2EarnBage />
+
       </div>
       <div className={s.profileDetails}>
         <ProfileDetails />

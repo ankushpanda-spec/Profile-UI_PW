@@ -4,6 +4,7 @@ import { Typography } from '@pw-tech/omni-ui';
 import { useEffect, useState } from 'react';
 import { InfoIcon } from '../../../../components/icons';
 import s from "../styles/index.module.css";
+import { useNavigate } from 'react-router-dom';
 const DoubtSolverCard = ({
   title,
   info,
@@ -43,6 +44,7 @@ const DoubtSolverCard = ({
 const PerformanceDetails = () => {
   const [tiles, setTiles] = useState<any>([]);
   const { data: _PerformanceAsDoubtSolver } = useFeedbackData();
+  const navigate = useNavigate();
   useEffect(() => {
     setTiles([
       {
@@ -57,13 +59,17 @@ const PerformanceDetails = () => {
       },
     ]);
   }, [_PerformanceAsDoubtSolver]);
+  
+  const navigateToStudentMaster = () => {
+    navigate("/student-master-program?cameFrom=Profile")
+  }
   return (
     <div className={s.pdParent}>
       <div className={s.pdParentOne}>
         <Typography variant="heading4" weight="semi-bold" color="static-black">
           Performace as Doubt Solver
         </Typography>
-        <Typography color="primary" weight="semi-bold" variant="tiny" className={s.knowMore}>
+        <Typography color="primary" weight="semi-bold" variant="tiny" className={s.knowMore} onClick={navigateToStudentMaster}>
           Know more
         </Typography>
       </div>
