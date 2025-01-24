@@ -1,5 +1,5 @@
 # MF Common
-MF Common is a microfrontend application utilizing Module Federation to share common features and functions with the `study-main-mf` shell app. It includes shared modules, components, and utilities for features like `Profile` and `PDF Viewer`, making them reusable across different parts of the application.
+MF Common is a microfrontend application utilizing Module Federation to share common features and functions with the `study-main-mf` shell app. It includes shared modules, components, and utilities for features like, making them reusable across different parts of the application.
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -70,31 +70,38 @@ pnpm install
 As this is a frontend application, no specific database setup or migration is required.
 
 ## Running the Project
-
 To start the development server, run:
 
-```bash
-pnpm dev
-```
+| **Environments** | **Run Command**                                                       | **Description**                                                       |
+|-----------------|---------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Staging      | ```pnpm dev:staging ```  | Runs the application in the staging environment.   |
+| Production      |```pnpm dev:prod``` |Runs the application in the production environment.  |
+| System      | ```pnpm dev```| Starts the development server for local development.    |
+| Demo      | ```pnpm dev:demo``` | Runs the application in the pre-production environment, used for final testing before deployment.|
 
-Visit [http://localhost:3001](http://localhost:3001) to access the application.
+Visit [http://localhost:3000/study-v2](http://localhost:3000/study-v2) to access the application.
 
 ### Building the Project
 
 Build the project with the following command:
+| **Environments** | **Build Command**                                                       | **Description**                                                       |
+|-----------------|---------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Development      | ```pnpm build:development ```  | Builds the application for the development environment, optimized for debugging and local testing.    |
+| Staging      | ```pnpm build:staging ```  | Builds the application for the staging environment, simulating a production-like setup for testing.  |
+| Production      |```pnpm build:production``` |Builds the application for the production environment with full optimizations for end users.|
+| System      | ```pnpm build:system```| Builds the application for internal system testing or specific internal configurations.    |
+| Demo      | ```pnpm build:demo``` | Builds the application for the pre-production environment, used for final testing before deployment.|
 
-```bash
-pnpm build
-```
+
 
 The output will be in the \`dist/\` directory, ready for deployment.
-
 ## Deployments
 
 
 | Environments | Environment URLs        | Jenkins Jobs        | Deployment Instructions                                                                                         |
 | ------------ | ----------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Development   | [https://common-mf-dev.physicswallah.live](https://common-mf-dev.physicswallah.live) | [Dev Jenkins Job](https://jenkins.penpencil.co/job/Development/job/pw-common-mf/) | Use the \`development\` branch. Merges require review and approval from senior developers. |
+| Staging    | NA | NA | NA |
 
 
 ## Contributors
