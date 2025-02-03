@@ -5,7 +5,7 @@ import App from './App';
 import './globals.css';
 import { BaseLayout } from '@/shared/components';
 import { GlobalProvider } from '@/shared/context';
-import ErrorBoundary from '@/ErrorBoundary';
+import ErrorBoundary from './pages/error-boundary';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {

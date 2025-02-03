@@ -1,13 +1,13 @@
 import MFCOMMON_ROUTES from '@/shared/constants/routes.constants';
-import ErrorBoundary from '@/ErrorBoundary';
 import { Route } from 'react-router-dom';
 import { AuthGuard } from './Guards';
 import { Suspense } from 'react';
-import ContentLoader from '@/features/shared-mf/content-skeleton/ui';
 import { MFELayout } from '@/shared/components';
-import PDFViewer from '@/page-component/Pdf-Viewer/ui';
-import Profile from '@/page-component/Profile/ui';
-import StudentMaster from '@/page-component/Student-Master-Program/ui';
+import PDFViewer from '@/page-component/pdf-viewer/ui';
+import Profile from '@/page-component/profile/ui';
+import StudentMaster from '@/page-component/student-master-program/ui';
+import ErrorBoundary from '../pages/error-boundary';
+import ContentLoader from '@/shared/components/content-skeleton/ui';
 
 const RouteList = (
   <Route element={<AuthGuard />}>

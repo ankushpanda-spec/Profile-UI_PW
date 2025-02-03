@@ -11,14 +11,3 @@ export const fetchUser = async () => {
   }
 };
 
-export const learn2earnData = async () => {
-  try {
-  } catch (error) {}
-};
-
-export const doubtSolvingFeedbackData = async () => {
-  try {
-    return ApiClient.get(feedbackOverallApi, {});
-  } catch (error) {}
-};
-

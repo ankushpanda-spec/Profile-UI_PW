@@ -23,3 +23,5 @@ export const setFile = () =>
 
 export const setUser = () => 
   `v1/users`
+export const feedbackOverallApi =
+  '/v1/doubts/subject-matter-expert/feedback-overall';

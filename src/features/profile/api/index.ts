@@ -1,7 +1,8 @@
 import { webSDK } from "@/shared/services/sdk";
-import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
+import { feedbackOverallApi, getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
 import {ApiClient} from '@pw-tech/web-sdk';
 import { getUtcStartEndTime } from "../lib";
+
 
 export const fetchStates = async (country: string) => {
     try {
@@ -128,6 +129,14 @@ const getProfileData= async(cohortId: string) =>{
   }
 
 }
+
+
+
+export const doubtSolvingFeedbackData = async () => {
+  try {
+    return ApiClient.get(feedbackOverallApi, {});
+  } catch (error) {}
+};
 
 
 export const learn2earnData = async (cohortId:string) => {

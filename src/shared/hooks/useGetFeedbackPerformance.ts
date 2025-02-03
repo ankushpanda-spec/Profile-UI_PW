@@ -1,6 +1,6 @@
+import { doubtSolvingFeedbackData } from '@/features/profile/api';
 import {useState, useEffect} from 'react';
-import {doubtSolvingFeedbackData} from '@/shared/api'; // Assuming you have the function in the api folder
-
+ // Assuming you have the function in the api folder
 interface FeedbackData {
   satisfactoryRate: number;
   totalSolved: number;

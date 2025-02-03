@@ -1,4 +1,4 @@
-import StudentMasterProgram from '@/features/shared-mf/student-master-program/ui';
+import StudentMasterProgram from '@/features/student-master-program/ui';
 import ErrorWrapper from '@/shared/context/ErrorContext';
 import LoaderWrapper from '@/shared/context/LoaderContext';
 import { ToastProvider } from '@pw-tech/omni-ui';

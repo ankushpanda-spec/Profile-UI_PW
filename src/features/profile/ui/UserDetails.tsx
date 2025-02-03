@@ -40,6 +40,7 @@ const UserDetails = () => {
   const navigateToStudentMaster = () => {
     navigate("/student-master-program?cameFrom=Profile")
   }
+
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>

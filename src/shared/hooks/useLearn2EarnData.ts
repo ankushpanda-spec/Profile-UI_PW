@@ -1,6 +1,5 @@
+import { learn2earnData } from '@/features/profile/api';
 import {useState, useEffect} from 'react';
-import { learn2earnData } from '@/features/shared-mf/profile/api';
-
 
 export const useLearn2EarnData = (cohortId:string): any => {
   const [data, setData] = useState<any | null>(null);

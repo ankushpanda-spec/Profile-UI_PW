@@ -1,4 +1,4 @@
-import PdfContainer from "@/features/shared-mf/pdf-viewer/ui"
+import PdfContainer from "@/features/pdf-viewer/ui"
 
 const PDFViewer = () => {
   return (

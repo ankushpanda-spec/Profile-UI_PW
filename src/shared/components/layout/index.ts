@@ -1,3 +1,3 @@
-export {default as BaseLayout} from './Base';
-export {default as Container} from './Container';
-export {default as MFELayout} from './MFELayout';
+export {default as BaseLayout} from './base';
+export {default as Container} from './container';
+export {default as MFELayout} from './mfe-layout';
