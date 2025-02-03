@@ -12,7 +12,7 @@ import InfoIcon from '@/shared/assets/icons/InfoIcon';
 import { XPIcon } from '../constants';
 const LevelUpContainer = () => {
   const {data: learn2EarnProfileData} = useLearn2EarnData(
-    webSDK?.cohortConfig._id || ''
+    webSDK?.cohortConfig?._id || ''
   );
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
   function handleToolTipClose() {

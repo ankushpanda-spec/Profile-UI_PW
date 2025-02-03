@@ -5,7 +5,7 @@ import { useLearn2EarnData } from '@/shared/hooks/useLearn2EarnData';
 
 function Learn2EarnBadge() {
   const { data: learn2EarnProfileData } = useLearn2EarnData(
-    webSDK?.cohortConfig._id || ''
+    webSDK?.cohortConfig?._id || ''
   );
 
   return (
