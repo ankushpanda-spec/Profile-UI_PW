@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import s from '../styles/index.module.css';
-import {webSDK} from '@/integration';
+import {webSDK} from '@/shared/services/sdk';
 import { useNavigate } from 'react-router-dom';
-import VerifiedIcon from '@/assets/icons/Verified';
-import EditIcon from '@/assets/icons/EditIcon';
+import VerifiedIcon from '@/shared/assets/icons/Verified';
+import EditIcon from '@/shared/assets/icons/EditIcon';
 import { Typography } from '@pw-tech/omni-ui';
 import EditProfile from './EditProfile';
 

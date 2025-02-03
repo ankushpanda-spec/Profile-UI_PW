@@ -1,5 +1,5 @@
-import {useLoader} from '@/hooks/showLoader';
-import {webSDK} from '@/integration/webSDK';
+import {useLoader} from '@/shared/hooks/showLoader';
+import {webSDK} from '@/shared/services/sdk/webSDK';
 import {lazy, useEffect, useRef, useState} from 'react';
 import {updateUser, uploadFile} from '../api';
 import {BoyAvatar, CameraIcon, GirlAvatar} from '../constants';

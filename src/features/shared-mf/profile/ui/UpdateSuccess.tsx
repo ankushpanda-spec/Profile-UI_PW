@@ -1,6 +1,6 @@
 import {Typography, ModalHeader, ModalBody, Modal} from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {Success} from '@/assets/images';
+import {Success} from '@/shared/assets/images';
 import { UpdateSuccessProps } from '../types';
 
 const UpdateSuccessModal:React.FC<UpdateSuccessProps> = ({

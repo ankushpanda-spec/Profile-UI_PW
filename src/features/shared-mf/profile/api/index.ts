@@ -1,4 +1,4 @@
-import { webSDK } from "@/integration";
+import { webSDK } from "@/shared/services/sdk";
 import { getCitiesApi, getIsEligible, getOtp, getStatesApi, setFile, setUser, verifyOtpUrl } from "./constants";
 import {ApiClient} from '@pw-tech/web-sdk';
 import { getUtcStartEndTime } from "../lib";

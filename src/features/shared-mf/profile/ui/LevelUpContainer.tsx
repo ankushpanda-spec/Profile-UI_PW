@@ -1,4 +1,3 @@
-import LevelUpOverviewData from '@/services/datalayer.service';
 import {
   Tooltip,
   TooltipBody,
@@ -7,10 +6,10 @@ import {
 } from '@pw-tech/omni-ui';
 import {useState} from 'react';
 import s from '../styles/index.module.css';
-import {InfoIcon} from '@/components/icons';
-import {XPIcon} from '../constants';
-import {useLearn2EarnData} from '@/hooks/useLearn2EarnData';
-import {webSDK} from '@/integration';
+import {useLearn2EarnData} from '@/shared/hooks/useLearn2EarnData';
+import {webSDK} from '@/shared/services/sdk';
+import InfoIcon from '@/shared/assets/icons/InfoIcon';
+import { XPIcon } from '../constants';
 const LevelUpContainer = () => {
   const {data: learn2EarnProfileData} = useLearn2EarnData(
     webSDK?.cohortConfig._id || ''

@@ -1,10 +1,10 @@
-import { useFeedbackData } from '@/hooks/useGetFeedbackPerformance';
-import { cn } from '@/utils';
+import { useFeedbackData } from '@/shared/hooks/useGetFeedbackPerformance';
 import { Typography } from '@pw-tech/omni-ui';
 import { useEffect, useState } from 'react';
-import { InfoIcon } from '../../../../components/icons';
 import s from "../styles/index.module.css";
 import { useNavigate } from 'react-router-dom';
+import { cn } from '@/shared/lib';
+import InfoIcon from '@/shared/assets/icons/InfoIcon';
 const DoubtSolverCard = ({
   title,
   info,

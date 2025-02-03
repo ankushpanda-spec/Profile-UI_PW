@@ -13,8 +13,8 @@ import {
 import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/hooks/showLoader';
-import ErrorIcon from '@/assets/icons/ErrorIcon';
+import {useLoader} from '@/shared/hooks/showLoader';
+import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
 import { NewNumberVerificationProps } from '../types';
 
 const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({

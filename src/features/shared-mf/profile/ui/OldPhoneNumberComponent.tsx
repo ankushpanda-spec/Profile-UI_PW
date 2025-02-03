@@ -11,7 +11,7 @@ import {
 import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/hooks/showLoader';
+import {useLoader} from '@/shared/hooks/showLoader';
 import { OldPhoneNumberProps } from '../types';
 
 const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({

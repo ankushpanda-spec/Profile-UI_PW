@@ -1,15 +1,15 @@
-import Vector from '@/assets/icons/Vector';
+import Vector from '@/shared/assets/icons/Vector';
 import {Typography, useToast} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
 import {FaqModel, STUDENT_MASTER_PROGRAM} from '../types';
 import {getFaqs} from '../api';
-import PlayIcon from '@/assets/icons/PlayIcon';
-import {useError} from '@/hooks/showError';
+import PlayIcon from '@/shared/assets/icons/PlayIcon';
+import {useError} from '@/shared/hooks/showError';
 import getErrorMessage from '../../profile/services/showErrorService';
 import {Storage} from '@pw-tech/web-sdk';
 import {useLocation} from 'react-router-dom';
 import s from '../styles/index.module.css';
-import {webSDK} from '@/integration';
+import {webSDK} from '@/shared/services/sdk';
 import {AP_SIR, BANNER_IMG} from '../../profile/constants';
 
 const StudentMasterProgram = () => {

@@ -9,12 +9,12 @@ import {
   Separator,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import EditIcon from '@/assets/icons/EditIcon';
+import EditIcon from '@/shared/assets/icons/EditIcon';
 import {fetchOtp, verifyOtp} from '../api';
 import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/hooks/showLoader';
-import ErrorIcon from '@/assets/icons/ErrorIcon';
-import {webSDK} from '@/integration';
+import {useLoader} from '@/shared/hooks/showLoader';
+import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
+import {webSDK} from '@/shared/services/sdk';
 import { OtpVerificationProps } from '../types';
 
 const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
