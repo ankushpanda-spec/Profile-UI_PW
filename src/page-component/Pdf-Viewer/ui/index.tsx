@@ -1,9 +1,7 @@
-import PdfContainer from "@/features/pdf-viewer/ui"
+import PdfContainer from '@/features/pdf-viewer/ui';
 
 const PDFViewer = () => {
-  return (
-    <PdfContainer />
-  )
-}
+  return <PdfContainer />;
+};
 
-export default PDFViewer
+export default PDFViewer;

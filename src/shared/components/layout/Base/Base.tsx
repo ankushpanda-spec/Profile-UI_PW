@@ -1,21 +1,16 @@
-import {fetchUser} from '@/shared/api';
+import fetchUser from '@/shared/api/user';
 import {useUser} from '@pw-tech/omni-context';
 import {ReactNode, useEffect} from 'react';
 import Container from '../container';
 
 const Base = ({children}: {children: ReactNode}) => {
-  const {user, setUser} = useUser();
+  const {setUser} = useUser();
   useEffect(() => {
     const fetchAndSetUser = async () => {
-      try {
-        const response = await fetchUser();
-        if (response) {
-          setUser(response);
-        } else {
-          setUser(null);
-        }
-      } catch (error) {
-        console.error('Failed to fetch user data:', error);
+      const response = await fetchUser();
+      if (response) {
+        setUser(response);
+      } else {
         setUser(null);
       }
     };

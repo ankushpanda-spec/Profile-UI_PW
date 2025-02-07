@@ -1,14 +1,12 @@
 // import { DoctorHero } from '@/shared/assets/icons';
-import { Button, Typography } from '@pw-tech/omni-ui';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {Button, Typography} from '@pw-tech/omni-ui';
+import {useNavigate} from 'react-router-dom';
 import styles from '../styles/index.module.css'; // Import the CSS module
 
-import { DoctorHero } from '@/shared/assets/icons';
+import {DoctorHero} from '@/shared/assets/icons';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <div className={styles.container}>

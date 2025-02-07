@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react";
-import { PdfViewer } from "@pw-tech/omni-ui";
-import { useSearchParams } from "react-router-dom";
-import { getPdfDetails } from "../api";
+import {useState, useEffect} from 'react';
+import {PdfViewer} from '@pw-tech/omni-ui';
+import {useSearchParams} from 'react-router-dom';
+import getPdfDetails from '../api';
+import {PdfDetails} from '../types';
 
 const PdfContainer = () => {
-  const [pdfUrl, setPdfUrl] = useState<string>("");
-  const [pdfTitle, setPdfTitle] = useState<string>("");
+  const [pdfUrl, setPdfUrl] = useState<string>('');
+  const [pdfTitle, setPdfTitle] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
 
   const [searchParams] = useSearchParams();
-  const contentId  = searchParams.get("contentId")?.toString();
-  const url = searchParams.get("pdf");
+  const contentId = searchParams.get('contentId')?.toString();
+  const url = searchParams.get('pdf');
 
   useEffect(() => {
-    if(url && contentId){
-      setError("Invalid request");
+    if (url && contentId) {
+      setError('Invalid request');
       setLoading(false);
     }
     if (url) {
@@ -26,26 +27,26 @@ const PdfContainer = () => {
     if (contentId) {
       async function fetchData() {
         try {
-          const res: any = await getPdfDetails({}, contentId);
-          if (res && res.data) {
-            const pdfDetails = res.data[0];
-            const src =
-              pdfDetails.content[0]?.fileId.baseUrl +
-                pdfDetails.content[0]?.fileId.key || "";
+          const res: PdfDetails[] = await getPdfDetails({}, contentId);
+          if (res) {
+            const pdfDetails = res[0];
+            const baseUrl = pdfDetails.content[0]?.fileId.baseUrl || '';
+            const key = pdfDetails.content[0]?.fileId.key || '';
+            const src = baseUrl + key;
             setPdfUrl(src);
-            setPdfTitle(pdfDetails.title); 
+            setPdfTitle(pdfDetails.title);
           } else {
-            setError("No data available.");
+            setError('No data available.');
           }
-        } catch (error) {
-          setError("Failed to load PDF.");
+        } catch (_error) {
+          setError('Failed to load PDF.');
         } finally {
           setLoading(false);
         }
       }
       fetchData();
     } else {
-      setError("Invalid request");
+      setError('Invalid request');
       setLoading(false);
     }
   }, [contentId, url]);
@@ -54,7 +55,7 @@ const PdfContainer = () => {
     return <div>Error: {error}</div>;
   }
 
-  return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} isLoading={loading} /> ;
+  return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} isLoading={loading} />;
 };
 
 export default PdfContainer;

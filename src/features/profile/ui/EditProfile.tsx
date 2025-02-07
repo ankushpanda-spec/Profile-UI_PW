@@ -6,18 +6,17 @@ import NewNumberVerification from './NewNumberVerification';
 import UpdateSuccessModal from './UpdateSuccess';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import EditProfileForm from './EditProfileForm';
-import { EditProfileModalProps, LabelValue, UpdateNumberConfig } from '../types';
+import {EditProfileModalProps, LabelValue, UpdateNumberConfig} from '../types';
 import useProfileUtils from '../lib/profileUtils';
-import { ModalTypes } from '../constants';
+import {ModalTypes} from '../constants';
+import {useUser} from '@pw-tech/omni-context';
 
 const EditProfile: React.FC<EditProfileModalProps> = ({
   editModalOpen,
   handleEditModalClose,
   handleEditModalOpen,
-  userInfo,
 }) => {
-  const {fetchStateData,
-    fetchCityData} = useProfileUtils();
+  const {fetchStateData, fetchCityData} = useProfileUtils();
   const [activeModal, setActiveModal] = useState<string>('');
 
   const [offlineInstructions, setOfflineInstructions] = useState<string>('');
@@ -29,7 +28,9 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   const [newCountryCode, setNewCountryCode] = useState<string>('+91');
   const [states, setStates] = useState<LabelValue[]>([]);
   const [cities, setCities] = useState<LabelValue[]>([]);
-  const [selectedState , setSelectedState] = useState<string>('');
+  const [selectedState, setSelectedState] = useState<string>('');
+
+  const {user: userInfo} = useUser();
   const handleSuccessModalClose = () => {
     handleEditModalOpen();
     setActiveModal('');
@@ -48,7 +49,6 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
       {editModalOpen && (
         <EditProfileForm
           editModalOpen={editModalOpen}
-          userInfo={userInfo}
           setUpdateNumberConfig={setUpdateNumberConfig}
           setActiveModal={setActiveModal}
           setOfflineInstructions={setOfflineInstructions}
@@ -61,7 +61,7 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
       )}
       {activeModal === ModalTypes.OfflineUserInstructions && (
         <OfflineUserInstructionsModal
-          isOpen={true}
+          isOpen
           onClose={() => {
             handleEditModalOpen();
             setActiveModal('');
@@ -71,7 +71,7 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
       )}
       {activeModal === ModalTypes.TermsAndConditions && (
         <TermsAndConditionsModal
-          isOpen={true}
+          isOpen
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
         />
@@ -80,18 +80,16 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
         <OldPhoneNumberModal
           selectedMobileNumber={selectedMobileNumber}
           setSelectedMobileNumber={setSelectedMobileNumber}
-          isOpen={true}
+          isOpen
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
-          userInfo={userInfo}
         />
       )}
       {activeModal === ModalTypes.OTPVerification && (
         <OTPVerificationModal
           selectedMobileNumber={selectedMobileNumber}
-          userInfo={userInfo}
-          isOpen={true}
+          isOpen
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
@@ -103,7 +101,7 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
       )}
       {activeModal === ModalTypes.NewNumberComponent && (
         <NewNumberVerification
-          isOpen={true}
+          isOpen
           handleEditModalOpen={handleEditModalOpen}
           setActiveModal={setActiveModal}
           numberChangeRequestId={updateNumberConfig?.requestId}
@@ -111,29 +109,28 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           newInputMobileNumber={newInputMobileNumber}
           setNewCountryCode={setNewCountryCode}
           newCountryCode={newCountryCode}
-          isNewNumber={true}
+          isNewNumber
         />
       )}
       {activeModal === ModalTypes.NewNumberOTPVerification && (
         <OTPVerificationModal
           selectedMobileNumber={newInputMobileNumber}
-          isOpen={true}
+          isOpen
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
           countryCode={newCountryCode}
           nextActiveModal="numberUpdateSuccess"
-          isNewNumber={true}
-          showEditIcon={true}
-          userInfo={userInfo}
+          isNewNumber
+          showEditIcon
         />
       )}
       {activeModal === ModalTypes.NumberUpdateSuccess && (
-        <UpdateSuccessModal isOpen={true} onClose={handleSuccessModalClose} />
+        <UpdateSuccessModal isOpen onClose={handleSuccessModalClose} />
       )}
       {activeModal === ModalTypes.ProfileUpdateSuccess && (
         <UpdateSuccessModal
-          isOpen={true}
+          isOpen
           onClose={() => {
             handleEditModalClose();
             setActiveModal('');

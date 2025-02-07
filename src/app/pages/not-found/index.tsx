@@ -1,4 +1,4 @@
-import PageNotFound from "@/page-component/not-found/ui";
+import PageNotFound from '@/page-component/not-found/ui';
 
 function My404NotFound() {
   return <PageNotFound />;

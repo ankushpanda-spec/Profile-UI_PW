@@ -2,15 +2,15 @@ import Vector from '@/shared/assets/icons/Vector';
 import {Typography, useToast} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
 import {FaqModel, STUDENT_MASTER_PROGRAM} from '../types';
-import {getFaqs} from '../api';
+import getFaqs from '../api';
 import PlayIcon from '@/shared/assets/icons/PlayIcon';
-import {useError} from '@/shared/hooks/showError';
-import getErrorMessage from '../../profile/services/showErrorService';
+import useError from '@/shared/hooks/showError';
 import {Storage} from '@pw-tech/web-sdk';
 import {useLocation} from 'react-router-dom';
 import s from '../styles/index.module.css';
 import {webSDK} from '@/shared/services/sdk';
-import {AP_SIR, BANNER_IMG} from '../../profile/constants';
+import {AP_SIR, BANNER_IMG} from '../constants';
+import getErrorMessage from '@/shared/services/showErrorService';
 
 const StudentMasterProgram = () => {
   const showError = useError();
@@ -102,7 +102,7 @@ const StudentMasterProgram = () => {
           <div
             className={s.smApSir}
             style={{backgroundImage: `url(${AP_SIR})`}}
-          ></div>
+          />
           <div className={s.smIcon}>
             <Vector />
           </div>
@@ -116,14 +116,22 @@ const StudentMasterProgram = () => {
 
         {isPlaying ? (
           <iframe
+            title="Student Master Program Video"
             src={`${process.env.PUBLIC_VIDEO_PLAYER_URL}?type=youtube&src=${bannerVideo?.videoUrl}&token=${ACCESS_TOKEN}&random_id=${RANDOM_ID}&back_button=false&three_dots=false`}
             allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
             className={s.smVideoWrapper}
-          ></iframe>
+          />
         ) : (
           <div
             className={s.smVideoWrapper}
             onClick={howItWorkVideo}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                howItWorkVideo();
+              }
+            }}
+            role="button"
+            tabIndex={0}
             style={{
               backgroundImage: `url(${bannerImg || BANNER_IMG})`,
               backgroundPosition: 'center',

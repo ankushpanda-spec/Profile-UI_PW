@@ -1,6 +1,6 @@
-import {webSDK} from './webSDK';
+import webSDK from './webSDK';
 
-export const cohortSDK = ({
+const cohortSDK = ({
   handleRedirection,
   goBack,
 }: {
@@ -13,8 +13,9 @@ export const cohortSDK = ({
       webSDK,
       renderType: 'page',
       handleRelativeRedirection: handleRedirection,
-      goBack: goBack,
+      goBack,
     };
     window?.initPWAuthWebSDK(propConfig);
   }
 };
+export default cohortSDK;

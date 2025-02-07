@@ -1,19 +1,16 @@
-import { doubtSolvingFeedbackData } from '@/features/profile/api';
+import {doubtSolvingFeedbackData} from '@/features/profile/api';
+import {
+  doubtSolvingFeedbackDataResponse,
+  FeedbackData,
+} from '@/features/profile/types';
 import {useState, useEffect} from 'react';
- // Assuming you have the function in the api folder
-interface FeedbackData {
-  satisfactoryRate: number;
-  totalSolved: number;
-  totalRated: number;
-}
 
 interface UseFeedbackDataResult {
   data: FeedbackData | null;
   loading: boolean;
   error: string | null;
 }
-
-export const useFeedbackData = (): UseFeedbackDataResult => {
+const useFeedbackData = (): UseFeedbackDataResult => {
   const [data, setData] = useState<FeedbackData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -23,11 +20,12 @@ export const useFeedbackData = (): UseFeedbackDataResult => {
       setLoading(true);
       setError(null);
       try {
-        const response: any = await doubtSolvingFeedbackData();
+        const response: doubtSolvingFeedbackDataResponse =
+          await doubtSolvingFeedbackData();
         setData(response.data);
       } catch (err) {
         setError('Failed to fetch feedback data');
-        console.error(err);
+        throw err;
       } finally {
         setLoading(false);
       }
@@ -38,3 +36,4 @@ export const useFeedbackData = (): UseFeedbackDataResult => {
 
   return {data, loading, error};
 };
+export default useFeedbackData;

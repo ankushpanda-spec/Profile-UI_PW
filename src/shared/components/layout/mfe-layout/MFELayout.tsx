@@ -1,13 +1,18 @@
-import { Container, SubHeader } from "@pw-tech/omni-ui";
-import { ReactNode } from "react";
-import s from "./index.module.css";
-function MFELayout({ children, title }: { children: ReactNode; title: string }) {
+import {Container, SubHeader} from '@pw-tech/omni-ui';
+import {ReactNode} from 'react';
+import s from './index.module.css';
+import {useNavigate} from 'react-router-dom';
+
+function MFELayout({children, title}: {children: ReactNode; title: string}) {
+  const navigate = useNavigate();
   return (
     <div className={s.mfCommon}>
       <SubHeader
         enableBackButton
         title={title}
-        onBackButtonClick={() => { history.back() }}
+        onBackButtonClick={() => {
+          navigate(-1);
+        }}
         className={s.subHeader}
       />
       <div className={s.wrapper}>
@@ -17,4 +22,4 @@ function MFELayout({ children, title }: { children: ReactNode; title: string }) 
   );
 }
 
-export default MFELayout
+export default MFELayout;

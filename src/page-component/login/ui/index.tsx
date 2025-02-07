@@ -1,6 +1,6 @@
-import { webSDK } from '@/shared/services/sdk';
-import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {webSDK} from '@/shared/services/sdk';
+import {useEffect, useRef} from 'react';
+import {useNavigate} from 'react-router-dom';
 import initialiseAuthSDK from '../services/sdk/auth.sdk';
 import s from '../styles/index.module.css';
 

@@ -1,6 +1,7 @@
 import {useAuth, useScreen} from '@pw-tech/omni-context';
 import {Button, Typography} from '@pw-tech/omni-ui';
-import {dependencies} from '../../../../package.json'
+import {dependencies} from '../../../../package.json';
+
 const Study = () => {
   const {width} = useScreen();
   const {isLoggedIn, login, logout} = useAuth();

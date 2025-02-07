@@ -1,5 +1,6 @@
-import * as React from "react";
-const VerifiedIcon = (props:React.SVGProps<SVGSVGElement>) => (
+import * as React from 'react';
+
+const VerifiedIcon = ({...props}: React.SVGProps<SVGSVGElement>) => (
   <svg
     width={10}
     height={10}

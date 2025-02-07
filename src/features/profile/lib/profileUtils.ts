@@ -1,13 +1,13 @@
-import {useError} from '@/shared/hooks/showError';
-import {useLoader} from '@/shared/hooks/showLoader';
+import useError from '@/shared/hooks/showError';
+import useLoader from '@/shared/hooks/showLoader';
 import {webSDK} from '@/shared/services/sdk';
-import {useUser} from '@pw-tech/omni-context';
 import {useToast} from '@pw-tech/omni-ui';
 import {UseFormSetValue} from 'react-hook-form';
 import {formatToLabelValue, isASCII} from '.';
 import {fetchCities, fetchStates, updateUser} from '../api';
-import getErrorMessage from '../services/showErrorService';
 import {LabelValue, UserInfo} from '../types';
+import getErrorMessage from '@/shared/services/showErrorService';
+import {User} from '@pw-tech/omni-context/dist/context/user';
 
 const useProfileUtils = () => {
   const {toast} = useToast();
@@ -15,27 +15,27 @@ const useProfileUtils = () => {
   const showError = useError();
 
   const checkDigitInput = (
-    event: any,
+    event: React.KeyboardEvent<HTMLInputElement>,
     inputName: 'firstName' | 'lastName',
     setValue: UseFormSetValue<{
-      firstName: any;
-      lastName: any;
-      email: any;
-      mobile: any;
-      gender: any;
-      city: any;
-      state: any;
+      firstName: string;
+      lastName: string;
+      email: string;
+      mobile: string;
+      gender: string;
+      city: string;
+      state: string;
     }>
   ) => {
     const regExp = /^[0-9\b]+$/;
-    const regSpecialCharacter = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    const regSpecialCharacter = /^[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/;
     const isAscii = isASCII(event.key);
     if (event.key === 'Enter') {
       event.preventDefault();
-      let value = event.target.value;
-      let valueReplaced = value.toString().replace(/[^a-zA-Z\s]/gm, '');
+      const value = (event.target as HTMLInputElement).value;
+      const valueReplaced = value.toString().replace(/[^a-zA-Z\s]/gm, '');
       setValue(inputName, valueReplaced.toString().trim());
-      if (value != valueReplaced) {
+      if (value !== valueReplaced) {
         toast({
           message: 'Hindi Character, Emojis not allowed.',
           variant: 'error',
@@ -62,21 +62,20 @@ const useProfileUtils = () => {
         },
       });
       return false;
-    } else {
-      return true;
     }
+    return true;
   };
 
   const checkEmail = (
-    event: any,
+    event: React.KeyboardEvent<HTMLInputElement>,
     setValue: UseFormSetValue<{
-      firstName: any;
-      lastName: any;
-      email: any;
-      mobile: any;
-      gender: any;
-      city: any;
-      state: any;
+      firstName: string;
+      lastName: string;
+      email: string;
+      mobile: string;
+      gender: string;
+      city: string;
+      state: string;
     }>
   ) => {
     const isAscii = isASCII(event.key);
@@ -84,10 +83,12 @@ const useProfileUtils = () => {
 
     if (event.key === 'Enter') {
       event.preventDefault();
-      let value = event.target.value;
-      let valueReplaced = value.toString().replace(/[^a-zA-Z0-9_.\-\s@]/gm, '');
+      const value = (event.target as HTMLInputElement).value;
+      const valueReplaced = value
+        .toString()
+        .replace(/[^a-zA-Z0-9_.\-\s@]/gm, '');
       setValue('email', valueReplaced.toString().trim());
-      if (value != valueReplaced) {
+      if (value !== valueReplaced) {
         toast({
           message: 'Hindi Character, Emojis not allowed.',
           variant: 'error',
@@ -110,24 +111,24 @@ const useProfileUtils = () => {
         },
       });
       return false;
-    } else {
-      return true;
     }
+    return true;
   };
   const handleFormSubmit = async (
     data: UserInfo,
     setValue: UseFormSetValue<{
-      firstName: any;
-      lastName: any;
-      email: any;
-      mobile: any;
-      gender: any;
-      city: any;
-      state: any;
+      firstName: string;
+      lastName: string;
+      email: string;
+      mobile: string;
+      gender: string;
+      city: string;
+      state: string;
     }>,
     setActiveModal: React.Dispatch<React.SetStateAction<string>>,
-    userInfo: any,
-    handleEditModalClose: () => void
+    handleEditModalClose: () => void,
+    userInfo: User | Partial<User> | null,
+    setUser: (user: User | Partial<User> | null) => void
   ) => {
     const {firstName, lastName, email, city, state, gender} = data;
     if (
@@ -158,25 +159,26 @@ const useProfileUtils = () => {
     const payload = {
       ...cleanedData,
       profileId: {
-        ...userInfo.profileId,
+        ...userInfo?.profileId,
         address: {
           city: city.trim(),
           state: state.trim(),
         },
-        gender: gender,
+        gender,
       },
-      gender: gender,
+      gender,
       address: {
         city: city.trim(),
         state: state.trim(),
       },
       isProfileCompleted: true,
+      nameUpdateBlockedUntil: userInfo?.nameUpdateBlockedUntil as Date, // Add this line
     };
 
     const newUserInfo = {...userInfo, ...payload};
     showLoader('Please wait');
     try {
-      const res: any = await updateUser(payload);
+      const res: User = await updateUser(payload);
 
       if (res) {
         const {nameUpdateBlockedUntil} = res.data; // Extract updateBlockUntil from res
@@ -187,7 +189,6 @@ const useProfileUtils = () => {
         setActiveModal('profileUpdateSuccess');
         handleEditModalClose();
       }
-      const {setUser} = useUser();
       setUser(webSDK.user);
     } catch (e) {
       const errorObj = getErrorMessage(e);
@@ -204,12 +205,11 @@ const useProfileUtils = () => {
       showLoader('Loading...');
 
       const country = 'IND'; // Adjust as needed
-      const response: any = await fetchStates(country);
-      const statesInFormattedForm: LabelValue[] = formatToLabelValue(
-        response.data
-      );
+      const response = await fetchStates(country);
+      const statesInFormattedForm: LabelValue[] = formatToLabelValue(response);
       setStates(statesInFormattedForm); // Assuming response contains states data
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching states:', error);
     } finally {
       hideLoader();
@@ -224,12 +224,12 @@ const useProfileUtils = () => {
       showLoader('Loading...');
       try {
         const country = 'IND'; // Adjust as needed
-        const response: any = await fetchCities(country, selectedState);
-        const citiesInFormattedForm: LabelValue[] = formatToLabelValue(
-          response.data
-        );
+        const response = await fetchCities(country, selectedState);
+        const citiesInFormattedForm: LabelValue[] =
+          formatToLabelValue(response);
         setCities(citiesInFormattedForm); // Assuming response contains cities data
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error fetching cities:', error);
       } finally {
         hideLoader();

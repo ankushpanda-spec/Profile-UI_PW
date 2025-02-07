@@ -1,8 +1,7 @@
+import {useContext} from 'react';
+import {LoaderContext} from '@/shared/context/LoaderContext';
 
-import { useContext } from 'react';
-import { LoaderContext } from '@/shared/context/LoaderContext';
-
-export const useLoader = () => {
+const useLoader = () => {
   const context = useContext(LoaderContext);
 
   if (!context) {
@@ -14,3 +13,4 @@ export const useLoader = () => {
     hideLoader: context.hideLoader,
   };
 };
+export default useLoader;

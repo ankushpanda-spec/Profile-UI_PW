@@ -1,8 +1,8 @@
-import { webSDK } from "@/shared/services/sdk";
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import {webSDK} from '@/shared/services/sdk';
+import {useEffect, useState} from 'react';
+import {Outlet} from 'react-router-dom';
 
-export const AuthGuard = () => {
+const AuthGuard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(webSDK.isLoggedIn);
 
   useEffect(() => {
@@ -14,4 +14,6 @@ export const AuthGuard = () => {
   }
   window.location.href = process.env.PUBLIC_AUTH_REDIRECT_URL as string;
   return null;
-}
+};
+
+export default AuthGuard;

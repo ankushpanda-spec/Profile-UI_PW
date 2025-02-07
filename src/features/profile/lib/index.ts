@@ -1,5 +1,5 @@
 import {UseFormSetValue} from 'react-hook-form';
-import { LabelValue } from '../types';
+import {LabelValue} from '../types';
 
 export const formatToLabelValue = (array: string[]): LabelValue[] =>
   array.map((item: string) => ({
@@ -8,7 +8,7 @@ export const formatToLabelValue = (array: string[]): LabelValue[] =>
   })) || [];
 
 export const isASCII = (input: string) => {
-  return /^[\x00-\x7F]*$/.test(input);
+  return /^[\x20-\x7E]*$/.test(input);
 };
 export const onNameClicked = (
   setShowWarningForNameChange: React.Dispatch<React.SetStateAction<boolean>>
@@ -27,13 +27,13 @@ export const onNameClickedRemove = (
 export const handleSelectState = (
   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   setValue: UseFormSetValue<{
-    firstName: any;
-    lastName: any;
-    email: any;
-    mobile: any;
-    gender: any;
-    city: any;
-    state: any;
+    firstName: string;
+    lastName: string;
+    email: string;
+    mobile: string;
+    gender: string;
+    city: string;
+    state: string;
   }>
 ) => {
   setValue('state', e.target.value);
@@ -43,13 +43,13 @@ export const handleSelectState = (
 export const handleSelectCity = (
   e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   setValue: UseFormSetValue<{
-    firstName: any;
-    lastName: any;
-    email: any;
-    mobile: any;
-    gender: any;
-    city: any;
-    state: any;
+    firstName: string;
+    lastName: string;
+    email: string;
+    mobile: string;
+    gender: string;
+    city: string;
+    state: string;
   }>
 ) => {
   setValue('city', e.target.value || '');
@@ -72,8 +72,8 @@ export const getUtcStartEndTime = (
   const utcStartDateTomorrow = startDateTomorrow.toISOString();
 
   if (utcStartDate && utcEndDate && utcStartDateTomorrow) {
-    return { utcStartDate, utcEndDate, utcStartDateTomorrow };
+    return {utcStartDate, utcEndDate, utcStartDateTomorrow};
   }
 
-  return { utcStartDate: '', utcEndDate: '', utcStartDateTomorrow: '' };
+  return {utcStartDate: '', utcEndDate: '', utcStartDateTomorrow: ''};
 };

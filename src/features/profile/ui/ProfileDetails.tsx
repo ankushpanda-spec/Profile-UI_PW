@@ -3,7 +3,6 @@ import PerformanceDetails from './PerformanceDetails';
 import UserDetails from './UserDetails';
 
 const ProfileDetails = () => {
- 
   return (
     <>
       <LevelUpContainer />

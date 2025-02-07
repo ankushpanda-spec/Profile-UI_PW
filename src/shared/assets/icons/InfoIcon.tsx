@@ -1,13 +1,13 @@
 const InfoIcon = ({
-  height,
-  width,
-  className,
-  onClick,
+  height = 16,
+  width = 16,
+  className = '',
+  onClick = () => {},
 }: {
   height?: number;
   width?: number;
   className?: string;
-  onClick?: () => void
+  onClick?: () => void;
 }) => {
   return (
     <svg

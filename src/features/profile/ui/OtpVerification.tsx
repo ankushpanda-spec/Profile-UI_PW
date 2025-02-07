@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Button,
   Typography,
@@ -11,11 +11,14 @@ import {
 import s from '../styles/index.module.css';
 import EditIcon from '@/shared/assets/icons/EditIcon';
 import {fetchOtp, verifyOtp} from '../api';
-import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/shared/hooks/showLoader';
+import getErrorMessage from '@/shared/services/showErrorService';
+import useLoader from '@/shared/hooks/showLoader';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
 import {webSDK} from '@/shared/services/sdk';
-import { OtpVerificationProps } from '../types';
+import {ApiResponse, OtpVerificationProps} from '../types';
+import {useUser} from '@pw-tech/omni-context';
+import {User} from '@pw-tech/web-sdk';
+import DisappearingMessage from './DisappearingMessage';
 
 const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isOpen,
@@ -27,45 +30,59 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isNewNumber,
   countryCode,
   showEditIcon,
-  userInfo,
 }) => {
   const {showLoader, hideLoader} = useLoader();
+  const {user: userInfo} = useUser();
+  const {setUser} = useUser();
   const [otp, setOtp] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [showResendMessage, setShowResendMessage] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(30);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
 
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      intervalRef.current = setInterval(() => {
+        setTimeLeft(prevTime => {
+          if (prevTime <= 1) {
+            if (intervalRef.current) {
+              clearInterval(intervalRef.current);
+            }
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    } else if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+
+    // Clean up the interval on unmount or when timeLeft changes
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [timeLeft, setTimeLeft]); // Added setTimeLeft to dependencies
   const handleClose = () => {
     setIsModalOpen(false);
     handleEditModalOpen();
   };
 
-  useEffect(() => {
-    if (timeLeft <= 0) return; // If the timer is already done, no need to set up another interval
-
-    const timerInterval = setInterval(() => {
-      setTimeLeft(prevTime => {
-        if (prevTime <= 1) {
-          clearInterval(timerInterval); // Stop the timer when it reaches 0
-          return 0; // Ensures the timer reaches 0
-        }
-        return prevTime - 1; // Decrease the time by 1 second
-      });
-    }, 1000);
-
-    // Clean up the interval on component unmount
-    return () => clearInterval(timerInterval);
-  }, [timeLeft]);
-
-  const handleOnChange = (otp: string) => {
-    setOtp(otp);
+  const handleOnChange = (newOtp: string) => {
+    setOtp(newOtp);
   };
 
   const updateNumberInGlobalState = () => {
     if (selectedMobileNumber && userInfo) {
-      const newUserInfo = {...userInfo, primaryNumber: selectedMobileNumber};
-      webSDK.setUser = newUserInfo;
+      const newUserInfo = {
+        ...userInfo,
+        primaryNumber: selectedMobileNumber,
+      };
+      webSDK.setUser = newUserInfo as User;
+      setUser(newUserInfo);
     }
   };
 
@@ -75,21 +92,21 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     try {
       const apiData = {
         phone: selectedMobileNumber,
-        countryCode: countryCode,
-        isNewNumber: isNewNumber,
-        organizationId: process.env.PUBLIC_ORGANISATION_ID || "",
+        countryCode,
+        isNewNumber,
+        organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
       };
-      const res: any = await fetchOtp(apiData);
+      const res: ApiResponse = await fetchOtp(apiData);
       if (res.success) {
         hideLoader();
         setShowResendMessage(true);
         setTimeLeft(30);
       } else {
-        setError(res.error);
+        setError(res.error?.message || '');
       }
-    } catch (error) {
-      const errorObj = getErrorMessage(error);
+    } catch (_error) {
+      const errorObj = getErrorMessage(_error);
       setError(errorObj.message);
       hideLoader();
     } finally {
@@ -104,24 +121,24 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     try {
       const apiData = {
         phone: selectedMobileNumber,
-        countryCode: countryCode,
-        isNewNumber: isNewNumber,
+        countryCode,
+        isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
-        otp: otp,
+        otp,
         requestId: numberChangeRequestId || '',
       };
-      const res: any = await verifyOtp(apiData);
+      const res: ApiResponse = await verifyOtp(apiData);
       if (res.success) {
         if (isNewNumber) {
           updateNumberInGlobalState();
         }
         setActiveModal(nextActiveModal);
       } else {
-        setError(res?.message || '');
+        setError(res?.message || 'Something Went Wrong');
       }
       hideLoader();
-    } catch (error) {
-      const errorObj = getErrorMessage(error);
+    } catch (_error) {
+      const errorObj = getErrorMessage(_error);
       setError(errorObj.message);
       hideLoader();
     } finally {
@@ -140,39 +157,38 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
       <ModalBody>
         <div className={s.otpWrapper}>
           <div className={s.otpContainer}>
-              <div className={s.otpSubContainer}>
+            <div className={s.otpSubContainer}>
+              <Typography variant="regular" weight="medium" color="text-body-1">
+                Please enter the 6 digit code sent on
+              </Typography>
+              <div className={s.otpText}>
                 <Typography
+                  color="text-heading"
                   variant="regular"
-                  weight="medium"
-                  color="text-body-1"
+                  weight="semi-bold"
                 >
-                  Please enter the 6 digit code sent on
+                  {countryCode} {selectedMobileNumber}
                 </Typography>
-                <div className={s.otpText}>
-                  <Typography
-                    color="text-heading"
-                    variant="regular"
-                    weight="semi-bold"
-                  >
-                    {countryCode} {selectedMobileNumber}
-                  </Typography>
-                  {showEditIcon && (
-                    <EditIcon
-                      onClick={() => setActiveModal('newNumberComponent')}
-                    />
-                  )}
-                </div>
+                {showEditIcon && (
+                  <EditIcon
+                    onClick={() => setActiveModal('newNumberComponent')}
+                  />
+                )}
+              </div>
             </div>
 
             {/* OTP Input */}
 
-            <OTP length={6} value={otp}  onChange={handleOnChange} />
+            <OTP length={6} value={otp} onChange={handleOnChange} />
 
             {/* Resend OTP Timer */}
-            {showResendMessage && (
+            {/* {showResendMessage && (
               <Typography color="success" variant="regular" weight="medium">
                 OTP has been resent
               </Typography>
+            )} */}
+            {showResendMessage && (
+              <DisappearingMessage message="OTP has been resent" />
             )}
             {timeLeft > 0 && (
               <Typography
@@ -186,10 +202,13 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
 
             <div className={s.otpText}>
               <Typography color="text-body-1" variant="regular" weight="medium">
-                Didn't get an OTP?{' '}
+                Didn&apos;t get an OTP?{' '}
               </Typography>
               <Button
-                onClick={() => setOtp("")}
+                onClick={() => {
+                  setOtp('');
+                  onResendOtp();
+                }}
                 size="medium"
                 variant="link"
                 className="text-[#0592CB] underline"
@@ -199,7 +218,11 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
               </Button>
             </div>
           </div>
-          <Button fullWidth disabled={otp.length!==6} onClick={handleVerifyOtp}>
+          <Button
+            fullWidth
+            disabled={otp.length !== 6}
+            onClick={handleVerifyOtp}
+          >
             Verify OTP
           </Button>
           {error && (

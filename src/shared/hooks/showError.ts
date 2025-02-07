@@ -1,8 +1,7 @@
+import {useContext} from 'react';
+import {ErrorContext} from '@/shared/context/ErrorContext';
 
-import { useContext } from 'react';
-import { ErrorContext } from '@/shared/context/ErrorContext';
-
-export const useError = () => {
+const useError = () => {
   const context = useContext(ErrorContext);
 
   if (!context) {
@@ -10,4 +9,5 @@ export const useError = () => {
   }
 
   return context.showError;
-}
+};
+export default useError;

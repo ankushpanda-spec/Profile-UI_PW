@@ -10,9 +10,12 @@ import {
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
-import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/shared/hooks/showLoader';
-import { OldPhoneNumberProps } from '../types';
+
+import useLoader from '@/shared/hooks/showLoader';
+import {OldPhoneNumberProps} from '../types';
+import {useUser} from '@pw-tech/omni-context';
+import getErrorMessage from '@/shared/services/showErrorService';
+import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
 
 const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   isOpen,
@@ -21,13 +24,11 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   selectedMobileNumber,
   setSelectedMobileNumber,
   handleEditModalOpen,
-  userInfo,
 }) => {
   const {showLoader, hideLoader} = useLoader();
+  const {user: userInfo} = useUser();
   const [error, setError] = useState<string>('');
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
-
   const handleClose = () => {
     setIsModalOpen(false);
     setActiveModal('');
@@ -44,14 +45,14 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
       };
-      const res: any = await fetchOtp(apiData);
+      const res = await fetchOtp(apiData);
       if (res.success) {
         setActiveModal('otpVerification');
       } else {
-        setError(res.error);
+        setError(res.error?.message || 'Something went wrong');
       }
-    } catch (error) {
-      const errorObj = getErrorMessage(error);
+    } catch (_error) {
+      const errorObj = getErrorMessage(_error);
       setError(errorObj.message);
       hideLoader();
     } finally {
@@ -95,6 +96,7 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
           </div>
           {error && (
             <div className={s.errorMsg}>
+              <ErrorIcon />
               <Typography variant="tiny" weight="semi-bold" color="error">
                 {error}
               </Typography>

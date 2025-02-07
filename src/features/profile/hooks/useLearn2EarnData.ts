@@ -1,8 +1,9 @@
-import { learn2earnData } from '@/features/profile/api';
+import {learn2earnData} from '@/features/profile/api';
+import {LevelUpData} from '@/features/profile/types';
 import {useState, useEffect} from 'react';
 
-export const useLearn2EarnData = (cohortId:string): any => {
-  const [data, setData] = useState<any | null>(null);
+const useLearn2EarnData = (cohortId: string) => {
+  const [data, setData] = useState<LevelUpData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -11,11 +12,10 @@ export const useLearn2EarnData = (cohortId:string): any => {
       setLoading(true);
       setError(null);
       try {
-        const response:any = await learn2earnData(cohortId);
+        const response: LevelUpData = await learn2earnData(cohortId);
         setData(response);
-      } catch (err) {
+      } catch (_err) {
         setError('Failed to fetch Learn2Earn data');
-        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -26,3 +26,5 @@ export const useLearn2EarnData = (cohortId:string): any => {
 
   return {data, loading, error};
 };
+
+export default useLearn2EarnData;

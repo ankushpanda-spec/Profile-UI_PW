@@ -12,17 +12,17 @@ import {
 
 import s from '../styles/index.module.css';
 import {fetchOtp} from '../api';
-import getErrorMessage from '../services/showErrorService';
-import {useLoader} from '@/shared/hooks/showLoader';
+
+import useLoader from '@/shared/hooks/showLoader';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
-import { NewNumberVerificationProps } from '../types';
+import {NewNumberVerificationProps} from '../types';
+import getErrorMessage from '@/shared/services/showErrorService';
 
 const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   isOpen,
   handleEditModalOpen,
   setActiveModal,
   numberChangeRequestId,
-  setNewCountryCode,
   setNewInputMobileNumber,
   newInputMobileNumber,
   newCountryCode,
@@ -49,50 +49,9 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       setInputErrorMessage('');
       setInputErrorMessageShown(false);
     }
-
+    setErrorMessage('');
     setNewInputMobileNumber(value);
   };
-
-  const onContinueClick = async () => {
-    const errorMessage = checkMobileNumber(newInputMobileNumber);
-    if (errorMessage) {
-      setInputErrorMessage(errorMessage);
-      setInputErrorMessageShown(true);
-      return;
-    }
-    const apiData = {
-      phone: newInputMobileNumber,
-      countryCode: newCountryCode,
-      isNewNumber: isNewNumber,
-      organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
-      requestId: numberChangeRequestId || '',
-    };
-    try {
-      showLoader('Sending OTP...');
-      const res: any = await fetchOtp(apiData);
-
-      if (res?.success) {
-        setActiveModal('newNumberOtpVerification');
-      } else {
-        if (res?.message) {
-          setInputErrorMessage(res.message);
-          setInputErrorMessageShown(true);
-        } else {
-          throw new Error('');
-        }
-      }
-    } catch (err) {
-      const errorObj = getErrorMessage(err);
-
-      setInputErrorMessage(errorObj.message);
-      setInputErrorMessageShown(true);
-
-      hideLoader();
-    } finally {
-      hideLoader();
-    }
-  };
-
   const checkMobileNumber = (mobileNumber: string): string => {
     if (!mobileNumber) {
       return 'Please enter a vaild mobile number';
@@ -105,10 +64,53 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
     }
     return '';
   };
-  const mobileNumberInputKeyPress = (event: any) => {
+
+  const onContinueClick = async () => {
+    setErrorMessage('');
+    const message = checkMobileNumber(newInputMobileNumber);
+    if (message) {
+      setInputErrorMessage(message);
+      setInputErrorMessageShown(true);
+      return;
+    }
+    const apiData = {
+      phone: newInputMobileNumber,
+      countryCode: newCountryCode,
+      isNewNumber,
+      organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
+      requestId: numberChangeRequestId || '',
+    };
+    try {
+      showLoader('Sending OTP...');
+      const res = await fetchOtp(apiData);
+
+      if (res?.success) {
+        setActiveModal('newNumberOtpVerification');
+      } else if (res?.message) {
+        setInputErrorMessage(res.message);
+        setInputErrorMessageShown(true);
+      } else {
+        throw new Error(res.error?.message || 'Something went wrong');
+      }
+    } catch (err) {
+      const errorObj = getErrorMessage(err);
+      if (errorObj.status === 400) {
+        setInputErrorMessage(errorObj.message);
+        setInputErrorMessageShown(true);
+      } else {
+        setErrorMessage(errorObj.message);
+      }
+      hideLoader();
+    } finally {
+      hideLoader();
+    }
+  };
+  const mobileNumberInputKeyPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === 'Enter') {
       onContinueClick();
-      return;
+      return false;
     }
     const digitRegExp = /^[0-9\b]+$/;
     const pressedKey = String.fromCharCode(event.keyCode);
@@ -117,68 +119,61 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       setInputErrorMessage('Please enter numbers only');
       setInputErrorMessageShown(true);
       return false;
-    } else {
-      return true;
     }
+    return true;
   };
 
   return (
-    <>
-      <Modal isOpen={isModalOpen} size="small" onClose={handleClose}>
-        <ModalHeader>
-          <Typography color="static-black" variant="heading3" weight="bold">
-            Enter New Number
+    <Modal isOpen={isModalOpen} size="small" onClose={handleClose}>
+      <ModalHeader>
+        <Typography color="static-black" variant="heading3" weight="bold">
+          Enter New Number
+        </Typography>
+      </ModalHeader>
+      <Separator />
+      <ModalBody>
+        <div className={s.nnvContainer}>
+          <Typography weight="semi-bold" color="static-black" variant="regular">
+            OTP will be sent on this number for verification.
           </Typography>
-        </ModalHeader>
-        <Separator />
-        <ModalBody>
-          <div className={s.nnvContainer}>
-            <Typography
-              weight="semi-bold"
-              color="static-black"
-              variant="regular"
-            >
-              OTP will be sent on this number for verification.
-            </Typography>
-            <InputField
-              label="Mobile Number"
-              placeholder="Enter your phone number"
-              type="number"
-              fullWidth
-              message={
-                inputErrorMessageShown
-                  ? inputErrorMessage
-                  : "Your contents won't be accessible on the old number."
-              }
-              onChange={handleInputChange}
-              onKeyDown={mobileNumberInputKeyPress}
-              error={inputErrorMessageShown}
-            />
-          </div>
-        </ModalBody>
-
-        <ModalFooter>
-          <Button
-            type="button"
+          <InputField
+            label="Mobile Number"
+            placeholder="Enter your phone number"
+            type="number"
             fullWidth
-            size="large"
-            variant="primary"
-            onClick={onContinueClick}
-          >
-            Continue
-          </Button>
+            message={
+              inputErrorMessageShown
+                ? inputErrorMessage
+                : "Your contents won't be accessible on the old number."
+            }
+            onChange={handleInputChange}
+            onKeyDown={mobileNumberInputKeyPress}
+            error={inputErrorMessageShown}
+          />
+        </div>
+      </ModalBody>
 
-          {errorMessage && (
-            <div className={s.errorMsg}>
-              <ErrorIcon />
-              <Typography variant="tiny" weight="semi-bold" color="error">
-                {errorMessage}
-              </Typography>
-            </div>
-          )}
-        </ModalFooter>
-      </Modal>
-    </>
+      <ModalFooter>
+        <Button
+          type="button"
+          fullWidth
+          size="large"
+          variant="primary"
+          onClick={onContinueClick}
+        >
+          Continue
+        </Button>
+
+        {errorMessage && (
+          <div className={s.errorMsg}>
+            <ErrorIcon />
+            <Typography variant="tiny" weight="semi-bold" color="error">
+              {errorMessage}
+            </Typography>
+          </div>
+        )}
+      </ModalFooter>
+    </Modal>
   );
 };
 

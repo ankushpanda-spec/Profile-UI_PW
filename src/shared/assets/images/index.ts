@@ -1,1 +1,1 @@
-export {default as Success} from "./profile/success.gif";
+export {default} from './profile/success.gif';

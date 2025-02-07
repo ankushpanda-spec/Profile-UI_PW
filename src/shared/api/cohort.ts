@@ -1,5 +1,7 @@
-import {webSDK} from '@/shared/services/sdk/webSDK';
+import webSDK from '@/shared/services/sdk/webSDK';
 
-export function fetchCohortConfig() {
+function fetchCohortConfig() {
   return webSDK.cohortConfig;
 }
+
+export default fetchCohortConfig;

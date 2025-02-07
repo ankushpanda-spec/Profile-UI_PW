@@ -9,9 +9,9 @@ import {
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import {useState} from 'react';
-import { TermsAndConditionsProps } from '../types';
+import {TermsAndConditionsProps} from '../types';
 
-const TermsAndConditionsModal:React.FC<TermsAndConditionsProps> = ({
+const TermsAndConditionsModal: React.FC<TermsAndConditionsProps> = ({
   isOpen,
   setActiveModal,
   handleEditModalOpen,
@@ -45,8 +45,8 @@ const TermsAndConditionsModal:React.FC<TermsAndConditionsProps> = ({
             </li>
             <li>
               <Typography variant="regular" color="text-body-1">
-                You won't be able to access your batches and content on the old
-                number.
+                You won&apos;t be able to access your batches and content on the
+                old number.
               </Typography>
             </li>
           </ul>

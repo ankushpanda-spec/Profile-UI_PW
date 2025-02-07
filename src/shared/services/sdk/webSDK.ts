@@ -1,6 +1,6 @@
 import {AuthService, LoginMethods} from '@pw-tech/web-sdk';
 
-export const webSDK = AuthService.getInstance({
+const webSDK = AuthService.getInstance({
   clientSecret: process.env.PUBLIC_CLIENT_SECRET as string,
   organizationId: process.env.PUBLIC_ORGANISATION_ID as string,
   apiBaseUrl: process.env.PUBLIC_API_URL as string,
@@ -11,3 +11,5 @@ export const webSDK = AuthService.getInstance({
   loginPageUrl: '/login',
   debugMode: false,
 });
+
+export default webSDK;

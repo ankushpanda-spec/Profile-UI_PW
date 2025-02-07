@@ -1,26 +1,46 @@
-import { LabelValue, UpdateNumberConfig } from "./constants";
+export interface ImageData {
+  name: string;
+  baseUrl: string;
+  key: string;
+  status: string;
+  _id: string;
+  createdAt: Date;
+  __v: number;
+}
+
+export interface User {
+  countryCode: string;
+  countryGroup: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  address: {
+    city: string;
+    state: string;
+  };
+  email: string;
+  gender: string;
+  isProfileCompleted: boolean;
+  imageId: ImageData;
+  profileId: {
+    address: {
+      city: string;
+      state: string;
+    };
+    gender: string;
+    isProfileCompleted: string;
+  };
+  nameUpdateBlockedUntil?: string;
+  primaryNumber: string;
+}
 
 export type EditProfileModalProps = {
-    editModalOpen: boolean;
-    handleEditModalClose: () => void;
-    handleEditModalOpen: () => void;
-    userInfo: any;
-  };
+  editModalOpen: boolean;
+  handleEditModalClose: () => void;
+  handleEditModalOpen: () => void;
+};
 
- export type EditProfileFormProps = {
-    editModalOpen: boolean;
-    userInfo: any;
-    setUpdateNumberConfig:React.Dispatch<React.SetStateAction<UpdateNumberConfig | undefined>>
-    setActiveModal: React.Dispatch<React.SetStateAction<string>>
-    setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>
-    selectedMobileNumber:string
-    handleEditModalClose: () => void
-    cities: LabelValue[],
-    states: LabelValue[],
-    setSelectedState:React.Dispatch<React.SetStateAction<string>>
-  };
-
-export type NewNumberVerificationProps={
+export type NewNumberVerificationProps = {
   isOpen: boolean;
   handleEditModalOpen: () => void;
   numberChangeRequestId: string | undefined;
@@ -39,8 +59,7 @@ export type OldPhoneNumberProps = {
   selectedMobileNumber: string;
   setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>;
   handleEditModalOpen: () => void;
-  userInfo: any;
-}
+};
 
 export type OtpVerificationProps = {
   isOpen: boolean;
@@ -52,33 +71,32 @@ export type OtpVerificationProps = {
   isNewNumber: boolean;
   countryCode: string;
   showEditIcon: boolean;
-  userInfo: any;
-}
+};
 
 export type TermsAndConditionsProps = {
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   handleEditModalOpen: () => void;
-}
+};
 export type UpdateSuccessProps = {
   isOpen: boolean;
   onClose: () => void;
   primaryMessage?: string;
   secondaryMessage?: string;
-}
+};
 
 export type UserAvatarProps = {
   src?: string;
   height?: number;
   width?: number;
   className?: string;
-}
+};
 
 export type OfflineUserInstructionsProps = {
   isOpen: boolean;
   onClose: () => void;
   body: string;
-}
+};
 export type LabelValue = {
   label: string;
   value: string;
@@ -102,4 +120,91 @@ export interface UpdateNumberConfig {
   offlineInstruction: string;
   termsNCO: string;
   isAwarenessPopupEnabled: boolean;
+}
+export type EditProfileFormProps = {
+  editModalOpen: boolean;
+  setUpdateNumberConfig: React.Dispatch<
+    React.SetStateAction<UpdateNumberConfig | undefined>
+  >;
+  setActiveModal: React.Dispatch<React.SetStateAction<string>>;
+  setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>;
+  selectedMobileNumber: string;
+  handleEditModalClose: () => void;
+  cities: LabelValue[];
+  states: LabelValue[];
+  setSelectedState: React.Dispatch<React.SetStateAction<string>>;
+};
+export interface FetchStatesResponse {
+  success: boolean;
+  data: string[];
+}
+export interface FetchCitiesResponse {
+  success: boolean;
+  data: string[];
+}
+export interface Error {
+  message: string;
+  status: number;
+}
+export interface ApiResponse {
+  success: boolean;
+  message?: string | null;
+  error?: Error;
+}
+export interface GetUpdateNumberConfigResponse extends ApiResponse {
+  data: UpdateNumberConfig;
+}
+export interface LevelDetails {
+  displayOrder: number;
+  icon: string;
+  name: string;
+}
+export interface Learn2EarnConfigData {
+  featureDetails: Record<string, number>;
+  isLearnToEarnActive: boolean;
+  leaderboardUpdateFrequency: number;
+  leaderboardUpdateNextDate: Date;
+  levelDetails: LevelDetails[];
+  segmentId: string;
+}
+export interface LevelUpData {
+  currentLevel: LevelDetails;
+  highestLevel: LevelDetails;
+  totalXP: number;
+}
+export interface GetLearn2EarnConfigResponse {
+  success: boolean;
+  data: Learn2EarnConfigData;
+}
+
+export interface fetchLevelUpDataResponse {
+  success: boolean;
+  data: LevelUpData;
+}
+export interface FeedbackData {
+  satisfactoryRate: number;
+  totalSolved: number;
+  totalRated: number;
+}
+export interface doubtSolvingFeedbackDataResponse {
+  success: boolean;
+  data: FeedbackData;
+}
+
+export interface UploadFileResponse {
+  success: boolean;
+  data: ImageData;
+}
+export interface Tiles {
+  title: string;
+  value: number | string;
+  info: string;
+}
+export interface SectionValue {
+  key: string;
+  value: string;
+}
+export interface Section {
+  sectionName: string;
+  values: SectionValue[];
 }

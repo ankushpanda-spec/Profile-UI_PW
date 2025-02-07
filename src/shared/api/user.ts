@@ -1,13 +1,14 @@
-import {webSDK} from '@/shared/services/sdk/webSDK';
-import {ApiClient} from '@pw-tech/web-sdk';
-import {feedbackOverallApi} from './constants';
+import webSDK from '@/shared/services/sdk/webSDK';
 
-export const fetchUser = async () => {
+const fetchUser = async () => {
   try {
     const response = webSDK.user;
     return response;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Failed to fetch user data:', error);
+    return null;
   }
 };
 
+export default fetchUser;

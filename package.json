@@ -13,6 +13,9 @@
     "dev:demo": "rsbuild dev --open --env-mode demo",
     "dev:prod": "rsbuild dev --open --env-mode production",
     "preview": "rsbuild preview",
+    "lint:debug": "eslint --debug ./src",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -31,15 +34,35 @@
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@eslint/compat": "^1.1.1",
-    "@eslint/js": "^9.11.1",
+    "@eslint/compat": "^1.2.3",
+    "@eslint/js": "^9.15.0",
     "@module-federation/rsbuild-plugin": "0.7.0",
     "@rsbuild/core": "1.1.0",
     "@rsbuild/plugin-react": "1.0.6",
     "@types/node": "^22.7.3",
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "eslint": "^9.19.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-boundaries": "^5.0.1",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "eslint-plugin-unicorn": "^56.0.1",
+    "eslint-rspack-plugin": "^4.2.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.23.0"
   }
 }

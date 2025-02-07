@@ -1,71 +1,72 @@
 import {useState} from 'react';
 import s from '../styles/index.module.css';
-import {webSDK} from '@/shared/services/sdk';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import VerifiedIcon from '@/shared/assets/icons/Verified';
 import EditIcon from '@/shared/assets/icons/EditIcon';
-import { Typography } from '@pw-tech/omni-ui';
+import {Typography} from '@pw-tech/omni-ui';
 import EditProfile from './EditProfile';
+import {Section, SectionValue} from '../types';
+import {useUser} from '@pw-tech/omni-context';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
-  const _User: any = webSDK.user;
+  const {user} = useUser();
   const navigate = useNavigate();
-
-  const _sections: any = [];
-  _sections.push({
+  const sections: Section[] = [];
+  sections.push({
     sectionName: 'Personal Details',
     values: [
-      {key: 'Name', value: _User?.firstName + ' ' + _User?.lastName},
-      {key: 'Mobile No', value: _User?.primaryNumber},
-      {key: 'Email', value: _User?.email},
+      {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
+      {key: 'Mobile No', value: user?.primaryNumber},
+      {key: 'Email', value: user?.email},
       {
         key: 'Living City/Village/Town',
-        value: _User?.profileId?.address?.city || 'N/A',
+        value: user?.profileId?.address?.city || 'N/A',
       },
     ],
   });
 
-  _sections.push({
+  sections.push({
     sectionName: 'Academic Details',
     values: [
-      {key: 'Class', value: _User?.profileId?.class},
-      {key: 'Board/State Board', value: _User?.profileId?.board},
-      {key: 'Exams', value: _User?.profileId?.exams.join('')},
-      {key: 'Language', value: _User?.profileId?.language},
+      {key: 'Class', value: user?.profileId?.class},
+      {key: 'Board/State Board', value: user?.profileId?.board},
+      {key: 'Exams', value: user?.profileId?.exams.join('')},
+      {key: 'Language', value: user?.profileId?.language},
     ],
   });
 
   const navigateToStudentMaster = () => {
-    navigate("/student-master-program?cameFrom=Profile")
-  }
+    navigate('/student-master-program?cameFrom=Profile');
+  };
 
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
         <h4 className={s.udOneTitle}>Profile Detail</h4>
-        {/* <span
-          className={s.udEditText}
+        <div
+          className={s.editIconWrapper}
+          role="button"
+          tabIndex={0}
           onClick={() => {
             setIsEditFormOpen(!isEditFormOpen);
             setEditModalOpen(true);
           }}
+          onKeyPress={e => {
+            if (e.key === 'Enter') {
+              setIsEditFormOpen(!isEditFormOpen);
+              setEditModalOpen(true);
+            }
+          }}
         >
-          Edit
-        </span> */}
-        <div className={s.editIconWrapper} onClick={() => {
-            setIsEditFormOpen(!isEditFormOpen);
-            setEditModalOpen(true);
-          }}>
-          <EditIcon className={s.editIconClassName}/>
-          <Typography variant='regular' color="primary" weight="medium">
+          <EditIcon className={s.editIconClassName} />
+          <Typography variant="regular" color="primary" weight="medium">
             Edit
           </Typography>
-
         </div>
       </div>
-      {_sections.map((section: any, index: number) => (
+      {sections.map((section: Section, index: number) => (
         <div key={index}>
           <div className={s.udTwo}>
             <h5 className={s.udTwoSection}>{section.sectionName}</h5>
@@ -74,15 +75,27 @@ const UserDetails = () => {
             </div>
           </div>
           <div className={s.udSectionContainer}>
-            {section.values.map((data: any, index: number) => (
-              <div key={index} className={s.udSectionWrapper}>
+            {section.values.map((data: SectionValue, indexNum: number) => (
+              <div key={indexNum} className={s.udSectionWrapper}>
                 <div className={s.udSectionKey}>{data.key}</div>
-                {data.key == 'Name' ? (
+                {data.key === 'Name' ? (
                   <div className={s.udNameSection}>
-                     <div>{data.value}</div>
-                     <VerifiedIcon  className={s.verifiedIcon}/>
-                     <div className={s.studentMaster} onClick={navigateToStudentMaster}>PW Student Master</div>
-                     </div>
+                    <div>{data.value}</div>
+                    <VerifiedIcon className={s.verifiedIcon} />
+                    <div
+                      className={s.studentMaster}
+                      role="button"
+                      tabIndex={0}
+                      onClick={navigateToStudentMaster}
+                      onKeyPress={e => {
+                        if (e.key === 'Enter') {
+                          navigateToStudentMaster();
+                        }
+                      }}
+                    >
+                      PW Student Master
+                    </div>
+                  </div>
                 ) : (
                   <div className={s.udSectionValue}>{data.value}</div>
                 )}
@@ -96,7 +109,6 @@ const UserDetails = () => {
           editModalOpen={editModalOpen}
           handleEditModalClose={() => setEditModalOpen(false)}
           handleEditModalOpen={() => setEditModalOpen(true)}
-          userInfo={_User}
         />
       )}
     </div>

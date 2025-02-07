@@ -1,8 +1,8 @@
 import MFCOMMON_ROUTES from '@/shared/constants/routes.constants';
-import { Route } from 'react-router-dom';
-import { AuthGuard } from './Guards';
-import { Suspense } from 'react';
-import { MFELayout } from '@/shared/components';
+import {Route} from 'react-router-dom';
+import AuthGuard from './Guards';
+import {Suspense} from 'react';
+import {MFELayout} from '@/shared/components';
 import PDFViewer from '@/page-component/pdf-viewer/ui';
 import Profile from '@/page-component/profile/ui';
 import StudentMaster from '@/page-component/student-master-program/ui';
@@ -14,24 +14,24 @@ const RouteList = (
     <Route
       path={MFCOMMON_ROUTES.MFCOMMON_PROFILE}
       element={
-        <Suspense fallback={<ContentLoader/>}>
-        <ErrorBoundary>
-          <MFELayout title='Profile'>
-          <Profile />
-          </MFELayout>
-        </ErrorBoundary>
+        <Suspense fallback={<ContentLoader />}>
+          <ErrorBoundary>
+            <MFELayout title="Profile">
+              <Profile />
+            </MFELayout>
+          </ErrorBoundary>
         </Suspense>
       }
     />
     <Route
       path={MFCOMMON_ROUTES.MFCOMMON_STUDENT_MASTER_PROGRAM}
       element={
-        <Suspense fallback={<ContentLoader/>}>
-        <ErrorBoundary>
-          <MFELayout title='Student Master'>
-            <StudentMaster />
-          </MFELayout>
-        </ErrorBoundary>
+        <Suspense fallback={<ContentLoader />}>
+          <ErrorBoundary>
+            <MFELayout title="Student Master">
+              <StudentMaster />
+            </MFELayout>
+          </ErrorBoundary>
         </Suspense>
       }
     />

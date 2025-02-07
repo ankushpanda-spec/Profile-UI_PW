@@ -1,9 +1,9 @@
-import { cn } from '@pw-tech/omni-ui';
+import {cn} from '@pw-tech/omni-ui';
 import {ReactNode} from 'react';
 
 function Container({
   children,
-  className,
+  className = '',
 }: {
   children: ReactNode;
   className?: string;

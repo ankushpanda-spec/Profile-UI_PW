@@ -6,12 +6,14 @@ import {
 } from '@pw-tech/omni-ui';
 import {useState} from 'react';
 import s from '../styles/index.module.css';
-import {useLearn2EarnData} from '@/shared/hooks/useLearn2EarnData';
 import {webSDK} from '@/shared/services/sdk';
 import InfoIcon from '@/shared/assets/icons/InfoIcon';
-import { XPIcon } from '../constants';
+import {XPIcon} from '../constants';
+import useLearn2EarnData from '../hooks/useLearn2EarnData';
+
 const LevelUpContainer = () => {
   const {data: learn2EarnProfileData} = useLearn2EarnData(
+    // eslint-disable-next-line no-underscore-dangle
     webSDK?.cohortConfig?._id || ''
   );
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
@@ -31,19 +33,19 @@ const LevelUpContainer = () => {
               <Tooltip
                 label={<InfoIcon />}
                 open={showTooltip}
-                onClose={handleToolTipClose}
-                origin={'center'}
+                onClose={() => handleToolTipClose()}
+                origin="center"
                 position="bottom"
                 variant="dark"
               >
                 <div className={s.levelUpWrapper}>
                   <TooltipHeader>Total XP</TooltipHeader>
                   <TooltipBody>
-                  <Typography component="p" variant="small">
-                    This is the lifetime XP that you have earned throughout your
-                    PW Level Up journey. <br />
-                    Note : That this is not the Weekly XP that appears on the
-                    widget in the top navigation bar.
+                    <Typography component="p" variant="small">
+                      This is the lifetime XP that you have earned throughout
+                      your PW Level Up journey. <br />
+                      Note : That this is not the Weekly XP that appears on the
+                      widget in the top navigation bar.
                     </Typography>
                   </TooltipBody>
                 </div>
@@ -52,7 +54,7 @@ const LevelUpContainer = () => {
           </div>
           <div className={s.levelUpParentFour}>
             {learn2EarnProfileData?.totalXP ?? 'NA'}{' '}
-            <img src={XPIcon} height={18} width={18} />
+            <img src={XPIcon} height={18} width={18} alt="XPIcon" />
           </div>
         </div>
         <div className={s.levelUpMapContainer}>
@@ -64,8 +66,8 @@ const LevelUpContainer = () => {
               <Tooltip
                 label={<InfoIcon />}
                 open={showTooltip}
-                onClose={handleToolTipClose}
-                origin={'end'}
+                onClose={() => handleToolTipClose()}
+                origin="end"
                 position="bottom"
                 variant="dark"
               >
@@ -73,8 +75,8 @@ const LevelUpContainer = () => {
                   <TooltipHeader>Highest Level</TooltipHeader>
                   <TooltipBody>
                     <Typography component="p" variant="small">
-                    This is the highest level that you have reached at any point
-                    in your PW Level Up journey.
+                      This is the highest level that you have reached at any
+                      point in your PW Level Up journey.
                     </Typography>
                   </TooltipBody>
                 </div>
@@ -89,6 +91,7 @@ const LevelUpContainer = () => {
                   src={learn2EarnProfileData?.highestLevel?.icon}
                   height={18}
                   width={18}
+                  alt=""
                 />
               )}
           </div>

@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@pw-tech/omni-ui';
 import React, {useEffect, useState} from 'react';
-import useProfileUtils from  '../lib/profileUtils'
+import useProfileUtils from '../lib/profileUtils';
 import {Controller, useForm} from 'react-hook-form';
 import {
   handleSelectCity,
@@ -21,23 +21,24 @@ import {
   onNameClickedRemove,
 } from '../lib';
 import s from '../styles/index.module.css';
-import getErrorMessage from '../services/showErrorService';
+
 import {fetchUpdateNumberConfig} from '../api';
-import { EditProfileFormProps } from '../types';
+import {EditProfileFormProps} from '../types';
+import {useUser} from '@pw-tech/omni-context';
+import getErrorMessage from '@/shared/services/showErrorService';
 
-
-  const EditProfileForm: React.FC<EditProfileFormProps> = ({
-    editModalOpen,
-    userInfo,
-    setUpdateNumberConfig,
-    setActiveModal,
-    setOfflineInstructions,
-    selectedMobileNumber,
-    handleEditModalClose,
-    cities,
-    states,
-    setSelectedState,
-  }) => {
+const EditProfileForm: React.FC<EditProfileFormProps> = ({
+  editModalOpen,
+  setUpdateNumberConfig,
+  setActiveModal,
+  setOfflineInstructions,
+  selectedMobileNumber,
+  handleEditModalClose,
+  cities,
+  states,
+  setSelectedState,
+}) => {
+  const {user: userInfo, setUser} = useUser();
   const formData = {
     firstName: userInfo?.firstName || '',
     lastName: userInfo?.lastName || '',
@@ -48,36 +49,32 @@ import { EditProfileFormProps } from '../types';
     state: userInfo?.profileId?.address?.state || '',
   };
 
-  const {handleSubmit, control, setValue, watch, formState, reset} = useForm({
-    defaultValues: formData,
-  });
-  
+  const {handleSubmit, control, setValue, watch, formState, reset, trigger} =
+    useForm({
+      defaultValues: formData,
+    });
+
   const [showWarningForNameChange, setShowWarningForNameChange] =
     useState(false);
-    const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
+  const [isUpdateNameDisabled, setIsUpdateNameDisabled] = useState(false);
   const [isUpdateNumberConfigLoading, setIsUpdateNumberConfigLoading] =
     useState(false);
-    const [calculatedDate, setCalculatedDate] = useState<string | null>(null);
+  const [calculatedDate, setCalculatedDate] = useState<string | null>(null);
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
-  
+
   useEffect(() => {
-   setSelectedState(selectedState)
-  } , [selectedState])
+    setSelectedState(selectedState);
+  }, [selectedState]);
 
-  const {
-    checkDigitInput,
-    checkEmail,
-    handleFormSubmit,
-  } = useProfileUtils();
-
+  const {checkDigitInput, checkEmail, handleFormSubmit} = useProfileUtils();
 
   const handleUpdateNumber = async () => {
     setUpdateNumberErrorMessage('');
     setIsUpdateNumberConfigLoading(true);
     try {
-      const res: any = await fetchUpdateNumberConfig();
+      const res = await fetchUpdateNumberConfig();
 
       setUpdateNumberConfig(res.data);
       const isPureOfflineUser = !!res.data.isOffline;
@@ -103,6 +100,7 @@ import { EditProfileFormProps } from '../types';
       setIsUpdateNumberConfigLoading(false);
     }
   };
+
   useEffect(() => {
     const nameUpdateBlockedUntil = userInfo?.nameUpdateBlockedUntil;
     const currentDate = new Date();
@@ -132,7 +130,6 @@ import { EditProfileFormProps } from '../types';
     }
   }, [userInfo]);
 
- 
   return (
     <Modal
       closeOnOutsideClick
@@ -152,18 +149,17 @@ import { EditProfileFormProps } from '../types';
       <Separator />
       <form
         autoComplete="off"
-        onKeyDown={e => {
-          if (e.key === 'Enter') e.preventDefault();
-        }}
         onSubmit={e => {
-          e.preventDefault(); // Prevent default form submission behavior
+          e.preventDefault();
+          // Prevent default form submission behavior
           handleSubmit(data =>
             handleFormSubmit(
               data,
               setValue,
               setActiveModal,
+              handleEditModalClose,
               userInfo,
-              handleEditModalClose
+              setUser
             )
           )();
         }}
@@ -260,6 +256,10 @@ import { EditProfileFormProps } from '../types';
                         checked={selectedGender === 'Male'}
                         variant="primary"
                         size="sm"
+                        onChange={() => {
+                          field.onChange('Male');
+                          trigger(); // Trigger validation
+                        }}
                       />
                     )}
                   />
@@ -281,6 +281,10 @@ import { EditProfileFormProps } from '../types';
                         checked={selectedGender === 'Female'}
                         variant="primary"
                         size="sm"
+                        onChange={() => {
+                          field.onChange('Female');
+                          trigger(); // Trigger validation
+                        }}
                       />
                     )}
                   />
@@ -300,11 +304,7 @@ import { EditProfileFormProps } from '../types';
               render={({field}) => (
                 <InputField
                   {...field}
-                  value={
-                    selectedMobileNumber
-                      ? selectedMobileNumber
-                      : userInfo?.primaryNumber
-                  }
+                  value={selectedMobileNumber || userInfo?.primaryNumber}
                   label="Mobile Number"
                   placeholder="Enter Mobile Number"
                   type="number"
@@ -320,7 +320,7 @@ import { EditProfileFormProps } from '../types';
                   readOnly
                   action={handleUpdateNumber}
                   message={updateNumberErrorMessage}
-                  error={updateNumberErrorMessage ? true : false}
+                  error={!!updateNumberErrorMessage}
                 />
               )}
             />
@@ -357,7 +357,10 @@ import { EditProfileFormProps } from '../types';
                   variant="outside"
                   required={false}
                   options={states}
-                  onChange={e => handleSelectState(e, setValue)}
+                  onChange={e => {
+                    handleSelectState(e, setValue);
+                    trigger();
+                  }}
                 />
               )}
             />
@@ -376,7 +379,10 @@ import { EditProfileFormProps } from '../types';
                   label="City"
                   variant="outside"
                   required={false}
-                  onChange={e => handleSelectCity(e, setValue)}
+                  onChange={e => {
+                    handleSelectCity(e, setValue);
+                    trigger(); // Trigger validation
+                  }}
                   disabled={!selectedState}
                 />
               )}
@@ -411,6 +417,6 @@ import { EditProfileFormProps } from '../types';
       </form>
     </Modal>
   );
-}
+};
 
 export default EditProfileForm;

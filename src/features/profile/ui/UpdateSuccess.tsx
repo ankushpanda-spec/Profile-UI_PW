@@ -1,9 +1,9 @@
-import {Typography, ModalHeader, ModalBody, Modal} from '@pw-tech/omni-ui';
+import {Typography, ModalBody, Modal} from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {Success} from '@/shared/assets/images';
-import { UpdateSuccessProps } from '../types';
+import Success from '@/shared/assets/images';
+import {UpdateSuccessProps} from '../types';
 
-const UpdateSuccessModal:React.FC<UpdateSuccessProps> = ({
+const UpdateSuccessModal: React.FC<UpdateSuccessProps> = ({
   isOpen,
   onClose,
   primaryMessage = 'Your number has been successfully changed!',

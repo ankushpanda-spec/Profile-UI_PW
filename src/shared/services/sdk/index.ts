@@ -1,2 +1,2 @@
-export {cohortSDK} from './cohortSDK';
-export {webSDK} from './webSDK';
+export {default as cohortSDK} from './cohortSDK';
+export {default as webSDK} from './webSDK';

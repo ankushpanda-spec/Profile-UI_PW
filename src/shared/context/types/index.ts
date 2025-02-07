@@ -1,19 +1,17 @@
-import { ReactNode } from "react";
+import {ReactNode} from 'react';
 
 export type ErrorContextType = {
-    showError: (error:string) => void;
-   
-  };
+  showError: (error: string) => void;
+};
 
 export interface ErrorWrapperProps {
-    children?: ReactNode;
-  }
+  children?: ReactNode;
+}
 export interface LoaderWrapperProps {
-    children?: ReactNode;
-  }
+  children?: ReactNode;
+}
 
 export type LoaderContextType = {
-    showLoader: (primaryMessage:string , secondaryMessage?:string) => void;
-    hideLoader: () => void;
-  };
-  
+  showLoader: (primaryMessage: string, secondaryMessage?: string) => void;
+  hideLoader: () => void;
+};
