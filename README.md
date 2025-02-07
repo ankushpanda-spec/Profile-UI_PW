@@ -102,6 +102,8 @@ The output will be in the \`dist/\` directory, ready for deployment.
 | ------------ | ----------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Development   | [https://common-mf-dev.physicswallah.live](https://common-mf-dev.physicswallah.live) | [Dev Jenkins Job](https://jenkins.penpencil.co/job/Development/job/pw-common-mf/) | Use the \`development\` branch. Merges require review and approval from senior developers. |
 | Staging    | [https://common-mf-stage.physicswallah.live](https://common-mf-stage.physicswallah.live/) | [https://jenkins.penpencil.co/job/Staging/job/pw-common-mf/](https://jenkins.penpencil.co/job/Staging/job/pw-common-mf/) | Use the \`staging\` branch. Merges require review and approval from senior developers. |
+| Production    | NA | NA | NA |
+
 
 
 ## Contributors
