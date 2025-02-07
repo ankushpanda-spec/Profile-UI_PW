@@ -1,7 +1,7 @@
 import fetchUser from '@/shared/api/user';
 import {useUser} from '@pw-tech/omni-context';
 import {ReactNode, useEffect} from 'react';
-import Container from '../container-temp';
+import Container from '../container';
 
 const Base = ({children}: {children: ReactNode}) => {
   const {setUser} = useUser();

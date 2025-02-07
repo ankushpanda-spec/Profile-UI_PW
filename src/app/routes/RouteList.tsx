@@ -3,9 +3,9 @@ import {Route} from 'react-router-dom';
 import AuthGuard from './Guards';
 import {Suspense} from 'react';
 import {MFELayout} from '@/shared/components';
-import PDFViewer from '@/page-component/pdf-viewer-temp/ui';
-import Profile from '@/page-component/profile-temp/ui';
-import StudentMaster from '@/page-component/student-master-program-temp/ui';
+import PDFViewer from '@/page-component/pdf-viewer/ui';
+import Profile from '@/page-component/profile/ui';
+import StudentMaster from '@/page-component/student-master-program/ui';
 import ErrorBoundary from '../pages/error-boundary';
 import ContentLoader from '@/shared/components/content-skeleton/ui';
 
