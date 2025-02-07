@@ -13,7 +13,7 @@ export default defineConfig({
   },
   source: {
     entry: {
-      index: "./src/index.tsx",
+      index: "./src/app/index.tsx"
     },
     alias: {
       '@/*': './src/*',
@@ -28,7 +28,7 @@ export default defineConfig({
       name: 'MFCommon',
       filename: 'remoteEntry.js',
       exposes: {
-        './MfCommon': './src/routes/RouteList.tsx',
+        './MfCommon': './src/app/routes/RouteList.tsx'
       },
       shared: {
         react: {
