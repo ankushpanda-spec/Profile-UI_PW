@@ -2,7 +2,7 @@ import {Route, Routes} from 'react-router-dom';
 import RouteList from './RouteList';
 import Login from '@/page-component/login/ui';
 import AuthGuard from './Guards';
-import Study from '@/page-component/Study-temp/ui';
+import Study from '@/page-component/study/ui';
 import ErrorBoundary from '../pages/error-boundary';
 import My404NotFound from '../pages/not-found';
 
