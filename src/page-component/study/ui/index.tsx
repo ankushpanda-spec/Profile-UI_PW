@@ -12,8 +12,7 @@ const Study = () => {
           OMNI CONTEXT SCREEN PROVIDER WIDTH:{width}
         </Typography>
         <Typography variant="heading4">Hello From Study</Typography>
-        <Button 
-        variant="dark" size="small" className="h-auto">
+        <Button variant="dark" size="small" className="h-auto">
           Click me
         </Button>
         <Typography variant="regular">
