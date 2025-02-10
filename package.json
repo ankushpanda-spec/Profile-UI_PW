@@ -18,6 +18,7 @@
     "lint:fix": "eslint --fix ./src",
     "prepare": "husky",
     "format": "prettier --write .",
+    "commit-guide": "bash commitGuide.sh",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org physics-wallah-nn --project pw-mf-common-fe-react ./dist && sentry-cli sourcemaps upload --org physics-wallah-nn --project pw-mf-common-fe-react ./dist"
   },
   "dependencies": {
