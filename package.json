@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "rsbuild build --env-mode production",
+    "build": "rsbuild build --env-mode production && pnpm sentry:sourcemaps",
     "build:staging": "rsbuild build --env-mode staging",
     "build:development": "rsbuild build --env-mode development",
     "build:demo": "rsbuild build --env-mode demo",
@@ -16,13 +16,17 @@
     "lint:debug": "eslint --debug ./src",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org physics-wallah-nn --project pw-mf-common-fe-react ./dist && sentry-cli sourcemaps upload --org physics-wallah-nn --project pw-mf-common-fe-react ./dist"
   },
   "dependencies": {
     "@pw-tech/omni-context": "0.0.6-alpha-1.4",
     "@pw-tech/omni-ui": "0.0.17-alpha-1.14",
     "@pw-tech/web-sdk": "0.0.6-23",
     "@radix-ui/react-popover": "^1.1.1",
+    "@sentry/cli": "^2.41.1",
+    "@sentry/react": "^8.54.0",
+    "@sentry/webpack-plugin": "^3.1.2",
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

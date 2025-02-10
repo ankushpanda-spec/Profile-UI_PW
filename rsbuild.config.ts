@@ -1,3 +1,4 @@
+import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 import {pluginModuleFederation} from '@module-federation/rsbuild-plugin';
 import {defineConfig} from '@rsbuild/core';
 import {pluginReact} from '@rsbuild/plugin-react';
@@ -58,7 +59,15 @@ export default defineConfig({
   ],
   tools: {
     rspack: (config, {appendPlugins}) => {
-      appendPlugins([]);
+      config.devtool = 'source-map'
+      appendPlugins([
+        sentryWebpackPlugin({
+          moduleMetadata: {
+            dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your project's DSN
+          },
+        }),
+      ]);
+      return config;
     },
   },
 
