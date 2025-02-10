@@ -16,6 +16,7 @@
     "lint:debug": "eslint --debug ./src",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
+    "prepare": "husky",
     "format": "prettier --write .",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org physics-wallah-nn --project pw-mf-common-fe-react ./dist && sentry-cli sourcemaps upload --org physics-wallah-nn --project pw-mf-common-fe-react ./dist"
   },
@@ -64,6 +65,7 @@
     "eslint-plugin-unicorn": "^56.0.1",
     "eslint-rspack-plugin": "^4.2.1",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "typescript": "^5.6.2",
