@@ -12,15 +12,8 @@ const Study = () => {
           OMNI CONTEXT SCREEN PROVIDER WIDTH:{width}
         </Typography>
         <Typography variant="heading4">Hello From Study</Typography>
-        <button
-          onClick={() => {
-            throw new Error('This is your first error!');
-          }}
-        >
-          Break the world
-        </button>
-        ;
-        <Button variant="dark" size="small" className="h-auto">
+        <Button 
+        variant="dark" size="small" className="h-auto">
           Click me
         </Button>
         <Typography variant="regular">
