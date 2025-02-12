@@ -14,10 +14,10 @@ Sentry.init({
   dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your Sentry project's DSN
   integrations: [
     Sentry.browserTracingIntegration(),
-    Sentry.replayIntegration(),
+    // Sentry.replayIntegration(),
   ],
   // Tracing
-  tracesSampleRate: 0.5,
+  tracesSampleRate: 1.0,
   tracePropagationTargets: [
     'localhost',
     'https://staging.physicswallah.live/study-v2',
