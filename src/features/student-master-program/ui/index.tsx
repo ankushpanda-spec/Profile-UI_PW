@@ -84,6 +84,13 @@ const StudentMasterProgram = () => {
         <Typography weight="semi-bold" variant="heading3">
           PW Student Master Program
         </Typography>
+        <button
+          onClick={() => {
+            throw new Error('This is your third error!');
+          }}
+        >
+          Break the world
+        </button>
       </div>
       <div className={s.smAbout}>
         <div className={s.smAboutTitle}>

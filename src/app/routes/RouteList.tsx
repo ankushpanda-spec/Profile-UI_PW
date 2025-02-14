@@ -9,9 +9,12 @@ import Profile from '@/page-component/profile/ui';
 import StudentMaster from '@/page-component/student-master-program/ui';
 import ErrorBoundary from '../pages/error-boundary';
 import ContentLoader from '@/shared/components/content-skeleton/ui';
+import pkVersion from '../../../package.json';
 
 Sentry.init({
   dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your Sentry project's DSN
+  environment: process.env.NODE_ENV,
+  release: pkVersion.version,
   integrations: [
     Sentry.browserTracingIntegration(),
     // Sentry.replayIntegration(),
@@ -19,7 +22,6 @@ Sentry.init({
   // Tracing
   tracesSampleRate: 1.0,
   tracePropagationTargets: [
-    'localhost',
     'https://staging.physicswallah.live/study-v2',
     'https://dev.physicswallah.live/study-v2',
   ],
