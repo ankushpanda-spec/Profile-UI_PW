@@ -1,5 +1,3 @@
-# Run Commitlint
-if ! npx --no-install commitlint --edit "$1"; then
   # Define styles for color and formatting
   border="═══════════════════════════════════════════════"
   red="\033[1;31m"
@@ -25,7 +23,7 @@ if ! npx --no-install commitlint --edit "$1"; then
 
   # Display error header
   echo -e "${cyan}${border}${reset}"
-  echo -e "${red}${bold}🚨 ERROR: Commit message does not follow the required format.${reset}"
+  echo -e "${green}${bold}🚨 How to write a commit message?${reset}"
   echo -e "${cyan}${border}${reset}"
 
   # Format requirements
@@ -84,12 +82,3 @@ if ! npx --no-install commitlint --edit "$1"; then
 
   # Final border and exit
   echo -e "${cyan}${border}${reset}"
-
-  # Exit with status code 1 to prevent the commit
-  exit 1
-else
-  # If commit is successful, display success message
-  echo -e "${green}${bold}✅ Commit successful: Code committed successfully!${reset}"
-  echo -e "${cyan}${border}${reset}"
-fi
-

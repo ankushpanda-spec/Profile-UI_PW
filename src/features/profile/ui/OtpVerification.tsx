@@ -18,7 +18,6 @@ import {webSDK} from '@/shared/services/sdk';
 import {ApiResponse, OtpVerificationProps} from '../types';
 import {useUser} from '@pw-tech/omni-context';
 import {User} from '@pw-tech/web-sdk';
-import DisappearingMessage from './DisappearingMessage';
 
 const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isOpen,
@@ -182,13 +181,10 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
             <OTP length={6} value={otp} onChange={handleOnChange} />
 
             {/* Resend OTP Timer */}
-            {/* {showResendMessage && (
+            {showResendMessage && (
               <Typography color="success" variant="regular" weight="medium">
                 OTP has been resent
               </Typography>
-            )} */}
-            {showResendMessage && (
-              <DisappearingMessage message="OTP has been resent" />
             )}
             {timeLeft > 0 && (
               <Typography

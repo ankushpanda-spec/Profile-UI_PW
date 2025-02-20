@@ -1,7 +1,9 @@
 # MF Common
+
 MF Common is a microfrontend application utilizing Module Federation to share common features and functions with the `study-main-mf` shell app. It includes shared modules, components, and utilities for features like, making them reusable across different parts of the application.
 
 ## Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Tech Stack](#tech-stack)
 3. [Prerequisites](#prerequisites)
@@ -20,6 +22,7 @@ The application includes the following features:
 
 - **Profile Page** : This module manages and shares the `profile` page functionality and component.
 - **PDF Viewer** : It provides a standardized `/notes` route used to render PDF files, ensuring a consistent approach to viewing and interacting with PDFs within the application.
+
 ### Architecture
 
 - This application follows a Microfrontend Architecture.
@@ -32,7 +35,7 @@ The application includes the following features:
 - **TypeScript**: Programming language
 - **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
 - **CSS Modules**: Scoped and modular CSS to avoid global namespace conflicts.
-- **Rsbuild**:  Fast and efficient build tool for Rust-based projects.
+- **Rsbuild**: Fast and efficient build tool for Rust-based projects.
 - **Module Federation**: Webpack feature for sharing code between different applications at runtime, enabling micro-frontend architecture.
 
 ## Prerequisites
@@ -53,10 +56,13 @@ Clone the project repository:
 ```bash
 git clone https://gitlab.com/penpencil-services/central-team-fe/mf-common.git
 ```
+
 Navigate into the project directory:
+
 ```bash
 cd mf-common
 ```
+
 ### Installing Dependencies
 
 Install project dependencies using pnpm:
@@ -70,39 +76,38 @@ pnpm install
 As this is a frontend application, no specific database setup or migration is required.
 
 ## Running the Project
+
 To start the development server, run:
 
-| **Environments** | **Run Command**                                                       | **Description**                                                       |
-|-----------------|---------------------------------------------------------------------------|------------------------------------------------------------------------|
-| Staging      | ```pnpm dev:staging ```  | Runs the application in the staging environment.   |
-| Production      |```pnpm dev:prod``` |Runs the application in the production environment.  |
-| System      | ```pnpm dev```| Starts the development server for local development.    |
-| Demo      | ```pnpm dev:demo``` | Runs the application in the pre-production environment, used for final testing before deployment.|
+| **Environments** | **Run Command**     | **Description**                                                                                   |
+| ---------------- | ------------------- | ------------------------------------------------------------------------------------------------- |
+| Staging          | `pnpm dev:staging ` | Runs the application in the staging environment.                                                  |
+| Production       | `pnpm dev:prod`     | Runs the application in the production environment.                                               |
+| System           | `pnpm dev`          | Starts the development server for local development.                                              |
+| Demo             | `pnpm dev:demo`     | Runs the application in the pre-production environment, used for final testing before deployment. |
 
 Visit [http://localhost:3000/study-v2](http://localhost:3000/study-v2) to access the application.
 
 ### Building the Project
 
 Build the project with the following command:
-| **Environments** | **Build Command**                                                       | **Description**                                                       |
+| **Environments** | **Build Command** | **Description** |
 |-----------------|---------------------------------------------------------------------------|------------------------------------------------------------------------|
-| Development      | ```pnpm build:development ```  | Builds the application for the development environment, optimized for debugging and local testing.    |
-| Staging      | ```pnpm build:staging ```  | Builds the application for the staging environment, simulating a production-like setup for testing.  |
-| Production      |```pnpm build:production``` |Builds the application for the production environment with full optimizations for end users.|
-| System      | ```pnpm build:system```| Builds the application for internal system testing or specific internal configurations.    |
-| Demo      | ```pnpm build:demo``` | Builds the application for the pre-production environment, used for final testing before deployment.|
-
-
+| Development | `pnpm build:development ` | Builds the application for the development environment, optimized for debugging and local testing. |
+| Staging | `pnpm build:staging ` | Builds the application for the staging environment, simulating a production-like setup for testing. |
+| Production |`pnpm build:production` |Builds the application for the production environment with full optimizations for end users.|
+| System | `pnpm build:system`| Builds the application for internal system testing or specific internal configurations. |
+| Demo | `pnpm build:demo` | Builds the application for the pre-production environment, used for final testing before deployment.|
 
 The output will be in the \`dist/\` directory, ready for deployment.
+
 ## Deployments
 
-
-| Environments | Environment URLs        | Jenkins Jobs        | Deployment Instructions                                                                                         |
-| ------------ | ----------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Development   | [https://common-mf-dev.physicswallah.live](https://common-mf-dev.physicswallah.live) | [Dev Jenkins Job](https://jenkins.penpencil.co/job/Development/job/pw-common-mf/) | Use the \`development\` branch. Merges require review and approval from senior developers. |
-| Staging    | NA | NA | NA |
-
+| Environments | Environment URLs                                                                          | Jenkins Jobs                                                                                                             | Deployment Instructions                                                                    |
+| ------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Development  | [https://common-mf-dev.physicswallah.live](https://common-mf-dev.physicswallah.live)      | [Dev Jenkins Job](https://jenkins.penpencil.co/job/Development/job/pw-common-mf/)                                        | Use the \`development\` branch. Merges require review and approval from senior developers. |
+| Staging      | [https://common-mf-stage.physicswallah.live](https://common-mf-stage.physicswallah.live/) | [https://jenkins.penpencil.co/job/Staging/job/pw-common-mf/](https://jenkins.penpencil.co/job/Staging/job/pw-common-mf/) | Use the \`staging\` branch. Merges require review and approval from senior developers.     |
+| Production   | NA                                                                                        | NA                                                                                                                       | NA                                                                                         |
 
 ## Contributors
 
