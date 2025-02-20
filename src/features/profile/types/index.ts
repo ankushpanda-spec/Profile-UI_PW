@@ -208,3 +208,15 @@ export interface Section {
   sectionName: string;
   values: SectionValue[];
 }
+export interface ProfileInfo {
+  board: string;
+  class: string;
+  cohortId: string;
+  exams: string[];
+  stream: string;
+  language: string;
+}
+export interface getUserProfileInfoResponse {
+  success: boolean;
+  data: ProfileInfo;
+}

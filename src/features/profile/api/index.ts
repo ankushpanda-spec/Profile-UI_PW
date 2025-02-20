@@ -1,5 +1,6 @@
 import {
   feedbackOverallApi,
+  GET_USER_PROFILE_INFO,
   getCitiesApi,
   getIsEligible,
   getOtp,
@@ -18,6 +19,7 @@ import {
   FetchStatesResponse,
   GetLearn2EarnConfigResponse,
   GetUpdateNumberConfigResponse,
+  getUserProfileInfoResponse,
   UploadFileResponse,
 } from '../types';
 import {User} from '@pw-tech/omni-context/dist/context/user';
@@ -115,4 +117,13 @@ export const doubtSolvingFeedbackData = async () => {
 
 export const learn2earnData = async (cohortId: string) => {
   return fetchLevelUpData(cohortId);
+};
+
+export const getUserProfileInfo = async (query: Record<string, string>) => {
+  const baseUrl = GET_USER_PROFILE_INFO();
+  const params = new URLSearchParams(query);
+  const url = `${baseUrl}?${params.toString()}`;
+
+  const response = await ApiClient.get<getUserProfileInfoResponse>(url, {});
+  return response.data;
 };

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import s from '../styles/index.module.css';
 import {useNavigate} from 'react-router-dom';
 import VerifiedIcon from '@/shared/assets/icons/Verified';
@@ -7,35 +7,67 @@ import {Typography} from '@pw-tech/omni-ui';
 import EditProfile from './EditProfile';
 import {Section, SectionValue} from '../types';
 import {useUser} from '@pw-tech/omni-context';
+import {getUserProfileInfo} from '../api';
+import {updateUserLocally} from '../lib';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
-  const {user} = useUser();
+  const [sections, setSections] = useState<Section[]>([]);
+  const {user, setUser} = useUser();
   const navigate = useNavigate();
-  const sections: Section[] = [];
-  sections.push({
-    sectionName: 'Personal Details',
-    values: [
-      {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
-      {key: 'Mobile No', value: user?.primaryNumber},
-      {key: 'Email', value: user?.email},
-      {
-        key: 'Living City/Village/Town',
-        value: user?.profileId?.address?.city || 'N/A',
-      },
-    ],
-  });
 
-  sections.push({
-    sectionName: 'Academic Details',
-    values: [
-      {key: 'Class', value: user?.profileId?.class},
-      {key: 'Board/State Board', value: user?.profileId?.board},
-      {key: 'Exams', value: user?.profileId?.exams.join('')},
-      {key: 'Language', value: user?.profileId?.language},
-    ],
-  });
+  useEffect(() => {
+    const getUserData = async () => {
+      const query = {
+        fields: [
+          'cohortId',
+          'exams',
+          'class',
+          'stream',
+          'language',
+          'board',
+        ].join(','),
+      };
+
+      try {
+        const res = await getUserProfileInfo(query);
+        updateUserLocally(res, user, setUser);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserData();
+  }, [setUser]);
+
+  useEffect(() => {
+    const updatedSections: Section[] = [];
+
+    updatedSections.push({
+      sectionName: 'Personal Details',
+      values: [
+        {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
+        {key: 'Mobile No', value: user?.primaryNumber},
+        {key: 'Email', value: user?.email},
+        {
+          key: 'Living City/Village/Town',
+          value: user?.profileId?.address?.city || 'N/A',
+        },
+      ],
+    });
+
+    updatedSections.push({
+      sectionName: 'Academic Details',
+      values: [
+        {key: 'Class', value: user?.profileId?.class || 'N/A'},
+        {key: 'Board/State Board', value: user?.profileId?.board || 'N/A'},
+        {key: 'Exams', value: user?.profileId?.exams.join('') || 'N/A'},
+        {key: 'Language', value: user?.profileId?.language || 'N/A'},
+      ],
+    });
+
+    setSections(updatedSections);
+  }, [user]);
 
   const navigateToStudentMaster = () => {
     navigate('/student-master-program?cameFrom=Profile');
