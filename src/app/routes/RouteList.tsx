@@ -21,10 +21,7 @@ Sentry.init({
   ],
   // Tracing
   tracesSampleRate: 1.0,
-  tracePropagationTargets: [
-    'https://staging.physicswallah.live/study-v2',
-    'https://dev.physicswallah.live/study-v2',
-  ],
+  enabled: `${process.env.PUBLIC_ENV}` !== 'system',
   // Session Replay
   replaysSessionSampleRate: 0.5,
   replaysOnErrorSampleRate: 0.5,
