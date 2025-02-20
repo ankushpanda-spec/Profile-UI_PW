@@ -9,12 +9,15 @@ import {Section, SectionValue} from '../types';
 import {useUser} from '@pw-tech/omni-context';
 import {getUserProfileInfo} from '../api';
 import {updateUserLocally} from '../lib';
+import getErrorMessage from '@/shared/services/showErrorService';
+import useError from '@/shared/hooks/showError';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
   const [sections, setSections] = useState<Section[]>([]);
   const {user, setUser} = useUser();
+  const showError = useError();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +37,8 @@ const UserDetails = () => {
         const res = await getUserProfileInfo(query);
         updateUserLocally(res, user, setUser);
       } catch (error) {
-        console.log(error);
+        const errorObj = getErrorMessage(error);
+        showError(errorObj.message);
       }
     };
     getUserData();
