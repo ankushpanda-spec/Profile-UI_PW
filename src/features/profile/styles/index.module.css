@@ -3,10 +3,10 @@
 }
 
 .containerChildOne {
-  @apply col-span-8 lg:col-span-2 gap-16 flex flex-col max-w-max mx-auto;
+  @apply col-span-8 mx-auto flex max-w-max flex-col gap-16 lg:col-span-2;
 }
-.containerChildOneWrapper{
-  @apply flex flex-col gap-8 justify-center items-center
+.containerChildOneWrapper {
+  @apply flex flex-col items-center justify-center gap-8;
 }
 
 .wrapper {
@@ -14,10 +14,10 @@
 }
 
 .userAvatarContainer {
-  @apply  w-[100px] h-[100px] lg:w-[159px] lg:h-[159px] rounded-full object-contain;
+  @apply h-[100px] w-[100px] rounded-full object-contain lg:h-[159px] lg:w-[159px];
 }
 .cameraIcon {
-  @apply absolute bottom-0 -right-8 lg:right-12 cursor-pointer ;
+  @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
 }
 .profileDetails {
   @apply col-span-8 flex flex-col lg:col-span-6;
@@ -105,17 +105,17 @@
   @apply text-xs font-semibold text-[#878787] lg:text-sm;
 }
 
-.udNameSection{
-  @apply w-3/5 flex flex-row gap-8 items-center text-xs text-[#333333] lg:text-sm
+.udNameSection {
+  @apply flex w-3/5 flex-row items-center gap-8 text-xs text-[#333333] lg:text-sm;
 }
-.studentMaster{
-  @apply text-[#5A4BDA] font-semibold hover:underline cursor-pointer
+.studentMaster {
+  @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
 }
 .udSectionValue {
   @apply w-3/5 text-xs text-[#333333] lg:text-sm;
 }
-.verifiedIcon{
-  @apply w-10 h-10 items-center
+.verifiedIcon {
+  @apply h-10 w-10 items-center;
 }
 .pdContainer {
   @apply flex w-full flex-col rounded-lg p-8;
@@ -146,7 +146,7 @@
   @apply flex align-bottom;
 }
 .knowMore {
-  @apply ml-10 mt-4 align-text-bottom text-[10px] text-xs text-primary hover:underline cursor-pointer;
+  @apply ml-10 mt-4 cursor-pointer align-text-bottom text-[10px] text-xs text-primary hover:underline;
 }
 .titleContainer {
   @apply mt-16 flex flex-col gap-12 sm:flex-row;
@@ -155,108 +155,107 @@
   @apply flex flex-row items-center justify-end gap-12;
 }
 
-.terms{
-  @apply flex flex-col items-start gap-24
+.terms {
+  @apply flex flex-col items-start gap-24;
 }
 .termsList {
   @apply mt-2 list-disc pl-5;
 }
-.termsFooter{
-  @apply flex items-start gap-16 self-stretch
+.termsFooter {
+  @apply flex items-start gap-16 self-stretch;
 }
 
 .modalFooter {
-  @apply flex md:justify-end flex-row gap-12 md:self-stretch;
+  @apply flex flex-row gap-12 md:justify-end md:self-stretch;
 }
 
-.epCTA{
-  @apply md:w-[138px] w-full
+.epCTA {
+  @apply w-full md:w-[138px];
 }
 .fullWidthFooter {
   @apply w-full justify-between;
 }
 
-.epNameContainer{
-  @apply flex flex-col items-start gap-8
+.epNameContainer {
+  @apply flex flex-col items-start gap-8;
 }
 
-.epNameSubContainer{
-  @apply flex w-full flex-col items-start gap-12
+.epNameSubContainer {
+  @apply flex w-full flex-col items-start gap-12;
 }
 
-.epGenderWrapper{
-  @apply flex items-center gap-24
+.epGenderWrapper {
+  @apply flex items-center gap-24;
 }
-.epGenderContainer{
-  @apply flex items-center gap-12
+.epGenderContainer {
+  @apply flex items-center gap-12;
 }
-.epGenderSubContainer{
-  @apply flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32
+.epGenderSubContainer {
+  @apply flex w-[104px] flex-col items-start gap-10 py-12 pl-10 pr-32;
 }
-.epGender{
-  @apply flex items-start gap-10
+.epGender {
+  @apply flex items-start gap-10;
 }
-.epContainer{
-  @apply items-start flex flex-col self-stretch gap-8
-}
-
-.usContainer{
-  @apply flex gap-20 p-20 flex-col items-center
-}
-.usImageContainer{
-  @apply w-[104px] h-[102px] flex items-center justify-center
-}
-.usMsgContainer{
-  @apply flex flex-col gap-8 items-center
-}
-.errorMsg{
-  @apply flex items-center gap-6 text-error
+.epContainer {
+  @apply flex flex-col items-start gap-8 self-stretch;
 }
 
-.nnvContainer{
-  @apply flex flex-col gap-24
+.usContainer {
+  @apply flex flex-col items-center gap-20 p-20;
+}
+.usImageContainer {
+  @apply flex h-[102px] w-[104px] items-center justify-center;
+}
+.usMsgContainer {
+  @apply flex flex-col items-center gap-8;
+}
+.errorMsg {
+  @apply flex items-center gap-6 text-error;
 }
 
-.opWrapper{
-  @apply flex items-start gap-24 pb-8 flex-col
+.nnvContainer {
+  @apply flex flex-col gap-24;
 }
 
-.opContainer{
-  @apply flex flex-col gap-24 self-stretch items-start justify-end
-}
-.opSubContainer{
-  @apply flex items-center gap-8 py-8 px-8
-}
-.otpWrapper{
-  @apply flex w-full flex-col items-center justify-center gap-20 pb-8
+.opWrapper {
+  @apply flex flex-col items-start gap-24 pb-8;
 }
 
-.otpContainer{
-  @apply flex w-full flex-col items-center gap-16
+.opContainer {
+  @apply flex flex-col items-start justify-end gap-24 self-stretch;
+}
+.opSubContainer {
+  @apply flex items-center gap-8 px-8 py-8;
+}
+.otpWrapper {
+  @apply flex w-full flex-col items-center justify-center gap-20 pb-8;
 }
 
+.otpContainer {
+  @apply flex w-full flex-col items-center gap-16;
+}
 
-.otpSubContainer{
-  @apply inline-flex flex-col items-center gap-8
+.otpSubContainer {
+  @apply inline-flex flex-col items-center gap-8;
 }
-.otpText{
-  @apply flex items-center justify-center gap-4
+.otpText {
+  @apply flex items-center justify-center gap-4;
 }
-.resendBtn{
-  @apply text-[#0592CB] underline
+.resendBtn {
+  @apply text-[#0592CB] underline;
 }
-.learn2earnContainer{
-  @apply mx-auto flex w-full items-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6 justify-center
+.learn2earnContainer {
+  @apply mx-auto flex w-full items-center justify-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6;
 }
-.l2eBadgeContainer{
-  @apply flex items-center pb-[4.7px]
+.l2eBadgeContainer {
+  @apply flex items-center pb-[4.7px];
 }
-.l2eBadge{
-  @apply h-[18.8px] w-[18.8px] flex-shrink-0
+.l2eBadge {
+  @apply h-[18.8px] w-[18.8px] flex-shrink-0;
 }
-.editIconWrapper{
-  @apply flex justify-center items-center px-4 gap-4 cursor-pointer
+.editIconWrapper {
+  @apply flex cursor-pointer items-center justify-center gap-4 px-4;
 }
-.editIconClassName{
-  @apply h-16 w-16 text-primary
+.editIconClassName {
+  @apply h-16 w-16 text-primary;
 }

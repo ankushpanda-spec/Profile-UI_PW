@@ -1,4 +1,38 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/bin/bash
 
+# Define colors and borders for readability
+green="\033[1;32m"
+red="\033[1;31m"
+yellow="\033[1;33m"
+cyan="\033[1;36m"
+reset="\033[0m"
+border="═════════════════════════════════════════════════"
+
+# Formatting step with Prettier
+echo -e "${cyan}${border}${reset}"
+echo -e "${green}🚀 Formatting code with Prettier...${reset}"
+npm run format
+
+# Check if Prettier formatting was successful
+if [ $? -ne 0 ]; then
+  echo -e "${red}❌ Formatting failed. Please fix the errors before committing.${reset}"
+  echo -e "${cyan}${border}${reset}"
+  exit 1
+fi
+echo -e "${green}✅ Formatting successful!${reset}"
+
+# Linting step with ESLint
+echo -e "${cyan}${border}${reset}"
+echo -e "${green}🚀 Linting code with ESLint...${reset}"
 npm run lint
+
+# Check if ESLint linting was successful
+if [ $? -ne 0 ]; then
+  echo -e "${red}❌ Linting failed. Please fix the errors before committing.${reset}"
+  echo -e "${cyan}${border}${reset}"
+  exit 1
+fi
+
+# Completion message
+echo -e "${green}✅ Linting successful!${reset}"
+echo -e "${cyan}${border}${reset}"
