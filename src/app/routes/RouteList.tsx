@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import MFCOMMON_ROUTES from '@/shared/constants/routes.constants';
 import {Route} from 'react-router-dom';
 import AuthGuard from './Guards';
@@ -8,6 +9,23 @@ import Profile from '@/page-component/profile/ui';
 import StudentMaster from '@/page-component/student-master-program/ui';
 import ErrorBoundary from '../pages/error-boundary';
 import ContentLoader from '@/shared/components/content-skeleton/ui';
+import pkVersion from '../../../package.json';
+
+Sentry.init({
+  dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your Sentry project's DSN
+  environment: process.env.NODE_ENV,
+  release: pkVersion.version,
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    // Sentry.replayIntegration(),
+  ],
+  // Tracing
+  tracesSampleRate: 1.0,
+  enabled: `${process.env.PUBLIC_ENV}` !== 'system',
+  // Session Replay
+  replaysSessionSampleRate: 0.5,
+  replaysOnErrorSampleRate: 0.5,
+});
 
 const RouteList = (
   <Route element={<AuthGuard />}>
