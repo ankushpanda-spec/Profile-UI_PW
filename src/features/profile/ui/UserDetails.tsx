@@ -11,6 +11,7 @@ import {getUserProfileInfo} from '../api';
 import {updateUserLocally} from '../lib';
 import getErrorMessage from '@/shared/services/showErrorService';
 import useError from '@/shared/hooks/showError';
+import {webSDK} from '@/shared/services/sdk';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -42,7 +43,7 @@ const UserDetails = () => {
       }
     };
     getUserData();
-  }, [setUser]);
+  }, [JSON.stringify(webSDK.cohortConfig)]);
 
   useEffect(() => {
     const updatedSections: Section[] = [];
