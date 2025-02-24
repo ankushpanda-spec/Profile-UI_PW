@@ -1,5 +1,5 @@
 import {ApiClient} from '@pw-tech/web-sdk';
-import pdfDetailApi from './constant';
+import pdfDetailApi from './apiEndpoints';
 import buildParams from '../lib';
 import {PdfDetailsResponse} from '../types';
 

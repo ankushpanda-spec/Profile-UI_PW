@@ -8,7 +8,7 @@ import {
   setFile,
   setUser,
   verifyOtpUrl,
-} from './constants';
+} from './apiEndpoints';
 import {ApiClient} from '@pw-tech/web-sdk';
 import {getUtcStartEndTime} from '../lib';
 import {
