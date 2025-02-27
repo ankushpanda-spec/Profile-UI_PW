@@ -12,11 +12,13 @@ import {updateUserLocally} from '../lib';
 import getErrorMessage from '@/shared/services/showErrorService';
 import useError from '@/shared/hooks/showError';
 import {webSDK} from '@/shared/services/sdk';
+import {Scholar} from '@/shared/assets/icons';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
   const [sections, setSections] = useState<Section[]>([]);
+  const [isScholar, setIsScholar] = useState<boolean>(false);
   const {user, setUser} = useUser();
   const showError = useError();
   const navigate = useNavigate();
@@ -44,6 +46,19 @@ const UserDetails = () => {
     };
     getUserData();
   }, [JSON.stringify(webSDK.cohortConfig)]);
+
+  useEffect(() => {
+    const getBatchUserSegment = async () => {
+      try {
+        const res = await webSDK.getUserSegment();
+        setIsScholar(res?.data?.isScholar);
+      } catch (error) {
+        const errorObj = getErrorMessage(error);
+        showError(errorObj.message);
+      }
+    };
+    getBatchUserSegment();
+  }, []);
 
   useEffect(() => {
     const updatedSections: Section[] = [];
@@ -132,6 +147,7 @@ const UserDetails = () => {
                     >
                       PW Student Master
                     </div>
+                    {isScholar && <img src={Scholar} alt="ScholarIcon" />}
                   </div>
                 ) : (
                   <div className={s.udSectionValue}>{data.value}</div>
