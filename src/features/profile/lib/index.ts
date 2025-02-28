@@ -1,5 +1,6 @@
 import {UseFormSetValue} from 'react-hook-form';
-import {LabelValue} from '../types';
+import {LabelValue, ProfileInfo} from '../types';
+import {User} from '@pw-tech/omni-context/dist/context/user';
 
 export const formatToLabelValue = (array: string[]): LabelValue[] =>
   array.map((item: string) => ({
@@ -76,4 +77,25 @@ export const getUtcStartEndTime = (
   }
 
   return {utcStartDate: '', utcEndDate: '', utcStartDateTomorrow: ''};
+};
+
+export const updateUserLocally = (
+  data: ProfileInfo,
+  user: User | Partial<User> | null,
+  setUser: (userInfo: User | Partial<User> | null) => void
+) => {
+  const updatedUser = {
+    ...user,
+    profileId: {
+      ...user?.profileId,
+      board: data?.board,
+      exams: data?.exams,
+      class: data?.class,
+      stream: data?.stream,
+      language: data?.language,
+      cohortId: data?.cohortId,
+    },
+  };
+
+  setUser(updatedUser);
 };
