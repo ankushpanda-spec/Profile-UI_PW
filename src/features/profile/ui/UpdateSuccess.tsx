@@ -13,8 +13,13 @@ const UpdateSuccessModal: React.FC<UpdateSuccessProps> = ({
     <Modal onClose={onClose} isOpen={isOpen} size="small">
       <ModalBody>
         <div className={s.usContainer}>
-          <div className={s.usImageContainer}>
-            <img src={Success} alt="success-gif" className="h-full w-full" />
+          <div
+            className={s.usImageContainer}
+            style={{
+              background: `url(${Success})  50% / cover no-repeat`,
+            }}
+          >
+            {/* <img src={Success} alt="success-gif" className="h-full w-full" /> */}
           </div>
           <div className={s.usMsgContainer}>
             <Typography

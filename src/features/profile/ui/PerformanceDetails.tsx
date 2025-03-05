@@ -22,27 +22,22 @@ const DoubtSolverCard = ({
   };
   return (
     <div className={cn(s.pdContainer, showInfo ? s.pdBgBlack : s.pdBgDefault)}>
-      <InfoIcon
-        height={10}
-        width={10}
-        className={s.infoIcon}
-        onClick={handleInfoClick}
-      />
-      <div className={s.PDtextContainer}>
-        <Typography variant="tiny">{title}</Typography>
-        <Typography variant="heading4" weight="bold">
-          {data}
-        </Typography>
-        {showInfo && (
-          <div className={s.infoContainer}>
-            <span
-              className={s.infoText}
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{__html: info}}
-            />
-          </div>
-        )}
-      </div>
+      <Typography variant="small" weight="bold">
+        {title}
+      </Typography>
+      <Typography variant="regular" weight="semi-bold">
+        {data}
+      </Typography>
+      <InfoIcon className={s.infoIcon} onClick={handleInfoClick} />
+      {showInfo && (
+        <div className={s.infoContainer}>
+          <span
+            className={s.infoText}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{__html: info}}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -54,12 +49,12 @@ const PerformanceDetails = () => {
   useEffect(() => {
     setTiles([
       {
-        title: 'Total Doubts Solved:',
+        title: 'Total Doubts Solved',
         value: _PerformanceAsDoubtSolver?.totalSolved || 0,
         info: 'No. of doubts you have answered',
       },
       {
-        title: 'Satisfactory Rate:',
+        title: 'Satisfactory Rate',
         value: `${_PerformanceAsDoubtSolver?.satisfactoryRate}%`,
         info: 'No. of likes/<br/>(No. of likes + dislikes)',
       },

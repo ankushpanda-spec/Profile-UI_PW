@@ -16,3 +16,7 @@ export const setFile = () => `v1/files`;
 export const setUser = () => `v1/users`;
 export const feedbackOverallApi =
   '/v1/doubts/subject-matter-expert/feedback-overall';
+
+export const GET_USER_PROFILE_INFO = () => {
+  return 'v1/users/user-profile-info';
+};
