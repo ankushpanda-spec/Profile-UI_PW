@@ -22,20 +22,22 @@ const LevelUpContainer = () => {
   }
   return (
     <div className={s.levelUpContainer}>
-      <div className={s.levelUpContainerChildOne}>Level Up Overview</div>
-      <div className={s.levelUpContainerChildTwo}>
-        <div className={s.levelUpMapContainer}>
-          <div className={s.levelUpParent}>
-            <Typography weight="semi-bold" variant="small" color="tertiary">
+      <div className={s.levelUpContainerChildOne}>
+        <Typography weight="bold" variant="subHeading">
+          Level Up Overview{' '}
+        </Typography>
+        <div className={s.levelUpContainerChildTwo}>
+          <div className={s.levelUpMapContainer}>
+            <Typography weight="bold" variant="small" color="text-body-2">
               Total XP
             </Typography>
-            <div className={s.levelUpParentTwo}>
+            <div className={s.infoIcon}>
               <Tooltip
                 label={<InfoIcon />}
                 open={showTooltip}
                 onClose={() => handleToolTipClose()}
                 origin="center"
-                position="bottom"
+                position="top"
                 variant="dark"
               >
                 <div className={s.levelUpWrapper}>
@@ -51,49 +53,50 @@ const LevelUpContainer = () => {
                 </div>
               </Tooltip>
             </div>
-          </div>
-          <div className={s.levelUpParentFour}>
-            {learn2EarnProfileData?.totalXP ?? 'NA'}{' '}
-            <img src={XPIcon} height={18} width={18} alt="XPIcon" />
-          </div>
-        </div>
-        <div className={s.levelUpMapContainer}>
-          <div className={s.levelUpParent}>
-            <Typography weight="semi-bold" variant="small" color="tertiary">
-              Highest Level
-            </Typography>
-            <div className={s.levelUpParentTwo}>
-              <Tooltip
-                label={<InfoIcon />}
-                open={showTooltip}
-                onClose={() => handleToolTipClose()}
-                origin="end"
-                position="bottom"
-                variant="dark"
-              >
-                <div className={s.levelUpWrapper}>
-                  <TooltipHeader>Highest Level</TooltipHeader>
-                  <TooltipBody>
-                    <Typography component="p" variant="small">
-                      This is the highest level that you have reached at any
-                      point in your PW Level Up journey.
-                    </Typography>
-                  </TooltipBody>
-                </div>
-              </Tooltip>
+
+            <div className={s.levelUpParentFour}>
+              {learn2EarnProfileData?.totalXP ?? 'NA'}{' '}
+              <img src={XPIcon} height={18} width={18} alt="XPIcon" />
             </div>
           </div>
-          <div className={s.levelUpParentFour}>
-            {learn2EarnProfileData?.highestLevel?.name ?? 'NA'}
-            {learn2EarnProfileData?.highestLevel?.icon &&
-              learn2EarnProfileData?.highestLevel?.icon !== 'NA' && (
-                <img
-                  src={learn2EarnProfileData?.highestLevel?.icon}
-                  height={18}
-                  width={18}
-                  alt=""
-                />
-              )}
+          <div className={s.levelUpMapContainer}>
+            <div className={s.levelUpParent}>
+              <Typography weight="bold" variant="small" color="text-body-2">
+                Highest Level
+              </Typography>
+              <div className={s.infoIcon}>
+                <Tooltip
+                  label={<InfoIcon />}
+                  open={showTooltip}
+                  onClose={() => handleToolTipClose()}
+                  origin="end"
+                  position="top"
+                  variant="dark"
+                >
+                  <div className={s.levelUpWrapper}>
+                    <TooltipHeader>Highest Level</TooltipHeader>
+                    <TooltipBody>
+                      <Typography component="p" variant="small">
+                        This is the highest level that you have reached at any
+                        point in your PW Level Up journey.
+                      </Typography>
+                    </TooltipBody>
+                  </div>
+                </Tooltip>
+              </div>
+            </div>
+            <div className={s.levelUpParentFour}>
+              {learn2EarnProfileData?.highestLevel?.name ?? 'NA'}
+              {learn2EarnProfileData?.highestLevel?.icon &&
+                learn2EarnProfileData?.highestLevel?.icon !== 'NA' && (
+                  <img
+                    src={learn2EarnProfileData?.highestLevel?.icon}
+                    height={18}
+                    width={18}
+                    alt=""
+                  />
+                )}
+            </div>
           </div>
         </div>
       </div>
