@@ -20,7 +20,15 @@ const PdfContainer = () => {
       setLoading(false);
     }
     if (url) {
-      setPdfUrl(url);
+      const decodedUrl = atob(url);
+      if (
+        decodedUrl.startsWith('http://') ||
+        decodedUrl.startsWith('https://')
+      ) {
+        setPdfUrl(decodedUrl);
+      } else {
+        setPdfUrl(url);
+      }
       setLoading(false);
       return;
     }
