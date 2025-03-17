@@ -13,6 +13,7 @@ import getErrorMessage from '@/shared/services/showErrorService';
 import useError from '@/shared/hooks/showError';
 import {webSDK} from '@/shared/services/sdk';
 import {Scholar} from '@/shared/assets/icons';
+import {LogAnalyticsEvent} from '@/shared/lib/analytics';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -93,6 +94,11 @@ const UserDetails = () => {
     navigate('/student-master-program?cameFrom=Profile');
   };
 
+  const onEditIconClick = () => {
+    setIsEditFormOpen(!isEditFormOpen);
+    setEditModalOpen(true);
+    LogAnalyticsEvent.profileEdit();
+  };
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
@@ -102,13 +108,11 @@ const UserDetails = () => {
           role="button"
           tabIndex={0}
           onClick={() => {
-            setIsEditFormOpen(!isEditFormOpen);
-            setEditModalOpen(true);
+            onEditIconClick();
           }}
           onKeyPress={e => {
             if (e.key === 'Enter') {
-              setIsEditFormOpen(!isEditFormOpen);
-              setEditModalOpen(true);
+              onEditIconClick();
             }
           }}
         >
