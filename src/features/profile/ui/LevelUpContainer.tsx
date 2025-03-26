@@ -56,7 +56,7 @@ const LevelUpContainer = () => {
 
             <div className={s.levelUpParentFour}>
               {learn2EarnProfileData?.totalXP ?? 'NA'}{' '}
-              <img src={XPIcon} height={18} width={18} alt="XPIcon" />
+              <img src={XPIcon} height={20} width={20} alt="XPIcon" />
             </div>
           </div>
           <div className={s.levelUpMapContainer}>

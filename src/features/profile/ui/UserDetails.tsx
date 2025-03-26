@@ -122,45 +122,72 @@ const UserDetails = () => {
           </Typography>
         </div>
       </div>
-      {sections.map((section: Section, index: number) => (
-        <div key={index}>
-          <div className={s.udTwo}>
-            <h5 className={s.udTwoSection}>{section.sectionName}</h5>
-            <div className={s.udLine}>
-              <hr />
+      <div className={s.profileDetailsContainer}>
+        {sections.map((section: Section, index: number) => (
+          <div className={s.udContainer} key={index}>
+            <div className={s.udTwo}>
+              <Typography
+                variant="tiny"
+                weight="bold"
+                color="text-body-1"
+                className={s.udTwoSection}
+              >
+                {section.sectionName}
+              </Typography>
+
+              <div className={s.udLine}>
+                <hr />
+              </div>
+            </div>
+
+            <div className={s.udSectionContainer}>
+              {section.values.map((data: SectionValue, indexNum: number) => (
+                <div key={indexNum} className={s.udSectionWrapper}>
+                  <Typography
+                    variant="small"
+                    weight="semi-bold"
+                    color="text-body-2"
+                  >
+                    {' '}
+                    {data.key}
+                  </Typography>
+                  {data.key === 'Name' ? (
+                    <div className={s.udNameSection}>
+                      <Typography
+                        weight="semi-bold"
+                        variant="small"
+                        color="text-heading"
+                      >
+                        {' '}
+                        {data.value}
+                      </Typography>
+                      <div className={s.udVerifiedSection}>
+                        <VerifiedIcon className={s.verifiedIcon} />
+                        <div
+                          className={s.studentMaster}
+                          role="button"
+                          tabIndex={0}
+                          onClick={navigateToStudentMaster}
+                          onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                              navigateToStudentMaster();
+                            }
+                          }}
+                        >
+                          PW Student Master
+                        </div>
+                      </div>
+                      {isScholar && <img src={Scholar} alt="ScholarIcon" />}
+                    </div>
+                  ) : (
+                    <div className={s.udSectionValue}>{data.value}</div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
-          <div className={s.udSectionContainer}>
-            {section.values.map((data: SectionValue, indexNum: number) => (
-              <div key={indexNum} className={s.udSectionWrapper}>
-                <div className={s.udSectionKey}>{data.key}</div>
-                {data.key === 'Name' ? (
-                  <div className={s.udNameSection}>
-                    <div>{data.value}</div>
-                    <VerifiedIcon className={s.verifiedIcon} />
-                    <div
-                      className={s.studentMaster}
-                      role="button"
-                      tabIndex={0}
-                      onClick={navigateToStudentMaster}
-                      onKeyPress={e => {
-                        if (e.key === 'Enter') {
-                          navigateToStudentMaster();
-                        }
-                      }}
-                    >
-                      PW Student Master
-                    </div>
-                    {isScholar && <img src={Scholar} alt="ScholarIcon" />}
-                  </div>
-                ) : (
-                  <div className={s.udSectionValue}>{data.value}</div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
       {isEditFormOpen && (
         <EditProfile
           editModalOpen={editModalOpen}
