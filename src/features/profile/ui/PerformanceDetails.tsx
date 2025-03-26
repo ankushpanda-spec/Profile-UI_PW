@@ -1,4 +1,4 @@
-import {Typography} from '@pw-tech/omni-ui';
+import {Tooltip, TooltipBody, Typography} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
 import s from '../styles/index.module.css';
 import {useNavigate} from 'react-router-dom';
@@ -11,10 +11,12 @@ const DoubtSolverCard = ({
   title,
   info,
   data,
+  index,
 }: {
   title: string;
   info: string;
   data: string | number;
+  index: number;
 }) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const handleInfoClick = () => {
@@ -28,16 +30,27 @@ const DoubtSolverCard = ({
       <Typography variant="regular" weight="semi-bold">
         {data}
       </Typography>
-      <InfoIcon className={s.infoIcon} onClick={handleInfoClick} />
-      {showInfo && (
-        <div className={s.infoContainer}>
-          <span
-            className={s.infoText}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{__html: info}}
-          />
-        </div>
-      )}
+      <div className={s.infoIcon}>
+        <Tooltip
+          label={<InfoIcon />}
+          open={showInfo}
+          onClose={handleInfoClick}
+          origin={index === 0 ? 'center' : 'end'}
+          position="top"
+          variant="dark"
+        >
+          <div className={s.infoTextContainer}>
+            <TooltipBody>
+              <Typography
+                component="p"
+                variant="small"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{__html: info}}
+              />
+            </TooltipBody>
+          </div>
+        </Tooltip>
+      </div>
     </div>
   );
 };
@@ -67,11 +80,11 @@ const PerformanceDetails = () => {
   return (
     <div className={s.pdParent}>
       <div className={s.pdParentOne}>
-        <Typography variant="heading4" weight="semi-bold" color="static-black">
-          Performace as Doubt Solver
+        <Typography variant="subHeading" weight="bold" color="static-black">
+          Performance as Doubt Solver
         </Typography>
         <Typography
-          color="primary"
+          color="link"
           weight="semi-bold"
           variant="tiny"
           className={s.knowMore}
@@ -88,6 +101,7 @@ const PerformanceDetails = () => {
               title={tile.title}
               data={tile.value}
               info={tile.info}
+              index={index}
             />
           );
         })}
