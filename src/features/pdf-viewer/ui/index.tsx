@@ -1,9 +1,8 @@
 import {useState, useEffect} from 'react';
-import {PdfViewer, Typography} from '@pw-tech/omni-ui';
+import {PdfViewer} from '@pw-tech/omni-ui';
 import {useSearchParams} from 'react-router-dom';
 import getPdfDetails from '../api';
 import {PdfDetails} from '../types';
-import s from '../styles/index.module.css';
 
 const PdfContainer = () => {
   const [pdfUrl, setPdfUrl] = useState<string>('');
@@ -78,17 +77,7 @@ const PdfContainer = () => {
   }, [contentId, url]);
 
   if (error) {
-    return (
-      <div className={s.errorWrapper}>
-        <div className={s.errorContainer}>
-          <div>
-            <h1 className={s.heading}>Something went wrong.</h1>
-            <Typography weight="bold">Error: </Typography>
-            <Typography>{error}</Typography>
-          </div>
-        </div>
-      </div>
-    );
+    return <div>Error: {error}</div>;
   }
 
   return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} isLoading={loading} />;
