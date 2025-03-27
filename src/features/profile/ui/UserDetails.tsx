@@ -180,7 +180,14 @@ const UserDetails = () => {
                       {isScholar && <img src={Scholar} alt="ScholarIcon" />}
                     </div>
                   ) : (
-                    <div className={s.udSectionValue}>{data.value}</div>
+                    <Typography
+                      weight="semi-bold"
+                      variant="small"
+                      color="text-body-1"
+                      className={s.udSectionValue}
+                    >
+                      {data.value}
+                    </Typography>
                   )}
                 </div>
               ))}

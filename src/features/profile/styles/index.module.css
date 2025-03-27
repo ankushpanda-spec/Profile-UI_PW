@@ -112,7 +112,7 @@
   @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
 }
 .udSectionValue {
-  @apply w-3/5 text-xs text-[#1B2124] lg:text-sm;
+  @apply w-3/5 text-[#1B2124];
 }
 .verifiedIcon {
   @apply h-10 w-10 items-center;
