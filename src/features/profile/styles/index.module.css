@@ -112,7 +112,7 @@
   @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
 }
 .udSectionValue {
-  @apply w-3/5 text-xs text-[#1B2124] lg:text-sm;
+  @apply w-3/5 text-[#1B2124];
 }
 .verifiedIcon {
   @apply h-10 w-10 items-center;
@@ -202,13 +202,13 @@
 }
 
 .usContainer {
-  @apply flex flex-col justify-center items-center pb-[20px];
+  @apply flex flex-col items-center justify-center pb-[20px];
 }
 .usImageContainer {
   @apply flex h-[225px] w-[225px] items-center justify-center;
 }
 .usMsgContainer {
-  @apply flex flex-col text-center items-center gap-8;
+  @apply flex flex-col items-center gap-8 text-center;
 }
 .errorMsg {
   @apply flex items-center gap-6 text-error;
