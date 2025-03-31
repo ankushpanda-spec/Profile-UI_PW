@@ -8,6 +8,11 @@ def getEnvName() {
     else if (env.BRANCH_NAME == 'development') {
         return 'development'
     }
+     else if (env.BRANCH_NAME == 'pre-prod') {
+        return 'pre-prod'
+    }
+
+
 }
 
 pipeline {
