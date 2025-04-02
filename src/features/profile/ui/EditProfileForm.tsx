@@ -357,6 +357,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   variant="outside"
                   required={false}
                   options={states}
+                  maxHeight={280}
                   onChange={e => {
                     handleSelectState(e, setValue);
                     trigger();
@@ -379,6 +380,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   label="City"
                   variant="outside"
                   required={false}
+                  maxHeight={280}
                   onChange={e => {
                     handleSelectCity(e, setValue);
                     trigger(); // Trigger validation
