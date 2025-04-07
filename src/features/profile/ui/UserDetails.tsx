@@ -13,6 +13,7 @@ import getErrorMessage from '@/shared/services/showErrorService';
 import useError from '@/shared/hooks/showError';
 import {webSDK} from '@/shared/services/sdk';
 import {Scholar} from '@/shared/assets/icons';
+import {LogAnalyticsEvent} from '@/shared/lib/analytics';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
@@ -93,6 +94,11 @@ const UserDetails = () => {
     navigate('/student-master-program?cameFrom=Profile');
   };
 
+  const onEditIconClick = () => {
+    setIsEditFormOpen(!isEditFormOpen);
+    setEditModalOpen(true);
+    LogAnalyticsEvent.profileEdit();
+  };
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
@@ -102,13 +108,11 @@ const UserDetails = () => {
           role="button"
           tabIndex={0}
           onClick={() => {
-            setIsEditFormOpen(!isEditFormOpen);
-            setEditModalOpen(true);
+            onEditIconClick();
           }}
           onKeyPress={e => {
             if (e.key === 'Enter') {
-              setIsEditFormOpen(!isEditFormOpen);
-              setEditModalOpen(true);
+              onEditIconClick();
             }
           }}
         >
@@ -118,45 +122,79 @@ const UserDetails = () => {
           </Typography>
         </div>
       </div>
-      {sections.map((section: Section, index: number) => (
-        <div key={index}>
-          <div className={s.udTwo}>
-            <h5 className={s.udTwoSection}>{section.sectionName}</h5>
-            <div className={s.udLine}>
-              <hr />
+      <div className={s.profileDetailsContainer}>
+        {sections.map((section: Section, index: number) => (
+          <div className={s.udContainer} key={index}>
+            <div className={s.udTwo}>
+              <Typography
+                variant="tiny"
+                weight="bold"
+                color="text-body-1"
+                className={s.udTwoSection}
+              >
+                {section.sectionName}
+              </Typography>
+
+              <div className={s.udLine}>
+                <hr />
+              </div>
+            </div>
+
+            <div className={s.udSectionContainer}>
+              {section.values.map((data: SectionValue, indexNum: number) => (
+                <div key={indexNum} className={s.udSectionWrapper}>
+                  <Typography
+                    variant="small"
+                    weight="semi-bold"
+                    color="text-body-2"
+                  >
+                    {' '}
+                    {data.key}
+                  </Typography>
+                  {data.key === 'Name' ? (
+                    <div className={s.udNameSection}>
+                      <Typography
+                        weight="semi-bold"
+                        variant="small"
+                        color="text-heading"
+                      >
+                        {' '}
+                        {data.value}
+                      </Typography>
+                      <div className={s.udVerifiedSection}>
+                        <VerifiedIcon className={s.verifiedIcon} />
+                        <div
+                          className={s.studentMaster}
+                          role="button"
+                          tabIndex={0}
+                          onClick={navigateToStudentMaster}
+                          onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                              navigateToStudentMaster();
+                            }
+                          }}
+                        >
+                          PW Student Master
+                        </div>
+                      </div>
+                      {isScholar && <img src={Scholar} alt="ScholarIcon" />}
+                    </div>
+                  ) : (
+                    <Typography
+                      weight="semi-bold"
+                      variant="small"
+                      color="text-body-1"
+                      className={s.udSectionValue}
+                    >
+                      {data.value}
+                    </Typography>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
-          <div className={s.udSectionContainer}>
-            {section.values.map((data: SectionValue, indexNum: number) => (
-              <div key={indexNum} className={s.udSectionWrapper}>
-                <div className={s.udSectionKey}>{data.key}</div>
-                {data.key === 'Name' ? (
-                  <div className={s.udNameSection}>
-                    <div>{data.value}</div>
-                    <VerifiedIcon className={s.verifiedIcon} />
-                    <div
-                      className={s.studentMaster}
-                      role="button"
-                      tabIndex={0}
-                      onClick={navigateToStudentMaster}
-                      onKeyPress={e => {
-                        if (e.key === 'Enter') {
-                          navigateToStudentMaster();
-                        }
-                      }}
-                    >
-                      PW Student Master
-                    </div>
-                    {isScholar && <img src={Scholar} alt="ScholarIcon" />}
-                  </div>
-                ) : (
-                  <div className={s.udSectionValue}>{data.value}</div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
       {isEditFormOpen && (
         <EditProfile
           editModalOpen={editModalOpen}

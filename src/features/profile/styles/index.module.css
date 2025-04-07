@@ -20,7 +20,7 @@
   @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
 }
 .profileDetails {
-  @apply flex w-full flex-col items-start gap-32;
+  @apply flex w-full flex-col items-start gap-24 lg:gap-32;
 }
 .levelUpContainer {
   @apply flex w-full flex-col items-start gap-12 self-stretch rounded-lg bg-[#F1F5FE];
@@ -60,59 +60,59 @@
 }
 
 .levelUpParentFour {
-  @apply flex;
-
-  & > img {
-    @apply ml-1;
-  }
+  @apply flex flex-row gap-2 items-center justify-center
 }
 
 .userDetailsContainer {
-  @apply w-full;
+  @apply w-full flex flex-col gap-16;
 }
 
 .udOne {
-  @apply my-12 flex w-full items-center justify-between;
+  @apply flex w-full items-center justify-between;
 }
 .udOneTitle {
-  @apply text-base font-bold lg:text-xl;
+  @apply text-[14px] font-bold md:text-[16px] lg:text-[18px];
 }
 .udEditText {
   @apply cursor-pointer text-xs font-semibold;
 }
-
+.profileDetailsContainer{
+  @apply flex w-full flex-col gap-24
+}
+.udContainer{
+  @apply  flex flex-col gap-16
+}
 .udTwo {
-  @apply mb-12 flex w-full items-center justify-between lg:w-4/5;
+  @apply flex flex-row items-center gap-24 md:gap-16 
 }
 
 .udTwoSection {
-  @apply text-[10px] font-semibold text-[#dcdcdc];
+  @apply text-nowrap;
 }
 
 .udLine {
-  @apply w-3/5;
+  @apply w-full text-[#B7B7B7];
 }
 
 .udSectionContainer {
-  @apply my-8;
+  @apply flex flex-col gap-12 items-start;
 }
 
 .udSectionWrapper {
-  @apply mb-12 flex w-full items-center justify-between font-semibold lg:w-4/5;
-}
-
-.udSectionKey {
-  @apply text-xs font-semibold text-[#878787] lg:text-sm;
+  @apply  flex w-full items-center justify-between  lg:w-4/5;
 }
 
 .udNameSection {
   @apply flex w-3/5 flex-row items-center gap-8 text-xs text-[#333333] lg:text-sm;
 }
+.udVerifiedSection{
+  @apply flex gap-2 items-center;
+}
 .studentMaster {
   @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
 }
 .udSectionValue {
-  @apply w-3/5 text-xs text-[#333333] lg:text-sm;
+  @apply w-3/5 text-[#1B2124];
 }
 .verifiedIcon {
   @apply h-10 w-10 items-center;
@@ -133,21 +133,24 @@
 .infoContainer {
   @apply absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center pb-2;
 }
+.infoTextContainer{
+  @apply p-8
+}
 .infoText {
   @apply text-center text-white;
 }
 
 .pdParent {
-  @apply mt-20 w-full;
+  @apply flex gap-10 flex-col w-full;
 }
 .pdParentOne {
-  @apply flex align-bottom;
+  @apply flex align-bottom justify-between;
 }
 .knowMore {
-  @apply ml-10 mt-4 cursor-pointer align-text-bottom text-[10px] text-xs text-primary hover:underline;
+  @apply flex cursor-pointer align-text-bottom  hover:underline justify-center items-center;
 }
 .titleContainer {
-  @apply mt-16 flex flex-col gap-12 sm:flex-row;
+  @apply flex flex-col gap-12 sm:flex-row;
 }
 .modalFooter {
   @apply flex flex-row items-center justify-end gap-12;
@@ -199,13 +202,13 @@
 }
 
 .usContainer {
-  @apply flex flex-col justify-center items-center pb-[20px];
+  @apply flex flex-col items-center justify-center pb-[20px];
 }
 .usImageContainer {
   @apply flex h-[225px] w-[225px] items-center justify-center;
 }
 .usMsgContainer {
-  @apply flex flex-col text-center items-center gap-8;
+  @apply flex flex-col items-center gap-8 text-center;
 }
 .errorMsg {
   @apply flex items-center gap-6 text-error;

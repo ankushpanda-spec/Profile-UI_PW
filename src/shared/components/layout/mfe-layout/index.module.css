@@ -16,5 +16,5 @@
 }
 
 .mfCommon {
-  @apply flex w-full flex-col items-center gap-[20px];
+  @apply flex w-full flex-col items-center gap-[20px] pb-[20px];
 }

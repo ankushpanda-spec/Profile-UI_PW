@@ -9,7 +9,7 @@
   @apply flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pt-16 md:flex-row md:rounded-3xl md:pl-24 md:pt-24 lg:pl-32 lg:pt-32;
 }
 .smAboutTitle {
-  @apply flex flex-col items-start gap-12 md:min-w-[50%] md:pb-32 lg:min-w-[64%];
+  @apply flex flex-col items-start gap-12 md:pb-32 ;
 }
 .smDescription {
   @apply flex flex-col items-start justify-center gap-14 self-stretch;

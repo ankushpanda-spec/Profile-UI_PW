@@ -1,4 +1,9 @@
-import {AuthService, LoginMethods} from '@pw-tech/web-sdk';
+import {
+  AuthService,
+  EVENT_PLATFORMS,
+  EVENTS_ORG,
+  LoginMethods,
+} from '@pw-tech/web-sdk';
 
 const webSDK = AuthService.getInstance({
   clientSecret: process.env.PUBLIC_CLIENT_SECRET as string,
@@ -9,7 +14,16 @@ const webSDK = AuthService.getInstance({
   clientId: 'system-admin',
   contextIdentifier: 'TOKEN_CONTEXT',
   loginPageUrl: '/login',
-  debugMode: false,
+  debugMode: process.env.PUBLIC_DEBUG_MODE === 'true',
+  eventConfig: {
+    organizationName: EVENTS_ORG.PHYSICS_WALLAH,
+    eventPlatforms: [
+      EVENT_PLATFORMS.GA,
+      EVENT_PLATFORMS.MOENGAGE,
+      EVENT_PLATFORMS.APPFLYER,
+    ],
+    eventsDebugMode: process.env.PUBLIC_DEBUG_MODE === 'true',
+  },
 });
 
 export default webSDK;

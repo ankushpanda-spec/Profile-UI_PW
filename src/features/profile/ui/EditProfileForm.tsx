@@ -222,14 +222,14 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
               {showWarningForNameChange &&
                 (isUpdateNameDisabled ? (
                   <Alert
-                    heading={`You have already updated your profile name once! You won’t be able to
+                    subHeading={`You have already updated your profile name once! You won’t be able to
         update it before ${calculatedDate}!`}
                     intent="error"
                     fullWidth
                   />
                 ) : (
                   <Alert
-                    heading={`If you change your profile name, you won't be able to update it till ${calculatedDate}!`}
+                    subHeading={`If you change your profile name, you won't be able to update it till ${calculatedDate}!`}
                     intent="warning"
                     fullWidth
                   />
@@ -357,6 +357,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   variant="outside"
                   required={false}
                   options={states}
+                  maxHeight={280}
                   onChange={e => {
                     handleSelectState(e, setValue);
                     trigger();
@@ -379,6 +380,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   label="City"
                   variant="outside"
                   required={false}
+                  maxHeight={280}
                   onChange={e => {
                     handleSelectCity(e, setValue);
                     trigger(); // Trigger validation
