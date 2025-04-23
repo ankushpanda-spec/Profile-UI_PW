@@ -12,8 +12,8 @@ dependencies:
     specifier: 0.0.22-alpha-1.10
     version: 0.0.22-alpha-1.10(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2)
   '@pw-tech/web-sdk':
-    specifier: 0.0.7-35
-    version: 0.0.7-35
+    specifier: 0.0.8-7-alpha
+    version: 0.0.8-7-alpha
   '@radix-ui/react-popover':
     specifier: ^1.1.1
     version: 1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.20)(react-dom@18.3.1)(react@18.3.1)
@@ -2952,8 +2952,8 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /@pw-tech/web-sdk@0.0.7-35:
-    resolution: {integrity: sha512-6DYbEEIbN/PhQALljTmA943Qax+CUQywf9dae9P2q1dngpYTGQVaTzNHU/6IgLCJK6kHRy5VkSwRnYYmVsmwMQ==}
+  /@pw-tech/web-sdk@0.0.8-7-alpha:
+    resolution: {integrity: sha512-SHvv1AtY/TYYnALCP4qkFeQeKqwE9BRhaiZMxve+g74DTSkNAdHAWScv2/xGO1Rtf7vsfBgrqCvAk0MwJu50FA==}
     dev: false
 
   /@radix-ui/primitive@1.1.1:
