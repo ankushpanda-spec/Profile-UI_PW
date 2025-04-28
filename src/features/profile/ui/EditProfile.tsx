@@ -52,7 +52,6 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           setUpdateNumberConfig={setUpdateNumberConfig}
           setActiveModal={setActiveModal}
           setOfflineInstructions={setOfflineInstructions}
-          selectedMobileNumber={selectedMobileNumber}
           handleEditModalClose={handleEditModalClose}
           cities={cities}
           states={states}
