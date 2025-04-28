@@ -128,7 +128,6 @@ export type EditProfileFormProps = {
   >;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>;
-  selectedMobileNumber: string;
   handleEditModalClose: () => void;
   cities: LabelValue[];
   states: LabelValue[];
