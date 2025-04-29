@@ -14,7 +14,7 @@
 }
 
 .userAvatarContainer {
-  @apply h-[100px] w-[100px] rounded-full object-contain lg:h-[159px] lg:w-[159px];
+  @apply h-[100px] w-[100px] flex-shrink-0 rounded-full lg:min-h-[159px] lg:min-w-[159px];
 }
 .cameraIcon {
   @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
