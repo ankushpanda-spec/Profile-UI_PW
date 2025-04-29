@@ -85,13 +85,18 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
       const instructions = res.data.offlineInstruction;
 
       if (eligible || isPureOfflineUser) {
+        const editProfileDialog = document.getElementById(
+          'edit-profile-dialog'
+        );
+        if (editProfileDialog) {
+          editProfileDialog.style = 'display: none;';
+        }
         if (isPureOfflineUser) {
           setOfflineInstructions(instructions);
           setActiveModal('offlineUserInstructions');
         } else {
           setActiveModal('termsAndConditions');
         }
-        handleEditModalClose();
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
       }
@@ -141,6 +146,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
 
   return (
     <Modal
+      id="edit-profile-dialog"
       closeOnOutsideClick
       onClose={() => {
         handleEditModalClose();

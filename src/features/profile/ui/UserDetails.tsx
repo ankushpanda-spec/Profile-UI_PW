@@ -199,7 +199,6 @@ const UserDetails = () => {
         <EditProfile
           editModalOpen={editModalOpen}
           handleEditModalClose={() => setEditModalOpen(false)}
-          handleEditModalOpen={() => setEditModalOpen(true)}
         />
       )}
     </div>
