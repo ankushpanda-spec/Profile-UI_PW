@@ -37,7 +37,6 @@ export interface User {
 export type EditProfileModalProps = {
   editModalOpen: boolean;
   handleEditModalClose: () => void;
-  handleEditModalOpen: () => void;
 };
 
 export type NewNumberVerificationProps = {

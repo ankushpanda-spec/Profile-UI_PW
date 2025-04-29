@@ -14,7 +14,6 @@ import {useUser} from '@pw-tech/omni-context';
 const EditProfile: React.FC<EditProfileModalProps> = ({
   editModalOpen,
   handleEditModalClose,
-  handleEditModalOpen,
 }) => {
   const {fetchStateData, fetchCityData} = useProfileUtils();
   const [activeModal, setActiveModal] = useState<string>('');
@@ -31,6 +30,12 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   const [selectedState, setSelectedState] = useState<string>('');
 
   const {user: userInfo} = useUser();
+  const handleEditModalOpen = () => {
+    const editProfileDialog = document.getElementById('edit-profile-dialog');
+    if (editProfileDialog) {
+      editProfileDialog.style = 'display: flex;';
+    }
+  };
   const handleSuccessModalClose = () => {
     handleEditModalOpen();
     setActiveModal('');
