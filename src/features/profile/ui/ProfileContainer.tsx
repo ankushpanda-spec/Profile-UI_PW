@@ -26,14 +26,14 @@ const ProfileContainer = () => {
   useEffect(() => {
     if (user?.imageId) {
       setUserImg(user.imageId.baseUrl + user.imageId.key);
-    } else if (user?.profileId) {
+    } else if (user?.profileId?.gender) {
       if (user.profileId.gender === 'Male') {
         setUserImg(BoyAvatar);
       } else {
         setUserImg(GirlAvatar);
       }
     } else {
-      setUserImg(null); // Default to null if no conditions are met
+      setUserImg(BoyAvatar);
     }
   }, [user?.imageId, user?.profileId]);
 
