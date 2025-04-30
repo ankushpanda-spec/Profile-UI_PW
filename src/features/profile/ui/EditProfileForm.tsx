@@ -32,7 +32,6 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   setUpdateNumberConfig,
   setActiveModal,
   setOfflineInstructions,
-  selectedMobileNumber,
   handleEditModalClose,
   cities,
   states,
@@ -61,6 +60,9 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
     useState(false);
   const [calculatedDate, setCalculatedDate] = useState<string | null>(null);
   const [updateNumberErrorMessage, setUpdateNumberErrorMessage] = useState('');
+  const [updatedNumber, setUpdatedNumber] = useState<string>(
+    userInfo?.primaryNumber || ''
+  );
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
 
@@ -83,13 +85,18 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
       const instructions = res.data.offlineInstruction;
 
       if (eligible || isPureOfflineUser) {
+        const editProfileDialog = document.getElementById(
+          'edit-profile-dialog'
+        );
+        if (editProfileDialog) {
+          editProfileDialog.style = 'display: none;';
+        }
         if (isPureOfflineUser) {
           setOfflineInstructions(instructions);
           setActiveModal('offlineUserInstructions');
         } else {
           setActiveModal('termsAndConditions');
         }
-        handleEditModalClose();
       } else if (!eligible && failureReason) {
         setUpdateNumberErrorMessage(failureReason);
       }
@@ -130,8 +137,16 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
     }
   }, [userInfo]);
 
+  useEffect(() => {
+    if (userInfo?.primaryNumber) {
+      setValue('mobile', userInfo?.primaryNumber);
+      setUpdatedNumber(userInfo?.primaryNumber);
+    }
+  }, [userInfo?.primaryNumber, setValue]);
+
   return (
     <Modal
+      id="edit-profile-dialog"
       closeOnOutsideClick
       onClose={() => {
         handleEditModalClose();
@@ -304,7 +319,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
               render={({field}) => (
                 <InputField
                   {...field}
-                  value={selectedMobileNumber || userInfo?.primaryNumber}
+                  value={updatedNumber}
                   label="Mobile Number"
                   placeholder="Enter Mobile Number"
                   type="number"

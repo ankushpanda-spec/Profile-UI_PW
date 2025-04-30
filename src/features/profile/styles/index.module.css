@@ -14,7 +14,7 @@
 }
 
 .userAvatarContainer {
-  @apply h-[100px] w-[100px] rounded-full object-contain lg:h-[159px] lg:w-[159px];
+  @apply h-[100px] w-[100px] flex-shrink-0 rounded-full lg:min-h-[159px] lg:min-w-[159px];
 }
 .cameraIcon {
   @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
@@ -60,11 +60,11 @@
 }
 
 .levelUpParentFour {
-  @apply flex flex-row gap-2 items-center justify-center
+  @apply flex flex-row items-center justify-center gap-2;
 }
 
 .userDetailsContainer {
-  @apply w-full flex flex-col gap-16;
+  @apply flex w-full flex-col gap-16;
 }
 
 .udOne {
@@ -76,14 +76,14 @@
 .udEditText {
   @apply cursor-pointer text-xs font-semibold;
 }
-.profileDetailsContainer{
-  @apply flex w-full flex-col gap-24
+.profileDetailsContainer {
+  @apply flex w-full flex-col gap-24;
 }
-.udContainer{
-  @apply  flex flex-col gap-16
+.udContainer {
+  @apply flex flex-col gap-16;
 }
 .udTwo {
-  @apply flex flex-row items-center gap-24 md:gap-16 
+  @apply flex flex-row items-center gap-24 md:gap-16;
 }
 
 .udTwoSection {
@@ -95,18 +95,18 @@
 }
 
 .udSectionContainer {
-  @apply flex flex-col gap-12 items-start;
+  @apply flex flex-col items-start gap-12;
 }
 
 .udSectionWrapper {
-  @apply  flex w-full items-center justify-between  lg:w-4/5;
+  @apply flex w-full items-center justify-between lg:w-4/5;
 }
 
 .udNameSection {
   @apply flex w-3/5 flex-row items-center gap-8 text-xs text-[#333333] lg:text-sm;
 }
-.udVerifiedSection{
-  @apply flex gap-2 items-center;
+.udVerifiedSection {
+  @apply flex items-center gap-2;
 }
 .studentMaster {
   @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
@@ -133,21 +133,21 @@
 .infoContainer {
   @apply absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center pb-2;
 }
-.infoTextContainer{
-  @apply p-8
+.infoTextContainer {
+  @apply p-8;
 }
 .infoText {
   @apply text-center text-white;
 }
 
 .pdParent {
-  @apply flex gap-10 flex-col w-full;
+  @apply flex w-full flex-col gap-10;
 }
 .pdParentOne {
-  @apply flex align-bottom justify-between;
+  @apply flex justify-between align-bottom;
 }
 .knowMore {
-  @apply flex cursor-pointer align-text-bottom  hover:underline justify-center items-center;
+  @apply flex cursor-pointer items-center justify-center align-text-bottom hover:underline;
 }
 .titleContainer {
   @apply flex flex-col gap-12 sm:flex-row;

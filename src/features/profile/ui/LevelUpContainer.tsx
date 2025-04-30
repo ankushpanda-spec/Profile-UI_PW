@@ -37,7 +37,7 @@ const LevelUpContainer = () => {
                 open={showTooltip}
                 onClose={() => handleToolTipClose()}
                 origin="center"
-                position="top"
+                position="bottom"
                 variant="dark"
               >
                 <div className={s.levelUpWrapper}>
@@ -70,7 +70,7 @@ const LevelUpContainer = () => {
                   open={showTooltip}
                   onClose={() => handleToolTipClose()}
                   origin="end"
-                  position="top"
+                  position="bottom"
                   variant="dark"
                 >
                   <div className={s.levelUpWrapper}>

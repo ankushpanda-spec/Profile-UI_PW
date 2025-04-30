@@ -9,11 +9,11 @@ dependencies:
     specifier: 0.0.6-alpha-1.4
     version: 0.0.6-alpha-1.4(@types/react@18.3.20)(react@18.3.1)(redux@5.0.1)
   '@pw-tech/omni-ui':
-    specifier: 0.0.22-alpha-1.10
-    version: 0.0.22-alpha-1.10(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2)
+    specifier: 0.0.25-alpha-1.7
+    version: 0.0.25-alpha-1.7(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2)
   '@pw-tech/web-sdk':
-    specifier: 0.0.7-35
-    version: 0.0.7-35
+    specifier: 0.0.8-7-alpha
+    version: 0.0.8-7-alpha
   '@radix-ui/react-popover':
     specifier: ^1.1.1
     version: 1.1.6(@types/react-dom@18.3.5)(@types/react@18.3.20)(react-dom@18.3.1)(react@18.3.1)
@@ -2891,8 +2891,8 @@ packages:
       - redux
     dev: false
 
-  /@pw-tech/omni-ui@0.0.22-alpha-1.10(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2):
-    resolution: {integrity: sha512-ies7JV6kRCr/j5xWopWoMhTYirXMBRl9uTx6bCKlRN5S4nfRhaPxygMDCMY3VO/R2FhkdaS+1DwT1O5In5IqpA==}
+  /@pw-tech/omni-ui@0.0.25-alpha-1.7(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2):
+    resolution: {integrity: sha512-byIpzKWFN7prcRHlm3X7IkFMc6Icb6ohXf4E7oiEIIZffF2aQgO55t4aBHacUCMeHP38JIzbHAOII8/z5hHykg==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
     requiresBuild: true
     dependencies:
@@ -2952,8 +2952,8 @@ packages:
       - webpack-plugin-serve
     dev: false
 
-  /@pw-tech/web-sdk@0.0.7-35:
-    resolution: {integrity: sha512-6DYbEEIbN/PhQALljTmA943Qax+CUQywf9dae9P2q1dngpYTGQVaTzNHU/6IgLCJK6kHRy5VkSwRnYYmVsmwMQ==}
+  /@pw-tech/web-sdk@0.0.8-7-alpha:
+    resolution: {integrity: sha512-SHvv1AtY/TYYnALCP4qkFeQeKqwE9BRhaiZMxve+g74DTSkNAdHAWScv2/xGO1Rtf7vsfBgrqCvAk0MwJu50FA==}
     dev: false
 
   /@radix-ui/primitive@1.1.1:
