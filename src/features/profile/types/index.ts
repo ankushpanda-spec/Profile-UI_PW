@@ -37,7 +37,6 @@ export interface User {
 export type EditProfileModalProps = {
   editModalOpen: boolean;
   handleEditModalClose: () => void;
-  handleEditModalOpen: () => void;
 };
 
 export type NewNumberVerificationProps = {
@@ -128,7 +127,6 @@ export type EditProfileFormProps = {
   >;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   setOfflineInstructions: React.Dispatch<React.SetStateAction<string>>;
-  selectedMobileNumber: string;
   handleEditModalClose: () => void;
   cities: LabelValue[];
   states: LabelValue[];

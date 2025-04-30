@@ -141,6 +141,7 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
             placeholder="Enter your phone number"
             type="number"
             fullWidth
+            maxLength={10}
             message={
               inputErrorMessageShown
                 ? inputErrorMessage

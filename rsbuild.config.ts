@@ -1,9 +1,9 @@
-import { pluginModuleFederation } from '@module-federation/rsbuild-plugin';
-import { defineConfig } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
-import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
+import {pluginModuleFederation} from '@module-federation/rsbuild-plugin';
+import {defineConfig} from '@rsbuild/core';
+import {pluginReact} from '@rsbuild/plugin-react';
+import {sentryWebpackPlugin} from '@sentry/webpack-plugin';
 import path from 'path';
-import { dependencies } from './package.json';
+import {dependencies} from './package.json';
 
 export default defineConfig({
   server: {
