@@ -15,16 +15,10 @@ Sentry.init({
   dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your Sentry project's DSN
   environment: process.env.NODE_ENV,
   release: pkVersion.version,
-  integrations: [
-    Sentry.browserTracingIntegration(),
-    // Sentry.replayIntegration(),
-  ],
+  integrations: [Sentry.browserTracingIntegration()],
   // Tracing
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 0.1,
   enabled: `${process.env.PUBLIC_ENV}` !== 'system',
-  // Session Replay
-  replaysSessionSampleRate: 0.5,
-  replaysOnErrorSampleRate: 0.5,
 });
 
 const RouteList = (
