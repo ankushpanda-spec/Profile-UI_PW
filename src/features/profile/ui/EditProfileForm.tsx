@@ -43,7 +43,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
     lastName: userInfo?.lastName || '',
     email: userInfo?.email || '',
     mobile: userInfo?.primaryNumber || '',
-    gender: userInfo?.gender || '',
+    gender: userInfo?.gender || userInfo?.profileId?.gender || '',
     city: userInfo?.profileId?.address?.city || '',
     state: userInfo?.profileId?.address?.state || '',
   };
