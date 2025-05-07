@@ -71,7 +71,9 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
     setSelectedState(selectedState);
   }, [selectedState]);
   console.log('formState', formState.isValid);
+  console.log('formStateError', formState.errors);
   console.log('formStateValue', formState);
+
   const {checkDigitInput, checkEmail, handleFormSubmit} = useProfileUtils();
 
   const handleUpdateNumber = async () => {
