@@ -51,6 +51,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   const {handleSubmit, control, setValue, watch, formState, reset, trigger} =
     useForm({
       defaultValues: formData,
+      mode: 'onChange',
     });
 
   const [showWarningForNameChange, setShowWarningForNameChange] =
@@ -69,7 +70,8 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   useEffect(() => {
     setSelectedState(selectedState);
   }, [selectedState]);
-
+  console.log('formState', formState.isValid);
+  console.log('formStateValue', formState);
   const {checkDigitInput, checkEmail, handleFormSubmit} = useProfileUtils();
 
   const handleUpdateNumber = async () => {
