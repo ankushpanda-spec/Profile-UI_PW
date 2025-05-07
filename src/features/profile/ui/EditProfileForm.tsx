@@ -66,13 +66,13 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   );
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
+  const {isValid} = formState;
 
   useEffect(() => {
     setSelectedState(selectedState);
   }, [selectedState]);
-  console.log('formState', formState.isValid);
-  console.log('formStateError', formState.errors);
-  console.log('formStateValue', formState);
+  console.log('isValid', isValid);
+  console.log('formState', formState);
 
   const {checkDigitInput, checkEmail, handleFormSubmit} = useProfileUtils();
 
@@ -427,7 +427,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
             <Button
               size="small"
               variant="primary"
-              disabled={!formState.isValid}
+              disabled={!isValid}
               type="submit"
               className={s.epCTA}
             >
