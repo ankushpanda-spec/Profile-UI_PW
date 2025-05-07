@@ -64,7 +64,6 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
     userInfo?.primaryNumber || ''
   );
   const selectedState = watch('state'); // Watch the state field for changes
-  const selectedGender = watch('gender');
   const {isValid} = formState;
 
   useEffect(() => {
@@ -258,58 +257,31 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
             <Typography variant="regular" weight="semi-bold">
               Gender
             </Typography>
-            <div className={s.epGenderContainer}>
-              <div className={s.epGenderSubContainer}>
-                <div className={s.epGender}>
-                  <Controller
-                    name="gender"
-                    control={control}
-                    rules={{required: true}}
-                    render={({field}) => (
-                      <RadioButton
-                        {...field}
-                        value="Male"
-                        checked={selectedGender === 'Male'}
-                        variant="primary"
-                        size="sm"
-                        onChange={() => {
-                          field.onChange('Male');
-                          trigger(); // Trigger validation
-                        }}
-                      />
-                    )}
-                  />
-                  <Typography variant="regular" weight="medium">
-                    Male
-                  </Typography>
+            <Controller
+              name="gender"
+              control={control}
+              rules={{required: 'Gender is required'}}
+              render={({field}) => (
+                <div className={s.epGenderContainer}>
+                  {['Male', 'Female'].map(option => (
+                    <div key={option} className={s.epGenderSubContainer}>
+                      <div className={s.epGender}>
+                        <RadioButton
+                          value={option}
+                          checked={field.value === option}
+                          onChange={e => field.onChange(e.target.value)}
+                          variant="primary"
+                          size="sm"
+                        />
+                        <Typography variant="regular" weight="medium">
+                          {option}
+                        </Typography>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
-              <div className={s.epGenderSubContainer}>
-                <div className={s.epGender}>
-                  <Controller
-                    name="gender"
-                    control={control}
-                    rules={{required: true}}
-                    render={({field}) => (
-                      <RadioButton
-                        {...field}
-                        value="Female"
-                        checked={selectedGender === 'Female'}
-                        variant="primary"
-                        size="sm"
-                        onChange={() => {
-                          field.onChange('Female');
-                          trigger(); // Trigger validation
-                        }}
-                      />
-                    )}
-                  />
-                  <Typography variant="regular" weight="medium">
-                    Female
-                  </Typography>
-                </div>
-              </div>
-            </div>
+              )}
+            />
           </div>
 
           {/* Mobile */}
