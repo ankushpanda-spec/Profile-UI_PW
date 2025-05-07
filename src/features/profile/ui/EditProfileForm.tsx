@@ -65,6 +65,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   );
   const selectedState = watch('state'); // Watch the state field for changes
   const selectedGender = watch('gender');
+  const {isValid} = formState;
 
   useEffect(() => {
     setSelectedState(selectedState);
@@ -423,7 +424,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
             <Button
               size="small"
               variant="primary"
-              disabled={!formState.isValid}
+              disabled={!isValid}
               type="submit"
               className={s.epCTA}
             >
