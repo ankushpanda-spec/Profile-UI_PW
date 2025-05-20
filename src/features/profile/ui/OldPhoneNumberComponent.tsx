@@ -39,7 +39,7 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
     showLoader('Sending OTP...');
     try {
       const apiData = {
-        phone: selectedMobileNumber,
+        phone: selectedMobileNumber.mobileNumber,
         countryCode: userInfo?.countryCode,
         isNewNumber: false,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
@@ -79,7 +79,12 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
             <div className={s.opSubContainer}>
               <RadioButton
                 size="sm"
-                onClick={() => setSelectedMobileNumber(userInfo?.primaryNumber)}
+                onClick={() =>
+                  setSelectedMobileNumber({
+                    ...selectedMobileNumber,
+                    mobileNumber: userInfo?.primaryNumber,
+                  })
+                }
               />
               <Typography variant="regular" weight="medium" color="text-body-1">
                 {userInfo?.primaryNumber}

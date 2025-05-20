@@ -198,7 +198,10 @@ const UserDetails = () => {
       {isEditFormOpen && (
         <EditProfile
           editModalOpen={editModalOpen}
-          handleEditModalClose={() => setEditModalOpen(false)}
+          handleEditModalClose={() => {
+            setIsEditFormOpen(false);
+            setEditModalOpen(false);
+          }}
         />
       )}
     </div>
