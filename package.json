@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@pw-tech/omni-context": "0.0.6-alpha-1.4",
-    "@pw-tech/omni-ui": "0.0.25-alpha-1.7",
+    "@pw-tech/omni-ui": "0.0.27-alpha-1.5",
     "@pw-tech/web-sdk": "0.0.8-7-alpha",
     "@radix-ui/react-popover": "^1.1.1",
     "@sentry/cli": "^2.41.1",
