@@ -341,6 +341,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   {...field}
                   placeholder="Select State"
                   fullWidth
+                  values={[field.value]}
                   label="State"
                   variant="outside"
                   required={false}
@@ -363,6 +364,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                 <Dropdown
                   {...field}
                   options={cities}
+                  values={[field.value]}
                   placeholder="Select City"
                   fullWidth
                   label="City"
