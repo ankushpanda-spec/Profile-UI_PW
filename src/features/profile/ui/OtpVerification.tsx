@@ -27,7 +27,6 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   handleEditModalOpen,
   nextActiveModal,
   isNewNumber,
-  countryCode,
   showEditIcon,
 }) => {
   const {showLoader, hideLoader} = useLoader();
@@ -78,7 +77,9 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     if (selectedMobileNumber && userInfo) {
       const newUserInfo = {
         ...userInfo,
-        primaryNumber: selectedMobileNumber,
+        primaryNumber: selectedMobileNumber.mobileNumber,
+        countryCode: selectedMobileNumber.countryCode,
+        countryGroup: selectedMobileNumber.countryGroup,
       };
       webSDK.setUser = newUserInfo as User;
       setUser(newUserInfo);
@@ -90,8 +91,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     showLoader('Sending OTP...');
     try {
       const apiData = {
-        phone: selectedMobileNumber,
-        countryCode,
+        phone: selectedMobileNumber.mobileNumber,
+        countryCode: selectedMobileNumber.countryCode,
         isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
@@ -119,8 +120,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     showLoader('Verifying OTP...');
     try {
       const apiData = {
-        phone: selectedMobileNumber,
-        countryCode,
+        phone: selectedMobileNumber.mobileNumber,
+        countryCode: selectedMobileNumber.countryCode,
         isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         otp,
@@ -166,7 +167,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
                   variant="regular"
                   weight="semi-bold"
                 >
-                  {countryCode} {selectedMobileNumber}
+                  {selectedMobileNumber.countryCode}{' '}
+                  {selectedMobileNumber.mobileNumber}
                 </Typography>
                 {showEditIcon && (
                   <EditIcon

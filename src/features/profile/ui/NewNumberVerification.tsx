@@ -25,7 +25,6 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   numberChangeRequestId,
   setNewInputMobileNumber,
   newInputMobileNumber,
-  newCountryCode,
   isNewNumber,
 }) => {
   const {showLoader, hideLoader} = useLoader();
@@ -50,16 +49,19 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       setInputErrorMessageShown(false);
     }
     setErrorMessage('');
-    setNewInputMobileNumber(value);
+    setNewInputMobileNumber({...newInputMobileNumber, mobileNumber: value});
   };
   const checkMobileNumber = (mobileNumber: string): string => {
     if (!mobileNumber) {
       return 'Please enter a vaild mobile number';
     }
-    if (newCountryCode === '+91' && mobileNumber.length !== 10) {
+    if (
+      newInputMobileNumber.countryCode === '+91' &&
+      mobileNumber.length !== 10
+    ) {
       return 'Please enter a valid 10 digits number';
     }
-    if (newCountryCode !== '+91' && mobileNumber.length < 4) {
+    if (newInputMobileNumber.countryCode !== '+91' && mobileNumber.length < 4) {
       return 'Please enter a number with minimum 4 digits';
     }
     return '';
@@ -67,15 +69,15 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
 
   const onContinueClick = async () => {
     setErrorMessage('');
-    const message = checkMobileNumber(newInputMobileNumber);
+    const message = checkMobileNumber(newInputMobileNumber.mobileNumber);
     if (message) {
       setInputErrorMessage(message);
       setInputErrorMessageShown(true);
       return;
     }
     const apiData = {
-      phone: newInputMobileNumber,
-      countryCode: newCountryCode,
+      phone: newInputMobileNumber.mobileNumber,
+      countryCode: newInputMobileNumber.countryCode,
       isNewNumber,
       organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
       requestId: numberChangeRequestId || '',
@@ -141,7 +143,7 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
             placeholder="Enter your phone number"
             type="number"
             fullWidth
-            maxLength={10}
+            maxLength={newInputMobileNumber.countryCode === '+91' ? 10 : 16}
             message={
               inputErrorMessageShown
                 ? inputErrorMessage
@@ -150,6 +152,13 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
             onChange={handleInputChange}
             onKeyDown={mobileNumberInputKeyPress}
             error={inputErrorMessageShown}
+            onCountryChange={country => {
+              setNewInputMobileNumber({
+                ...newInputMobileNumber,
+                countryCode: country.dialCode,
+                countryGroup: country.code,
+              });
+            }}
           />
         </div>
       </ModalBody>
