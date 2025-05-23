@@ -39,15 +39,19 @@ export type EditProfileModalProps = {
   handleEditModalClose: () => void;
 };
 
+export type Mobile = {
+  countryCode: string;
+  countryGroup: string;
+  mobileNumber: string;
+};
+
 export type NewNumberVerificationProps = {
   isOpen: boolean;
   handleEditModalOpen: () => void;
   numberChangeRequestId: string | undefined;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  setNewCountryCode: React.Dispatch<React.SetStateAction<string>>;
-  setNewInputMobileNumber: React.Dispatch<React.SetStateAction<string>>;
-  newInputMobileNumber: string;
-  newCountryCode: string;
+  setNewInputMobileNumber: React.Dispatch<React.SetStateAction<Mobile>>;
+  newInputMobileNumber: Mobile;
   isNewNumber: boolean;
 };
 
@@ -55,20 +59,19 @@ export type OldPhoneNumberProps = {
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
   numberChangeRequestId: string | undefined;
-  selectedMobileNumber: string;
-  setSelectedMobileNumber: React.Dispatch<React.SetStateAction<string>>;
+  selectedMobileNumber: Mobile;
+  setSelectedMobileNumber: React.Dispatch<React.SetStateAction<Mobile>>;
   handleEditModalOpen: () => void;
 };
 
 export type OtpVerificationProps = {
   isOpen: boolean;
   setActiveModal: React.Dispatch<React.SetStateAction<string>>;
-  selectedMobileNumber: string;
+  selectedMobileNumber: Mobile;
   numberChangeRequestId: string | undefined;
   handleEditModalOpen: () => void;
   nextActiveModal: string;
   isNewNumber: boolean;
-  countryCode: string;
   showEditIcon: boolean;
 };
 

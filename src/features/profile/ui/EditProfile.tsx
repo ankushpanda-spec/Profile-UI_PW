@@ -6,7 +6,12 @@ import NewNumberVerification from './NewNumberVerification';
 import UpdateSuccessModal from './UpdateSuccess';
 import OfflineUserInstructionsModal from './OfflineUserInstructions';
 import EditProfileForm from './EditProfileForm';
-import {EditProfileModalProps, LabelValue, UpdateNumberConfig} from '../types';
+import {
+  EditProfileModalProps,
+  LabelValue,
+  Mobile,
+  UpdateNumberConfig,
+} from '../types';
 import useProfileUtils from '../lib/profileUtils';
 import {ModalTypes} from '../constants';
 import {useUser} from '@pw-tech/omni-context';
@@ -16,20 +21,27 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   handleEditModalClose,
 }) => {
   const {fetchStateData, fetchCityData} = useProfileUtils();
+  const {user: userInfo} = useUser();
   const [activeModal, setActiveModal] = useState<string>('');
 
   const [offlineInstructions, setOfflineInstructions] = useState<string>('');
   const [updateNumberConfig, setUpdateNumberConfig] =
     useState<UpdateNumberConfig>();
 
-  const [selectedMobileNumber, setSelectedMobileNumber] = useState<string>('');
-  const [newInputMobileNumber, setNewInputMobileNumber] = useState<string>('');
-  const [newCountryCode, setNewCountryCode] = useState<string>('+91');
+  const [selectedMobileNumber, setSelectedMobileNumber] = useState<Mobile>({
+    countryCode: userInfo?.countryCode,
+    countryGroup: userInfo?.countryGroup,
+    mobileNumber: userInfo?.primaryNumber,
+  });
+  const [newInputMobileNumber, setNewInputMobileNumber] = useState<Mobile>({
+    countryCode: '',
+    countryGroup: '',
+    mobileNumber: '',
+  });
   const [states, setStates] = useState<LabelValue[]>([]);
   const [cities, setCities] = useState<LabelValue[]>([]);
   const [selectedState, setSelectedState] = useState<string>('');
 
-  const {user: userInfo} = useUser();
   const handleEditModalOpen = () => {
     const editProfileDialog = document.getElementById('edit-profile-dialog');
     if (editProfileDialog) {
@@ -97,7 +109,6 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
-          countryCode={userInfo?.countryCode}
           nextActiveModal="newNumberComponent"
           isNewNumber={false}
           showEditIcon={false}
@@ -111,8 +122,6 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           numberChangeRequestId={updateNumberConfig?.requestId}
           setNewInputMobileNumber={setNewInputMobileNumber}
           newInputMobileNumber={newInputMobileNumber}
-          setNewCountryCode={setNewCountryCode}
-          newCountryCode={newCountryCode}
           isNewNumber
         />
       )}
@@ -123,7 +132,6 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           setActiveModal={setActiveModal}
           handleEditModalOpen={handleEditModalOpen}
           numberChangeRequestId={updateNumberConfig?.requestId}
-          countryCode={newCountryCode}
           nextActiveModal="numberUpdateSuccess"
           isNewNumber
           showEditIcon
