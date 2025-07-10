@@ -1,5 +1,5 @@
 .container {
-  @apply flex w-full flex-col items-start gap-24 scrollbar-none lg:flex-row lg:p-8;
+  @apply flex w-full flex-col items-start gap-24 rounded-lg bg-white px-20 py-10 shadow-md scrollbar-none md:p-16 lg:flex-row lg:p-40;
 }
 
 .containerChildOne {
