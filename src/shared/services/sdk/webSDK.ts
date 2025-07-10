@@ -13,7 +13,7 @@ const webSDK = AuthService.getInstance({
   localStorageFallback: true,
   clientId: 'system-admin',
   contextIdentifier: 'TOKEN_CONTEXT',
-  loginPageUrl: '/login',
+  loginPageUrl: '/',
   debugMode: process.env.PUBLIC_DEBUG_MODE === 'true',
   eventConfig: {
     organizationName: EVENTS_ORG.PHYSICS_WALLAH,
