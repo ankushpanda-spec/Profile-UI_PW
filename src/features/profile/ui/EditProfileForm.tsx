@@ -308,9 +308,6 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   minLength={4}
                   maxLength={16}
                   defaultCountryCode={countryGroup}
-                  onCountryChange={country => {
-                    setCountryGroup(country.code);
-                  }}
                   readOnly
                   action={handleUpdateNumber}
                   message={updateNumberErrorMessage}
