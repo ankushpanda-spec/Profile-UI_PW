@@ -4,6 +4,7 @@ import {pluginReact} from '@rsbuild/plugin-react';
 import {sentryWebpackPlugin} from '@sentry/webpack-plugin';
 import path from 'path';
 import {dependencies} from './package.json';
+import {envValidatorPlugin} from './plugins/env-validator';
 
 export default defineConfig({
   server: {
@@ -54,6 +55,12 @@ export default defineConfig({
       runtimePlugins: [
         path.resolve(__dirname, './hooks-mf/offlineRemotePlugin.ts'),
       ],
+    }),
+    envValidatorPlugin({
+      srcDir: 'src', // Source directory to scan
+      fileExtensions: ['ts', 'tsx'], // File types to check
+      ignorePatterns: ['test', 'spec', '.test.', '.spec.'], // Files to ignore
+      verbose: true, // Show validation messages
     }),
   ],
   tools: {
