@@ -49,7 +49,10 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       setInputErrorMessageShown(false);
     }
     setErrorMessage('');
-    setNewInputMobileNumber({...newInputMobileNumber, mobileNumber: value});
+    setNewInputMobileNumber(prev => ({
+      ...prev,
+      mobileNumber: value,
+    }));
   };
   const checkMobileNumber = (mobileNumber: string): string => {
     if (!mobileNumber) {
@@ -153,11 +156,11 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
             onKeyDown={mobileNumberInputKeyPress}
             error={inputErrorMessageShown}
             onCountryChange={country => {
-              setNewInputMobileNumber({
-                ...newInputMobileNumber,
+              setNewInputMobileNumber(prev => ({
+                ...prev,
                 countryCode: country.dialCode,
                 countryGroup: country.code,
-              });
+              }));
             }}
           />
         </div>

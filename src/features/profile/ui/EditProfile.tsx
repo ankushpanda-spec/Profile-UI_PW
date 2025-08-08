@@ -34,8 +34,8 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
     mobileNumber: userInfo?.primaryNumber,
   });
   const [newInputMobileNumber, setNewInputMobileNumber] = useState<Mobile>({
-    countryCode: '',
-    countryGroup: '',
+    countryCode: '+91',
+    countryGroup: 'IN',
     mobileNumber: '',
   });
   const [states, setStates] = useState<LabelValue[]>([]);
