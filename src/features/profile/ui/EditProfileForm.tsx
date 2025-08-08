@@ -63,6 +63,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
   const [updatedNumber, setUpdatedNumber] = useState<string>(
     userInfo?.primaryNumber || ''
   );
+  const [countryGroup, setCountryGroup] = useState<string>('IN');
   const selectedState = watch('state'); // Watch the state field for changes
   const {isValid} = formState;
 
@@ -142,7 +143,8 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
       setValue('mobile', userInfo?.primaryNumber);
       setUpdatedNumber(userInfo?.primaryNumber);
     }
-  }, [userInfo?.primaryNumber, setValue]);
+    setCountryGroup(userInfo?.countryGroup);
+  }, [userInfo?.primaryNumber, userInfo?.countryGroup, setValue]);
 
   return (
     <Modal
@@ -305,6 +307,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
                   }
                   minLength={4}
                   maxLength={16}
+                  defaultCountryCode={countryGroup}
                   readOnly
                   action={handleUpdateNumber}
                   message={updateNumberErrorMessage}
