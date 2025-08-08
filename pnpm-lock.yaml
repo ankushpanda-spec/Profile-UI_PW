@@ -9,8 +9,8 @@ dependencies:
     specifier: 0.0.6-alpha-1.4
     version: 0.0.6-alpha-1.4(@types/react@18.3.20)(react@18.3.1)(redux@5.0.1)
   '@pw-tech/omni-ui':
-    specifier: 0.0.29-alpha-2
-    version: 0.0.29-alpha-2(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2)
+    specifier: 0.0.29
+    version: 0.0.29(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2)
   '@pw-tech/web-sdk':
     specifier: 0.0.8-7-alpha
     version: 0.0.8-7-alpha
@@ -2891,8 +2891,8 @@ packages:
       - redux
     dev: false
 
-  /@pw-tech/omni-ui@0.0.29-alpha-2(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2):
-    resolution: {integrity: sha512-EKraegr5cGAs42OfxL50dU0GUV99JW0qCfs9ImaFveTbtT2jbCA+0y4AewTws8qyxmJlv173vKLr3v2I5iejXw==}
+  /@pw-tech/omni-ui@0.0.29(@babel/plugin-syntax-flow@7.26.0)(@babel/plugin-transform-react-jsx@7.25.9)(@types/react@18.3.20)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0)(jquery@3.7.1)(tailwindcss@3.4.17)(typescript@5.8.2):
+    resolution: {integrity: sha512-z6s5WExQWyKCEkUUjYDKN/Tr5moRhFlnWChG/pFEW0S1EyL1hlPBQyLKLNcJiALtVBBaXqEtD3ORjdLt/3qziw==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
     requiresBuild: true
     dependencies:
