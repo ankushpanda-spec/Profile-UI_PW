@@ -9,10 +9,13 @@ const PdfContainer = () => {
   const [pdfTitle, setPdfTitle] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
+  const [canPrint, setCanPrint] = useState<boolean>(true);
+  const [canDownload, setCanDownload] = useState<boolean>(true);
 
   const [searchParams] = useSearchParams();
   const contentId = searchParams.get('contentId')?.toString();
   const url = searchParams.get('pdf');
+  const permissions = searchParams.get('permissions');
 
   useEffect(() => {
     if (url && contentId) {
@@ -75,12 +78,37 @@ const PdfContainer = () => {
       setLoading(false);
     }
   }, [contentId, url]);
+  useEffect(() => {
+    if (permissions) {
+      try {
+        // Decode permissions from base64
+        const decodedPermissions = atob(permissions);
 
+        // Parse as JSON
+        const parsedPermissions = JSON.parse(decodedPermissions);
+
+        setCanPrint(parsedPermissions?.print !== false);
+        setCanDownload(parsedPermissions?.download !== false);
+      } catch (_error) {
+        setError(
+          'Failed to parse permissions. Please provide base64-encoded JSON.'
+        );
+      }
+    }
+  }, [permissions]);
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  return <PdfViewer pdfFile={pdfUrl} title={pdfTitle} isLoading={loading} />;
+  return (
+    <PdfViewer
+      pdfFile={pdfUrl}
+      title={pdfTitle}
+      isLoading={loading}
+      showPrintIcon={canPrint}
+      isDownloadable={canDownload}
+    />
+  );
 };
 
 export default PdfContainer;
