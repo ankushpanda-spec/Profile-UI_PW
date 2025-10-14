@@ -3,6 +3,7 @@ import {PdfViewer} from '@pw-tech/omni-ui';
 import {useSearchParams} from 'react-router-dom';
 import getPdfDetails from '../api';
 import {PdfDetails} from '../types';
+import {useUI} from '@pw-tech/omni-context';
 
 const PdfContainer = () => {
   const [pdfUrl, setPdfUrl] = useState<string>('');
@@ -16,6 +17,7 @@ const PdfContainer = () => {
   const contentId = searchParams.get('contentId')?.toString();
   const url = searchParams.get('pdf');
   const permissions = searchParams.get('permissions');
+  const {setUIState} = useUI();
 
   useEffect(() => {
     if (url && contentId) {
@@ -78,6 +80,20 @@ const PdfContainer = () => {
       setLoading(false);
     }
   }, [contentId, url]);
+
+  useEffect(() => {
+    setUIState({
+      header: false,
+      sideNavbar: false,
+    });
+    return () => {
+      setUIState({
+        header: true,
+        sideNavbar: true,
+      });
+    };
+  }, []);
+
   useEffect(() => {
     if (permissions) {
       try {

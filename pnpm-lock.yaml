@@ -12,8 +12,8 @@ importers:
         specifier: 0.0.6-alpha-1.4
         version: 0.0.6-alpha-1.4(@types/react@18.3.20)(react@18.3.1)(redux@5.0.1)
       '@pw-tech/omni-ui':
-        specifier: 0.0.29
-        version: 0.0.29(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)
+        specifier: 0.0.35
+        version: 0.0.35(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)
       '@pw-tech/web-sdk':
         specifier: 0.0.8-7-alpha
         version: 0.0.8-7-alpha
@@ -1473,8 +1473,8 @@ packages:
     peerDependencies:
       react: ^16.13.0
 
-  '@pw-tech/omni-ui@0.0.29':
-    resolution: {integrity: sha512-z6s5WExQWyKCEkUUjYDKN/Tr5moRhFlnWChG/pFEW0S1EyL1hlPBQyLKLNcJiALtVBBaXqEtD3ORjdLt/3qziw==}
+  '@pw-tech/omni-ui@0.0.35':
+    resolution: {integrity: sha512-gToXbCw4aJnVgGwDeNB3dKtaNWJKP3zdw2D5NoGqR0ebzhg5EWJP/4f2asTKM0P7/S8vctf7vf6dPrCgIyDeow==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
 
   '@pw-tech/web-sdk@0.0.8-7-alpha':
@@ -5109,6 +5109,9 @@ packages:
     resolution: {integrity: sha512-UERzLsxzllchadvbPs5aolHh65ISpKpM+ccLbOJ8/vvpBKmAWf+la7dXFy7Mr0ySHbdHrFv5kGFCUHHe6GFEmw==}
     engines: {node: '>= 4.0.0'}
 
+  memoize-one@5.2.1:
+    resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
+
   meow@12.1.1:
     resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
     engines: {node: '>=16.10'}
@@ -6279,6 +6282,13 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-window@1.8.11:
+    resolution: {integrity: sha512-+SRbUVT2scadgFSWx+R1P754xHPEqvcfSfVX10QYg6POOz+WNgkN48pS+BtZNIMGiL1HYrSEiCkwsMS15QogEQ==}
+    engines: {node: '>8.0.0'}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -9243,7 +9253,7 @@ snapshots:
       - '@types/react'
       - redux
 
-  '@pw-tech/omni-ui@0.0.29(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)':
+  '@pw-tech/omni-ui@0.0.35(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)':
     dependencies:
       '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.17)
       '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.17)
@@ -9257,6 +9267,7 @@ snapshots:
       react-pdf: 8.0.2(@types/react@18.3.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(react@18.3.1)(sass@1.86.0)(type-fest@0.21.3)(typescript@5.8.2)
       react-slick: 0.30.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-window: 1.8.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       sass: 1.86.0
       slick-carousel: 1.8.1(jquery@3.7.1)
       tailwind-merge: 2.6.0
@@ -13576,6 +13587,8 @@ snapshots:
     dependencies:
       fs-monkey: 1.0.6
 
+  memoize-one@5.2.1: {}
+
   meow@12.1.1: {}
 
   merge-descriptors@1.0.3: {}
@@ -14753,6 +14766,13 @@ snapshots:
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 18.3.20
+
+  react-window@1.8.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.27.0
+      memoize-one: 5.2.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   react@18.3.1:
     dependencies:
