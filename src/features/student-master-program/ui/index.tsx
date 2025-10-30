@@ -1,7 +1,7 @@
 import Vector from '@/shared/assets/icons/Vector';
 import {Typography, useToast} from '@pw-tech/omni-ui';
 import {useEffect, useState} from 'react';
-import {FaqModel, STUDENT_MASTER_PROGRAM} from '../types';
+import {FaqModel} from '../types';
 import getFaqs from '../api';
 import PlayIcon from '@/shared/assets/icons/PlayIcon';
 import useError from '@/shared/hooks/showError';
@@ -27,7 +27,7 @@ const StudentMasterProgram = () => {
 
   useEffect(() => {
     const fetchFaq = async () => {
-      const faqId = STUDENT_MASTER_PROGRAM;
+      const faqId = process.env.PUBLIC_STUDENT_MASTER_PROGRAM || '';
       let list: Array<FaqModel> = [];
       try {
         const res = await getFaqs(faqId);
@@ -40,7 +40,9 @@ const StudentMasterProgram = () => {
 
           const desc: FaqModel =
             list.find(
-              (o: FaqModel) => o.title.toLowerCase() === 'description'
+              (o: FaqModel) =>
+                o.title.toLowerCase() === 'description' ||
+                o.title.toLowerCase() === 'about'
             ) || new FaqModel({});
           setDescription(desc);
 
@@ -99,12 +101,11 @@ const StudentMasterProgram = () => {
         </div>
 
         <div className={s.smImage}>
-          <div
-            className={s.smApSir}
-            style={{backgroundImage: `url(${AP_SIR})`}}
-          />
-          <div className={s.smIcon}>
-            <Vector />
+          <div className={s.smApSir}>
+            <div className={s.smIcon}>
+              <Vector />
+            </div>
+            <img src={AP_SIR} alt="Alakh Pandey Sir" className={s.smApSirImg} />
           </div>
         </div>
       </div>

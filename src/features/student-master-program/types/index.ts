@@ -1,6 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-export const STUDENT_MASTER_PROGRAM = '63998be2cbcd800019a42895';
-
 export interface ImageId {
   _id: string;
   baseUrl: string;
