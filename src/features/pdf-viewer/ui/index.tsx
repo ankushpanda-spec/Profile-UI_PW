@@ -10,7 +10,6 @@ const PdfContainer = () => {
   const [pdfTitle, setPdfTitle] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [canPrint, setCanPrint] = useState<boolean>(true);
   const [canDownload, setCanDownload] = useState<boolean>(true);
 
   const [searchParams] = useSearchParams();
@@ -102,8 +101,6 @@ const PdfContainer = () => {
 
         // Parse as JSON
         const parsedPermissions = JSON.parse(decodedPermissions);
-
-        setCanPrint(parsedPermissions?.print !== false);
         setCanDownload(parsedPermissions?.download !== false);
       } catch (_error) {
         setError(
@@ -121,7 +118,6 @@ const PdfContainer = () => {
       pdfFile={pdfUrl}
       title={pdfTitle}
       isLoading={loading}
-      showPrintIcon={canPrint}
       isDownloadable={canDownload}
     />
   );
