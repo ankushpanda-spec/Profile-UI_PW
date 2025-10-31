@@ -12,8 +12,8 @@ importers:
         specifier: 0.0.6-alpha-1.4
         version: 0.0.6-alpha-1.4(@types/react@18.3.20)(react@18.3.1)(redux@5.0.1)
       '@pw-tech/omni-ui':
-        specifier: 0.0.35
-        version: 0.0.35(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)
+        specifier: 0.0.36
+        version: 0.0.36(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)
       '@pw-tech/web-sdk':
         specifier: 0.0.8-7-alpha
         version: 0.0.8-7-alpha
@@ -1473,8 +1473,8 @@ packages:
     peerDependencies:
       react: ^16.13.0
 
-  '@pw-tech/omni-ui@0.0.35':
-    resolution: {integrity: sha512-gToXbCw4aJnVgGwDeNB3dKtaNWJKP3zdw2D5NoGqR0ebzhg5EWJP/4f2asTKM0P7/S8vctf7vf6dPrCgIyDeow==}
+  '@pw-tech/omni-ui@0.0.36':
+    resolution: {integrity: sha512-glWuctljGxZ4NTWVFykcvzOQe1C0EXW7bluEmZa+M2cwuR1ftwGIX6Uq184cu/TTUUa06VUX9yk9KI5+Lap1XA==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
 
   '@pw-tech/web-sdk@0.0.8-7-alpha':
@@ -4910,6 +4910,7 @@ packages:
   keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -9253,7 +9254,7 @@ snapshots:
       - '@types/react'
       - redux
 
-  '@pw-tech/omni-ui@0.0.35(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)':
+  '@pw-tech/omni-ui@0.0.36(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.20)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.0)(eslint@9.23.0(jiti@2.4.2))(jquery@3.7.1)(tailwindcss@3.4.17)(type-fest@0.21.3)(typescript@5.8.2)':
     dependencies:
       '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.17)
       '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.17)
