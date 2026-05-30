@@ -20,3 +20,5 @@ export const feedbackOverallApi =
 export const GET_USER_PROFILE_INFO = () => {
   return 'v1/users/user-profile-info';
 };
+
+export const GET_MY_PURCHASES_API = '/v2/orders/myPurchaseOrders';

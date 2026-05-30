@@ -41,6 +41,8 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   const [states, setStates] = useState<LabelValue[]>([]);
   const [cities, setCities] = useState<LabelValue[]>([]);
   const [selectedState, setSelectedState] = useState<string>('');
+  const [isNumberAlreadyRegistered, setIsNumberAlreadyRegistered] =
+    useState<boolean>(false);
 
   const handleEditModalOpen = () => {
     const editProfileDialog = document.getElementById('edit-profile-dialog');
@@ -60,6 +62,16 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
   useEffect(() => {
     fetchCityData(selectedState, setCities);
   }, [selectedState]); // Re-fetch cities when state changes
+
+  useEffect(() => {
+    const isInNumberFlow =
+      activeModal === ModalTypes.NewNumberComponent ||
+      activeModal === ModalTypes.NewNumberOTPVerification;
+    if (!editModalOpen || !isInNumberFlow) {
+      setIsNumberAlreadyRegistered(false);
+    }
+  }, [activeModal, editModalOpen]);
+
   return (
     <>
       {' '}
@@ -117,12 +129,16 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
       {activeModal === ModalTypes.NewNumberComponent && (
         <NewNumberVerification
           isOpen
-          handleEditModalOpen={handleEditModalOpen}
+          handleEditModalOpen={() => {
+            handleEditModalOpen();
+            setIsNumberAlreadyRegistered(false);
+          }}
           setActiveModal={setActiveModal}
           numberChangeRequestId={updateNumberConfig?.requestId}
           setNewInputMobileNumber={setNewInputMobileNumber}
           newInputMobileNumber={newInputMobileNumber}
           isNewNumber
+          setIsNumberAlreadyRegistered={setIsNumberAlreadyRegistered}
         />
       )}
       {activeModal === ModalTypes.NewNumberOTPVerification && (
@@ -135,6 +151,8 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
           nextActiveModal="numberUpdateSuccess"
           isNewNumber
           showEditIcon
+          isNumberAlreadyRegistered={isNumberAlreadyRegistered}
+          setIsNumberAlreadyRegistered={setIsNumberAlreadyRegistered}
         />
       )}
       {activeModal === ModalTypes.NumberUpdateSuccess && (

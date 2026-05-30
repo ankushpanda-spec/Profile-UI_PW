@@ -44,6 +44,7 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
         isNewNumber: false,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
+        isNewShiftFlow: true,
       };
       const res = await fetchOtp(apiData);
       if (res.success) {

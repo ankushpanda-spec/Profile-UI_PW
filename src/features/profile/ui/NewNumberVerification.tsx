@@ -15,7 +15,7 @@ import {fetchOtp} from '../api';
 
 import useLoader from '@/shared/hooks/showLoader';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
-import {NewNumberVerificationProps} from '../types';
+import {NewNumberVerificationProps, OtpResponseData} from '../types';
 import getErrorMessage from '@/shared/services/showErrorService';
 
 const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
@@ -26,6 +26,7 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   setNewInputMobileNumber,
   newInputMobileNumber,
   isNewNumber,
+  setIsNumberAlreadyRegistered,
 }) => {
   const {showLoader, hideLoader} = useLoader();
   const [inputErrorMessage, setInputErrorMessage] = useState<string>('');
@@ -84,12 +85,18 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       isNewNumber,
       organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
       requestId: numberChangeRequestId || '',
+      isNewShiftFlow: true,
     };
     try {
       showLoader('Sending OTP...');
       const res = await fetchOtp(apiData);
-
-      if (res?.success) {
+      const responseData = res?.data as OtpResponseData | undefined;
+      if (res?.success || responseData?.isNumberAlreadyRegistered) {
+        const isNumberAlreadyReg =
+          responseData?.isNumberAlreadyRegistered ?? false;
+        if (setIsNumberAlreadyRegistered) {
+          setIsNumberAlreadyRegistered(isNumberAlreadyReg);
+        }
         setActiveModal('newNumberOtpVerification');
       } else if (res?.message) {
         setInputErrorMessage(res.message);
