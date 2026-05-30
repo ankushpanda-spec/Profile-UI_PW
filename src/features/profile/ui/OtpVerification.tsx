@@ -152,6 +152,7 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
         setActiveModal(nextActiveModal);
       } else {
         setError(res?.message || 'Something Went Wrong');
+        setHasOtpError(true);
       }
     } catch (_error) {
       const errorObj = getErrorMessage(_error);
@@ -217,10 +218,12 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
           setActiveModal(nextActiveModal);
         } else {
           setError(res?.message || 'Something Went Wrong');
+          setHasOtpError(true);
         }
       } catch (_error) {
         const errorObj = getErrorMessage(_error);
         setError(errorObj.message);
+        setHasOtpError(true);
       } finally {
         hideLoader();
       }
@@ -248,10 +251,12 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
           setActiveModal(nextActiveModal);
         } else {
           setError(res?.message || 'Something Went Wrong');
+          setHasOtpError(true);
         }
       } catch (_error) {
         const errorObj = getErrorMessage(_error);
         setError(errorObj.message);
+        setHasOtpError(true);
       } finally {
         hideLoader();
       }
