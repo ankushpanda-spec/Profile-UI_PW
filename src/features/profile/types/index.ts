@@ -53,6 +53,7 @@ export type NewNumberVerificationProps = {
   setNewInputMobileNumber: React.Dispatch<React.SetStateAction<Mobile>>;
   newInputMobileNumber: Mobile;
   isNewNumber: boolean;
+  setIsNumberAlreadyRegistered?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type OldPhoneNumberProps = {
@@ -73,6 +74,8 @@ export type OtpVerificationProps = {
   nextActiveModal: string;
   isNewNumber: boolean;
   showEditIcon: boolean;
+  isNumberAlreadyRegistered?: boolean;
+  setIsNumberAlreadyRegistered?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type TermsAndConditionsProps = {
@@ -148,10 +151,20 @@ export interface Error {
   status: number;
 }
 export interface ApiResponse {
+  data: unknown;
   success: boolean;
   message?: string | null;
   error?: Error;
 }
+
+export interface OtpResponseData {
+  isNumberAlreadyRegistered?: boolean;
+}
+
+export interface FetchOtpResponse extends ApiResponse {
+  data: OtpResponseData;
+}
+
 export interface GetUpdateNumberConfigResponse extends ApiResponse {
   data: UpdateNumberConfig;
 }

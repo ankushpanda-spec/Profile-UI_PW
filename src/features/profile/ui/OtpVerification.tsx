@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {
   Button,
   Typography,
@@ -7,6 +7,7 @@ import {
   ModalBody,
   Modal,
   Separator,
+  ModalFooter,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import EditIcon from '@/shared/assets/icons/EditIcon';
@@ -18,6 +19,8 @@ import {webSDK} from '@/shared/services/sdk';
 import {ApiResponse, OtpVerificationProps} from '../types';
 import {useUser} from '@pw-tech/omni-context';
 import {User} from '@pw-tech/web-sdk';
+import useMyOrders, {MyOrder} from '../hooks/useMyOrders';
+import BatchSelectionModal from './BatchSelectionModal';
 
 const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isOpen,
@@ -28,15 +31,31 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   nextActiveModal,
   isNewNumber,
   showEditIcon,
+  isNumberAlreadyRegistered: propIsNumberAlreadyRegistered,
 }) => {
   const {showLoader, hideLoader} = useLoader();
-  const {user: userInfo} = useUser();
-  const {setUser} = useUser();
+  const {user: userInfo, setUser} = useUser();
   const [otp, setOtp] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [showResendMessage, setShowResendMessage] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<number>(30);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+  const [showBatchesModal, setShowBatchesModal] = useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [selectedBatches, setSelectedBatches] = useState<string[]>([]); // stores orderIds
+  const [hasOtpError, setHasOtpError] = useState<boolean>(false); // tracks if OTP verification failed
+
+  const {
+    data: purchasedBatchesData,
+    isLoading: isBatchesLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useMyOrders({
+    enabled: showBatchesModal,
+    status: 'SUCCESS',
+    limit: 10,
+  });
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -73,8 +92,35 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
     setOtp(newOtp);
   };
 
+  const batches = useMemo(() => {
+    return purchasedBatchesData
+      .filter(
+        (item: MyOrder) =>
+          [
+            'BATCH',
+            'TEST',
+            'TEST_CATEGORY',
+            'TEST_CATEGORY_MODE',
+            'PASS',
+          ].includes(item.typeOfOrder) &&
+          !['CASH', 'FREE'].includes(item.modeOfPayment)
+      )
+      .map((item: MyOrder) => ({
+        orderId: item.orderId,
+        itemName: item.itemName,
+      }));
+  }, [purchasedBatchesData]);
+
+  const handleBatchToggle = (orderId: string) => {
+    setSelectedBatches(prev =>
+      prev.includes(orderId)
+        ? prev.filter(b => b !== orderId)
+        : [...prev, orderId]
+    );
+  };
+
   const updateNumberInGlobalState = () => {
-    if (selectedMobileNumber && userInfo) {
+    if (selectedMobileNumber && userInfo && !propIsNumberAlreadyRegistered) {
       const newUserInfo = {
         ...userInfo,
         primaryNumber: selectedMobileNumber.mobileNumber,
@@ -84,6 +130,42 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
       webSDK.setUser = newUserInfo as User;
       setUser(newUserInfo);
     }
+  };
+
+  const handleFinalVerify = async (orderIds: string[]) => {
+    showLoader('Verifying OTP...');
+    try {
+      const apiData = {
+        phone: selectedMobileNumber.mobileNumber,
+        countryCode: selectedMobileNumber.countryCode,
+        isNewNumber,
+        organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
+        otp,
+        requestId: numberChangeRequestId || '',
+        orderIds,
+      };
+      const res: ApiResponse = await verifyOtp(apiData);
+      if (res.success) {
+        updateNumberInGlobalState();
+        setShowBatchesModal(false);
+        setShowConfirmModal(false);
+        setActiveModal(nextActiveModal);
+      } else {
+        setError(res?.message || 'Something Went Wrong');
+        setHasOtpError(true);
+      }
+    } catch (_error) {
+      const errorObj = getErrorMessage(_error);
+      setError(errorObj.message);
+      setHasOtpError(true);
+    } finally {
+      hideLoader();
+    }
+  };
+
+  const handleSaveBatches = () => {
+    setShowBatchesModal(false);
+    setShowConfirmModal(true);
   };
 
   const onResendOtp = async () => {
@@ -96,144 +178,313 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
         isNewNumber,
         organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
         requestId: numberChangeRequestId || '',
+        isNewShiftFlow: true,
       };
       const res: ApiResponse = await fetchOtp(apiData);
-      if (res.success) {
+      if (
+        res.success ||
+        (res.data &&
+          (res.data as {isNumberAlreadyRegistered?: boolean})
+            .isNumberAlreadyRegistered)
+      ) {
         hideLoader();
         setShowResendMessage(true);
         setTimeLeft(30);
       } else {
+        hideLoader();
         setError(res.error?.message || '');
       }
     } catch (_error) {
       const errorObj = getErrorMessage(_error);
       setError(errorObj.message);
       hideLoader();
-    } finally {
-      hideLoader();
-      setShowResendMessage(true);
-      setTimeLeft(30);
     }
   };
 
   const handleVerifyOtp = async () => {
-    showLoader('Verifying OTP...');
-    try {
-      const apiData = {
-        phone: selectedMobileNumber.mobileNumber,
-        countryCode: selectedMobileNumber.countryCode,
-        isNewNumber,
-        organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
-        otp,
-        requestId: numberChangeRequestId || '',
-      };
-      const res: ApiResponse = await verifyOtp(apiData);
-      if (res.success) {
-        if (isNewNumber) {
-          updateNumberInGlobalState();
+    if (!isNewNumber) {
+      showLoader('Verifying OTP...');
+      try {
+        const apiData = {
+          phone: selectedMobileNumber.mobileNumber,
+          countryCode: selectedMobileNumber.countryCode,
+          isNewNumber,
+          organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
+          otp,
+          requestId: numberChangeRequestId || '',
+        };
+        const res: ApiResponse = await verifyOtp(apiData);
+        if (res.success) {
+          setActiveModal(nextActiveModal);
+        } else {
+          setError(res?.message || 'Something Went Wrong');
+          setHasOtpError(true);
         }
-        setActiveModal(nextActiveModal);
-      } else {
-        setError(res?.message || 'Something Went Wrong');
+      } catch (_error) {
+        const errorObj = getErrorMessage(_error);
+        setError(errorObj.message);
+        setHasOtpError(true);
+      } finally {
+        hideLoader();
       }
-      hideLoader();
-    } catch (_error) {
-      const errorObj = getErrorMessage(_error);
-      setError(errorObj.message);
-      hideLoader();
-    } finally {
-      hideLoader();
+      return;
+    }
+
+    if (propIsNumberAlreadyRegistered) {
+      setIsModalOpen(false);
+      setShowBatchesModal(true);
+    } else {
+      showLoader('Verifying OTP...');
+      try {
+        const apiData = {
+          phone: selectedMobileNumber.mobileNumber,
+          countryCode: selectedMobileNumber.countryCode,
+          isNewNumber,
+          organizationId: process.env.PUBLIC_ORGANISATION_ID || '',
+          otp,
+          requestId: numberChangeRequestId || '',
+          orderIds: [],
+        };
+        const res: ApiResponse = await verifyOtp(apiData);
+        if (res.success) {
+          updateNumberInGlobalState();
+          setActiveModal(nextActiveModal);
+        } else {
+          setError(res?.message || 'Something Went Wrong');
+          setHasOtpError(true);
+        }
+      } catch (_error) {
+        const errorObj = getErrorMessage(_error);
+        setError(errorObj.message);
+        setHasOtpError(true);
+      } finally {
+        hideLoader();
+      }
     }
   };
 
   return (
-    <Modal size="small" isOpen={isModalOpen} onClose={handleClose}>
-      <ModalHeader>
-        <Typography color="text-heading" variant="heading4" weight="semi-bold">
-          OTP Verification
-        </Typography>
-      </ModalHeader>
-      <Separator />
-      <ModalBody>
-        <div className={s.otpWrapper}>
-          <div className={s.otpContainer}>
-            <div className={s.otpSubContainer}>
-              <Typography variant="regular" weight="medium" color="text-body-1">
-                Please enter the 6 digit code sent on
-              </Typography>
+    <>
+      <Modal size="small" isOpen={isModalOpen} onClose={handleClose}>
+        <ModalHeader>
+          <Typography
+            color="text-heading"
+            variant="heading4"
+            weight="semi-bold"
+          >
+            OTP Verification
+          </Typography>
+        </ModalHeader>
+        <Separator />
+        <ModalBody>
+          <div className={s.otpWrapper}>
+            <div className={s.otpContainer}>
+              <div className={s.otpSubContainer}>
+                <Typography
+                  variant="regular"
+                  weight="medium"
+                  color="text-body-1"
+                >
+                  Please enter the 6 digit code sent on
+                </Typography>
+                <div className={s.otpText}>
+                  <Typography
+                    color="text-heading"
+                    variant="regular"
+                    weight="semi-bold"
+                  >
+                    {selectedMobileNumber.countryCode}{' '}
+                    {selectedMobileNumber.mobileNumber}
+                  </Typography>
+                  {showEditIcon && (
+                    <EditIcon
+                      onClick={() => setActiveModal('newNumberComponent')}
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* OTP Input */}
+
+              <OTP length={6} value={otp} onChange={handleOnChange} />
+
+              {/* Resend OTP Timer */}
+              {showResendMessage && (
+                <Typography color="success" variant="regular" weight="medium">
+                  OTP has been resent
+                </Typography>
+              )}
+              {timeLeft > 0 && (
+                <Typography
+                  color="static-black"
+                  variant="regular"
+                  weight="medium"
+                >
+                  {timeLeft} seconds
+                </Typography>
+              )}
+
               <div className={s.otpText}>
                 <Typography
-                  color="text-heading"
+                  color="text-body-1"
                   variant="regular"
-                  weight="semi-bold"
+                  weight="medium"
                 >
-                  {selectedMobileNumber.countryCode}{' '}
-                  {selectedMobileNumber.mobileNumber}
+                  Didn&apos;t get an OTP?{' '}
                 </Typography>
-                {showEditIcon && (
-                  <EditIcon
-                    onClick={() => setActiveModal('newNumberComponent')}
-                  />
-                )}
+                <Button
+                  onClick={() => {
+                    setOtp('');
+                    onResendOtp();
+                  }}
+                  size="medium"
+                  variant="link"
+                  className="text-[#0592CB] underline"
+                  disabled={timeLeft > 0}
+                >
+                  Resend
+                </Button>
               </div>
             </div>
-
-            {/* OTP Input */}
-
-            <OTP length={6} value={otp} onChange={handleOnChange} />
-
-            {/* Resend OTP Timer */}
-            {showResendMessage && (
-              <Typography color="success" variant="regular" weight="medium">
-                OTP has been resent
-              </Typography>
+            <Button
+              fullWidth
+              disabled={otp.length !== 6}
+              onClick={handleVerifyOtp}
+            >
+              Verify OTP
+            </Button>
+            {error && (
+              <div className={s.errorMsg}>
+                <ErrorIcon />
+                <Typography variant="tiny" weight="semi-bold" color="error">
+                  {error}
+                </Typography>
+              </div>
             )}
-            {timeLeft > 0 && (
-              <Typography
-                color="static-black"
-                variant="regular"
-                weight="medium"
-              >
-                {timeLeft} seconds
-              </Typography>
-            )}
-
-            <div className={s.otpText}>
-              <Typography color="text-body-1" variant="regular" weight="medium">
-                Didn&apos;t get an OTP?{' '}
-              </Typography>
-              <Button
-                onClick={() => {
-                  setOtp('');
-                  onResendOtp();
-                }}
-                size="medium"
-                variant="link"
-                className="text-[#0592CB] underline"
-                disabled={timeLeft > 0}
-              >
-                Resend
-              </Button>
-            </div>
           </div>
-          <Button
-            fullWidth
-            disabled={otp.length !== 6}
-            onClick={handleVerifyOtp}
+        </ModalBody>
+      </Modal>
+
+      {/* Batch Selection Modal */}
+      <BatchSelectionModal
+        isOpen={showBatchesModal}
+        batches={batches}
+        selectedBatches={selectedBatches}
+        onBatchToggle={(orderId: string) => {
+          handleBatchToggle(orderId);
+        }}
+        onSelectAll={() =>
+          selectedBatches.length === batches.length
+            ? setSelectedBatches([])
+            : setSelectedBatches(batches.map(b => b.orderId))
+        }
+        onClose={() => {
+          setShowBatchesModal(false);
+          setIsModalOpen(true);
+        }}
+        onSave={handleSaveBatches}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        isBatchesLoading={isBatchesLoading}
+        fetchNextPage={() => fetchNextPage?.()}
+      />
+
+      {/* Confirm Number Change Modal */}
+      <Modal
+        isOpen={showConfirmModal}
+        size="small"
+        onClose={() => {
+          setShowConfirmModal(false);
+          setError('');
+          if (hasOtpError) {
+            setIsModalOpen(true);
+            setHasOtpError(false);
+          } else {
+            setShowBatchesModal(true);
+          }
+        }}
+      >
+        <ModalHeader>
+          <Typography
+            color="text-heading"
+            variant="heading4"
+            weight="semi-bold"
           >
-            Verify OTP
-          </Button>
-          {error && (
-            <div className={s.errorMsg}>
-              <ErrorIcon />
-              <Typography variant="tiny" weight="semi-bold" color="error">
-                {error}
+            Confirm Number Change
+          </Typography>
+        </ModalHeader>
+        <Separator />
+        <ModalBody>
+          <div className={s.confirmModalBody}>
+            <Typography variant="regular" color="text-body-1">
+              Confirm the change in registered mobile no. to{' '}
+              <strong>
+                {selectedMobileNumber.countryCode}-
+                {selectedMobileNumber.mobileNumber}
+              </strong>{' '}
+              for the following Batches?
+            </Typography>
+            <div className={s.confirmBatchList}>
+              {batches
+                .filter(b => selectedBatches.includes(b.orderId))
+                .map(batch => (
+                  <div key={batch.orderId} className={s.confirmBatchItem}>
+                    <div className={s.confirmBatchDot} />
+                    <Typography variant="regular" color="text-body-1">
+                      {batch.itemName}
+                    </Typography>
+                  </div>
+                ))}
+            </div>
+            <div className={s.confirmWarning}>
+              <Typography variant="regular" color="warning-700" weight="medium">
+                Selected batches content won&apos;t be accessible on the old
+                number.
               </Typography>
             </div>
-          )}
-        </div>
-      </ModalBody>
-    </Modal>
+            {error && (
+              <div className={s.errorMsg}>
+                <ErrorIcon />
+                <Typography variant="tiny" weight="semi-bold" color="error">
+                  {error}
+                </Typography>
+              </div>
+            )}
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <div className={s.confirmFooterButtons}>
+            <Button
+              type="button"
+              fullWidth
+              size="large"
+              variant="secondary"
+              onClick={() => {
+                setShowConfirmModal(false);
+                setError('');
+                if (hasOtpError) {
+                  setIsModalOpen(true);
+                  setHasOtpError(false);
+                } else {
+                  setShowBatchesModal(true);
+                }
+              }}
+            >
+              Back
+            </Button>
+            <Button
+              type="button"
+              fullWidth
+              size="large"
+              variant="primary"
+              onClick={() => handleFinalVerify(selectedBatches)}
+            >
+              Accept
+            </Button>
+          </div>
+        </ModalFooter>
+      </Modal>
+    </>
   );
 };
 

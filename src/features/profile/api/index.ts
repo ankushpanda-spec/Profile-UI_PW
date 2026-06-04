@@ -16,6 +16,7 @@ import {
   doubtSolvingFeedbackDataResponse,
   FetchCitiesResponse,
   fetchLevelUpDataResponse,
+  FetchOtpResponse,
   FetchStatesResponse,
   GetLearn2EarnConfigResponse,
   GetUpdateNumberConfigResponse,
@@ -47,9 +48,10 @@ export const fetchOtp = async (payload: {
   organizationId: string;
   phone: string;
   requestId: string;
-}): Promise<ApiResponse> => {
+  isNewShiftFlow?: boolean;
+}): Promise<FetchOtpResponse> => {
   const url = getOtp();
-  const data = await ApiClient.post<ApiResponse>(url, payload);
+  const data = await ApiClient.post<FetchOtpResponse>(url, payload);
   return data;
 };
 export const verifyOtp = async (payload: {
@@ -59,6 +61,7 @@ export const verifyOtp = async (payload: {
   phone: string;
   otp: string;
   requestId: string;
+  orderIds?: string[];
 }): Promise<ApiResponse> => {
   const url = verifyOtpUrl();
   const data = await ApiClient.post<ApiResponse>(url, payload);

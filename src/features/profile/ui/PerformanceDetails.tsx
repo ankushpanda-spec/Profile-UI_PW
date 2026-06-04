@@ -51,7 +51,6 @@ const DoubtSolverCard = ({
               <Typography
                 component="p"
                 variant="small"
-                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{__html: info}}
               />
             </TooltipBody>
