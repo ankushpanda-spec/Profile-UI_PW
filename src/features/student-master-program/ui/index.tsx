@@ -83,16 +83,12 @@ const StudentMasterProgram = () => {
   return (
     <div className={s.studentMaster}>
       <div className={s.smTitle}>
-        <Typography weight="semi-bold" variant="heading3">
+        <Typography variant="heading3" color="static-black" weight="semi-bold">
           PW Student Master Program
         </Typography>
       </div>
       <div className={s.smAbout}>
         <div className={s.smAboutTitle}>
-          <Typography variant="heading4" weight="bold">
-            {' '}
-            About
-          </Typography>
           <div className={s.smDescription}>
             <Typography
               dangerouslySetInnerHTML={{__html: description?.description || ''}}
@@ -111,7 +107,7 @@ const StudentMasterProgram = () => {
       </div>
 
       <div className={s.smHowItWork}>
-        <Typography variant="heading4" weight="bold">
+        <Typography variant="heading3" color="static-black" weight="semi-bold">
           How it works?
         </Typography>
 

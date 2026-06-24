@@ -68,11 +68,11 @@ const UserDetails = () => {
       sectionName: 'Personal Details',
       values: [
         {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
-        {key: 'Mobile No', value: user?.primaryNumber},
-        {key: 'Email', value: user?.email},
+        {key: 'Mobile Number', value: user?.primaryNumber},
+        {key: 'E-mail', value: user?.email || '-'},
         {
-          key: 'Living City/Village/Town',
-          value: user?.profileId?.address?.city || 'N/A',
+          key: 'City/Village/Town',
+          value: user?.profileId?.address?.city || '-',
         },
       ],
     });
@@ -80,10 +80,10 @@ const UserDetails = () => {
     updatedSections.push({
       sectionName: 'Academic Details',
       values: [
-        {key: 'Class', value: user?.profileId?.class || 'N/A'},
-        {key: 'Board/State Board', value: user?.profileId?.board || 'N/A'},
-        {key: 'Exams', value: user?.profileId?.exams.join('') || 'N/A'},
-        {key: 'Language', value: user?.profileId?.language || 'N/A'},
+        {key: 'Class', value: user?.profileId?.class || '-'},
+        {key: 'Board/State Board', value: user?.profileId?.board || '-'},
+        {key: 'Exams', value: user?.profileId?.exams.join('') || '-'},
+        {key: 'Language', value: user?.profileId?.language || '-'},
       ],
     });
 
@@ -102,7 +102,9 @@ const UserDetails = () => {
   return (
     <div className={s.userDetailsContainer}>
       <div className={s.udOne}>
-        <h4 className={s.udOneTitle}>Profile Detail</h4>
+        <Typography variant="heading3" color="static-black" weight="semi-bold">
+          Profile Details
+        </Typography>
         <div
           className={s.editIconWrapper}
           role="button"
@@ -117,7 +119,7 @@ const UserDetails = () => {
           }}
         >
           <EditIcon className={s.editIconClassName} />
-          <Typography variant="regular" color="primary" weight="medium">
+          <Typography variant="regular" color="primary" weight="semi-bold">
             Edit
           </Typography>
         </div>
@@ -127,7 +129,7 @@ const UserDetails = () => {
           <div className={s.udContainer} key={index}>
             <div className={s.udTwo}>
               <Typography
-                variant="tiny"
+                variant="small"
                 weight="bold"
                 color="text-body-1"
                 className={s.udTwoSection}
@@ -144,21 +146,21 @@ const UserDetails = () => {
               {section.values.map((data: SectionValue, indexNum: number) => (
                 <div key={indexNum} className={s.udSectionWrapper}>
                   <Typography
-                    variant="small"
-                    weight="semi-bold"
+                    variant="regular"
+                    weight="medium"
                     color="text-body-2"
                   >
-                    {' '}
+                    {'  '}
                     {data.key}
                   </Typography>
                   {data.key === 'Name' ? (
                     <div className={s.udNameSection}>
                       <Typography
                         weight="semi-bold"
-                        variant="small"
+                        variant="regular"
                         color="text-heading"
                       >
-                        {' '}
+                        {'  '}
                         {data.value}
                       </Typography>
                       <div className={s.udVerifiedSection}>
@@ -174,7 +176,13 @@ const UserDetails = () => {
                             }
                           }}
                         >
-                          PW Student Master
+                          <Typography
+                            weight="semi-bold"
+                            variant="regular"
+                            color="primary"
+                          >
+                            PW Student Master
+                          </Typography>
                         </div>
                       </div>
                       {isScholar && <img src={Scholar} alt="ScholarIcon" />}
@@ -182,7 +190,7 @@ const UserDetails = () => {
                   ) : (
                     <Typography
                       weight="semi-bold"
-                      variant="small"
+                      variant="regular"
                       color="text-body-1"
                       className={s.udSectionValue}
                     >

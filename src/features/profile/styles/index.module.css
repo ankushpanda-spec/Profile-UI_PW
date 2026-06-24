@@ -1,16 +1,16 @@
 .container {
-  @apply flex w-full flex-col items-start gap-24 rounded-lg bg-white px-20 py-10 shadow-md scrollbar-none md:p-16 lg:flex-row lg:p-40;
+  @apply flex w-full flex-col items-center gap-24 bg-white scrollbar-none xs:p-20 sm:p-20 md:p-40 lg:gap-40 lg:p-40 xl:px-80 xl:py-40;
 }
 
 .containerChildOne {
-  @apply mx-auto flex flex-col gap-24 lg:mx-0;
+  @apply mx-auto flex flex-col gap-16 text-center lg:mx-0 lg:gap-24;
 }
 .containerChildOneWrapper {
   @apply flex flex-col items-center justify-center gap-8;
 }
 
 .wrapper {
-  @apply relative flex w-full items-center justify-center object-contain;
+  @apply relative flex items-center justify-center object-contain;
 }
 
 .userAvatarContainer {
@@ -20,21 +20,21 @@
   @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
 }
 .profileDetails {
-  @apply flex w-full flex-col items-start gap-24 lg:gap-32;
+  @apply flex w-full flex-col items-start gap-32 lg:gap-48;
 }
 .levelUpContainer {
-  @apply flex w-full flex-col items-start gap-12 self-stretch rounded-lg bg-[#F1F5FE];
+  @apply flex w-full flex-col items-start gap-12 self-stretch rounded-2xl bg-gray-100;
 }
 .levelUpContainerChildOne {
   @apply flex w-full flex-col items-start justify-center gap-12 self-stretch p-16;
 }
 
 .levelUpContainerChildTwo {
-  @apply flex w-full items-start justify-center gap-12 self-stretch;
+  @apply flex w-full flex-col items-start justify-center gap-12 self-stretch md:flex-row;
 }
 
 .levelUpMapContainer {
-  @apply relative flex w-1/2 flex-col items-start gap-8 rounded bg-white p-16;
+  @apply relative flex w-full flex-col items-start gap-8 rounded-xl bg-white p-16 md:w-1/2;
 }
 
 .levelUpParent {
@@ -60,7 +60,7 @@
 }
 
 .levelUpParentFour {
-  @apply flex flex-row items-center justify-center gap-2;
+  @apply flex flex-row items-center justify-center gap-6;
 }
 
 .userDetailsContainer {
@@ -70,14 +70,12 @@
 .udOne {
   @apply flex w-full items-center justify-between;
 }
-.udOneTitle {
-  @apply text-[14px] font-bold md:text-[16px] lg:text-[18px];
-}
+
 .udEditText {
   @apply cursor-pointer text-xs font-semibold;
 }
 .profileDetailsContainer {
-  @apply flex w-full flex-col gap-24;
+  @apply flex w-full flex-col gap-32;
 }
 .udContainer {
   @apply flex flex-col gap-16;
@@ -91,43 +89,43 @@
 }
 
 .udLine {
-  @apply w-full text-[#B7B7B7];
+  @apply w-full stroke-medium;
 }
 
 .udSectionContainer {
-  @apply flex flex-col items-start gap-12;
+  @apply flex flex-col items-start gap-16;
 }
 
 .udSectionWrapper {
-  @apply flex w-full items-center justify-between lg:w-4/5;
+  @apply flex w-full items-start justify-between;
 }
 
 .udNameSection {
-  @apply flex w-3/5 flex-row items-center gap-8 text-xs text-[#333333] lg:text-sm;
+  @apply flex w-3/6 flex-col items-start gap-8 text-xs md:flex-row md:items-center lg:text-sm;
 }
 .udVerifiedSection {
   @apply flex items-center gap-2;
 }
 .studentMaster {
-  @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
+  @apply cursor-pointer hover:underline;
 }
 .udSectionValue {
-  @apply w-3/5 text-[#1B2124];
+  @apply w-3/6;
 }
 .verifiedIcon {
-  @apply h-10 w-10 items-center;
+  @apply mr-4 h-16 w-16 items-center;
 }
 .pdContainer {
   @apply relative flex w-full flex-col gap-8 rounded-lg p-16;
 }
 .pdBgBlack {
-  @apply bg-[#000000cc];
+  @apply bg-gray-900;
 }
 .pdBgDefault {
-  @apply bg-[#5a4bda0d];
+  @apply rounded-xl bg-gray-100;
 }
 .infoIcon {
-  @apply absolute right-[-0.5px] top-0 h-[24px] w-[24px] cursor-pointer;
+  @apply absolute right-14 top-16 h-20 w-20 cursor-pointer;
 }
 
 .infoContainer {
@@ -141,7 +139,7 @@
 }
 
 .pdParent {
-  @apply flex w-full flex-col gap-10;
+  @apply flex w-full flex-col gap-20;
 }
 .pdParentOne {
   @apply flex justify-between align-bottom;
@@ -171,14 +169,14 @@
 }
 
 .epCTA {
-  @apply w-full md:w-[138px];
+  @apply w-full;
 }
 .fullWidthFooter {
   @apply w-full justify-between;
 }
 
 .epNameContainer {
-  @apply flex flex-col items-start gap-8;
+  @apply flex flex-col items-start gap-12;
 }
 
 .epNameSubContainer {
@@ -186,7 +184,7 @@
 }
 
 .epGenderWrapper {
-  @apply flex items-center gap-24;
+  @apply flex items-center gap-24 py-12;
 }
 .epGenderContainer {
   @apply flex items-center gap-12;
@@ -198,7 +196,7 @@
   @apply flex items-start gap-10;
 }
 .epContainer {
-  @apply flex flex-col items-start gap-8 self-stretch;
+  @apply flex flex-col items-start gap-12 self-stretch;
 }
 
 .usContainer {
@@ -250,19 +248,19 @@
   @apply text-[#0592CB] underline;
 }
 .learn2earnContainer {
-  @apply mx-auto flex w-full items-center justify-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6;
+  @apply mx-auto flex items-center justify-center gap-8 rounded-[64px] border-[1px] border-yellow-300 bg-yellow-50 px-20 py-6;
 }
 .l2eBadgeContainer {
-  @apply flex items-center pb-[4.7px];
+  @apply flex items-center pb-4;
 }
 .l2eBadge {
-  @apply h-[18.8px] w-[18.8px] flex-shrink-0;
+  @apply h-20 w-20 flex-shrink-0;
 }
 .editIconWrapper {
   @apply flex cursor-pointer items-center justify-center gap-4 px-4;
 }
 .editIconClassName {
-  @apply h-16 w-16 text-primary;
+  @apply h-20 w-20 text-primary;
 }
 
 .otpContent {
@@ -274,7 +272,7 @@
 }
 
 .batchModalBody {
-  @apply flex flex-col gap-[10px];
+  @apply flex flex-col gap-10;
 }
 
 .batchList {
@@ -297,7 +295,7 @@
 }
 
 .batchItemText {
-  @apply min-w-0 flex-1 text-[16px] font-normal leading-[24px] text-[#3d3d3d];
+  @apply min-w-0 flex-1 text-[16px] font-normal leading-[24px] text-body-1;
 
   margin: 0;
 }
@@ -331,7 +329,7 @@
 }
 
 .confirmBatchList {
-  @apply flex flex-col gap-2 rounded-xl bg-[#f8f8f8] p-12;
+  @apply flex flex-col gap-2 rounded-xl bg-[#D9DCE1] p-12;
 }
 
 .confirmBatchItem {
@@ -339,7 +337,7 @@
 }
 
 .confirmBatchDot {
-  @apply size-8 flex-shrink-0 rotate-[135deg] rounded-[2px] bg-[#6172f3];
+  @apply size-8 flex-shrink-0 rotate-[135deg] rounded-[2px] bg-indigo-500;
 }
 
 .confirmWarning {

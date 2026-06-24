@@ -26,10 +26,10 @@ const DoubtSolverCard = ({
   const {isMobile} = useScreen();
   return (
     <div className={cn(s.pdContainer, showInfo ? s.pdBgBlack : s.pdBgDefault)}>
-      <Typography variant="small" weight="bold">
+      <Typography variant="small" weight="semi-bold" color="text-body-2">
         {title}
       </Typography>
-      <Typography variant="regular" weight="semi-bold">
+      <Typography variant="heading4" weight="semi-bold" color="text-heading">
         {data}
       </Typography>
       <div className={s.infoIcon}>
@@ -70,12 +70,12 @@ const PerformanceDetails = () => {
       {
         title: 'Total Doubts Solved',
         value: _PerformanceAsDoubtSolver?.totalSolved || 0,
-        info: 'No. of doubts you have answered',
+        info: 'Number of doubts you have answered',
       },
       {
         title: 'Satisfactory Rate',
         value: `${_PerformanceAsDoubtSolver?.satisfactoryRate}%`,
-        info: 'No. of likes/<br/>(No. of likes + dislikes)',
+        info: 'Number of likes/<br/>(Number of likes + dislikes)',
       },
     ]);
   }, [_PerformanceAsDoubtSolver]);
@@ -86,13 +86,13 @@ const PerformanceDetails = () => {
   return (
     <div className={s.pdParent}>
       <div className={s.pdParentOne}>
-        <Typography variant="subHeading" weight="bold" color="static-black">
-          Performance as Doubt Solver
+        <Typography variant="heading3" weight="semi-bold" color="static-black">
+          Doubt Solver Performance
         </Typography>
         <Typography
-          color="link"
+          color="primary"
           weight="semi-bold"
-          variant="tiny"
+          variant="regular"
           className={s.knowMore}
           onClick={navigateToStudentMaster}
         >

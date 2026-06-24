@@ -348,6 +348,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
             </div>
             <Button
               fullWidth
+              size="medium"
+              variant="dark"
               disabled={otp.length !== 6}
               onClick={handleVerifyOtp}
             >
@@ -457,8 +459,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
             <Button
               type="button"
               fullWidth
-              size="large"
-              variant="secondary"
+              size="medium"
+              variant="lowFocus"
               onClick={() => {
                 setShowConfirmModal(false);
                 setError('');
@@ -475,8 +477,8 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
             <Button
               type="button"
               fullWidth
-              size="large"
-              variant="primary"
+              size="medium"
+              variant="dark"
               onClick={() => handleFinalVerify(selectedBatches)}
             >
               Accept

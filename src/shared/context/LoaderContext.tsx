@@ -32,7 +32,7 @@ const LoaderWrapper: React.FC<LoaderWrapperProps> = ({children = ''}) => {
         <Modal size="extra-small" isOpen={isOpen} showCloseIcon={false}>
           <ModalBody>
             <div className={s.loader}>
-              <Loader size="medium" />
+              <Loader color="tertiary" size="medium" />
               <div className={s.primaryMessage}>{primaryMessage}</div>
             </div>
           </ModalBody>

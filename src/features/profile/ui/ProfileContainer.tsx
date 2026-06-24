@@ -137,14 +137,10 @@ const ProfileContainer = () => {
               onChange={handleFileChange} // Handle file selection
             />
           </div>
-          <Typography
-            variant="subHeading"
-            weight="semi-bold"
-            color="static-black"
-          >
-            {user?.firstName} {user?.lastName}
-          </Typography>
         </div>
+        <Typography variant="heading1" weight="bold" color="static-black">
+          {user?.firstName} {user?.lastName}
+        </Typography>
         <Learn2EarnBage />
       </div>
       <div className={s.profileDetails}>

@@ -34,7 +34,7 @@ const TermsAndConditionsModal: React.FC<TermsAndConditionsProps> = ({
       <ModalBody>
         <div className={s.termsContainer}>
           <Typography variant="regular" weight="semi-bold" color="text-body-1">
-            Before continuing to change the mobile number, please agree to the
+            Before continuing to change your mobile number, please agree to the
             terms and conditions:
           </Typography>
           <ul className={`${s.termsList} `}>
@@ -56,7 +56,7 @@ const TermsAndConditionsModal: React.FC<TermsAndConditionsProps> = ({
         <div className={s.termsFooter}>
           <Button
             fullWidth
-            size="large"
+            size="medium"
             variant="lowFocus"
             onClick={handleClose}
           >
@@ -64,8 +64,8 @@ const TermsAndConditionsModal: React.FC<TermsAndConditionsProps> = ({
           </Button>
           <Button
             fullWidth
-            size="large"
-            variant="primary"
+            size="medium"
+            variant="dark"
             onClick={() => setActiveModal('oldPhoneNumber')}
           >
             Accept

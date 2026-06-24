@@ -22,8 +22,10 @@ function Learn2EarnBadge() {
               />
             </div>
           )}
-        <Typography variant="small" weight="semi-bold" color="static-black">
-          {learn2EarnProfileData?.currentLevel?.name}
+        <Typography variant="small" weight="semi-bold" color="text-body-1">
+          {learn2EarnProfileData?.currentLevel?.name !== 'NA'
+            ? learn2EarnProfileData?.currentLevel?.name
+            : 'No Current Level'}
         </Typography>
       </div>
     )

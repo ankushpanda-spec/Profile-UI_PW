@@ -165,7 +165,7 @@ const EditProfile: React.FC<EditProfileModalProps> = ({
             handleEditModalClose();
             setActiveModal('');
           }}
-          primaryMessage="Your Profile has been successfully changed!"
+          primaryMessage="Your Profile has been successfully updated!"
           secondaryMessage=""
         />
       )}

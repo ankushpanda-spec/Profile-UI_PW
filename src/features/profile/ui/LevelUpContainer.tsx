@@ -23,12 +23,16 @@ const LevelUpContainer = () => {
   return (
     <div className={s.levelUpContainer}>
       <div className={s.levelUpContainerChildOne}>
-        <Typography weight="bold" variant="subHeading">
-          Level Up Overview{' '}
+        <Typography
+          variant="subHeading"
+          color="static-black"
+          weight="semi-bold"
+        >
+          Level Up Overview
         </Typography>
         <div className={s.levelUpContainerChildTwo}>
           <div className={s.levelUpMapContainer}>
-            <Typography weight="bold" variant="small" color="text-body-2">
+            <Typography weight="semi-bold" variant="small" color="text-body-2">
               Total XP
             </Typography>
             <div className={s.infoIcon}>
@@ -46,8 +50,8 @@ const LevelUpContainer = () => {
                     <Typography component="p" variant="small">
                       This is the lifetime XP that you have earned throughout
                       your PW Level Up journey. <br />
-                      Note : That this is not the Weekly XP that appears on the
-                      widget in the top navigation bar.
+                      Note: This is not the Weekly XP that appears on the widget
+                      in the top navigation bar.
                     </Typography>
                   </TooltipBody>
                 </div>
@@ -55,13 +59,23 @@ const LevelUpContainer = () => {
             </div>
 
             <div className={s.levelUpParentFour}>
-              {learn2EarnProfileData?.totalXP ?? 'NA'}{' '}
-              <img src={XPIcon} height={20} width={20} alt="XPIcon" />
+              <Typography
+                weight="semi-bold"
+                variant="heading4"
+                color="text-heading"
+              >
+                {learn2EarnProfileData?.totalXP ?? '-'}{' '}
+              </Typography>
+              <img src={XPIcon} height={24} width={24} alt="XPIcon" />
             </div>
           </div>
           <div className={s.levelUpMapContainer}>
             <div className={s.levelUpParent}>
-              <Typography weight="bold" variant="small" color="text-body-2">
+              <Typography
+                weight="semi-bold"
+                variant="small"
+                color="text-body-2"
+              >
                 Highest Level
               </Typography>
               <div className={s.infoIcon}>
@@ -86,13 +100,19 @@ const LevelUpContainer = () => {
               </div>
             </div>
             <div className={s.levelUpParentFour}>
-              {learn2EarnProfileData?.highestLevel?.name ?? 'NA'}
+              <Typography
+                weight="semi-bold"
+                variant="heading4"
+                color="text-heading"
+              >
+                {learn2EarnProfileData?.highestLevel?.name ?? '-'}
+              </Typography>
               {learn2EarnProfileData?.highestLevel?.icon &&
-                learn2EarnProfileData?.highestLevel?.icon !== 'NA' && (
+                learn2EarnProfileData?.highestLevel?.icon !== '-' && (
                   <img
                     src={learn2EarnProfileData?.highestLevel?.icon}
-                    height={18}
-                    width={18}
+                    height={20}
+                    width={20}
                     alt=""
                   />
                 )}

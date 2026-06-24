@@ -80,6 +80,7 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
             <div className={s.opSubContainer}>
               <RadioButton
                 size="sm"
+                defaultChecked
                 onClick={() =>
                   setSelectedMobileNumber({
                     ...selectedMobileNumber,
@@ -87,13 +88,18 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
                   })
                 }
               />
-              <Typography variant="regular" weight="medium" color="text-body-1">
+              <Typography
+                variant="regular"
+                weight="semi-bold"
+                color="text-body-1"
+              >
                 {userInfo?.primaryNumber}
               </Typography>
             </div>
             <Button
               fullWidth
-              size="large"
+              size="medium"
+              variant="dark"
               disabled={!selectedMobileNumber}
               onClick={handleRequestOtp}
             >

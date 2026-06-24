@@ -7,7 +7,7 @@ const UpdateSuccessModal: React.FC<UpdateSuccessProps> = ({
   isOpen,
   onClose,
   primaryMessage = 'Your number has been successfully changed!',
-  secondaryMessage = 'Your all batches and other content will be transferred to your new number within 2 hour',
+  secondaryMessage = 'Your all batches and other content will be transferred to your new number within 2 hours',
 }) => {
   return (
     <Modal onClose={onClose} isOpen={isOpen} size="small">

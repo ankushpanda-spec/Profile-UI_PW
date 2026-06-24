@@ -5,7 +5,7 @@
   @apply mx-0 !important;
 }
 .wrapper {
-  @apply flex w-full justify-center px-[16px] sm:px-32;
+  @apply flex w-full justify-center bg-white;
 }
 
 @media (min-width: 2160px) {
@@ -16,5 +16,5 @@
 }
 
 .mfCommon {
-  @apply flex w-full flex-col items-center gap-[20px] pb-[20px];
+  @apply flex w-full flex-col items-center;
 }
