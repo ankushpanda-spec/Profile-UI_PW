@@ -108,7 +108,7 @@ const LevelUpContainer = () => {
                 {learn2EarnProfileData?.highestLevel?.name ?? '-'}
               </Typography>
               {learn2EarnProfileData?.highestLevel?.icon &&
-                learn2EarnProfileData?.highestLevel?.icon !== '-' && (
+                (
                   <img
                     src={learn2EarnProfileData?.highestLevel?.icon}
                     height={20}
