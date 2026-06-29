@@ -40,7 +40,7 @@ const LevelUpContainer = () => {
                 label={<InfoIcon />}
                 open={showTooltip}
                 onClose={() => handleToolTipClose()}
-                origin="center"
+                origin="end"
                 position="bottom"
                 variant="dark"
               >
@@ -105,15 +105,20 @@ const LevelUpContainer = () => {
                 variant="heading4"
                 color="text-heading"
               >
-                {learn2EarnProfileData?.highestLevel?.name ?? '-'}
+                {learn2EarnProfileData?.highestLevel?.name !== 'NA'
+                  ? learn2EarnProfileData?.highestLevel?.name
+                  : '-'}
               </Typography>
-              {learn2EarnProfileData?.highestLevel?.icon && (
+              {learn2EarnProfileData?.highestLevel?.icon &&
+              learn2EarnProfileData?.highestLevel?.icon !== 'NA' ? (
                 <img
                   src={learn2EarnProfileData?.highestLevel?.icon}
                   height={20}
                   width={20}
                   alt=""
                 />
+              ) : (
+                <div className={s.dummyHeight}/>
               )}
             </div>
           </div>

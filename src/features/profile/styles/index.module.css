@@ -1,5 +1,5 @@
 .container {
-  @apply flex w-full flex-col items-center gap-24 bg-white scrollbar-none xs:p-20 sm:p-20 md:p-40 lg:gap-40 lg:p-40 xl:px-80 xl:py-40;
+  @apply flex w-full flex-col items-center gap-24 bg-white p-20 pb-[88px] scrollbar-none sm:pb-20 md:p-40 lg:gap-40 xl:px-80 xl:py-40;
 }
 
 .containerChildOne {
@@ -346,4 +346,8 @@
 
 .confirmFooterButtons {
   @apply flex w-full gap-8;
+}
+
+.dummyHeight {
+  @apply h-[30px] w-[30px];
 }

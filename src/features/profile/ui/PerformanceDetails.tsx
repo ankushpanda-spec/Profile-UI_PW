@@ -6,24 +6,20 @@ import cn from '@/shared/lib';
 import InfoIcon from '@/shared/assets/icons/InfoIcon';
 import {Tiles} from '../types';
 import useFeedbackData from '../hooks/useGetFeedbackPerformance';
-import {useScreen} from '@pw-tech/omni-context';
 
 const DoubtSolverCard = ({
   title,
   info,
   data,
-  index,
 }: {
   title: string;
   info: string;
   data: string | number;
-  index: number;
 }) => {
   const [showInfo, setShowInfo] = useState<boolean>(false);
   const handleInfoClick = () => {
     setShowInfo(!showInfo);
   };
-  const {isMobile} = useScreen();
   return (
     <div className={cn(s.pdContainer, showInfo ? s.pdBgBlack : s.pdBgDefault)}>
       <Typography variant="small" weight="semi-bold" color="text-body-2">
@@ -37,12 +33,7 @@ const DoubtSolverCard = ({
           label={<InfoIcon />}
           open={showInfo}
           onClose={handleInfoClick}
-          origin={(() => {
-            if (index === 0) {
-              return isMobile ? 'end' : 'center';
-            }
-            return 'end';
-          })()}
+          origin="end"
           position="top"
           variant="dark"
         >
@@ -107,7 +98,6 @@ const PerformanceDetails = () => {
               title={tile.title}
               data={tile.value}
               info={tile.info}
-              index={index}
             />
           );
         })}
