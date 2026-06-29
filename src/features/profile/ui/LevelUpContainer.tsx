@@ -10,8 +10,10 @@ import {webSDK} from '@/shared/services/sdk';
 import InfoIcon from '@/shared/assets/icons/InfoIcon';
 import {XPIcon} from '../constants';
 import useLearn2EarnData from '../hooks/useLearn2EarnData';
+import {useScreen} from '@pw-tech/omni-context';
 
 const LevelUpContainer = () => {
+  const {isMobile} = useScreen();
   const {data: learn2EarnProfileData} = useLearn2EarnData(
     // eslint-disable-next-line no-underscore-dangle
     webSDK?.cohortConfig?._id || ''
@@ -43,6 +45,7 @@ const LevelUpContainer = () => {
                 origin="end"
                 position="bottom"
                 variant="dark"
+                style={isMobile ? {width: '75%'} : {}}
               >
                 <div className={s.levelUpWrapper}>
                   <TooltipHeader>Total XP</TooltipHeader>
@@ -86,6 +89,7 @@ const LevelUpContainer = () => {
                   origin="end"
                   position="bottom"
                   variant="dark"
+                  style={isMobile ? {width: '75%'} : {}}
                 >
                   <div className={s.levelUpWrapper}>
                     <TooltipHeader>Highest Level</TooltipHeader>
