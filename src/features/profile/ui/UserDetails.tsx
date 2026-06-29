@@ -119,7 +119,12 @@ const UserDetails = () => {
           }}
         >
           <EditIcon className={s.editIconClassName} />
-          <Typography variant="regular" color="primary" weight="semi-bold">
+          <Typography
+            className={s.editText}
+            variant="regular"
+            color="primary"
+            weight="semi-bold"
+          >
             Edit
           </Typography>
         </div>
