@@ -118,7 +118,7 @@ const LevelUpContainer = () => {
                   alt=""
                 />
               ) : (
-                <div className={s.dummyHeight}/>
+                <div className={s.dummyHeight} />
               )}
             </div>
           </div>
