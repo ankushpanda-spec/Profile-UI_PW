@@ -1,5 +1,5 @@
 .studentMaster {
-  @apply flex flex-col items-start gap-20 rounded-lg bg-white p-16 md:px-24 md:py-32 lg:p-32;
+  @apply flex flex-col items-start gap-20 rounded-lg bg-white p-20 pb-[88px] scrollbar-none sm:pb-20 md:p-40 lg:gap-40 xl:px-80 xl:py-40;
 }
 
 .smTitle {
