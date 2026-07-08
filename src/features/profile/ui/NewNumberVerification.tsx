@@ -11,12 +11,14 @@ import {
 } from '@pw-tech/omni-ui';
 
 import s from '../styles/index.module.css';
-import {fetchOtp} from '../api';
 
 import useLoader from '@/shared/hooks/showLoader';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
 import {NewNumberVerificationProps, OtpResponseData} from '../types';
 import getErrorMessage from '@/shared/services/showErrorService';
+import useSecureSendOtp from '../hooks/useSecureSendOtp';
+import {CaptchaSection} from '@/shared/components/captcha/CaptchaSection';
+import {CAPTCHA_WIDGET_IDS} from '@/shared/components/captcha/constants';
 
 const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   isOpen,
@@ -34,6 +36,9 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
   const [inputErrorMessageShown, setInputErrorMessageShown] =
     useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+  const {isCaptchaFlow, sendOtp, captcha} = useSecureSendOtp(
+    CAPTCHA_WIDGET_IDS.PROFILE_NEW_NUMBER_OTP
+  );
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -79,6 +84,10 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
       setInputErrorMessageShown(true);
       return;
     }
+    if (isCaptchaFlow && !captcha.isCaptchaReady()) {
+      captcha.setShowCaptchaHint(true);
+      return;
+    }
     const apiData = {
       phone: newInputMobileNumber.mobileNumber,
       countryCode: newInputMobileNumber.countryCode,
@@ -89,7 +98,7 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
     };
     try {
       showLoader('Sending OTP...');
-      const res = await fetchOtp(apiData);
+      const res = await sendOtp(apiData);
       const responseData = res?.data as OtpResponseData | undefined;
       if (res?.success || responseData?.isNumberAlreadyRegistered) {
         const isNumberAlreadyReg =
@@ -170,6 +179,19 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
               }));
             }}
           />
+          {isCaptchaFlow && (
+            <CaptchaSection
+              isCaptchaEnabled={captcha?.isCaptchaEnabled}
+              captchaWidgetRef={captcha?.captchaWidgetRef}
+              widgetId={CAPTCHA_WIDGET_IDS.PROFILE_NEW_NUMBER_OTP}
+              showCaptchaHint={false}
+              onVerify={captcha?.handleCaptchaVerify || (() => {})}
+              sentryData={{
+                mobileNumber: newInputMobileNumber.mobileNumber,
+                dialCode: newInputMobileNumber.countryCode,
+              }}
+            />
+          )}
         </div>
       </ModalBody>
 
@@ -180,6 +202,7 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
           size="large"
           variant="primary"
           onClick={onContinueClick}
+          disabled={isCaptchaFlow && !captcha.isCaptchaReady()}
         >
           Continue
         </Button>

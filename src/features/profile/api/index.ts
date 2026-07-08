@@ -4,6 +4,7 @@ import {
   getCitiesApi,
   getIsEligible,
   getOtp,
+  getOtpSecure,
   getStatesApi,
   setFile,
   setUser,
@@ -42,15 +43,32 @@ export const fetchUpdateNumberConfig = async () => {
   const data = await ApiClient.get<GetUpdateNumberConfigResponse>(url, {});
   return data;
 };
-export const fetchOtp = async (payload: {
+export interface SendOtpPayload {
   countryCode: string;
   isNewNumber: boolean;
   organizationId: string;
   phone: string;
   requestId: string;
   isNewShiftFlow?: boolean;
-}): Promise<FetchOtpResponse> => {
+}
+
+export interface SendOtpSecurePayload extends SendOtpPayload {
+  captchaToken?: string;
+  captchaSiteKey?: string;
+}
+
+export const fetchOtp = async (
+  payload: SendOtpPayload
+): Promise<FetchOtpResponse> => {
   const url = getOtp();
+  const data = await ApiClient.post<FetchOtpResponse>(url, payload);
+  return data;
+};
+
+export const fetchOtpSecure = async (
+  payload: SendOtpSecurePayload
+): Promise<FetchOtpResponse> => {
+  const url = getOtpSecure();
   const data = await ApiClient.post<FetchOtpResponse>(url, payload);
   return data;
 };
