@@ -15,6 +15,12 @@ const webSDK = AuthService.getInstance({
   contextIdentifier: 'TOKEN_CONTEXT',
   loginPageUrl: '/',
   debugMode: process.env.PUBLIC_DEBUG_MODE === 'true',
+  unleashConfig: {
+    unleashProxyUrl: process.env.PUBLIC_UNLEASH_PROXY_URL as string,
+    unleashClientKey: process.env.PUBLIC_UNLEASH_CLIENT_KEY as string,
+    appName: 'pw-common-mf',
+    analyticsEndpointUrl: 'core-analytics/universal/experiments/record',
+  },
   eventConfig: {
     organizationName: EVENTS_ORG.PHYSICS_WALLAH,
     eventPlatforms: [

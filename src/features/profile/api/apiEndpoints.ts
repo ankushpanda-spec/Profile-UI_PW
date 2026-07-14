@@ -10,6 +10,8 @@ export const getIsEligible = () => `/v1/users/is-eligible`;
 
 export const getOtp = () => `/v1/users/phone/otp`;
 
+export const getOtpSecure = () => `v1/users/phone/otp-secure`;
+
 export const verifyOtpUrl = () => `v1/users/phone/verify`;
 export const setFile = () => `v1/files`;
 
