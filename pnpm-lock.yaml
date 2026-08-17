@@ -12,8 +12,8 @@ importers:
         specifier: 0.0.6-alpha-1.4
         version: 0.0.6-alpha-1.4(@types/react@18.3.27)(react@18.3.1)(redux@5.0.1)
       '@pw-tech/omni-ui':
-        specifier: 0.0.41
-        version: 0.0.41(@babel/plugin-syntax-flow@7.28.6(@babel/core@7.28.6))(@babel/plugin-transform-react-jsx@7.28.6(@babel/core@7.28.6))(@rspack/core@1.1.8(@swc/helpers@0.5.18))(@types/babel__core@7.20.5)(@types/react@18.3.27)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@1.21.7))(jquery@4.0.0)(tailwindcss@3.4.19)(type-fest@0.21.3)(typescript@5.9.3)
+        specifier: 0.0.56-alpha-1.0
+        version: 0.0.56-alpha-1.0(@babel/plugin-syntax-flow@7.29.7(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.29.7(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.31)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7))(jquery@3.7.1)(tailwindcss@3.4.19(yaml@2.7.0))(type-fest@0.21.3)(typescript@5.9.3)(yaml@2.7.0)
       '@pw-tech/unleash':
         specifier: 0.0.1-beta.10
         version: 0.0.1-beta.10(@pw-tech/web-sdk@0.0.16)(@unleash/nextjs@1.6.7(next@16.2.10(@babel/core@7.28.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.97.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@unleash/proxy-client-react@5.1.0(unleash-proxy-client@3.8.0))(unleash-proxy-client@3.8.0)
@@ -1713,8 +1713,8 @@ packages:
     peerDependencies:
       react: ^16.13.0
 
-  '@pw-tech/omni-ui@0.0.41':
-    resolution: {integrity: sha512-EHWGPhG+4PUqewa9Qer9vaRZhoH7IVeqWX/h04m6q7HWggaaNT+WpiOe0pfBl1F7dt4j3AEJqHmo4PwfeT9enw==}
+  '@pw-tech/omni-ui@0.0.56-alpha-1.0':
+    resolution: {integrity: sha512-v5VdqrCXbTg0WynnElwL3T5D0uJQL1VOZz6eQrcWC/V4cNuvPKB0Ga/ZhHH6+VfeSntgV5YXxRvo2OYeFffH6Q==}
     engines: {node: '>=18.x', npm: please-use-pnpm, pnpm: '>=8.x'}
 
   '@pw-tech/unleash@0.0.1-beta.10':
@@ -3447,6 +3447,7 @@ packages:
   cron-parser@4.9.0:
     resolution: {integrity: sha512-p0SaNjrHOnQeR8/VnfGbmg9te2kfyYSQ7Sc/j/6DtPL3JQvKxmjO9TSjNFpujqV3vEYYBvNNvXSxzyksBWAx1Q==}
     engines: {node: '>=12.0.0'}
+    deprecated: v4 is no longer maintained, upgrade to v5
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -9921,7 +9922,7 @@ snapshots:
       - '@types/react'
       - redux
 
-  '@pw-tech/omni-ui@0.0.41(@babel/plugin-syntax-flow@7.28.6(@babel/core@7.28.6))(@babel/plugin-transform-react-jsx@7.28.6(@babel/core@7.28.6))(@rspack/core@1.1.8(@swc/helpers@0.5.18))(@types/babel__core@7.20.5)(@types/react@18.3.27)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2(jiti@1.21.7))(jquery@4.0.0)(tailwindcss@3.4.19)(type-fest@0.21.3)(typescript@5.9.3)':
+  '@pw-tech/omni-ui@0.0.56-alpha-1.0(@babel/plugin-syntax-flow@7.29.7(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.29.7(@babel/core@7.26.10))(@rspack/core@1.1.8(@swc/helpers@0.5.15))(@types/babel__core@7.20.5)(@types/react@18.3.31)(canvas@2.11.2)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@1.21.7))(jquery@3.7.1)(tailwindcss@3.4.19(yaml@2.7.0))(type-fest@0.21.3)(typescript@5.9.3)(yaml@2.7.0)':
     dependencies:
       '@tailwindcss/forms': 0.5.7(tailwindcss@3.4.19)
       '@tailwindcss/line-clamp': 0.4.4(tailwindcss@3.4.19)
