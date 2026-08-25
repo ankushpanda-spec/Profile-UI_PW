@@ -24,7 +24,6 @@
   "dependencies": {
     "@pw-tech/omni-context": "0.0.6-alpha-1.4",
     "@pw-tech/omni-ui": "0.0.57",
-    "@pw-tech/web-sdk": "0.0.15",
     "@pw-tech/unleash": "0.0.1-beta.10",
     "@pw-tech/web-sdk": "0.0.16",
     "@radix-ui/react-popover": "^1.1.1",
