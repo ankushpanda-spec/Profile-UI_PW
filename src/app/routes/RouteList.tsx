@@ -10,6 +10,7 @@ import StudentMaster from '@/page-component/student-master-program/ui';
 import ErrorBoundary from '../pages/error-boundary';
 import ContentLoader from '@/shared/components/content-skeleton/ui';
 import pkVersion from '../../../package.json';
+import {ThemeProvider} from '@pw-tech/omni-ui';
 
 Sentry.init({
   dsn: process.env.PUBLIC_SENTRY_DSN, // Replace with your Sentry project's DSN
@@ -22,7 +23,13 @@ Sentry.init({
 });
 
 const RouteList = (
-  <Route element={<AuthGuard />}>
+  <Route
+    element={
+      <ThemeProvider>
+        <AuthGuard />
+      </ThemeProvider>
+    }
+  >
     <Route
       path={MFCOMMON_ROUTES.MFCOMMON_PROFILE}
       element={
