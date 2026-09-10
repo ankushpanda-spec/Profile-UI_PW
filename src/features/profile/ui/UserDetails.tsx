@@ -1,28 +1,22 @@
 import {useEffect, useState} from 'react';
-import s from '../styles/index.module.css';
-import {useNavigate} from 'react-router-dom';
-import VerifiedIcon from '@/shared/assets/icons/Verified';
-import EditIcon from '@/shared/assets/icons/EditIcon';
 import {Typography} from '@pw-tech/omni-ui';
+import {useUser} from '@pw-tech/omni-context';
+import s from '../styles/index.module.css';
 import EditProfile from './EditProfile';
 import {Section, SectionValue} from '../types';
-import {useUser} from '@pw-tech/omni-context';
 import {getUserProfileInfo} from '../api';
 import {updateUserLocally} from '../lib';
 import getErrorMessage from '@/shared/services/showErrorService';
 import useError from '@/shared/hooks/showError';
 import {webSDK} from '@/shared/services/sdk';
-import {Scholar} from '@/shared/assets/icons';
 import {LogAnalyticsEvent} from '@/shared/lib/analytics';
 
 const UserDetails = () => {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
   const [sections, setSections] = useState<Section[]>([]);
-  const [isScholar, setIsScholar] = useState<boolean>(false);
   const {user, setUser} = useUser();
   const showError = useError();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getUserData = async () => {
@@ -49,159 +43,94 @@ const UserDetails = () => {
   }, [JSON.stringify(webSDK.cohortConfig)]);
 
   useEffect(() => {
-    const getBatchUserSegment = async () => {
-      try {
-        const res = await webSDK.getUserSegment();
-        setIsScholar(res?.data?.isScholar);
-      } catch (error) {
-        const errorObj = getErrorMessage(error);
-        showError(errorObj.message);
-      }
-    };
-    getBatchUserSegment();
-  }, []);
-
-  useEffect(() => {
-    const updatedSections: Section[] = [];
-
-    updatedSections.push({
-      sectionName: 'Personal Details',
-      values: [
-        {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
-        {key: 'Mobile Number', value: user?.primaryNumber},
-        {key: 'E-mail', value: user?.email || '-'},
-        {
-          key: 'City/Village/Town',
-          value: user?.profileId?.address?.city || '-',
-        },
-      ],
-    });
-
-    updatedSections.push({
-      sectionName: 'Academic Details',
-      values: [
-        {key: 'Class', value: user?.profileId?.class || '-'},
-        {key: 'Board/State Board', value: user?.profileId?.board || '-'},
-        {key: 'Exams', value: user?.profileId?.exams.join('') || '-'},
-        {key: 'Language', value: user?.profileId?.language || '-'},
-      ],
-    });
-
-    setSections(updatedSections);
+    setSections([
+      {
+        sectionName: 'Personal Details',
+        showEdit: true,
+        values: [
+          {key: 'Name', value: `${user?.firstName} ${user?.lastName}`},
+          {key: 'Mobile Number', value: user?.primaryNumber},
+          {key: 'E-mail', value: user?.email || '-'},
+          {
+            key: 'City / Village / Town',
+            value: user?.profileId?.address?.city || '-',
+          },
+        ],
+      },
+      {
+        sectionName: 'Academic Details',
+        values: [
+          {key: 'Class', value: user?.profileId?.class || '-'},
+          {key: 'Board / State Board', value: user?.profileId?.board || '-'},
+          {key: 'Exams', value: user?.profileId?.exams.join('') || '-'},
+          {key: 'Language', value: user?.profileId?.language || '-'},
+        ],
+      },
+    ]);
   }, [user]);
-
-  const navigateToStudentMaster = () => {
-    navigate('/student-master-program?cameFrom=Profile');
-  };
 
   const onEditIconClick = () => {
     setIsEditFormOpen(!isEditFormOpen);
     setEditModalOpen(true);
     LogAnalyticsEvent.profileEdit();
   };
+
   return (
-    <div className={s.userDetailsContainer}>
-      <div className={s.udOne}>
-        <Typography variant="heading3" color="static-black" weight="semi-bold">
-          Profile Details
-        </Typography>
-        <div
-          className={s.editIconWrapper}
-          role="button"
-          tabIndex={0}
-          onClick={() => {
-            onEditIconClick();
-          }}
-          onKeyPress={e => {
-            if (e.key === 'Enter') {
-              onEditIconClick();
-            }
-          }}
-        >
-          <EditIcon className={s.editIconClassName} />
-          <Typography
-            className={s.editText}
-            variant="regular"
-            color="primary"
-            weight="semi-bold"
-          >
-            Edit
-          </Typography>
-        </div>
-      </div>
-      <div className={s.profileDetailsContainer}>
-        {sections.map((section: Section, index: number) => (
-          <div className={s.udContainer} key={index}>
-            <div className={s.udTwo}>
+    <>
+      <div className={s.detailsGrid}>
+        {sections.map((section: Section) => (
+          <div className={s.detailsCard} key={section.sectionName}>
+            <div className={s.detailsHeader}>
               <Typography
-                variant="small"
-                weight="bold"
-                color="text-body-1"
-                className={s.udTwoSection}
+                className={s.detailsTitle}
+                variant="heading4"
+                weight="semi-bold"
+                color="text-heading"
               >
                 {section.sectionName}
               </Typography>
-
-              <div className={s.udLine}>
-                <hr />
-              </div>
-            </div>
-
-            <div className={s.udSectionContainer}>
-              {section.values.map((data: SectionValue, indexNum: number) => (
-                <div key={indexNum} className={s.udSectionWrapper}>
+              {section.showEdit && (
+                <div
+                  className={s.editButton}
+                  role="button"
+                  tabIndex={0}
+                  onClick={onEditIconClick}
+                  onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                      onEditIconClick();
+                    }
+                  }}
+                >
                   <Typography
-                    variant="regular"
-                    weight="medium"
-                    color="text-body-2"
+                    className={s.editText}
+                    variant="small"
+                    weight="semi-bold"
+                    color="primary"
                   >
-                    {'  '}
+                    Edit
+                  </Typography>
+                </div>
+              )}
+            </div>
+            <div className={s.detailsList}>
+              {section.values.map((data: SectionValue) => (
+                <div key={data.key} className={s.detailRow}>
+                  <Typography
+                    className={s.detailLabel}
+                    variant="small"
+                    weight="medium"
+                    color="text-body-1"
+                  >
                     {data.key}
                   </Typography>
-                  {data.key === 'Name' ? (
-                    <div className={s.udNameSection}>
-                      <Typography
-                        weight="semi-bold"
-                        variant="regular"
-                        color="text-heading"
-                      >
-                        {'  '}
-                        {data.value}
-                      </Typography>
-                      <div className={s.udVerifiedSection}>
-                        <VerifiedIcon className={s.verifiedIcon} />
-                        <div
-                          className={s.studentMaster}
-                          role="button"
-                          tabIndex={0}
-                          onClick={navigateToStudentMaster}
-                          onKeyPress={e => {
-                            if (e.key === 'Enter') {
-                              navigateToStudentMaster();
-                            }
-                          }}
-                        >
-                          <Typography
-                            weight="semi-bold"
-                            variant="regular"
-                            color="primary"
-                          >
-                            PW Student Master
-                          </Typography>
-                        </div>
-                      </div>
-                      {isScholar && <img src={Scholar} alt="ScholarIcon" />}
-                    </div>
-                  ) : (
-                    <Typography
-                      weight="semi-bold"
-                      variant="regular"
-                      color="text-body-1"
-                      className={s.udSectionValue}
-                    >
-                      {data.value}
-                    </Typography>
-                  )}
+                  <Typography
+                    className={s.detailValue}
+                    variant="regular"
+                    weight="semi-bold"
+                    color="text-heading"
+                  >
+                    {data.value}
+                  </Typography>
                 </div>
               ))}
             </div>
@@ -217,7 +146,7 @@ const UserDetails = () => {
           }}
         />
       )}
-    </div>
+    </>
   );
 };
 

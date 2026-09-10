@@ -17,3 +17,5 @@ export const GirlAvatar =
   'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0573e0d7-fc36-408a-9a58-dd22f69c205c.png';
 export const XPIcon =
   'https://static.pw.live/images/xp-icon_20250107145335.png';
+export const LoveLearningBadge =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/884f4b16-1d2b-42ce-856b-eef1b49c0850.svg';

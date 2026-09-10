@@ -5,7 +5,7 @@ import {updateUser, uploadFile} from '../api';
 import {BoyAvatar, CameraIcon, GirlAvatar} from '../constants';
 import s from '../styles/index.module.css';
 import {Typography, useToast} from '@pw-tech/omni-ui';
-import Learn2EarnBage from './Learn2EarnBage';
+import ProfileBadges from './ProfileBadges';
 import {useUser} from '@pw-tech/omni-context';
 import {UploadFileResponse} from '../types';
 import getErrorMessage from '@/shared/services/showErrorService';
@@ -114,36 +114,38 @@ const ProfileContainer = () => {
 
   return (
     <div className={s.container}>
-      <div className={s.containerChildOne}>
-        <div className={s.containerChildOneWrapper}>
-          <div className={s.wrapper}>
-            <UserAvatar src={userImg || ''} className={s.userAvatarContainer} />
-            <button
-              onClick={handleCameraIconClick} // Handle camera icon click
-              aria-label="Upload Avatar"
-            >
-              <img
-                src={CameraIcon}
-                className={s.cameraIcon}
-                alt="Upload Avatar"
-              />
-            </button>
-            {/* Hidden file input */}
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              style={{display: 'none'}}
-              onChange={handleFileChange} // Handle file selection
-            />
-          </div>
+      <div className={s.headerSection}>
+        <div className={s.avatarWrapper}>
+          <UserAvatar src={userImg || ''} className={s.userAvatar} />
+          <button
+            className={s.cameraButton}
+            onClick={handleCameraIconClick} // Handle camera icon click
+            aria-label="Upload Avatar"
+          >
+            <img src={CameraIcon} alt="Upload Avatar" />
+          </button>
+          {/* Hidden file input */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{display: 'none'}}
+            onChange={handleFileChange} // Handle file selection
+          />
         </div>
-        <Typography variant="heading1" weight="bold" color="static-black">
-          {user?.firstName} {user?.lastName}
-        </Typography>
-        <Learn2EarnBage />
+        <div className={s.nameBlock}>
+          <Typography
+            className={s.userName}
+            variant="heading1"
+            weight="bold"
+            color="text-heading"
+          >
+            {user?.firstName} {user?.lastName}
+          </Typography>
+          <ProfileBadges />
+        </div>
       </div>
-      <div className={s.profileDetails}>
+      <div className={s.bodySection}>
         <ProfileDetails />
       </div>
     </div>
