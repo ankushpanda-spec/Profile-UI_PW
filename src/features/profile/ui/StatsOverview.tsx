@@ -6,10 +6,9 @@ import {
 } from '@pw-tech/omni-ui';
 import {useState} from 'react';
 import {useScreen} from '@pw-tech/omni-context';
-import InfoIcon from '@/shared/assets/icons/InfoIcon';
 import {webSDK} from '@/shared/services/sdk';
 import s from '../styles/index.module.css';
-import {XPIcon} from '../constants';
+import {InfoIcon, XPIcon} from '../constants';
 import {StatTile} from '../types';
 import useLearn2EarnData from '../hooks/useLearn2EarnData';
 import useFeedbackData from '../hooks/useGetFeedbackPerformance';
@@ -43,10 +42,14 @@ const StatCard = ({
         </Typography>
         <Tooltip
           label={
-            <InfoIcon
-              className={s.statInfoIcon}
+            <button
+              type="button"
+              className={s.statInfoIconButton}
+              aria-label={`${title} info`}
               onClick={() => setShowInfo(!showInfo)}
-            />
+            >
+              <img className={s.statInfoIcon} src={InfoIcon} alt="" />
+            </button>
           }
           open={showInfo}
           onClose={() => setShowInfo(false)}

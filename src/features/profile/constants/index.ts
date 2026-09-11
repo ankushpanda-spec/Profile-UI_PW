@@ -19,3 +19,7 @@ export const XPIcon =
   'https://static.pw.live/images/xp-icon_20250107145335.png';
 export const LoveLearningBadge =
   'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/884f4b16-1d2b-42ce-856b-eef1b49c0850.svg';
+export const InfoIcon =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/246e88ad-6f88-4c9a-8d7e-a2d16c48bb39.svg';
+export const HeartIcon =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/2d239440-f284-40e6-8783-809cca6bce8e.svg';
