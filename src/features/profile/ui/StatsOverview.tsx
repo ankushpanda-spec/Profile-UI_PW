@@ -63,6 +63,7 @@ const StatCard = ({
               <Typography
                 component="p"
                 variant="small"
+                color="grey-200"
                 dangerouslySetInnerHTML={{__html: info}}
               />
             </TooltipBody>
