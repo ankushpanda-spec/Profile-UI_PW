@@ -9,13 +9,15 @@ import {
   Separator,
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
-import {fetchOtp} from '../api';
 
 import useLoader from '@/shared/hooks/showLoader';
 import {OldPhoneNumberProps} from '../types';
 import {useUser} from '@pw-tech/omni-context';
 import getErrorMessage from '@/shared/services/showErrorService';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
+import useSecureSendOtp from '../hooks/useSecureSendOtp';
+import {CaptchaSection} from '@/shared/components/captcha/CaptchaSection';
+import {CAPTCHA_WIDGET_IDS} from '@/shared/components/captcha/constants';
 
 const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   isOpen,
@@ -29,6 +31,9 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   const {user: userInfo} = useUser();
   const [error, setError] = useState<string>('');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(isOpen);
+  const {isCaptchaFlow, sendOtp, captcha} = useSecureSendOtp(
+    CAPTCHA_WIDGET_IDS.PROFILE_OLD_NUMBER_OTP
+  );
   const handleClose = () => {
     setIsModalOpen(false);
     setActiveModal('');
@@ -36,6 +41,10 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
   };
 
   const handleRequestOtp = async () => {
+    if (isCaptchaFlow && !captcha.isCaptchaReady()) {
+      captcha.setShowCaptchaHint(true);
+      return;
+    }
     showLoader('Sending OTP...');
     try {
       const apiData = {
@@ -46,7 +55,7 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
         requestId: numberChangeRequestId || '',
         isNewShiftFlow: true,
       };
-      const res = await fetchOtp(apiData);
+      const res = await sendOtp(apiData);
       if (res.success) {
         setActiveModal('otpVerification');
       } else {
@@ -96,11 +105,27 @@ const OldPhoneNumberModal: React.FC<OldPhoneNumberProps> = ({
                 {userInfo?.primaryNumber}
               </Typography>
             </div>
+            {isCaptchaFlow && (
+              <CaptchaSection
+                isCaptchaEnabled={captcha?.isCaptchaEnabled}
+                captchaWidgetRef={captcha?.captchaWidgetRef}
+                widgetId={CAPTCHA_WIDGET_IDS.PROFILE_OLD_NUMBER_OTP}
+                showCaptchaHint={false}
+                onVerify={captcha?.handleCaptchaVerify || (() => {})}
+                sentryData={{
+                  mobileNumber: selectedMobileNumber?.mobileNumber,
+                  dialCode: userInfo?.countryCode,
+                }}
+              />
+            )}
             <Button
               fullWidth
               size="medium"
               variant="dark"
-              disabled={!selectedMobileNumber}
+              disabled={
+                !selectedMobileNumber ||
+                (isCaptchaFlow && !captcha.isCaptchaReady())
+              }
               onClick={handleRequestOtp}
             >
               Request OTP

@@ -11,7 +11,7 @@ import {
 } from '@pw-tech/omni-ui';
 import s from '../styles/index.module.css';
 import EditIcon from '@/shared/assets/icons/EditIcon';
-import {fetchOtp, verifyOtp} from '../api';
+import {verifyOtp} from '../api';
 import getErrorMessage from '@/shared/services/showErrorService';
 import useLoader from '@/shared/hooks/showLoader';
 import ErrorIcon from '@/shared/assets/icons/ErrorIcon';
@@ -21,6 +21,9 @@ import {useUser} from '@pw-tech/omni-context';
 import {User} from '@pw-tech/web-sdk';
 import useMyOrders, {MyOrder} from '../hooks/useMyOrders';
 import BatchSelectionModal from './BatchSelectionModal';
+import useSecureSendOtp from '../hooks/useSecureSendOtp';
+import {CaptchaSection} from '@/shared/components/captcha/CaptchaSection';
+import {CAPTCHA_WIDGET_IDS} from '@/shared/components/captcha/constants';
 
 const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   isOpen,
@@ -44,6 +47,9 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [selectedBatches, setSelectedBatches] = useState<string[]>([]); // stores orderIds
   const [hasOtpError, setHasOtpError] = useState<boolean>(false); // tracks if OTP verification failed
+  const {isCaptchaFlow, sendOtp, captcha} = useSecureSendOtp(
+    CAPTCHA_WIDGET_IDS.PROFILE_RESEND_OTP
+  );
 
   const {
     data: purchasedBatchesData,
@@ -169,6 +175,10 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
   };
 
   const onResendOtp = async () => {
+    if (isCaptchaFlow && !captcha.isCaptchaReady()) {
+      captcha.setShowCaptchaHint(true);
+      return;
+    }
     setError('');
     showLoader('Sending OTP...');
     try {
@@ -180,7 +190,7 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
         requestId: numberChangeRequestId || '',
         isNewShiftFlow: true,
       };
-      const res: ApiResponse = await fetchOtp(apiData);
+      const res: ApiResponse = await sendOtp(apiData);
       if (
         res.success ||
         (res.data &&
@@ -324,6 +334,20 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
                 </Typography>
               )}
 
+              {isCaptchaFlow && (
+                <CaptchaSection
+                  isCaptchaEnabled={captcha?.isCaptchaEnabled}
+                  captchaWidgetRef={captcha?.captchaWidgetRef}
+                  widgetId={CAPTCHA_WIDGET_IDS.PROFILE_RESEND_OTP}
+                  showCaptchaHint={false}
+                  onVerify={captcha?.handleCaptchaVerify || (() => {})}
+                  sentryData={{
+                    mobileNumber: selectedMobileNumber?.mobileNumber,
+                    dialCode: selectedMobileNumber?.countryCode,
+                  }}
+                />
+              )}
+
               <div className={s.otpText}>
                 <Typography
                   color="text-body-1"
@@ -340,7 +364,9 @@ const OTPVerificationModal: React.FC<OtpVerificationProps> = ({
                   size="medium"
                   variant="link"
                   className="text-[#0592CB] underline"
-                  disabled={timeLeft > 0}
+                  disabled={
+                    timeLeft > 0 || (isCaptchaFlow && !captcha.isCaptchaReady())
+                  }
                 >
                   Resend
                 </Button>
