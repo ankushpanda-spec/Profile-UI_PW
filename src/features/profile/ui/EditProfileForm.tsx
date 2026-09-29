@@ -239,14 +239,14 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
               {showWarningForNameChange &&
                 (isUpdateNameDisabled ? (
                   <Alert
-                    subHeading={`You have already updated your profile name once! You won’t be able to
-        update it before ${calculatedDate}!`}
+                    subHeading={`You have already updated your profile name once. You won’t be able to
+        update it before ${calculatedDate}.`}
                     intent="error"
                     fullWidth
                   />
                 ) : (
                   <Alert
-                    subHeading={`If you change your profile name, you won't be able to update it till ${calculatedDate}!`}
+                    subHeading={`If you change your profile name, you won't be able to update it till ${calculatedDate}.`}
                     intent="warning"
                     fullWidth
                   />
@@ -256,7 +256,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
           {/* Gender */}
 
           <div className={s.epGenderWrapper}>
-            <Typography variant="regular" weight="semi-bold">
+            <Typography variant="small" weight="semi-bold">
               Gender
             </Typography>
             <Controller
@@ -387,8 +387,8 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
         <ModalFooter>
           <div className={s.modalFooter}>
             <Button
-              size="small"
-              variant="secondary"
+              size="medium"
+              variant="lowFocus"
               onClick={() => {
                 handleEditModalClose();
                 reset(); // Reset the form when the modal is closed
@@ -399,8 +399,8 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({
               Cancel
             </Button>
             <Button
-              size="small"
-              variant="primary"
+              size="medium"
+              variant="dark"
               disabled={!isValid}
               type="submit"
               className={s.epCTA}

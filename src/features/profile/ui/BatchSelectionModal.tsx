@@ -162,8 +162,8 @@ const BatchSelectionModal: React.FC<BatchSelectionModalProps> = ({
         <Button
           type="button"
           fullWidth
-          size="large"
-          variant="primary"
+          size="medium"
+          variant="dark"
           onClick={() => {
             if (onSave) onSave(selectedBatches);
           }}

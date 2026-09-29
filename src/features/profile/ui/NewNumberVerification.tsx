@@ -199,8 +199,8 @@ const NewNumberVerification: React.FC<NewNumberVerificationProps> = ({
         <Button
           type="button"
           fullWidth
-          size="large"
-          variant="primary"
+          size="medium"
+          variant="dark"
           onClick={onContinueClick}
           disabled={isCaptchaFlow && !captcha.isCaptchaReady()}
         >

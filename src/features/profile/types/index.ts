@@ -209,10 +209,11 @@ export interface UploadFileResponse {
   success: boolean;
   data: ImageData;
 }
-export interface Tiles {
+export interface StatTile {
   title: string;
   value: number | string;
   info: string;
+  icon?: string;
 }
 export interface SectionValue {
   key: string;
@@ -221,6 +222,7 @@ export interface SectionValue {
 export interface Section {
   sectionName: string;
   values: SectionValue[];
+  showEdit?: boolean;
 }
 export interface ProfileInfo {
   board: string;

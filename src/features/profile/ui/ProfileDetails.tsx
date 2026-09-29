@@ -1,13 +1,13 @@
-import LevelUpContainer from './LevelUpContainer';
-import PerformanceDetails from './PerformanceDetails';
+import BottomIllustration from './BottomIllustration';
+import StatsOverview from './StatsOverview';
 import UserDetails from './UserDetails';
 
 const ProfileDetails = () => {
   return (
     <>
-      <LevelUpContainer />
+      <StatsOverview />
       <UserDetails />
-      <PerformanceDetails />
+      <BottomIllustration />
     </>
   );
 };

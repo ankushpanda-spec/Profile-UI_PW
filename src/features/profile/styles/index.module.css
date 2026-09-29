@@ -1,157 +1,218 @@
+/* ------------------------------------------------------------------ */
+/* Profile page                                                        */
+/* ------------------------------------------------------------------ */
 .container {
-  @apply flex w-full flex-col items-start gap-24 rounded-lg bg-white px-20 py-10 shadow-md scrollbar-none md:p-16 lg:flex-row lg:p-40;
+  @apply flex w-full flex-col gap-[36px] bg-white px-16 pb-0 pt-40 scrollbar-none md:gap-40 md:px-40 lg:pb-40 xl:px-80;
 }
 
-.containerChildOne {
-  @apply mx-auto flex flex-col gap-24 lg:mx-0;
-}
-.containerChildOneWrapper {
-  @apply flex flex-col items-center justify-center gap-8;
+/* ---------------------------- header ------------------------------ */
+.headerSection {
+  @apply flex w-full flex-col items-center gap-16 md:gap-32;
 }
 
-.wrapper {
-  @apply relative flex w-full items-center justify-center object-contain;
+.avatarWrapper {
+  @apply relative h-120 w-120 shrink-0 md:h-160 md:w-160;
 }
 
-.userAvatarContainer {
-  @apply h-[100px] w-[100px] flex-shrink-0 rounded-full lg:min-h-[159px] lg:min-w-[159px];
-}
-.cameraIcon {
-  @apply absolute -right-8 bottom-0 cursor-pointer lg:right-12;
-}
-.profileDetails {
-  @apply flex w-full flex-col items-start gap-24 lg:gap-32;
-}
-.levelUpContainer {
-  @apply flex w-full flex-col items-start gap-12 self-stretch rounded-lg bg-[#F1F5FE];
-}
-.levelUpContainerChildOne {
-  @apply flex w-full flex-col items-start justify-center gap-12 self-stretch p-16;
+.userAvatar {
+  @apply h-full w-full rounded-full object-cover;
 }
 
-.levelUpContainerChildTwo {
-  @apply flex w-full items-start justify-center gap-12 self-stretch;
+.cameraButton {
+  @apply absolute bottom-0 right-0 flex h-40 w-40 cursor-pointer items-center justify-center;
 }
 
-.levelUpMapContainer {
-  @apply relative flex w-1/2 flex-col items-start gap-8 rounded bg-white p-16;
+.nameBlock {
+  @apply flex w-full flex-col items-center gap-12 md:gap-16;
 }
 
-.levelUpParent {
-  @apply flex justify-between sm:gap-10 md:gap-auto;
+.userName {
+  @apply text-center;
 }
 
-.levelUpParentTwo {
-  @apply block;
+.badgeRow {
+  @apply flex flex-wrap items-center justify-center gap-8 md:gap-16;
 }
-.levelUpWrapper {
+
+.badge {
+  @apply flex items-center gap-8 rounded-[32px] border-[0.5px] px-8 py-4 md:border md:px-24 md:py-8;
+}
+
+.badgeLevel {
+  @apply border-yellow-300 bg-yellow-50;
+}
+
+.badgeStudentMaster {
+  @apply cursor-pointer border-primary-100 bg-primary-50;
+}
+
+.levelIcon {
+  @apply h-16 w-16 shrink-0 object-contain md:h-20 md:w-20;
+}
+
+.badgeIcon {
+  @apply h-16 w-16 shrink-0;
+}
+
+/* ----------------------------- body ------------------------------- */
+.bodySection {
+  @apply flex w-full flex-col gap-24 md:gap-40;
+}
+
+/* --------------------------- stat cards --------------------------- */
+.statsGrid {
+  @apply grid grid-cols-2 gap-12 md:grid-cols-4 lg:gap-20;
+}
+
+.statCard {
+  @apply relative flex flex-col justify-center gap-8 rounded-xl border border-light bg-white p-12 md:p-16;
+}
+
+.statHeader {
+  @apply flex w-full items-center gap-4;
+}
+
+.statLabel {
+  @apply flex-1;
+}
+
+.statInfoIconButton {
+  @apply flex shrink-0 cursor-pointer items-center justify-center border-none bg-transparent p-0;
+}
+
+.statInfoIcon {
+  @apply h-16 w-16 shrink-0;
+}
+
+.statValueRow {
+  @apply flex items-center gap-6;
+}
+
+.statValue.statValue {
+  @apply text-16 leading-24 md:text-18 md:leading-28;
+}
+
+.statValueIcon {
+  @apply h-20 w-20 shrink-0 object-contain;
+}
+
+.statTooltip {
   @apply p-16;
-
-  & > div {
-    @apply text-base font-semibold lg:text-lg;
-  }
 }
 
-.levelUpParentThree {
-  @apply p-4;
-  & > div {
-    @apply text-base font-semibold lg:text-lg;
-  }
+/* -------------------------- detail cards -------------------------- */
+.detailsGrid {
+  @apply grid grid-cols-1 gap-24 md:grid-cols-2 md:gap-16 lg:gap-20;
 }
 
-.levelUpParentFour {
-  @apply flex flex-row items-center justify-center gap-2;
+.detailsCard {
+  @apply flex flex-col gap-16 rounded-2xl bg-tertiary-6 p-12 md:p-20;
 }
 
-.userDetailsContainer {
-  @apply flex w-full flex-col gap-16;
-}
-
-.udOne {
+.detailsHeader {
   @apply flex w-full items-center justify-between;
 }
-.udOneTitle {
-  @apply text-[14px] font-bold md:text-[16px] lg:text-[18px];
-}
-.udEditText {
-  @apply cursor-pointer text-xs font-semibold;
-}
-.profileDetailsContainer {
-  @apply flex w-full flex-col gap-24;
-}
-.udContainer {
-  @apply flex flex-col gap-16;
-}
-.udTwo {
-  @apply flex flex-row items-center gap-24 md:gap-16;
+
+.detailsTitle.detailsTitle {
+  @apply md:text-20 md:leading-30;
 }
 
-.udTwoSection {
-  @apply text-nowrap;
+.editButton {
+  @apply flex cursor-pointer items-center;
 }
 
-.udLine {
-  @apply w-full text-[#B7B7B7];
+.editText {
+  @apply underline;
 }
 
-.udSectionContainer {
-  @apply flex flex-col items-start gap-12;
+.detailsList {
+  @apply flex w-full flex-col gap-8;
 }
 
-.udSectionWrapper {
-  @apply flex w-full items-center justify-between lg:w-4/5;
+.detailRow {
+  @apply flex flex-col justify-center gap-4 rounded-lg bg-white px-16 py-12 md:gap-8;
 }
 
-.udNameSection {
-  @apply flex w-3/5 flex-row items-center gap-8 text-xs text-[#333333] lg:text-sm;
-}
-.udVerifiedSection {
-  @apply flex items-center gap-2;
-}
-.studentMaster {
-  @apply cursor-pointer font-semibold text-[#5A4BDA] hover:underline;
-}
-.udSectionValue {
-  @apply w-3/5 text-[#1B2124];
-}
-.verifiedIcon {
-  @apply h-10 w-10 items-center;
-}
-.pdContainer {
-  @apply relative flex w-full flex-col gap-8 rounded-lg p-16;
-}
-.pdBgBlack {
-  @apply bg-[#000000cc];
-}
-.pdBgDefault {
-  @apply bg-[#5a4bda0d];
-}
-.infoIcon {
-  @apply absolute right-[-0.5px] top-0 h-[24px] w-[24px] cursor-pointer;
+.detailLabel.detailLabel {
+  @apply text-14 leading-20;
 }
 
-.infoContainer {
-  @apply absolute left-1/2 top-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center pb-2;
-}
-.infoTextContainer {
-  @apply p-8;
-}
-.infoText {
-  @apply text-center text-white;
+.detailValue.detailValue {
+  @apply break-words text-16 leading-24;
 }
 
-.pdParent {
-  @apply flex w-full flex-col gap-10;
+/* ----------------------- bottom illustration ---------------------- */
+.illustration {
+  @apply relative -mx-16 flex flex-col items-center justify-center gap-12 overflow-hidden pb-32 pt-64 md:mx-0;
 }
-.pdParentOne {
-  @apply flex justify-between align-bottom;
+
+.illustrationGrid {
+  @apply pointer-events-none absolute inset-0;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(154, 154, 154, 0.12) 0 1.2px,
+      transparent 1.2px 100%
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(154, 154, 154, 0.12) 0 1.2px,
+      transparent 1.2px 100%
+    );
+  background-size: 40px 40px;
 }
-.knowMore {
-  @apply flex cursor-pointer items-center justify-center align-text-bottom hover:underline;
+
+@media (min-width: 640px) {
+  .illustrationGrid {
+    background-size: 76px 76px;
+  }
 }
-.titleContainer {
-  @apply flex flex-col gap-12 sm:flex-row;
+
+@media (min-width: 1024px) {
+  .illustrationGrid {
+    background-size: 116px 116px;
+  }
 }
+
+.illustrationFade {
+  @apply pointer-events-none absolute inset-x-0 top-0 h-[69px];
+  background: linear-gradient(to bottom, #fff 39%, rgba(248, 248, 248, 0));
+}
+
+/* From md up the fade becomes a full-height vignette (transparent center,
+   fading to white at the edges) rather than a top-only strip. */
+@media (min-width: 640px) {
+  .illustrationFade {
+    inset: 0;
+    height: 100%;
+    background: radial-gradient(
+      ellipse 41.36% 39.48% at 50% 50%,
+      rgba(255, 255, 255, 0) 63.69%,
+      #fff 100%
+    );
+  }
+}
+
+.illustrationGlow {
+  @apply pointer-events-none absolute left-1/2 top-1/2 h-[239px] w-[258px] -translate-x-1/2 -translate-y-1/2;
+  background: radial-gradient(closest-side, #f8f8f8 39%, rgba(248, 248, 248, 0));
+}
+
+.illustrationBadge {
+  @apply relative h-[123px] w-120;
+}
+
+.madeWith {
+  @apply relative flex items-center justify-center gap-4;
+}
+
+.madeWithHeart {
+  @apply h-[15px] w-[15px] shrink-0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Edit-profile / number-change modals                                 */
+/* ------------------------------------------------------------------ */
 .modalFooter {
   @apply flex flex-row items-center justify-end gap-12;
 }
@@ -171,14 +232,14 @@
 }
 
 .epCTA {
-  @apply w-full md:w-[138px];
+  @apply w-full;
 }
 .fullWidthFooter {
   @apply w-full justify-between;
 }
 
 .epNameContainer {
-  @apply flex flex-col items-start gap-8;
+  @apply flex flex-col items-start gap-12;
 }
 
 .epNameSubContainer {
@@ -186,7 +247,7 @@
 }
 
 .epGenderWrapper {
-  @apply flex items-center gap-24;
+  @apply flex items-center gap-24 py-12;
 }
 .epGenderContainer {
   @apply flex items-center gap-12;
@@ -198,7 +259,7 @@
   @apply flex items-start gap-10;
 }
 .epContainer {
-  @apply flex flex-col items-start gap-8 self-stretch;
+  @apply flex flex-col items-start gap-12 self-stretch;
 }
 
 .usContainer {
@@ -249,22 +310,6 @@
 .resendBtn {
   @apply text-[#0592CB] underline;
 }
-.learn2earnContainer {
-  @apply mx-auto flex w-full items-center justify-center gap-8 rounded-[58.697px] border-[1.17px] border-[#F7E0B4] bg-[#FFF6E5] px-12 py-6;
-}
-.l2eBadgeContainer {
-  @apply flex items-center pb-[4.7px];
-}
-.l2eBadge {
-  @apply h-[18.8px] w-[18.8px] flex-shrink-0;
-}
-.editIconWrapper {
-  @apply flex cursor-pointer items-center justify-center gap-4 px-4;
-}
-.editIconClassName {
-  @apply h-16 w-16 text-primary;
-}
-
 .otpContent {
   @apply flex flex-col gap-16;
 }
@@ -274,7 +319,7 @@
 }
 
 .batchModalBody {
-  @apply flex flex-col gap-[10px];
+  @apply flex flex-col gap-10;
 }
 
 .batchList {
@@ -297,7 +342,7 @@
 }
 
 .batchItemText {
-  @apply min-w-0 flex-1 text-[16px] font-normal leading-[24px] text-[#3d3d3d];
+  @apply min-w-0 flex-1 text-[16px] font-normal leading-[24px] text-body-1;
 
   margin: 0;
 }
@@ -331,7 +376,7 @@
 }
 
 .confirmBatchList {
-  @apply flex flex-col gap-2 rounded-xl bg-[#f8f8f8] p-12;
+  @apply flex flex-col gap-2 rounded-xl bg-[#D9DCE1] p-12;
 }
 
 .confirmBatchItem {
@@ -339,7 +384,7 @@
 }
 
 .confirmBatchDot {
-  @apply size-8 flex-shrink-0 rotate-[135deg] rounded-[2px] bg-[#6172f3];
+  @apply size-8 flex-shrink-0 rotate-[135deg] rounded-[2px] bg-indigo-500;
 }
 
 .confirmWarning {

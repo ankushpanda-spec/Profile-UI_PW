@@ -1,15 +1,15 @@
 .studentMaster {
-  @apply flex flex-col items-start gap-24 rounded-lg bg-white p-16 shadow-md md:px-24 md:py-32 lg:p-32;
+  @apply flex flex-col items-start gap-20 rounded-lg bg-white p-20 pb-[88px] scrollbar-none sm:pb-20 md:p-40 lg:gap-40 xl:px-80 xl:py-40;
 }
 
 .smTitle {
   @apply flex items-start gap-24 self-stretch;
 }
 .smAbout {
-  @apply flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pb-16 pt-16 md:flex-row md:rounded-3xl md:pl-24 md:pt-24 lg:pb-32 lg:pl-32 lg:pt-32;
+  @apply flex flex-col gap-12 self-stretch rounded-2xl bg-violet-50 px-16 pb-0 pt-32 md:flex-row md:rounded-2xl md:pl-24 md:pt-24 lg:pb-0 lg:pl-32 lg:pt-32;
 }
 .smAboutTitle {
-  @apply flex flex-1 flex-col items-start gap-12;
+  @apply flex flex-1 flex-col items-start gap-12 pb-32;
 }
 .smDescription {
   @apply flex flex-col items-start justify-center gap-14 self-stretch;
@@ -29,16 +29,16 @@
   @apply absolute -top-8 left-1/2 z-0 flex h-[180px] w-[180px] -translate-x-1/2 items-center justify-center md:-top-12 md:h-[260px] md:w-[260px] lg:-top-10 lg:h-[210px] lg:w-[210px];
 }
 .smHowItWork {
-  @apply flex flex-col items-center gap-16 self-stretch rounded-3xl px-12 py-16 md:px-24;
+  @apply flex flex-col items-start gap-16 self-stretch rounded-2xl pt-20;
 }
 
 .smVideoWrapper {
-  @apply flex h-[171px] w-full max-w-[304px] flex-shrink-0 items-center justify-center rounded-xl md:h-[342px] md:max-w-[608px] lg:h-[495px] lg:max-w-[880px];
+  @apply flex aspect-video w-full flex-shrink-0 items-center justify-center rounded-2xl border border-light lg:max-w-[900px];
 }
 .smPlayButton {
-  @apply flex h-32 w-32 items-center justify-center rounded-full bg-black md:h-[71px] md:w-[72px];
+  @apply flex h-40 w-40 items-center justify-center rounded-full bg-black md:h-[72px] md:w-[72px];
 }
 
 .smPlayIcon {
-  @apply flex h-14 w-14 items-center justify-center md:h-[28px] md:w-[29px];
+  @apply flex h-20 w-20 items-center justify-center md:h-[28px] md:w-[29px];
 }

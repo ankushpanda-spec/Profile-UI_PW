@@ -10,9 +10,16 @@ export enum ModalTypes {
 }
 
 export const CameraIcon =
-  'https://static.pw.live/images/camera-icon_20250107145313.png';
-export const BoyAvatar = 'https://static.pw.live/images/boy_20250107145242.png';
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/ab6267b8-f18f-4a06-943d-d4556dedc7cc.svg';
+export const BoyAvatar =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/9ab36b28-3fd3-4cc6-b827-243b1446d580.png';
 export const GirlAvatar =
-  'https://static.pw.live/images/girl_20250107145304.png';
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0573e0d7-fc36-408a-9a58-dd22f69c205c.png';
 export const XPIcon =
   'https://static.pw.live/images/xp-icon_20250107145335.png';
+export const LoveLearningBadge =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/884f4b16-1d2b-42ce-856b-eef1b49c0850.svg';
+export const InfoIcon =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/246e88ad-6f88-4c9a-8d7e-a2d16c48bb39.svg';
+export const HeartIcon =
+  'https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/2d239440-f284-40e6-8783-809cca6bce8e.svg';
